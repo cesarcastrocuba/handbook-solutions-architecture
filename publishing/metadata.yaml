@@ -1,4 +1,10 @@
-# Provisional publication metadata. Replace identifiers before release.
-version: "0.1.0-preview"
-status: "Draft template"
+# Publication metadata. Values describe the prepared edition, not a published one.
+title: "Solutions Architecture Handbook"
+subtitle: "A vendor-neutral, practical handbook for designing, evaluating, documenting and governing software and solution architectures"
+version: "3.1.0-rc.1"
+status: "Prepared — not released"
 language: "en"
+author: "Franz César Castro Cuba"
+license:
+  content: "CC BY-SA 4.0"
+  code: "MIT"

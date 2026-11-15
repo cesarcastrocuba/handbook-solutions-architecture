@@ -1,20 +1,21 @@
-# Licensing and attribution — handbook template
+# Licensing and attribution — Solutions Architecture Handbook
 
-This template is part of the Handbook Hub and keeps the hub's dual-license split:
+This handbook keeps the platform's dual-license split:
 
 | Material | License | File |
 | --- | --- | --- |
-| Template documentation, editorial structure and example prose | CC BY-SA 4.0 | [`LICENSE`](LICENSE) |
-| Build configuration, `Makefile` and executable examples | MIT | [`LICENSE-CODE`](LICENSE-CODE) |
+| Handbook content, documentation and figures | CC BY-SA 4.0 | [`LICENSE`](LICENSE) |
+| Build configuration, `Makefile` and scripts | MIT | [`LICENSE-CODE`](LICENSE-CODE) |
 
 Copyright © 2026 Franz César Castro Cuba.
 
-## When you copy this template
+## Provenance
 
-A copied book is a new work owned by its authors. Replace this notice and the copyright line with
-your own attribution, and state the license you choose for your manuscript. If you adapt the
-template text, credit "Handbook Hub, Franz César Castro Cuba", link to CC BY-SA 4.0 and license the
-adaptation under CC BY-SA 4.0. Build configuration copied from the template may remain MIT.
+The content comes from the author's private reference repository
+`cesarcastrocuba/solutions-architecture-handbook`, tag `v3.0.0` (`DEC-001`), which is under the same
+licenses. The repository structure, workflows and build configuration come from the Handbook Hub
+template `template-v1.6.0` (Handbook Hub, Franz César Castro Cuba; CC BY-SA 4.0 for template text,
+MIT for build configuration).
 
 ## Third-party material
 
