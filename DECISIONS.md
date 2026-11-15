@@ -1,0 +1,16 @@
+# Decision log
+
+Status terms: **Accepted — platform constraint** (fixed by the hub), **Approved** (Owner decision)
+and **Proposed** (awaits the Owner). Only the Owner approves editorial scope, licensing, tags and
+releases. Approved rows are not rewritten; a later row supersedes them.
+
+| ID | Status | Decision | Rationale / next step |
+| --- | --- | --- | --- |
+| DEC-001 | Approved — 2026-11-15 | This repository is the platform edition of the *Solutions Architecture Handbook*. Its content comes from the private reference repository `cesarcastrocuba/solutions-architecture-handbook` at the frozen tag `v3.0.0` (commit `13d295bfb266c6fb03b8d244666ebbf0e056e6cd`). The reference is never modified; its decisions `DEC-001` to `DEC-022` keep their meaning there and are referenced, not copied. | Hub decision `HUB-DEC-043`. The book was created from the template mirror `template-v1.6.0` (`8a6d5ae`) through `initialize-book`. Every import pull request names the source commit and carries a parity table against it. |
+| DEC-002 | Accepted — platform constraint | Independent book repository: it owns its canonical Quarto sources; the hub owns the toolkit, schemas, profile, template, catalog and portal. The toolkit is installed at a pinned version from `requirements.txt`. | `HUB-DEC-001`, `HUB-DEC-002`. Do not copy shared scripts or import a parent checkout. |
+| DEC-003 | Accepted — platform constraint | Roles are Owner, Implementer and Reviewer. The implementer never reviews or merges their own change. | `AGENTS.md`, `HUB-DEC-011`. |
+| DEC-004 | Approved — 2026-11-15 | Content is imported in small pull requests: front matter; chapters 1–4; 5–8; 9–12; 13–18; appendices A–J and back matter (order confirmed by the hub inventory, change `0048`). No section of the source is lost, including the generated ones (analytic index, Appendix G glossary pointers, checklist appendices, pattern catalog). Only the visual theme changes: the hub design replaces the Learn theme and the Selawik and Cascadia fonts. | `HUB-DEC-043`. A generated section uses a toolkit feature when it serves every book, otherwise a book-owned generator; platform gaps are closed in the hub, not patched here. |
+| DEC-005 | Approved — 2026-11-15 | Editions are pre-releases `v3.1.0-rc.N` while the content is incomplete; `v3.1.0` is the first complete edition and the only one listed in the hub catalog. | Avoids a second, different `v3.0.0`. Every tag needs the Owner's approval, and every DOCX change the Owner's desktop Word check. |
+| DEC-006 | Approved — 2026-11-15 | Content and documentation under CC BY-SA 4.0; build configuration and scripts under MIT; author and copyright holder Franz César Castro Cuba. | Same split as the reference repository and the hub (`HUB-DEC-009`). Third-party material needs a recorded rights review before import. |
+| DEC-007 | Accepted — platform constraint | Commits and pull requests in this repository carry no tool trailers. | Owner instruction for book repositories, as in the sample book; `HUB-DEC-025` leaves the policy to each book. |
+| DEC-008 | Accepted — platform constraint | Repository and handbook language is English. | Platform contract. |
