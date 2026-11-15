@@ -1,4 +1,4 @@
-# Licensing and attribution — handbook template
+# Licensing and attribution — Solutions Architecture Handbook
 
 This template is part of the Handbook Hub and keeps the hub's dual-license split:
 

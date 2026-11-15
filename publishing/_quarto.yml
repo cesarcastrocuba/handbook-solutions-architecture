@@ -3,20 +3,20 @@ project:
   output-dir: _output
 
 book:
-  title: "Handbook Template"
-  author: "Template Author"
+  title: "Solutions Architecture Handbook"
+  author: "Franz César Castro Cuba"
   date: "2026-11-06"
   search: true
-  repo-url: "https://github.com/OWNER/REPOSITORY"
+  repo-url: "https://github.com/cesarcastrocuba/handbook-solutions-architecture"
   repo-actions: [issue]
   navbar:
     right:
       - text: "Handbook Hub"
         href: "https://cesarcastrocuba.github.io/handbooks-hub/"
       - text: "Source"
-        href: "https://github.com/OWNER/REPOSITORY/tree/main/manuscript"
+        href: "https://github.com/cesarcastrocuba/handbook-solutions-architecture/tree/main/manuscript"
       - text: "Downloads"
-        href: "https://github.com/OWNER/REPOSITORY/releases"
+        href: "https://github.com/cesarcastrocuba/handbook-solutions-architecture/releases"
 
 format:
   html:

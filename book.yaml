@@ -1,8 +1,8 @@
 # Book descriptor. Replace the identifiers and summary before the first commit.
 # Keep toolkit and profile versions exact: ranges are rejected by the schema.
 schema_version: "1.0"
-id: template-book
-title: Handbook template
+id: "solutions-architecture-handbook"
+title: "Solutions Architecture Handbook"
 status: draft
 
 profile:
@@ -27,11 +27,11 @@ publication:
   manifest: publication-manifest.json
 
 catalog:
-  slug: template-book
+  slug: "solutions-architecture-handbook"
   categories:
-    - authoring
-  summary: Replace this summary before the book is listed in the hub catalog.
+    - "architecture"
+  summary: "A vendor-neutral, practical handbook for designing, evaluating, documenting and governing software and solution architectures."
 
 repository:
-  url: null
+  url: "https://github.com/cesarcastrocuba/handbook-solutions-architecture"
   default_branch: main

@@ -1,5 +1,4 @@
-# Book template 1.6.0
-
+# Solutions Architecture Handbook
 A starting point for an independent handbook repository. Copy this directory into a new repository,
 then replace the identifiers and content. The copy is owned by the book; the hub does not update it
 in place.
