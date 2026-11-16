@@ -1,0 +1,217 @@
+# References {.unnumbered}
+
+Sources are grouped by topic. Books are cited with their latest edition known at the time of this revision; living online documents without editions are cited without a date and should be checked at their source. Specifications and standards are cited by their maintaining body; consult the maintainer for the current version before relying on specific clauses.
+
+## Architecture Practice, Decisions and Evaluation
+
+- Bass, L., Clements, P. and Kazman, R. *Software Architecture in Practice*, 4th ed. Addison-Wesley, 2021.
+- Clements, P. et al. *Documenting Software Architectures: Views and Beyond*, 2nd ed. Addison-Wesley, 2010.
+- Clements, P., Kazman, R. and Klein, M. *Evaluating Software Architectures: Methods and Case Studies*. Addison-Wesley, 2002.
+- Clements, P. *Active Reviews for Intermediate Designs*. Technical Note CMU/SEI-2000-TN-009, Software Engineering Institute, Carnegie Mellon University, 2000.
+- Conway, M. E. “How Do Committees Invent?” *Datamation* 14(4), 1968, pp. 28–31.
+- Ford, N., Parsons, R., Kua, P. and Sadalage, P. *Building Evolutionary Architectures*, 2nd ed. O’Reilly, 2022.
+- Ford, N., Richards, M., Sadalage, P. and Dehghani, Z. *Software Architecture: The Hard Parts*. O’Reilly, 2021.
+- Forsgren, N., Storey, M.-A., Maddila, C., Zimmermann, T., Houck, B. and Butler, J. “The SPACE of Developer Productivity.” *ACM Queue* 19(1), 2021.
+- Gentle, A. *Docs Like Code*. Just Write Click, 2017.
+- Hohpe, G. *The Software Architect Elevator*. O’Reilly, 2020.
+- Barbacci, M. et al. *Quality Attribute Workshops (QAWs), Third Edition*. Technical Report CMU/SEI-2003-TR-016, Software Engineering Institute, Carnegie Mellon University, 2003.
+- Cervantes, H. and Kazman, R. *Designing Software Architectures: A Practical Approach*. Addison-Wesley, 2016.
+- Kazman, R., Asundi, J. and Klein, M. *Making Architecture Design Decisions: An Economic Approach*. Technical Report CMU/SEI-2002-TR-035, Software Engineering Institute, Carnegie Mellon University, 2002.
+- Kazman, R., Bass, L., Abowd, G. and Webb, M. “SAAM: A Method for Analyzing the Properties of Software Architectures.” *Proceedings of the 16th International Conference on Software Engineering (ICSE)*, 1994, pp. 81–90.
+- Kazman, R., Klein, M. and Clements, P. *ATAM: Method for Architecture Evaluation*. Technical Report CMU/SEI-2000-TR-004, Software Engineering Institute, Carnegie Mellon University, 2000.
+- Keeling, M. *Design It\! From Programmer to Software Architect*. Pragmatic Bookshelf, 2017.
+- Knodel, J. and Naab, M. *Pragmatic Evaluation of Software Architectures*. Springer, 2016.
+- Kruchten, P. “The 4+1 View Model of Architecture.” *IEEE Software* 12(6), 1995, pp. 42–50.
+- Nygard, M. “Documenting Architecture Decisions.” Cognitect blog, 2011.
+- Richards, M. and Ford, N. *Fundamentals of Software Architecture*, 2nd ed. O’Reilly, 2025.
+- Rozanski, N. and Woods, E. *Software Systems Architecture*, 2nd ed. Addison-Wesley, 2011.
+- Skelton, M. and Pais, M. *Team Topologies*. IT Revolution, 2019.
+
+## Standards, Frameworks and Notations
+
+- ACORD. *ACORD Standards*. acord.org.
+- BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
+- Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
+- HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
+- IEC 62264 (ISA-95). *Enterprise-control system integration*.
+- ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
+- ISO/IEC 9075. *Information technology — Database languages — SQL*. System-versioned temporal tables were introduced in SQL:2011; the current edition is SQL:2023.
+- ISO/IEC/IEEE 29119-1:2022. *Software and systems engineering — Software testing — Part 1: General concepts*.
+- ISO/IEC/IEEE 29148:2018. *Systems and software engineering — Life cycle processes — Requirements engineering*.
+- ISO/IEC/IEEE 42010:2022. *Software, systems and enterprise — Architecture description*.
+- Scaled Agile, Inc. *SAFe — Scaled Agile Framework*. scaledagileframework.com.
+- Starke, G. and Hruschka, P. *arc42 Architecture Documentation Template*. arc42.org.
+- The Open Group. *ArchiMate 3.2 Specification*. 2022.
+- The Open Group. *The TOGAF Standard*, 10th Edition. 2022.
+- TM Forum. *Open Digital Architecture (ODA)* and *Open APIs*. tmforum.org.
+- W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation, 2023.
+- Zachman, J. A. *The Zachman Framework for Enterprise Architecture*. Zachman International.
+
+## Domain Design, Data and Consistency
+
+- Abadi, D. “Consistency Tradeoffs in Modern Distributed Database System Design.” *IEEE Computer* 45(2), 2012.
+- Berenson, H. et al. “A Critique of ANSI SQL Isolation Levels.” Proceedings of ACM SIGMOD, 1995.
+- Brandolini, A. *Introducing EventStorming*. Leanpub.
+- DAMA International. *DAMA-DMBOK: Data Management Body of Knowledge*, 2nd ed. Technics Publications, 2017.
+- Dehghani, Z. *Data Mesh*. O’Reilly, 2022.
+- Evans, E. *Domain-Driven Design: Tackling Complexity in the Heart of Software*. Addison-Wesley, 2003.
+- Fowler, M. “Event Sourcing.” martinfowler.com, 2005.
+- Gilbert, S. and Lynch, N. “Brewer’s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services.” *ACM SIGACT News* 33(2), 2002.
+- Helland, P. “Life beyond Distributed Transactions: an Apostate’s Opinion.” Conference on Innovative Data Systems Research (CIDR), 2007.
+- Kleppmann, M. and Riccomini, C. *Designing Data-Intensive Applications*, 2nd ed. O’Reilly, 2026.
+- Lamport, L. “Time, Clocks, and the Ordering of Events in a Distributed System.” *Communications of the ACM* 21(7), 1978.
+- Ongaro, D. and Ousterhout, J. “In Search of an Understandable Consensus Algorithm.” USENIX Annual Technical Conference, 2014.
+- Vernon, V. *Implementing Domain-Driven Design*. Addison-Wesley, 2013.
+- Young, G. *CQRS Documents*. 2010.
+
+## Integration and Application Architecture
+
+- AsyncAPI Initiative. *AsyncAPI Specification*. asyncapi.com.
+- Chappell, D. A. *Enterprise Service Bus*. O’Reilly, 2004.
+- Cloud Native Computing Foundation. *CloudEvents Specification*. cloudevents.io.
+- Cockburn, A. “Hexagonal Architecture (Ports and Adapters).” alistair.cockburn.us, 2005.
+- Fielding, R. T. *Architectural Styles and the Design of Network-based Software Architectures*. Doctoral dissertation, University of California, Irvine, 2000.
+- Fowler, M. “CQRS.” martinfowler.com, 2011.
+- Fowler, M. “What do you mean by ‘Event-Driven’?” martinfowler.com, 2017.
+- Garcia-Molina, H. and Salem, K. “Sagas.” Proceedings of ACM SIGMOD, 1987.
+- Google. *API Improvement Proposals (AIP)*. aip.dev.
+- Hohpe, G. and Woolf, B. *Enterprise Integration Patterns*. Addison-Wesley, 2003.
+- IANA. *Time Zone Database*. iana.org/time-zones.
+- IETF. RFC 4130, *MIME-Based Secure Peer-to-Peer Business Data Interchange Using HTTP, Applicability Statement 2 (AS2)*, 2005.
+- IETF. RFC 5646 (BCP 47), *Tags for Identifying Languages*, 2009.
+- IETF. RFC 6455, *The WebSocket Protocol*, 2011.
+- IETF. RFC 8594, *The Sunset HTTP Header Field*, 2019; RFC 9745, *The Deprecation HTTP Response Header Field*, 2025.
+- IETF. RFC 9110, *HTTP Semantics*, 2022; RFC 9457, *Problem Details for HTTP APIs*, 2023.
+- IETF. RFC 9111, *HTTP Caching*, 2022.
+- ISO. ISO 4217, *Codes for the representation of currencies*.
+- Jackson, C. “Micro Frontends.” martinfowler.com, 2019.
+- Lewis, J. and Fowler, M. “Microservices.” martinfowler.com, 2014.
+- Martin, R. C. *Clean Architecture*. Prentice Hall, 2017.
+- Microsoft. *Microsoft REST API Guidelines*. github.com/microsoft/api-guidelines.
+- Newman, S. *Building Microservices*, 2nd ed. O’Reilly, 2021.
+- Newman, S. “Pattern: Backends For Frontends.” samnewman.io, 2015.
+- Nygard, M. *Release It\! Design and Deploy Production-Ready Software*, 2nd ed. Pragmatic Bookshelf, 2018.
+- OpenAPI Initiative. *OpenAPI Specification*. spec.openapis.org.
+- Preston-Werner, T. *Semantic Versioning 2.0.0*. semver.org.
+- Richardson, C. *Microservices Patterns*. Manning, 2018.
+- Unicode Consortium. *Unicode Common Locale Data Repository (CLDR)*. cldr.unicode.org.
+- WHATWG. *HTML Living Standard*, “Server-sent events.” html.spec.whatwg.org.
+
+## Cloud, Infrastructure and Economics
+
+- Amazon Web Services. *AWS Well-Architected Framework*. docs.aws.amazon.com/wellarchitected.
+- Amazon Web Services. *Disaster Recovery of Workloads on AWS: Recovery in the Cloud* (whitepaper).
+- Amazon Web Services. *Reducing the Scope of Impact with Cell-Based Architecture*. AWS Well-Architected whitepaper, 2023.
+- Amazon Web Services. *SaaS Lens: AWS Well-Architected Framework*. docs.aws.amazon.com/wellarchitected.
+- Amazon Web Services. *SaaS Tenant Isolation Strategies* (whitepaper).
+- ETSI. EN 303 645, *Cyber Security for Consumer Internet of Things: Baseline Requirements*.
+- Google Cloud. *Google Cloud Well-Architected Framework*. docs.cloud.google.com/architecture/framework.
+- IETF. RFC 7239, *Forwarded HTTP Extension*, 2014.
+- ISO 22301:2019. *Security and resilience — Business continuity management systems — Requirements*.
+- Microsoft. *Architect multitenant solutions on Azure*. learn.microsoft.com/azure/architecture/guide/multitenant/overview.
+- Microsoft. *Azure Well-Architected Framework*. learn.microsoft.com/azure/well-architected.
+- Microsoft. *Noisy Neighbor antipattern*. learn.microsoft.com/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor.
+- Morris, K. *Infrastructure as Code*, 2nd ed. O’Reilly, 2020.
+- NIST. IR 8259 Rev. 1, *Foundational Cybersecurity Activities for IoT Product Manufacturers*, 2026.
+- OASIS. *MQTT Version 5.0*. OASIS Standard, 2019.
+- OpenGitOps. *OpenGitOps Principles*, version 1.0.0. opengitops.dev.
+- Oracle. *Well-Architected Framework for Oracle Cloud Infrastructure*. docs.oracle.com/en/solutions/oci-best-practices.
+- Storment, J. R. and Fuller, M. *Cloud FinOps*, 2nd ed. O’Reilly, 2023.
+
+## Security: Standards and Control Frameworks
+
+- AICPA. *Trust Services Criteria* (basis of SOC 2 reports).
+- Center for Internet Security. *CIS Benchmarks*.
+- Cloud Security Alliance. *Cloud Controls Matrix (CCM)* and *Consensus Assessments Initiative Questionnaire (CAIQ)*.
+- ISO/IEC 27001:2022. *Information security, cybersecurity and privacy protection — Information security management systems — Requirements*.
+- ISO/IEC 27002:2022. *Information security, cybersecurity and privacy protection — Information security controls*.
+- National Institute of Standards and Technology. *SP 800-207: Zero Trust Architecture*. 2020.
+- National Institute of Standards and Technology. *SP 800-53 Rev. 5: Security and Privacy Controls for Information Systems and Organizations*. 2020.
+- National Institute of Standards and Technology. *SP 800-88 Rev. 2: Guidelines for Media Sanitization*. 2025.
+- National Institute of Standards and Technology. *The NIST Cybersecurity Framework (CSF) 2.0*. 2024.
+- PCI Security Standards Council. *PCI DSS v4.0.1*. 2024.
+- The Institute of Internal Auditors. *The IIA’s Three Lines Model: An Update of the Three Lines of Defense*. 2020.
+
+## Privacy, Regulation and Compliance
+
+- European Union. *Regulation (EU) 2016/679 — General Data Protection Regulation (GDPR)*. 2016.
+- European Union. *Directive 2002/58/EC — Privacy and electronic communications (ePrivacy Directive)*, as amended.
+- European Union. *Directive (EU) 2022/2555 — Measures for a high common level of cybersecurity across the Union (NIS2)*. 2022.
+- European Union. *Regulation (EU) 2022/2554 — Digital operational resilience for the financial sector (DORA)*. 2022.
+- European Union. *Regulation (EU) 2024/1689 — Artificial Intelligence Act*. 2024.
+- European Union. *Directive (EU) 2019/882 — Accessibility requirements for products and services (European Accessibility Act)*. 2019.
+- ETSI. *EN 301 549: Accessibility requirements for ICT products and services*. W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. 2023.
+- ISO/IEC 42001:2023. *Information technology — Artificial intelligence — Management system*.
+- LINDDUN privacy threat modeling framework (linddun.org), KU Leuven DistriNet.
+
+## Security: Identity and Authentication
+
+- IETF. RFC 6749, *The OAuth 2.0 Authorization Framework*, 2012; RFC 7636, *Proof Key for Code Exchange (PKCE)*, 2015; RFC 8628, *OAuth 2.0 Device Authorization Grant*, 2019.
+- IETF. RFC 7643 and RFC 7644, *System for Cross-domain Identity Management (SCIM) 2.0*, 2015.
+- IETF. RFC 8252, *OAuth 2.0 for Native Apps*, 2017.
+- IETF. RFC 8705, *OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens*, 2020; RFC 9449, *OAuth 2.0 Demonstrating Proof of Possession (DPoP)*, 2023.
+- IETF. RFC 9700, *Best Current Practice for OAuth 2.0 Security*, 2025.
+- National Institute of Standards and Technology. *SP 800-63-4: Digital Identity Guidelines*. 2025.
+- OASIS. *Security Assertion Markup Language (SAML) 2.0*. 2005.
+- OpenID Foundation. *OpenID Connect Core 1.0*.
+- W3C. *Web Authentication (WebAuthn)*; FIDO Alliance, *FIDO2 specifications*.
+
+## Security: Secure Development, Testing and Vulnerabilities
+
+- CISA. *Known Exploited Vulnerabilities (KEV) Catalog*. cisa.gov.
+- FIRST. *Common Vulnerability Scoring System v4.0 Specification*. 2023.
+- FIRST. *Exploit Prediction Scoring System (EPSS)*. first.org/epss.
+- IETF. RFC 9116, *A File Format to Aid in Security Vulnerability Disclosure (security.txt)*, 2022.
+- National Institute of Standards and Technology. *SP 800-218: Secure Software Development Framework (SSDF) Version 1.1*. 2022.
+- OpenSSF. *Supply-chain Levels for Software Artifacts (SLSA)*. slsa.dev.
+- OWASP Foundation. *OWASP Top 10:2025*; *API Security Top 10 — 2023*; *Application Security Verification Standard (ASVS) 5.0*, 2025; *Web Security Testing Guide*; *Software Assurance Maturity Model (SAMM)*; *Cheat Sheet Series*. owasp.org.
+- Shostack, A. *Threat Modeling: Designing for Security*. Wiley, 2014.
+- Software Engineering Institute. *SEI CERT Coding Standards*. Carnegie Mellon University.
+
+## Reliability, Observability and Delivery
+
+- Ambler, S. and Sadalage, P. *Refactoring Databases: Evolutionary Database Design*. Addison-Wesley, 2006.
+- Beyer, B. et al. (eds.) *The Site Reliability Workbook*. O’Reilly, 2018.
+- Beyer, B., Jones, C., Petoff, J. and Murphy, N. R. (eds.) *Site Reliability Engineering*. O’Reilly, 2016.
+- Crispin, L. and Gregory, J. *Agile Testing*. Addison-Wesley, 2008.
+- Dean, J. and Barroso, L. A. “The Tail at Scale.” *Communications of the ACM* 56(2), 2013.
+- Driessen, V. “A successful Git branching model.” nvie.com, 2010 (with a note of reflection added in 2020).
+- Forsgren, N., Humble, J. and Kim, G. *Accelerate: The Science of Lean Software and DevOps*. IT Revolution, 2018.
+- Gregg, B. *Systems Performance: Enterprise and the Cloud*, 2nd ed. Addison-Wesley, 2020.
+- Hammant, P. *Trunk Based Development*. trunkbaseddevelopment.com.
+- Hodgson, P. “Feature Toggles (aka Feature Flags).” martinfowler.com, 2017.
+- Humble, J. and Farley, D. *Continuous Delivery*. Addison-Wesley, 2010.
+- Jia, Y. and Harman, M. “An Analysis and Survey of the Development of Mutation Testing.” *IEEE Transactions on Software Engineering* 37(5), 2011.
+- Kim, G., Humble, J., Debois, P., Willis, J. and Forsgren, N. *The DevOps Handbook*, 2nd ed. IT Revolution, 2021.
+- Luo, Q., Hariri, F., Eloussi, L. and Marinov, D. “An Empirical Analysis of Flaky Tests.” *Proceedings of the 22nd ACM SIGSOFT International Symposium on Foundations of Software Engineering*, 2014.
+- Majors, C., Fong-Jones, L. and Miranda, G. *Observability Engineering*. O’Reilly, 2022.
+- Meszaros, G. *xUnit Test Patterns: Refactoring Test Code*. Addison-Wesley, 2007.
+- OpenTelemetry project. opentelemetry.io.
+- Pact Foundation. *Pact documentation*. docs.pact.io.
+- Rosenthal, C. and Jones, N. *Chaos Engineering: System Resiliency in Practice*. O’Reilly, 2020.
+- Vocke, H. “The Practical Test Pyramid.” martinfowler.com, 2018.
+- W3C. *Trace Context*. W3C Recommendation, 2021.
+
+## Evolution and Modernization
+
+- Cunningham, W. “The WyCash Portfolio Management System.” OOPSLA ’92 Experience Report, 1992.
+- Fowler, M. “Strangler Fig Application.” martinfowler.com, 2004.
+- Fowler, M. “Technical Debt Quadrant.” martinfowler.com, 2009.
+- Newman, S. *Monolith to Microservices*. O’Reilly, 2019.
+
+## Service Management and Change Control
+
+- ISACA. *COBIT 2019 Framework*. 2018.
+- ISO/IEC 20000-1:2018. *Information technology — Service management — Part 1: Service management system requirements*.
+- PeopleCert. *ITIL 4* and *ITIL (Version 5)*. peoplecert.org.
+
+## AI and Machine Learning
+
+- Huyen, C. *Designing Machine Learning Systems*. O’Reilly, 2022.
+- Lewis, P. et al. “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.” *NeurIPS 2020*; arXiv:2005.11401.
+- MITRE. *ATLAS — Adversarial Threat Landscape for Artificial-Intelligence Systems*. atlas.mitre.org.
+- Model Context Protocol. *Model Context Protocol Specification*. modelcontextprotocol.io.
+- NIST. *Artificial Intelligence Risk Management Framework (AI RMF 1.0)*. NIST AI 100-1, 2023.
+- NIST. *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*. NIST AI 600-1, 2024.
+- OWASP Foundation. *OWASP Top 10 for LLM Applications 2025*. genai.owasp.org.
+- OWASP GenAI Security Project. *OWASP Top 10 for Agentic Applications for 2026*. genai.owasp.org, 2025.

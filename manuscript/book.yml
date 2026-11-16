@@ -22,6 +22,18 @@ chapters:
   - chapters/ch16-software-engineering-and-architecture-artifacts.qmd
   - chapters/ch17-architecture-frameworks-methods-and-standards.qmd
   - chapters/ch18-ai-and-machine-learning-architecture.qmd
-back: []
-appendices: []
-references: []
+back:
+  - back-matter/conclusions.qmd
+appendices:
+  - appendices/appendix-a-worked-architecture-cases.qmd
+  - appendices/appendix-b-reusable-artifact-templates.qmd
+  - appendices/appendix-c-architecture-assurance-checklist.qmd
+  - appendices/appendix-d-cross-artifact-consistency-matrix.qmd
+  - appendices/appendix-e-security-requirements-baseline.qmd
+  - appendices/appendix-f-security-reference.qmd
+  - appendices/appendix-g-glossary-of-terms-and-acronyms.qmd
+  - appendices/appendix-h-anti-pattern-catalog.qmd
+  - appendices/appendix-i-decision-catalog.qmd
+  - appendices/appendix-j-pattern-catalog.qmd
+references:
+  - back-matter/references.qmd

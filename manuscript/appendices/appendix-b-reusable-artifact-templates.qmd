@@ -1,0 +1,225 @@
+# Appendix B — Reusable Artifact Schemas
+
+The schemas in this appendix describe what each artifact should contain and what to write in every section. They are checklists of sections, not a mandate to fill all of them: match the depth to the risk of the change (16.1.2), mark a section not applicable with the reason, and delete sections that no reader will use. Each schema states the section, the content expected and the quality check a reviewer applies. Chapter 16 defines the artifacts themselves and their fiches; this appendix is the working outline.
+
+**Using a schema.** Copy the section names into your template, keep the identifiers stable so that other artifacts can link to them, and record the artifact’s owner and status in its header. A section that is empty and not marked not applicable is a defect, because a reader cannot tell whether the omission was deliberate.
+
+**Scope of this appendix.** The schemas cover the artifacts most often reused across solutions: the quality scenario, PRD, HLD, LLD, ICD, ADR, RFC, review record, audit-event catalog, control-and-evidence matrix and retention schedule. The remaining catalog artifacts in 16.1.2 have a fiche but no full schema here, because their content is specific to one domain or is defined in the chapter that owns it: the BRD and business case (16.2.1), the full SRS (16.2.3; B.1 covers its quality scenarios), the API and event specification (16.4.1), the data model, dictionary and lineage (16.4.2), the threat model and risk register (16.4.3), the test strategy (16.5.1) and the runbook and SLOs (16.5.2). Their fiche is the minimum content to start from; add a schema here when a second team needs the same structure.
+
+## B.1 Quality Attribute Scenario
+
+A quality attribute scenario is a structured, measurable statement of one quality requirement, and the schema below keeps it testable.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Identifier and linked requirement | A stable identifier and the requirement or objective it serves | The link resolves; the requirement is owned |
+| Source of stimulus | The actor or system that generates the stimulus | The source is realistic for the workload |
+| Stimulus | The event or condition, stated precisely | One stimulus per scenario; no compound conditions |
+| Environment | Load, failure condition and state at the time | Peak and degraded conditions stated, not only normal operation |
+| Affected artifact | The system, component or data the stimulus reaches | Scope is explicit and matches the design element |
+| Response | The observable behavior expected | Response is observable from outside the system |
+| Response measure, method and owner | The numeric threshold, how it is measured and who owns it | Numeric, testable, with a measurement point and an owner |
+
+: Schema for a quality attribute scenario
+
+## B.2 PRD — Product Requirements Document
+
+The PRD schema defines the sections that connect a product problem to acceptance criteria a design and a test can act on.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Problem and opportunity | The user or business problem, evidence of its size, and why now | Problem stated without prescribing a solution |
+| Users, jobs and scope | Target users, their jobs and the boundary of the product | Personas or segments are specific; exclusions listed |
+| Outcomes and measurable KPIs | The outcome expected and the metrics that show it | Metrics measurable, baselined and owned |
+| Journeys and acceptance criteria | The end-to-end journeys, their trigger, outcome and acceptance criteria | Each journey is testable end to end; criteria are observable |
+| Functional requirements and priorities | Requirements with a testable criterion each, in priority order | Every requirement ranked; criteria stable and identifiable |
+| Quality requirements, accessibility and constraints | Links to quality scenarios, accessibility needs, constraints and assumptions | Quality and accessibility requirements are measurable and owned |
+| Exclusions, dependencies, risks and open questions | What is out of scope, external dependencies, risks and unresolved decisions | Exclusions explicit; each risk has an owner and a next step |
+
+: Schema for a PRD
+
+## B.3 HLD — High-Level Design
+
+The HLD schema structures the description of system shape, boundaries and trade-offs so that cross-team reviewers can assess it.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Context and architecture drivers | Business context, priority scenarios and constraints that shape the design | Drivers trace to requirements, not to preference |
+| System context and container views | Context and container diagrams with responsibilities and owners | Every container has a responsibility; boundaries drawn |
+| Key decisions and ADR references | The principal decisions and links to their ADRs | Each significant decision has an ADR; no contradiction |
+| Data ownership and integration flows | Systems of record, flows, and synchronous or asynchronous behavior | One owner per data domain; flows labeled with failure behavior |
+| Security, resilience, scalability and deployment | Trust boundaries, failure assumptions, scaling model and topology | Assumptions are testable; recovery stated |
+| Risks, alternatives and validation plan | Open risks, rejected alternatives and how assumptions will be validated | Alternatives recorded; validation owned and time-boxed |
+
+: Schema for an HLD
+
+## B.4 LLD / TDD — Low-Level or Technical Design Document
+
+The low-level design schema makes implementation and failure behavior reviewable before code exists.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Component responsibilities and sequence flows | Modules, their responsibilities and the main interactions | Responsibilities do not overlap; flows include failure paths |
+| Data schemas and state transitions | Tables, messages, keys and the states an entity moves through | Every state has an exit; keys and indexes justified |
+| Failure modes, timeouts, retries and idempotency | Behavior for timeout, duplicate, reorder, partial failure and unknown outcome | Every external call has a timeout and an unknown-outcome path |
+| Deployment configuration and secrets | Configuration, environments and how secrets are provided and rotated | No secret in source; rotation described |
+| Test strategy and observability | Tests to be written and the metrics, logs and traces emitted | Tests map to scenarios; no sensitive data in telemetry |
+| Migration, rollout and rollback | Data migration, rollout sequence and rollback steps | Rollback tested or explicitly impossible with a stated reason |
+
+: Schema for an LLD or technical design document
+
+## B.5 ICD — Interface Control Document
+
+The ICD schema captures everything two parties must agree on for an interface to work and to change safely.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Parties, owners and versioning | Both parties, their owners and the version of this agreement | Owners named on both sides; version and date recorded |
+| Interface purpose and interaction diagram | What the interface is for and a sequence diagram of the main and failure paths | Business purpose stated, not only the protocol |
+| Protocol, transport, authentication and authorization | Transport, authentication method and authorization scopes | Authorization checked at the resource; credentials rotate |
+| Payload semantics, schema reference and compatibility policy | Field meanings, the machine-readable schema link and compatibility rules | Semantics agreed; schema is the single source for generated code |
+| Error model, timeouts, retry, idempotency and service levels | Error codes, timeout values, retry eligibility, idempotency key and targets | Unknown outcome defined; duplicate handling agreed |
+| Observability, contacts, testing and change control | Correlation identifiers, support window, escalation, contract tests and change process | Escalation tested; breaking changes require a major version |
+
+: Schema for an ICD
+
+## B.6 ADR — Architecture Decision Record
+
+The ADR schema preserves the reasoning a later change must either respect or deliberately overturn.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Identifier, status, date and owner | A stable identifier, status, date and the decision owner | Status reflects reality; owner is accountable, not the author only |
+| Context and decision drivers | The forces that make a decision necessary, including constraints and scenarios | Drivers trace to requirements or evidence |
+| Options and evaluation criteria | The options considered and the criteria used to compare them | Rejected options are real alternatives, not straw men |
+| Decision and rationale | The chosen option and why it wins against the criteria | Rationale explains the trade-off, not just the benefit |
+| Consequences and mitigations | Positive and negative consequences, and mitigations for the negative ones | At least one negative consequence recorded |
+| Acceptance evidence and review triggers | How the decision will be validated, and the event or date that reopens it | Trigger is a concrete event or date |
+
+: Schema for an ADR
+
+## B.7 RFC — Request for Comments
+
+The RFC schema supports structured consultation before a contested or cross-team change is committed.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Problem statement and motivation | The problem, its impact and why the current state is insufficient | Problem evidence included, not only opinion |
+| Proposed change and alternatives | The proposal and at least one genuine alternative | Alternatives compared on criteria |
+| Compatibility and migration impact | Effect on existing consumers, data and migration path | Impact on every known consumer listed |
+| Operational and security implications | Runtime, support, security and cost implications | Operational ownership identified |
+| Reviewers, open questions and outcome | Named reviewers, open questions, comment period and the recorded outcome | Outcome and decision date recorded; dissent noted |
+
+: Schema for an RFC
+
+## B.8 Architecture Review Record
+
+The review record schema captures the findings, conditions and exceptions of an architecture review so that the decision is auditable.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Scope, risk tier and criticality | What was reviewed, at which risk tier and why | Scope and tier match the review policy |
+| Requirement traceability and decision inventory | The requirements and decisions in scope, with links | Links resolve; no significant decision missing |
+| Security, privacy and data findings | Findings with severity and evidence | Each finding cites evidence |
+| Reliability, SLO and capacity evidence | Evidence for the quality scenarios claimed | Measured, not asserted |
+| Exceptions with owners and expiry | Any accepted exception, its owner and expiry date | Every exception has an owner and a date |
+| Outcome, conditions and follow-up actions | The decision, conditions and actions with owners and dates | Conditions are verifiable; actions tracked |
+
+: Schema for an architecture review record
+
+## B.9 Audit Event Catalog
+
+The audit event catalog schema defines which events must be recorded, with which fields, so that the audit trail can answer who did what and when.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Event | A stable event name, for example “Role assignment changed” | One event per row; named from the business action |
+| Trigger | The action that produces the event, for example an administrator grants or removes a role | Trigger is observable and not inferred |
+| Recorded fields | Actor, target, old and new value, reason or justification, timestamp, source and correlation identifier as applicable | No sensitive payload; enough to reconstruct the action |
+| Requirement source | The policy, control or contract that requires the event | Requirement identified and owned |
+| Retention | How long the event is kept and the driver, for example one year minimum or a statutory period | Retention justified; deletion path exists |
+| Emitter and test | The component that emits the event and the test that proves it is recorded | Ownership and a passing test recorded |
+
+: Schema for an audit event catalog
+
+## B.10 Control and Evidence Matrix
+
+The control and evidence matrix schema links each requirement to the control that satisfies it and the evidence that proves the control operates.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Requirement | The obligation or policy requirement, with its identifier | Requirement traceable to a source |
+| Control | The design or process control that satisfies it, for example a pipeline approval model | Control is specific enough to test |
+| Evidence | The artifact that demonstrates the control, for example change records generated by the pipeline | Evidence exists, is retained and is current |
+| Frequency | How often the evidence is produced or reviewed, for example continuous, monthly or quarterly | Frequency matches the risk and the obligation |
+| Owner | The person or role accountable for the control and its evidence | Named owner, not a team alias |
+
+: Schema for a control and evidence matrix
+
+## B.11 Retention Schedule
+
+The retention schedule schema states how long each data category is kept, where it lives and what happens at expiry.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Data category | The category as the business recognizes it, for example invoices or inbound partner files | Categories cover every store, including logs and backups |
+| Systems and locations | Where the data lives, including derived copies, caches and archives | Derived and replicated stores listed |
+| Retention period | How long it is kept, for example a statutory period or until processed and reconciled plus a safety margin | Period justified by a legal or business driver |
+| Trigger and action at expiry | The event that starts the clock and the action, for example archive then delete, or automatic deletion by lifecycle rule | Deletion is automatic where possible and tested |
+| Legal basis or driver | The regulation, contract or business need behind the period | Driver identified; no invented obligation |
+| Owner | The data owner accountable for the schedule and its tests | Named owner; deletion test recorded |
+
+: Schema for a retention schedule
+
+## B.12 Platform Assessment
+
+The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (6.6.6, 8.7.1).
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Workloads in scope | The interfaces or services, with volumes, latency, state and growth | Figures are measured or marked as estimates |
+| Required capabilities | Connectors, protocols, runtime features, deployment model and data location | Each capability is traced to a workload |
+| Limits | Provider limits, quotas, payload sizes, execution time and concurrency | Limits tested for the largest workload |
+| Security and compliance | Identity, secrets, network path, audit logs and certifications relied on | Evidence is dated and matches the service scope |
+| Operations | Owner, monitoring, upgrade cycle, support path and on-call responsibility | A named team has accepted operation |
+| Cost | Multi-year cost, including licenses, consumption, people and migration | Compared at expected and peak volume |
+| Lock-in and exit | Platform-specific assets, export formats and estimated exit effort | Exit path exercised for a sample flow |
+| Recommendation | Adopt, adopt with conditions, or reject, with conditions and review date | Linked to an ADR |
+
+: Schema for a platform assessment
+
+## B.13 Vendor Evaluation Matrix
+
+The vendor evaluation matrix records criteria and scores for each candidate (15.2.6). Agree on the criteria and weights before opening any bid.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Evaluation scope | The need, decision owner, participants and conflicts of interest declared | Decision owner named; declarations recorded |
+| Mandatory criteria | Pass or fail conditions such as security, data location and regulatory fit | Criteria dated before bids were opened; a failure excludes the candidate |
+| Weighted criteria | Functional, architectural, operational, supplier viability and exit criteria, with weights summing to 100 | Weights dated before bids were opened |
+| Scoring scale | The meaning of each score, with an example of what earns it | Scale applied the same way by all scorers |
+| Scores | Each scorer's individual score and evidence, then the moderated score, per candidate and criterion | Individual scores retained; every score cites evidence |
+| Multi-year cost | Normalized total cost, scored separately from the technical result | Same volumes and term used for each bid |
+| Proof-of-concept results | Claim tested, exit criterion, result and data used | Exit criteria agreed before the test |
+| References | Customers contacted, similarity to this case and findings | At least one reference chosen by the buyer |
+| Recommendation | Ranked result, residual risks, sensitivity to weights and the resulting decision | Sensitivity checked; linked to an ADR |
+
+: Schema for a vendor evaluation matrix
+
+## B.14 Tenancy Decision Record
+
+The tenancy decision record states the isolation model for each layer and how it is proven (7.7).
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Tenant profile | Tenant counts, size distribution, tiers and contractual or regulatory terms | Largest tenant and regulated tenants identified |
+| Model per layer | Silo, pool or bridge for compute, storage, messaging, cache, search and keys | Every layer covered, including derived stores |
+| Tenant context | The source of tenant identity and how it reaches requests, events and jobs | Context verified on asynchronous paths |
+| Fairness | Quotas, rate limits and workload separation per tier | One-tenant overload test recorded |
+| Data location and recovery | Region mapping, per-tenant RTO and RPO, single-tenant restore path | Restore measured; backups and telemetry covered |
+| Lifecycle | Onboarding, tier change, offboarding and data deletion | Each path automated or has an owner; deletion evidenced |
+| Cost | Attribution method and cost per tenant and per tier | Report produced from metered data |
+| Isolation evidence | Cross-tenant tests and their frequency | Tests cover APIs, events, search and exports |
+| Review trigger | The tenant count, regulation or tenant size that reopens the decision | Trigger is measurable |
+
+: Schema for a tenancy decision record

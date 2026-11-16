@@ -1,0 +1,22 @@
+# Appendix D — Cross-Artifact Consistency Matrix
+
+| Concern | Authoritative artifact | Dependent evidence | Consistency check |
+| :--- | :--- | :--- | :--- |
+| Business outcome | PRD | HLD, acceptance tests | Same capability and measurable outcome |
+| Quality attribute | Requirements register / quality scenarios | ADR, test plan, SLO | Same threshold, scope and measurement |
+| External interface | ICD | OpenAPI/AsyncAPI, contract tests | Same schema, authentication, errors, timeouts and ownership |
+| Architecture choice | ADR | HLD, deployment view, tests | Same selected option and consequences |
+| Data ownership | Data model / data contract | ICD, migration plan, lineage | Same owner, retention and versioning |
+| Operations | Runbook / DR plan | SLO, drills, incident records | Same recovery assumptions as observed evidence |
+
+: Cross-artifact consistency matrix
+
+**Rules.**
+
+::: {.rc2-list-group}
+1. *Requirement → decision → test.* Every measurable quality scenario identifies the decision that supports it and the test that validates it under the specified workload and failure conditions.
+2. *Contract → implementation.* The ICD is authoritative for ownership, semantics, timeouts, retry eligibility, versioning and escalation; the machine-readable specification must agree. Conflicts are defects.
+3. *Event → consumer effect.* An outbox guarantees publication of committed events but may publish more than once; consumer deduplication is verified separately, including replay after a crash.
+4. *Resilience → operations.* SLOs, failover topology, backup schedule, RTO and RPO agree with runbooks and demonstrated recovery tests.
+5. *Decision → lifecycle.* An ADR cites the chosen option, rejected alternatives, acceptance evidence, owner and review trigger; the HLD, LLD and deployment views must not contradict it.
+:::

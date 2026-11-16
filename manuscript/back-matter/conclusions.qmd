@@ -1,0 +1,41 @@
+# Conclusions {.unnumbered}
+
+Solution architecture is the discipline of making consequential decisions under uncertainty and demonstrating that they work. The chapters of this handbook cover different domains, but they apply the same small set of ideas. This section summarizes those ideas and how they combine in practice.
+
+## Cross-Cutting Principles
+
+::: {.rc2-list-group}
+1. **Measurable requirements drive design.** A quality attribute that cannot be measured cannot justify a decision or be verified (Chapter 1).
+2. **Every significant decision has alternatives and a cost.** Record what was chosen, what was rejected and what was traded away (Chapter 3).
+3. **Evidence over assertion.** Diagrams describe intent; tests, measurements and exercises demonstrate it (Chapters 4, 12–14).
+4. **One accountable owner per fact, interface and decision.** Ambiguous ownership becomes coupling, inconsistency and incident delay (Chapters 4, 5, 6).
+5. **Design for failure and for unknown outcomes.** Timeouts, duplicates and partial failures are normal; idempotency, reconciliation and explicit pending states turn them into recoverable events (Chapters 6, 7, 10).
+6. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 5).
+7. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 7).
+8. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 9).
+9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.14–2.15, 9.9).
+10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 10).
+11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 11, 15).
+12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapter 4).
+13. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 12, 16).
+:::
+
+## Applying the Handbook in an Engagement
+
+A typical solution engagement moves through the following stages; the role section at the start of the handbook describes the corresponding activities and outputs. The stages overlap and repeat as evidence changes assumptions.
+
+| Stage | Key questions | Chapters | Typical outputs |
+| :--- | :--- | :--- | :--- |
+| Understand | What outcomes, constraints and quality attributes matter? | 1, 2 | Requirements, quality scenarios, constraint and assumption logs |
+| Decide | Which options exist, and which trade-offs are acceptable? | 3, 13, 17 | ADRs, evaluation results, spikes |
+| Design | How are data, integration, application, infrastructure and security structured? | 5–9 | HLD, data and integration contracts, threat model |
+| Validate | Does the design meet its requirements under load and failure? | 10, 13, 14 | Test and exercise reports, SLO definitions |
+| Govern | Is the right level of review applied, and are conditions verified? | 4, 16 | Review records, exception register |
+| Release and operate | Can the solution be deployed, observed and recovered safely? | 10, 11 | Runbooks, release plan, readiness evidence |
+| Evolve | How will the solution change, migrate and remain economical? | 15 | Roadmap, migration gates, cost model |
+
+: Engagement stages, questions and outputs
+
+## Limits of This Handbook
+
+The handbook provides concepts, criteria and evidence patterns; it cannot replace contextual judgment. The right design depends on business priorities, regulatory obligations, team capability and existing systems, and several sound answers often exist. When guidance here conflicts with a measured result from the actual system, the measurement takes precedence, and the relevant decision should be revisited.

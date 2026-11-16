@@ -1,0 +1,239 @@
+# Appendix I — Decision Catalog
+
+This catalog lists the recurring decisions from the Decision & Trade-off callouts of each chapter, with the options compared. The section each entry links to gives the conditions for choosing an option and the consequences.
+
+## I.1 Chapter 1: Architecture Requirements
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How much structure a functional requirement needs before design starts. | Capability and outcome statement only; Use case with explicit exception paths; Executable acceptance specification | 1.1 |
+| How to resolve competing quality attributes before design commits to one. | Optimize each attribute against its own target; Rank scenarios and allocate a shared budget; Adopt platform defaults and revisit after launch | 1.2 |
+| What to do when a constraint blocks the better design. | Design within the constraint; Time-boxed exception with a named risk owner; Escalate to change the constraint | 1.3 |
+| A quality goal is often stated as an adjective. Decide how to treat it before it drives a design. | Measurable scenario with target; Assumption with owner and expiry; Constraint with source | 1.4 |
+| How to keep requirement links alive for the life of the solution. | Identifier links in a requirements tool; Links between records in version control; Narrative references only | 1.5 |
+
+: Decisions from Chapter 1
+
+## I.2 Chapter 2: Architecture Principles
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| A principle costs effort to write and maintain, so decide how much structure each one earns. | Full anatomy for every principle; Full anatomy for binding principles, one-line guidance elsewhere; No published principles, rely on review | 2.1 |
+| Not every justified change has a revenue indicator; decide what evidence a business case must carry. | Outcome with baseline and target; Named risk reduction with a risk owner; Bounded experiment with a stop rule | 2.2 |
+| Decide how much structural complexity the next two years of change justify. | Modular monolith with enforced boundaries; Coarse services per capability; Extract a service later, behind an existing module boundary | 2.3 |
+| Boundaries decay unless something enforces them; choose the enforcement that matches the team’s size. | Convention and review; Automated dependency checks in CI; Separate deployables per module | 2.4 |
+| Ownership can be enforced at different strengths; choose one deliberately. | One owning service per fact, writes only through its API; Shared schema with per-table ownership and grants; Domain-owned data product with a published contract | 2.5 |
+| The interaction style drives most of the operational cost; decide it explicitly. | Synchronous request and response; Asynchronous message or event; Batch file exchange | 2.6 |
+| Where authorization lives determines how much duplication the team carries. | Authorize in each owning service; Central policy engine called by services; Authorize at the gateway only | 2.7 |
+| How a system fails is a design decision with a customer-visible consequence. | Fail fast and reject; Degrade with a fallback; Queue the work and replay | 2.8 |
+| Scaling options differ in cost and reversibility; decide with measurement, not preference. | Scale up; Scale out; Reduce work: cache or defer | 2.9 |
+| Instrumentation scope is a cost and privacy decision as well as a technical one. | Journey-based instrumentation; Platform default for every service; Vendor agent with automatic tracing | 2.10 |
+| Isolation costs code now and saves migration later; pick the level the risk justifies. | Domain port with an adapter; Shared client library owned by the platform; Call the SDK directly from domain code | 2.11 |
+| Standardization trades local fit for consistency; choose the balance deliberately. | Central platform, mandated; Paved road with a documented exception route; Team autonomy with published guidance | 2.12 |
+| Every decision can be escalated; the choice is where review stops adding value. | Team decides and records briefly; Consult affected owners, then decide; Focused review with a risk owner | 2.13 |
+| Privacy controls restrict what the system can do; choose the strength deliberately. | Collect only the fields the journey needs; Pseudonymize and separate identifiers; Retain full data under strict access control | 2.14 |
+| Evidence costs effort to produce and keep; decide what must be retained. | Record every decision with full evidence; Record significant decisions, sample the rest; Rely on tickets and chat history | 2.15 |
+| When principles conflict, decide how the conflict will be resolved and recorded. | Revise the principle; Time-bound exception; Bounded design compromise | 2.16 |
+
+: Decisions from Chapter 2
+
+## I.3 Chapter 3: Architecture Decisions
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Not every choice needs the same record. Decide the record format before writing it. | ADR; RFC then ADR; Lightweight decision log; Team standard or code review note | 3.1 |
+| How to treat a platform mandate set by contract or regulation. | Record the mandate as a constraint; choose the mechanism in an ADR; Record the mandate itself as the decision; Escalate the mandate for renegotiation before deciding | 3.2 |
+| Match the depth of the evaluation to the cost of being wrong. | Whiteboard comparison against named criteria; Qualitative matrix with a sensitivity check; Time-boxed spike or benchmark; Formal scenario-based evaluation (ATAM, 17.3.1) | 3.3 |
+| When an accepted decision stops holding, choose how to change the record. | Supersede with a new ADR; Add an addendum to the accepted ADR; Amend while the record is still Proposed; Deprecate without a replacement | 3.4 |
+| Decide how much traceability to maintain before the first review asks for it. | ADR references only: requirement and interface; Full chain per significant decision; Automated links from code, tests and contracts | 3.5 |
+
+: Decisions from Chapter 3
+
+## I.4 Chapter 4: Architecture Governance
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Choose how authority is distributed before deciding who sits on the council. | Central architecture board; Federated domain authority; Tiered model with published classes | 4.1 |
+| Choose how accountability attaches to each decision class. | Single accountable owner; Consensus among stakeholders; Delegated authority with escalation triggers | 4.2 |
+| Choose how hard a guardrail should push back. | Blocking gate; Advisory warning; Scheduled drift audit | 4.3 |
+| Choose the lightest review mechanism that controls the risk of the change. | Automated guardrail; Peer or architecture review; Architecture council or exception | 4.4 |
+| Choose the response when a control cannot be met. | Deny and require redesign; Time-boxed exception with compensating controls; Change the policy | 4.5 |
+| Choose how much repository tooling the organization can sustain. | Documents beside the code; Central registry with stable IDs; Graph or CMDB tooling | 4.6 |
+| Choose how a fitness function acts on its result. | Blocking gate; Advisory report; Scheduled experiment | 4.7 |
+| Choose what the governance report measures. | Meeting volume and attendance; Cycle time and exception age; Escaped risk and verified conditions | 4.8 |
+| Choose how much evidence collection to automate. | Manual collection before each audit; Automate evidence for key controls; Continuous compliance for all mapped controls | 4.9 |
+| How should a capability needed by several teams be provided? | Each team builds its own; Shared code with inner-source contribution; Platform team offering X-as-a-service; Temporary enabling team | 4.10 |
+
+: Decisions from Chapter 4
+
+## I.5 Chapter 5: Data Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Decide how a principle will be enforced before publishing it. | Automated gate (contract test, policy-as-code, constraint); Manual review with named approver; Exception register with expiry | 5.1 |
+| Choose how consumers reach a domain's data before choosing a platform product. | Published API or event from the owner; Governed data product in the platform; Direct read of the owner's tables | 5.2 |
+| Choose how a consumer will obtain another domain's data. | Synchronous call to the owner; Event-fed local replica; Governed data product | 5.3 |
+| Choose the failure behavior of a critical write path before choosing the datastore. | Refuse or queue the write (favor consistency); Accept the write locally (favor availability); Degrade to read-only | 5.4 |
+
+: Decisions from Chapter 5
+
+## I.6 Chapter 6: Integration Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Choose how the caller learns the outcome of a request. | Synchronous response within a deadline; Accepted with a status resource; Notification plus reconciliation | 6.1 |
+| Choose how a breaking change will be delivered. | Compatible evolution (expand and contract); New major version running in parallel; New event type or resource | 6.2 |
+| Choose where duplicate protection lives. | Consumer inbox with a unique constraint; Provider or remote idempotency key; Status query before retry | 6.3 |
+| When the outcome of a remote call is unknown, decide how the workflow recovers. | Blind retry; Status query then reconcile; Fail and compensate | 6.4 |
+| Choose where authorization is enforced on an integration. | At the gateway only; In the owning service; Gateway plus service | 6.5 |
+| Choose what carries an interface. | Direct contract between owning services; Enterprise bus or iPaaS; Workflow orchestrator; Dedicated adapter service | 6.6 |
+
+: Decisions from Chapter 6
+
+## I.7 Chapter 7: Application Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Decide when a module becomes a service. | Keep the module in the monolith; Extract one service behind its port; Extract several services at once | 7.1 |
+| Choose where transaction coordination and validation live. | Application layer handler; Domain aggregate method; Adapter or controller | 7.2 |
+| Choose how the application will serve reads before adding a projection or cache. | Direct query of the source; CQRS projection; Shared cache | 7.3 |
+| Choose how a dependency failure is isolated. | Bulkhead per dependency; Queue with bounded limits; Asynchronous step with pending state | 7.4 |
+| Choose how code is shared between services. | Versioned package in a registry; Module inside a monorepo; Deliberate duplication | 7.5 |
+| Choose how clients obtain data shaped for their experience. | One general-purpose API; One BFF per experience; Schema-based aggregation layer | 7.6 |
+| Choose how tenant data is separated in the store. | Shared tables with a tenant key and row-level policies; Separate schema or database per tenant on shared servers; Dedicated data stack per tenant or stamp | 7.7 |
+
+: Decisions from Chapter 7
+
+## I.8 Chapter 8: Infrastructure and Cloud Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Choose the foundation before choosing products. | New account or subscription in the landing zone; Shared subscription with policy and tagging; Separate landing zone or tenant | 8.1 |
+| Choose how recovery will be proven. | Restore drill from backup; Failover exercise to a second region; Tabletop with the business and suppliers | 8.2 |
+| Choose how capacity is bought before comparing unit prices. | On-demand, autoscaled; Reserved or committed use against a measured baseline; Provision for the peak and shed or queue the excess | 8.3 |
+| Choose the platform operating model. | Self-service golden path; Central platform team with exceptions; Embedded platform engineers per team | 8.4 |
+| Choose how many frameworks to apply. | One primary framework per workload; One framework plus provider lenses; Several frameworks in parallel | 8.5 |
+| Choose the connectivity and exposure model before selecting network products. | Public ingress with WAF and CDN; Private endpoint, private link or peering; Hybrid VPN or dedicated interconnect; Internal segmentation with service identity | 8.6 |
+| Where should service-to-service traffic policy be enforced? | Application libraries; Network policies and a gateway; Service mesh | 8.7 |
+| How much intelligence should run at the site? | Thin devices, central processing; Local rules and buffering at a gateway; Full local application and inference | 8.8 |
+
+: Decisions from Chapter 8
+
+## I.9 Chapter 9: Security Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How much threat-modeling depth does this change justify? | Lightweight abuse-path review; STRIDE workshop on the changed flow; Full attack-tree or abuse-case study | 9.1 |
+| Which identity model fits this population? | Corporate workforce IdP; CIAM platform; Workload identity federation | 9.2 |
+| Where should resource-level authorization live? | Coarse checks at the gateway only; Central policy decision point, enforced in each service; Authorization logic in the owning service | 9.3 |
+| Where should keys live? | Provider KMS; Managed HSM; Self-managed key server | 9.4 |
+| Which ASVS level should this application target? | L1; L2; L3 | 9.5 |
+| How should this vulnerability be handled? | Patch or upgrade; Mitigate with a compensating control; Accept with an exception | 9.6 |
+| How should audit evidence be stored? | Standard log platform with retention; Append-only or WORM store; Cryptographic chaining or signing | 9.7 |
+| Which assurance route fits this supplier? | SOC 2 Type II; ISO/IEC 27001:2022 certificate; PCI DSS AoC | 9.8 |
+| How should residency be satisfied? | Regional deployment; Transfer mechanism; In-region keys and access | 9.9 |
+
+: Decisions from Chapter 9
+
+## I.10 Chapter 10: Observability, Reliability and SRE
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| Sampling decides which telemetry is thrown away, and the default discards what an incident needs most. | Head-based sampling in the SDK; Tail-based sampling at the collector; Keep everything on critical journeys, sample elsewhere | 10.1 |
+| What should page a person? Page on symptoms that threaten the SLO; route cause-level signals to dashboards and tickets. | Multi-window burn-rate alerts on SLOs; Component threshold alerts (CPU, queue depth, error count); Synthetic probes of critical journeys | 10.2 |
+| How much response structure to invoke on a given day decides both speed and overhead. The role split usually starts at SEV2; what matters is that the trigger is written down. | Single responder, escalation on request; Named incident commander and role split at declaration; A standing operations team owns every incident | 10.3 |
+| How to meet a known peak, such as a seasonal sale or a migration cut-over. | Provision headroom for the peak; Autoscale on leading indicators; Shed and degrade deliberately | 10.4 |
+| How far to take business instrumentation, given that each step adds both detection and cost. | Operational metrics only; Milestone counters and ages; Milestones reconciled against authoritative records | 10.5 |
+
+: Decisions from Chapter 10
+
+## I.11 Chapter 11: Deployment and Operations
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How much environment separation the delivery path needs depends on the risk of the change and on how faithfully a lower environment can represent production. | Ephemeral previews plus one production-like environment; Development, test, staging and production; Production plus a shared pre-production; Blue-green production pair | 11.1 |
+| How a change should be exposed depends on whether it needs reversibility, selective reach, or both. | Release flag; Canary cohort by traffic; Deploy-time configuration; No switch; deploy off-peak | 11.2 |
+| The strength of the readiness gate should match the cost of being wrong in the first week of operation. | Review with a rehearsed critical failure; Evidence review without rehearsal; Progressive exposure with automatic rollback; No formal gate; rely on rollback | 11.3 |
+| The right approval model is the lightest one whose evidence an auditor or an incident review would accept. | Automated, policy-based approval; Peer review with required checks; Delegated, risk-based authority; Change advisory board | 11.4 |
+| The production access model trades speed during an incident against the standing exposure it creates. | Just-in-time elevation with approval and expiry; Standing named accounts with session recording; Two-person break-glass | 11.5 |
+
+: Decisions from Chapter 11
+
+## I.12 Chapter 12: Architecture Documentation
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| The size of the view set is a decision with a cost on both sides: too few views leave concerns unaddressed, and too many make staleness likely. | Minimum set: context, container and one dynamic view per critical flow; Risk-driven set: minimum plus deployment, data ownership and trust-boundary views where those risks exist; Full catalog of every element and view | 12.1 |
+| How much dynamic behavior to model is a scope decision: each branch is cheap to draw and expensive to keep current. | One sequence per critical flow, success path only; Sequence with failure branches plus a data-flow view; Executable interaction model or formal state machine | 12.2 |
+| Where the description lives decides who can keep it current and how. | Wiki or shared documents; Docs as code beside the services; Modeling tool with a shared repository | 12.3 |
+
+: Decisions from Chapter 12
+
+## I.13 Chapter 13: Architecture Evaluation
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| The weight of an evaluation should follow the cost of being wrong, not the size of the project. Escalate when a review uncovers an unbounded risk or a disputed trade-off; record the chosen weight in the review record (4.4). | Lightweight review: checklist and a peer architect; Scenario-based workshop on the top scenarios; Full ATAM, with CBAM where options differ in cost | 13.1 |
+| Who evaluates trades independence against context and cost. | Self-assessment by the design team; Peer evaluators from another team; External evaluation team | 13.2 |
+| How evaluation continues after a review trades effort against how quickly a broken assumption is noticed. | Point-in-time evaluation, repeated at major milestones; Evaluation plus monitored triggers and fitness functions; Scheduled periodic re-evaluation, for example yearly | 13.3 |
+
+: Decisions from Chapter 13
+
+## I.14 Chapter 14: Testing and Quality Verification
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| The portfolio shape should follow where the architecture’s risk sits, not a fixed picture. | Pyramid: most tests at unit level; Trophy or honeycomb: emphasis on integration and contract tests; Heavy end-to-end suite, as a transitional state | 14.1 |
+| Environment strategy trades feedback speed against fidelity, and the right answer differs by test type. | Long-lived shared test environment; Ephemeral environment per change from infrastructure as code; Ephemeral environments plus a production-like environment for performance and recovery | 14.2 |
+| Where a quality attribute is tested trades realism against risk to users and data. | Pre-production only, in a production-like environment; Production with controls: canary, feature flags and bounded fault injection; Pre-production for gates and production for confirmation | 14.3 |
+| How much test evidence to keep trades audit readiness against storage and effort. | Pipeline logs only, kept for a short period; Structured results per release, linked to scenarios and requirements; Immutable, signed evidence retained as regulation requires | 14.4 |
+
+: Decisions from Chapter 14
+
+## I.15 Chapter 15: Architecture Evolution and Economics
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How should a legacy capability be modernized? | Rehost or replatform the whole capability; Strangler Fig, slice by slice; Rebuild and replace in one release | 15.1 |
+| How should a capability be sourced? | Build; Buy a product (licensed or SaaS); Managed platform service | 15.2 |
+| How should the roadmap be sequenced? | Capability-by-capability, highest value first; Dependency-first, shared platform early; Risk-first, fragile assets early | 15.3 |
+
+: Decisions from Chapter 15
+
+## I.16 Chapter 16: Software Engineering and Architecture Artifacts
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How much design documentation should precede implementation? | Tests and a short design note; ADRs plus updated views and contracts; Full chain: PRD, HLD, ADRs, ICD, LLD, test strategy, runbook | 16.1 |
+| How should requirements artifacts be maintained? | One combined requirements document; Separate PRD and SRS with linked identifiers; Requirements in the backlog with scenarios in the architecture repository | 16.2 |
+| Which design and decision artifacts should a change produce? | ADR plus updated views in the existing description; HLD, ADR and LLD for the affected area; RFC, HLD, ADRs and LLD | 16.3 |
+| Where should the interface contract live? | ICD owned by the producer; ICD co-owned with a consumer-driven contract; ICD owned by an integration or platform team | 16.4 |
+| How should artifact status and location be managed? | Artifacts in the code repository, reviewed with the change; A document management system with a catalog; A wiki with a maintained index and owners | 16.5 |
+
+: Decisions from Chapter 16
+
+## I.17 Chapter 17: Architecture Frameworks, Methods and Standards
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How much framework should a program adopt? | Lightweight set: quality scenarios, C4, ADRs, tests; Solution set plus arc42 and a review method; Enterprise framework (TOGAF ADM, ArchiMate) on top | 17.1 |
+| Which description framework should a solution use? | C4 views plus ADRs; arc42 with C4 views and ADRs; ISO/IEC/IEEE 42010 viewpoints on top of arc42 | 17.2 |
+| How much evaluation does a design need? | Peer review against a checklist; Scenario workshop on the top scenarios; Full ATAM, with CBAM where options differ in cost | 17.3 |
+| How should regulatory obligations be tracked? | Obligations in the requirements register; A control and evidence matrix per solution; Enterprise compliance platform with solution mappings | 17.4 |
+
+: Decisions from Chapter 17
+
+## I.18 Chapter 18: AI and Machine Learning Architecture
+
+| Decision | Options compared | Section |
+| :--- | :--- | :--- |
+| How should an AI capability be scoped at the start? | One critical journey with a defined acceptance set; A platform with shared retrieval, evaluation and guardrails; A vendor-supplied capability with configuration only | 18.1 |
+| Where should the model run? | Managed model API; Self-hosted model; Hybrid routing | 18.2 |
+| How should the knowledge index be scoped? | One shared index with query-time filters; Per-tenant or per-classification indexes; Per-source or per-team indexes with federation | 18.3 |
+| Which selection criterion should dominate? | Quality first; Residency and control first; Cost and latency first | 18.4 |
+| Where should authorization be enforced? | At ingestion, with a filtered index per audience; At query time, using source permissions; At both, with defense in depth | 18.5 |
+| How strict should the release gate be? | Offline gate plus sampled online review; Offline gate, canary and quality SLOs; Additional human sign-off per release | 18.6 |
+| Which cost lever should be pulled first? | Retrieval and prompt efficiency; Model routing and sizing; Caching and batching | 18.7 |
+| How much dynamic planning should the solution allow? | Deterministic workflow with model steps; Single agent with narrow tools; Multi-agent system | 18.8 |
+
+: Decisions from Chapter 18

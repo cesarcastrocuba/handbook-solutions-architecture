@@ -1,0 +1,57 @@
+# Appendix C — Architecture Assurance Checklist
+
+**Intent and decisions**
+
+☐  Business outcome, scope and constraints are explicit.
+
+☐  Priority quality attributes have measurable scenarios.
+
+☐  Alternatives, risks and ADRs are recorded with owners.
+
+**Design**
+
+☐  Context and container views and interface contracts have owners.
+
+☐  Data ownership, classification and a retention schedule (including files, logs and backups) are defined.
+
+☐  Audit trails and data change history meet regulatory and contractual requirements.
+
+☐  Threats are modeled and controls mapped to tests.
+
+☐  Privacy decisions — minimization, retention, transfers, data-subject requests and a DPIA where required — are recorded (9.9).
+
+☐  Authentication, SSO and authorization designs are reviewed; privileged access is controlled.
+
+☐  The security test strategy (SAST, SCA, authenticated DAST, penetration test) and vulnerability remediation objectives are defined.
+
+**Evidence and operations**
+
+☐  Failure scenarios, RTO/RPO and capacity assumptions are tested; BCP and DRP are current.
+
+☐  A cloud well-architected review is completed, and critical suppliers are assessed.
+
+☐  Deployment, rollback and observability are operationally ready.
+
+☐  A test strategy covers priority quality scenarios, contract tests and quality gates.
+
+☐  The change approval model for the solution is agreed and produces auditable evidence.
+
+☐  Governance exceptions have owners, expiry dates and remediation plans.
+
+☐  Operational ownership and runbooks are accepted by the operating team.
+
+**Recording the assessment**
+
+The checklist states what to review; record the outcome separately so that the checklist stays reusable. For each item, capture:
+
+| Field | Values or content |
+| :--- | :--- |
+| Applicability | Applicable or Not applicable, with the reason when not applicable |
+| Status | Pass, Partial, Fail or Not assessed |
+| Evidence | Reference to the artifact, test result or record that supports the status |
+| Finding and remediation | What is missing, the remediation owner and the due date |
+| Reviewer and date | Who assessed the item and when |
+
+: Recording the checklist assessment
+
+A Partial or Fail status without an owner and a date is a risk accepted by default; route it to the accountable owner (4.5).
