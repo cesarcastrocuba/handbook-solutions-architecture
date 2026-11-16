@@ -15,7 +15,7 @@ Appendices A–J, Conclusions and References. Generated sections remain pending;
 | Figures | All 121 rendered PNGs and 121 DOT sources copied byte-for-byte from the frozen source |
 | Generated sections | Analytic Index and glossary definition pointers pending platform support; catalog appendices H–J are frozen source snapshots, with regeneration checks passing |
 | Book-owned tooling | Catalog regeneration, canonical checklist parity and portable diagram-manifest checks run in `make check`; reference tests and checklist data imported; analytic index vocabulary staged as data for hub change 0053 |
-| Canonical pins | Toolkit `0.11.0`, standard profile `1.0.0`; profile `1.1.0` is used only in scratch verification until the coordinated upgrade |
+| Canonical pins | Toolkit `0.12.0` (hub commit `0824ddfaebd28f170f157fcb38641c7dc65d6c20`), standard profile `1.1.0` (DEC-012); the release workflow accepts `X.Y.Z-rc.N` pre-releases |
 | Releases | None. Next planned: `v3.1.0-rc.1` with the Owner's tag approval (`DEC-005`, `DEC-010`); the complete edition still requires generated-section parity |
 | Catalog | Not listed; only `v3.1.0` will be listed |
 | Reading site | Pages source set to GitHub Actions; not deployed |
