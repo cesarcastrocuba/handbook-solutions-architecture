@@ -4,8 +4,8 @@ A vendor-neutral, practical handbook for designing, evaluating, documenting and 
 and solution architectures.
 
 This is the platform edition of the handbook, built with the
-[Handbook Hub](https://github.com/cesarcastrocuba/handbooks-hub) toolkit `0.11.0` and the standard
-profile `1.0.0`. It was created from the hub template `template-v1.6.0`, and its content is being
+[Handbook Hub](https://github.com/cesarcastrocuba/handbooks-hub) toolkit `0.12.0` and the standard
+profile `1.1.0`. It was created from the hub template `template-v1.6.0`, and its content is being
 imported in slices from the author's frozen reference edition `v3.0.0` (see
 [`DECISIONS.md`](DECISIONS.md), `DEC-001`).
 
