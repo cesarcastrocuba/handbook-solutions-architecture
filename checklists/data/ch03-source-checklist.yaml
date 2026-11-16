@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "3. Architecture Decisions",
+  "items": [
+    {
+      "id": "CHK-CH03-01",
+      "section": "3. Architecture Decisions",
+      "group": "Review checklist — Decisions",
+      "question": "Can the reviewer name the requirement or risk that motivated the decision?",
+      "source_id": "RC2-B0518"
+    },
+    {
+      "id": "CHK-CH03-02",
+      "section": "3. Architecture Decisions",
+      "group": "Review checklist — Decisions",
+      "question": "Were at least two credible alternatives evaluated against the same criteria?",
+      "source_id": "RC2-B0519"
+    },
+    {
+      "id": "CHK-CH03-03",
+      "section": "3. Architecture Decisions",
+      "group": "Review checklist — Decisions",
+      "question": "Are consequences, owner, status and review triggers recorded?",
+      "source_id": "RC2-B0520"
+    },
+    {
+      "id": "CHK-CH03-04",
+      "section": "3. Architecture Decisions",
+      "group": "Review checklist — Decisions",
+      "question": "Is the evidence (spike, test, measurement) attached rather than asserted?",
+      "source_id": "RC2-B0521"
+    }
+  ]
+}

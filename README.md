@@ -21,16 +21,24 @@ Contributing: [`AGENTS.md`](AGENTS.md) · Licensing: [`NOTICE.md`](NOTICE.md)
 | `manuscript/` | Canonical Quarto sources |
 | `publishing/_quarto.yml` | Quarto project configuration for HTML, Typst/PDF and DOCX |
 | `publishing/metadata.yaml` | Edition version and status consumed by the build |
-| `Makefile` | `check`, `build` and `full` targets |
+| `Makefile` | `check`, `book-checks`, `checklist-exports`, `build` and `full` targets |
+| `scripts/`, `checklists/` | Book-owned generators, tests and canonical checklist definitions |
 | `.github/workflows/` | `ci.yml` (fast checks), `release.yml` (guarded release and Pages), `initialize-book.yml` (one-time identity rewrite, already run) |
 
 ## Checks
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-make check TOOLKIT=.venv/bin/handbook-toolkit   # descriptor, reading order, cross-references
-make full  TOOLKIT=.venv/bin/handbook-toolkit   # plus a real build (Quarto 1.11.9, pdfinfo)
+make check TOOLKIT=.venv/bin/handbook-toolkit PYTHON=.venv/bin/python
+# Includes book-owned freshness/parity checks and unit tests, descriptor and cross-references.
+make checklist-exports PYTHON=.venv/bin/python  # generated files in _build/checklists/exports/
+make full TOOLKIT=.venv/bin/handbook-toolkit PYTHON=.venv/bin/python
+# Full also builds the edition (Quarto 1.11.9, pdfinfo).
 ```
+
+Diagram rendering is optional (`python scripts/render_diagrams.py`, requires Graphviz);
+`make check` verifies the frozen render manifest without rerendering. See
+[`checklists/README.md`](checklists/README.md) for canonical and historical data layers.
 
 Content is licensed under CC BY-SA 4.0 ([`LICENSE`](LICENSE)); build configuration and scripts
 under MIT ([`LICENSE-CODE`](LICENSE-CODE)).

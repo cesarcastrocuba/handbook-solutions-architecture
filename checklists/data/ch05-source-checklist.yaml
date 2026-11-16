@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "5. Data Architecture",
+  "items": [
+    {
+      "id": "CHK-CH05-01",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Is there one accountable authority per fact, with replicas’ freshness documented?",
+      "source_id": "RC2-B0680"
+    },
+    {
+      "id": "CHK-CH05-02",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Are consistency guarantees chosen per invariant, with reconciliation where state can diverge?",
+      "source_id": "RC2-B0681"
+    },
+    {
+      "id": "CHK-CH05-03",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Do data contracts define semantics and compatibility, not only schema?",
+      "source_id": "RC2-B0682"
+    },
+    {
+      "id": "CHK-CH05-04",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Does a retention schedule cover every data category, including files, exports, logs and backups?",
+      "source_id": "RC2-B0683"
+    },
+    {
+      "id": "CHK-CH05-05",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Does deletion cover replicas, indexes, files, archives and backup restores?",
+      "source_id": "RC2-B0684"
+    },
+    {
+      "id": "CHK-CH05-06",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Is change history and access auditing in place for regulated data?",
+      "source_id": "RC2-B0685"
+    },
+    {
+      "id": "CHK-CH05-07",
+      "section": "5. Data Architecture",
+      "group": "Review checklist — Data",
+      "question": "Are the consistency model and isolation level explicit for each critical invariant, and tested under concurrency?",
+      "source_id": "RC2-B0686"
+    }
+  ]
+}

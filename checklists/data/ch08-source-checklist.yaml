@@ -1,0 +1,50 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "8. Infrastructure and Cloud Architecture",
+  "items": [
+    {
+      "id": "CHK-CH08-01",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Is the shared responsibility model mapped to named controls and owners?",
+      "source_id": "RC2-B0926"
+    },
+    {
+      "id": "CHK-CH08-02",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Does the fault-domain matrix cover data, identity, DNS and third-party dependencies?",
+      "source_id": "RC2-B0927"
+    },
+    {
+      "id": "CHK-CH08-03",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Do RTO and RPO come from business impact and match measured exercise results?",
+      "source_id": "RC2-B0928"
+    },
+    {
+      "id": "CHK-CH08-04",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Can every environment be rebuilt from code?",
+      "source_id": "RC2-B0929"
+    },
+    {
+      "id": "CHK-CH08-05",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Are BCP and DRP derived from a business impact analysis and tested at least annually?",
+      "source_id": "RC2-B0930"
+    },
+    {
+      "id": "CHK-CH08-06",
+      "section": "8. Infrastructure and Cloud Architecture",
+      "group": "Review checklist — Infrastructure",
+      "question": "Has a well-architected review been completed, with findings owned and closed on evidence?",
+      "source_id": "RC2-B0931"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "4. Architecture Governance",
+  "items": [
+    {
+      "id": "CHK-CH04-01",
+      "section": "4. Architecture Governance",
+      "group": "Review checklist — Governance",
+      "question": "Are decision classes, accountable roles and maximum review times published?",
+      "source_id": "RC2-B0577"
+    },
+    {
+      "id": "CHK-CH04-02",
+      "section": "4. Architecture Governance",
+      "group": "Review checklist — Governance",
+      "question": "Are repeatable rules automated, leaving human review for consequential trade-offs?",
+      "source_id": "RC2-B0578"
+    },
+    {
+      "id": "CHK-CH04-03",
+      "section": "4. Architecture Governance",
+      "group": "Review checklist — Governance",
+      "question": "Does every exception have an owner, compensating controls, expiry and remediation plan?",
+      "source_id": "RC2-B0579"
+    },
+    {
+      "id": "CHK-CH04-04",
+      "section": "4. Architecture Governance",
+      "group": "Review checklist — Governance",
+      "question": "Are approval conditions verified after deployment?",
+      "source_id": "RC2-B0580"
+    },
+    {
+      "id": "CHK-CH04-05",
+      "section": "4. Architecture Governance",
+      "group": "Review checklist — Governance",
+      "question": "Is there a control matrix with automatically generated evidence, ready for internal, external and customer audits?",
+      "source_id": "RC2-B0581"
+    }
+  ]
+}

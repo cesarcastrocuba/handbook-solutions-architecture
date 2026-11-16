@@ -1,0 +1,71 @@
+schema_version: 3.0.0
+domain: SA-FWK
+title: Frameworks, methods and standards
+manuscript: chapters/ch17-architecture-frameworks-methods-and-standards.qmd
+items:
+- id: SA-FWK-001
+  title: Each framework covers a unique concern
+  question: Is each framework used for a concern no other artifact covers?
+  rationale: Overlapping frameworks produce redundant artifacts and competing authorities without improving decisions.
+  applicability: Organizations selecting enterprise or solution frameworks.
+  expected_evidence: Framework selection record naming the concern, consumer, decision supported and artifact produced for each adopted activity.
+  section: '17.1'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-FWK-002
+  title: One authoritative source per concern
+  question: Is there one authoritative source per concern?
+  rationale: The same fact maintained in several frameworks drifts until nobody knows which version governs.
+  applicability: Organizations combining multiple frameworks or templates.
+  expected_evidence: Concern-to-source map designating one authoritative artifact per concern and recording mappings rather than duplicates.
+  section: '17.5'
+  external_reference: ''
+  risk_relevance: Low
+  version: '2.1'
+  status: active
+- id: SA-FWK-003
+  title: Framework activities tailored to scale and risk
+  question: Are framework activities tailored to the scale and risk of the work?
+  rationale: Applying every element mechanically slows work without adding assurance, especially for small, reversible changes.
+  applicability: All framework adoptions.
+  expected_evidence: Tailoring rationale showing which activities were adopted, reduced or omitted and why, proportionate to solution scale and risk.
+  section: '17.5'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-FWK-004
+  title: Industry reference model considered and versioned
+  question: Has a relevant industry reference model been considered for vocabulary and interfaces, with its release recorded?
+  rationale: Reference models reduce design effort and partner friction, but silently mixing releases produces incompatible vocabularies.
+  applicability: Solutions in industries with a published reference model.
+  expected_evidence: Recorded assessment of the relevant reference model, the release adopted (for example HL7 FHIR R4 or R5) and any deliberate deviations.
+  section: 17.2.6
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-FWK-005
+  title: Method chosen for its purpose
+  question: Is each method chosen for its purpose — elicitation, design, decision, evaluation, economics, assurance or description?
+  rationale: Using an evaluation method to design or a documentation template to decide produces activity without the right evidence.
+  applicability: All method selection for architecture work.
+  expected_evidence: Method-to-purpose mapping covering elicitation, design, decision, evaluation, economics, assurance and description, with the output of each.
+  section: 17.3.5
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-FWK-006
+  title: Regulatory applicability confirmed and traced
+  question: Have legal and compliance owners confirmed which regulatory instruments apply, and are their obligations traced to requirements and evidence?
+  rationale: Assuming every regulation applies, or that none does, misdirects effort and leaves real obligations unimplemented.
+  applicability: Solutions potentially subject to laws, regulations or assurance schemes.
+  expected_evidence: Applicability assessment signed by legal or compliance owners, with each applicable obligation traced to a requirement, control and evidence artifact.
+  section: '17.4'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active

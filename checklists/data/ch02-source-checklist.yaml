@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "2. Architecture Principles",
+  "items": [
+    {
+      "id": "CHK-CH02-01",
+      "section": "2. Architecture Principles",
+      "group": "Review checklist — Principles",
+      "question": "Does each principle have a rationale, implications, measurable guardrails, exceptions and an owner?",
+      "source_id": "RC2-B0456"
+    },
+    {
+      "id": "CHK-CH02-02",
+      "section": "2. Architecture Principles",
+      "group": "Review checklist — Principles",
+      "question": "Are principles distinguished from policies, standards and guidelines?",
+      "source_id": "RC2-B0457"
+    },
+    {
+      "id": "CHK-CH02-03",
+      "section": "2. Architecture Principles",
+      "group": "Review checklist — Principles",
+      "question": "Are approved exceptions time-limited and tracked?",
+      "source_id": "RC2-B0458"
+    },
+    {
+      "id": "CHK-CH02-04",
+      "section": "2. Architecture Principles",
+      "group": "Review checklist — Principles",
+      "question": "Have recurring exceptions prompted a revision of the principle?",
+      "source_id": "RC2-B0459"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+schema_version: 3.0.0
+domain: SA-DATA
+title: Data
+manuscript: chapters/ch05-data-architecture.qmd
+items:
+- id: SA-DATA-001
+  title: Single accountable authority per fact
+  question: Is there one accountable authority per fact, with replicas’ freshness documented?
+  rationale: Shared schemas and dual writes create divergent facts that no report can reconcile.
+  applicability: All solutions that persist or exchange business data.
+  expected_evidence: Data ownership map naming the authoritative system and owner per fact or attribute, with documented freshness and permitted use for each replica.
+  section: 5.3.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-002
+  title: Consistency chosen per invariant with reconciliation
+  question: Are consistency guarantees chosen per invariant, with reconciliation where state can diverge?
+  rationale: Applying one consistency level everywhere either overpays in latency or silently loses correctness; divergence needs an owned repair path.
+  applicability: Solutions with replicated or derived data.
+  expected_evidence: Invariant-by-invariant consistency decisions, reconciliation job definitions, discrepancy thresholds and an owner with a target time to close differences.
+  section: 5.3.6
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-003
+  title: Data contracts cover semantics and compatibility
+  question: Do data contracts define semantics and compatibility, not only schema?
+  rationale: A schema can stay valid while meaning, units or nullability change and break consumers silently.
+  applicability: All shared, published or regulated data.
+  expected_evidence: Versioned data contract with owner, classification, semantics, quality expectations, freshness, permitted use and compatibility policy, plus CI contract checks.
+  section: 5.3.3
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-004
+  title: Retention schedule covers every data category
+  question: Does a retention schedule cover every data category, including files, exports, logs and backups?
+  rationale: Retention defined per system leaves copies, exports, logs and backups outside any rule, creating legal and cost exposure.
+  applicability: All solutions that store data with retention obligations.
+  expected_evidence: Approved retention schedule mapped by data category to stores, file locations, logs and backups, with lifecycle and object-lock configuration.
+  section: 5.2.4
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-005
+  title: Deletion reaches every copy
+  question: Does deletion cover replicas, indexes, files, archives and backup restores?
+  rationale: Deleting the primary row leaves replicas, indexes and backups intact, so erasure claims fail in audit or after a restore.
+  applicability: Solutions subject to deletion or erasure obligations.
+  expected_evidence: Deletion-propagation design covering replicas, indexes, files, archives and backups, with deletion tests and a restore test confirming deleted records do not reappear.
+  section: 5.2.5
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-006
+  title: Change history and access auditing
+  question: Is change history and access auditing in place for regulated data?
+  rationale: Regulated data requires proof of what changed, who changed it and who read it; ordinary logs cannot answer these questions.
+  applicability: Solutions holding regulated, financial or sensitive data.
+  expected_evidence: History and access-audit coverage for regulated datasets, a reconstruction test retrieving past state, and retention applied to history stores.
+  section: 5.3.9
+  external_reference: ISO/IEC 9075 (system-versioned tables since SQL:2011; current edition SQL:2023)
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DATA-007
+  title: Explicit consistency and isolation under concurrency
+  question: Are the consistency model and isolation level explicit for each critical invariant, and tested under concurrency?
+  rationale: Unstated isolation assumptions allow lost updates and write skew that appear only under real concurrent load.
+  applicability: Solutions with concurrent writers to critical invariants.
+  expected_evidence: Consistency model and isolation level recorded per critical invariant, with concurrency tests (for example oversell or write-skew scenarios) demonstrating the chosen guarantee.
+  section: 5.4.4
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active

@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "7. Application Architecture",
+  "items": [
+    {
+      "id": "CHK-CH07-01",
+      "section": "7. Application Architecture",
+      "group": "Review checklist — Application",
+      "question": "Do deployable boundaries follow ownership and invariants rather than entities or fashion?",
+      "source_id": "RC2-B0857"
+    },
+    {
+      "id": "CHK-CH07-02",
+      "section": "7. Application Architecture",
+      "group": "Review checklist — Application",
+      "question": "Are dependencies directed inward and enforced by automated checks?",
+      "source_id": "RC2-B0858"
+    },
+    {
+      "id": "CHK-CH07-03",
+      "section": "7. Application Architecture",
+      "group": "Review checklist — Application",
+      "question": "Are state transitions explicit, including pending and unknown outcomes?",
+      "source_id": "RC2-B0859"
+    },
+    {
+      "id": "CHK-CH07-04",
+      "section": "7. Application Architecture",
+      "group": "Review checklist — Application",
+      "question": "Are resilience controls composed against one deadline and tested together?",
+      "source_id": "RC2-B0860"
+    },
+    {
+      "id": "CHK-CH07-05",
+      "section": "7. Application Architecture",
+      "group": "Review checklist — Application",
+      "question": "Does the repository structure support the intended ownership and release independence?",
+      "source_id": "RC2-B0861"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+schema_version: 3.0.0
+domain: SA-GOV
+title: Governance
+manuscript: chapters/ch04-architecture-governance.qmd
+items:
+- id: SA-GOV-001
+  title: Published decision rights and review times
+  question: Are decision classes, accountable roles and maximum review times published?
+  rationale: Unclear authority slows delivery or lets high-risk changes bypass review. Published classes and time limits make routing predictable.
+  applicability: All solutions under architecture governance.
+  expected_evidence: Governance model documenting decision classes, accountable roles, escalation triggers and maximum review times, with sampled changes traced to their required route.
+  section: '4.1'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-GOV-002
+  title: Repeatable rules automated with human judgment reserved
+  question: Are repeatable rules automated, leaving human review for consequential trade-offs?
+  rationale: Automating deterministic checks frees review for trade-offs, while manual repetition adds delay without assurance.
+  applicability: Governance models with recurring technical standards.
+  expected_evidence: Policy-as-code or pipeline guardrails with owners and violation test fixtures, plus review records showing human review focused on consequential trade-offs.
+  section: '4.3'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-GOV-003
+  title: Governed exceptions with expiry and remediation
+  question: Does every exception have an owner, compensating controls, expiry and remediation plan?
+  rationale: An exception without owner, compensating control or expiry is uncontrolled drift and an unaudited risk acceptance.
+  applicability: Any approved deviation from a control or guardrail.
+  expected_evidence: Exception record with affected assets, reason, compensating controls, residual risk, accountable acceptor, expiry and remediation milestone.
+  section: '4.5'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-GOV-004
+  title: Approval conditions verified after deployment
+  question: Are approval conditions verified after deployment?
+  rationale: Conditional approval without post-deployment verification is assurance on paper; unresolved conditions are accepted risk.
+  applicability: Reviews that approve with conditions.
+  expected_evidence: Condition register with owners and deadlines, plus post-deployment verification records and closure evidence.
+  section: '4.4'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-GOV-005
+  title: Audit-ready control matrix and evidence
+  question: Is there a control matrix with automatically generated evidence, ready for internal, external and customer audits?
+  rationale: Evidence collected manually before an audit is expensive, incomplete and hard to trust; system-generated evidence demonstrates operating effectiveness.
+  applicability: Solutions subject to internal, external or customer audit.
+  expected_evidence: Control matrix linking requirements, controls and evidence, with automatically generated evidence, owners, retention and a findings register with closure records.
+  section: '4.9'
+  external_reference: ISO/IEC 27001:2022
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-GOV-006
+  title: Team and system alignment
+  question: Does each component have one owning team, with an interaction mode for each significant team dependency and accepted mismatches recorded?
+  rationale: Boundaries that cut across teams turn each release into a coordination exercise, whatever the deployment topology.
+  applicability: Solutions delivered or operated by more than one team.
+  expected_evidence: Component-to-team ownership map, team interaction map and ADRs for accepted mismatches.
+  section: '4.10'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.2'
+  status: active

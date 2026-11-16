@@ -1,0 +1,71 @@
+schema_version: 3.0.0
+domain: SA-REL
+title: Observability and reliability
+manuscript: chapters/ch10-observability-reliability-and-sre.qmd
+items:
+- id: SA-REL-001
+  title: User-visible SLIs with explicit ratios
+  question: Do SLIs measure user-visible outcomes with a defined numerator, denominator and exclusions?
+  rationale: Component uptime hides journeys that fail while infrastructure looks healthy; undefined denominators make objectives disputable.
+  applicability: All production services with user-facing journeys.
+  expected_evidence: SLI specification stating good and valid events, numerator, denominator, exclusions, data source and missing-data behavior, measured at the edge.
+  section: 10.2.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REL-002
+  title: Actionable symptom-based alerting
+  question: Are alerts based on burn rate or symptoms, each with an owner, a runbook and a clear action?
+  rationale: Resource-threshold alerts create fatigue and miss customer impact, while unowned alerts are ignored.
+  applicability: All monitored production services.
+  expected_evidence: Alert catalog based on burn rate or symptoms, each with owner, runbook and clear action, plus alert-noise metrics.
+  section: 10.2.2
+  external_reference: Beyer et al. (2018), The Site Reliability Workbook
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REL-003
+  title: Agreed error-budget exhaustion policy
+  question: Is there an agreed policy for error-budget exhaustion?
+  rationale: Without a policy the error budget is only a report and reliability work never outranks risky releases.
+  applicability: Services operating against an SLO.
+  expected_evidence: Written error-budget policy defining thresholds, release freeze or prioritization rules and the path back to normal operation.
+  section: 10.2.2
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REL-004
+  title: Defined and rehearsed incident response
+  question: Are incident roles, severities and communication paths defined and rehearsed?
+  rationale: Unclear roles and communication paths during an incident lengthen outages and delay customer and regulator notification.
+  applicability: All services with production incidents.
+  expected_evidence: Severity definitions by business impact, role assignments, communication paths, and game-day or tabletop reports measuring detection, mitigation and recovery time.
+  section: '10.3'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REL-005
+  title: Capacity planned for bursts and degradation
+  question: Is capacity planned for bursts and degraded dependencies, with load shedding?
+  rationale: Steady-state averages hide the concurrency created by dependency latency, and autoscaling reacts after saturation.
+  applicability: Services with variable load or dependent capacity limits.
+  expected_evidence: Capacity model with stated assumptions, headroom for bursts and degraded dependencies, load-shedding and admission-control design, and peak and drain-time measurements.
+  section: 10.4.2
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REL-006
+  title: Business outcomes reconciled with records
+  question: Are business outcomes reconciled against authoritative records?
+  rationale: A technically healthy system can silently produce incorrect transactions that infrastructure metrics never show.
+  applicability: Solutions with financial or business-critical outcomes.
+  expected_evidence: Business-signal instrumentation (completed orders, pending age, settlement lag) compared with authoritative records, plus reconciliation-mismatch alerts.
+  section: 10.5.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
