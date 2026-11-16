@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=LR;
+ scenarios [label="Scenarios\nuse cases and quality\nscenarios that exercise\nall four views"];
+ logical [label="Logical view\nstructure, domain model,\nkey abstractions"];
+ process [label="Process view\nconcurrency, performance,\navailability"];
+ development [label="Development view\nmodules, packages,\nbuild and ownership"];
+ physical [label="Physical view\ndeployment, nodes,\nzones and network"];
+ scenarios -> logical [label=" validates"];
+ scenarios -> process [label=" validates"];
+ scenarios -> development [label=" validates"];
+ scenarios -> physical [label=" validates"];
+}

@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ mile [label="Business milestones\naccepted, authorized,\nsettled, refunded"];
+ ops [label="Operational totals\nfrom own telemetry"];
+ auth [label="Authoritative records\nprovider, ledger,\nfulfilment"];
+ cmp [label="Totals reconcile?", shape=diamond, style="filled"];
+ ok [label="Outcome confirmed\nagainst the record"];
+ gap [label="Discrepancy\nstuck, lost, duplicated\nor mispriced transaction"];
+ pm [label="Investigation and\npostmortem"];
+ act [label="Systemic action\nguardrail, test,\nreconciliation alert"];
+ mile -> ops; mile -> auth; ops -> cmp; auth -> cmp; cmp -> ok [label=" yes"]; cmp -> gap [label=" no"]; gap -> pm; pm -> act;
+ act -> mile [label="  new milestone measured", style=dashed, constraint=false];
+}

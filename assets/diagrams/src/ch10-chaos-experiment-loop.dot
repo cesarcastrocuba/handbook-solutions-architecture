@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ hyp [label="Hypothesis\nsteady state survives\nthe fault"];
+ abort [label="Blast radius and\nabort conditions agreed", shape=diamond, style="filled"];
+ inj [label="Inject realistic fault\nzone loss, latency,\ndependency error"];
+ obs [label="Observe against\nthe steady state"];
+ held [label="Steady state held?", shape=diamond, style="filled"];
+ fix [label="Finding: weak control\nor missing guardrail"];
+ grad [class="focal", label="Widen scope\ntest, then production"];
+ hyp -> abort -> inj -> obs -> held; held -> grad [label=" yes"]; held -> fix [label=" no"];
+ fix -> abort [label="  redesign, retest", style=dashed, constraint=false];
+}

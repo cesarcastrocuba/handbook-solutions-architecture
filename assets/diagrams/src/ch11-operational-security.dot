@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ iv [label="Asset and dependency\ninventory"];
+ de [label="Vulnerability and\nexposure detection"];
+ tr [label="Patch, schedule\nor except?", shape=diamond, style="filled"];
+ pa [label="Patch through the\nnormal pipeline"];
+ ex [label="Time-bound exception\nwith compensating\ncontrol and owner"];
+ vf [label="Verify coverage and\nbehavior in production"];
+ ac [label="Recertify access,\nrotate credentials,\ntest revocation"];
+ iv -> de -> tr; tr -> pa; tr -> ex; pa -> vf; ex -> vf [style=dashed]; vf -> ac; ac -> iv [label="  new assets and\n identities appear", style=dashed, constraint=false];
+}

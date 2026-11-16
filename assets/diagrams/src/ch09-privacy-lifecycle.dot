@@ -1,0 +1,20 @@
+digraph G {
+
+ rankdir=TB;
+ col [label="Collect\npurpose and\nlegal basis"];
+ min [label="Minimize,\nclassify,\npseudonymize"];
+ store [label="Store and\nprocess\nresidency,\naccess"];
+ ret [label="Retain and\naudit\nschedule and\nholds"];
+ del [label="Delete or\nexport\nreplicas,\nbackups"];
+ ev [class="focal", label="Evidence\nROPA, DPIA,\nDSR log"];
+
+ col -> min [constraint=false];
+ min -> store [constraint=false];
+ store -> ret;
+ ret -> del [constraint=false];
+ del -> ev [constraint=false];
+ ev -> col [label="review", style=dashed, constraint=false];
+
+ {rank=same; col; min; store;}
+ {rank=same; ret; del; ev;}
+}

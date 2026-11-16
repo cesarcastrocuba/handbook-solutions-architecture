@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ req [label="Request\n(identity + resource + action)"];
+ gw [label="Gateway\nauthenticate, throttle"];
+ pdp [label="Policy decision\n(RBAC / ABAC / ReBAC)", shape=diamond, style="filled"];
+ own [label="Owning service\nobject and tenant check"];
+ allow [class="focal", label="Allow\nleast privilege"];
+ deny [label="Deny / escalate\nand audit"];
+ req->gw->pdp; pdp->own; own->allow; own->deny; pdp->deny [label=" no policy fit"];
+}

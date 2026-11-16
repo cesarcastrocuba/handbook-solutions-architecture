@@ -1,0 +1,10 @@
+digraph G { 
+
+ rankdir=TB;
+ scan [label="Scan and inventory\n(CVSS + version)"];
+ ctx [label="Context\nEPSS, KEV, exposure,\nreachability, asset value", shape=diamond, style="filled"];
+ pri [label="Priority\nand owner"];
+ act [class="focal", label="Patch, mitigate\nor accept with expiry"];
+ ver [label="Verify and close\nor escalate"];
+ scan->ctx->pri->act->ver; ver->scan [label="  continuous", style=dashed, constraint=false];
+}

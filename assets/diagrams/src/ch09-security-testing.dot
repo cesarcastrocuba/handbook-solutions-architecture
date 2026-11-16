@@ -1,0 +1,20 @@
+digraph G {
+
+ rankdir=TB;
+ tm [label="Threat model\nand ASVS\nlevel"];
+ code [label="Commit SAST,\nSCA,\nsecrets, IaC\nscan"];
+ build [label="Build and\nsign SBOM,\nprovenance"];
+ dyn [label="DAST / IAST\nauthenticated"];
+ pen [label="Penetration\ntest logic\nand chains"];
+ gate [label="Release gate\ncritical\nfindings\nblock", shape=diamond, style="filled"];
+
+ tm -> code [constraint=false];
+ code -> build [constraint=false];
+ build -> dyn;
+ dyn -> pen [constraint=false];
+ pen -> gate [constraint=false];
+ gate -> code [label="fix", style=dashed, constraint=false];
+
+ {rank=same; tm; code; build;}
+ {rank=same; dyn; pen; gate;}
+}
