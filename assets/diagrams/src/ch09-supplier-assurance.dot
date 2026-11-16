@@ -1,0 +1,10 @@
+digraph G { 
+
+ rankdir=TB;
+ tier [label="Tier supplier\nby data and criticality"];
+ ev [label="Evidence\nSOC 1/2, ISO 27001,\nPCI AoC, CAIQ"];
+ gap [label="Gap and\ncontract terms", shape=diamond, style="filled"];
+ use [label="Approve, condition\nor reject"];
+ mon [class="focal", label="Monitor, reassess,\nrecord exit"];
+ tier->ev->gap->use->mon; mon->tier [label="  annual or risk trigger", style=dashed, constraint=false];
+}

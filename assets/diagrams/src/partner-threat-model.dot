@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;  compound=true;
+ partner [label="Partner system (client\ncredentials or mTLS)"];
+ subgraph cluster_b1 { label="Trust boundary:\ninternet →\nplatform"; labelloc="b"; labeljust="l";
+   gw [label="API gateway\nauthentication, schema\nvalidation, rate\nlimits"]; }
+ subgraph cluster_b2 { label="Trust boundary:\nservice ownership"; labelloc="b"; labeljust="l";
+   ord [label="Order service\ntenant-ownership\nauthorization, replay\ncheck"]; db [label="Order store\n(encrypted)"]; }
+ sec [label="Secret manager\nautomatic rotation"];
+ aud [label="Audit log\n(tamper-evident)"];
+ t [label="Threats: credential\ntheft, replay,\ncross-tenant access,\nschema abuse, denial\nof service", shape=note];
+ partner -> gw [label="purchase order"]; gw -> ord [label="scoped token"]; ord -> db;
+ ord -> aud [label="every submission"]; sec -> gw [style=dashed]; sec -> ord [style=dashed];
+ t -> gw [style=dotted, arrowhead=none];
+}

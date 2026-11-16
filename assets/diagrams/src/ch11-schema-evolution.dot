@@ -1,0 +1,10 @@
+digraph G { 
+
+ rankdir=LR; 
+ r1 [label="Release 1\n— Expand\nadd the\nnew\nstructure;\nold code\nunaffected"];
+ r2 [label="Release 2\n— Migrate\nwrite\nboth,\nbackfill\nin bounded\nbatches,\nmove\nreaders"];
+ r3 [label="Release 3\n— Contract\ndrop the\nold\nstructure"];
+ fw [label="From here\nrecovery\nis a\nfix-forward,\nnot a\nrollback", shape=note];
+ r1 -> r2 [label="old and\nnew\nversions\nrun\ntogether"]; r2 -> r3 [label="no reader\nleft on\nthe old\nstructure"];
+ r3 -> fw [style=dashed];
+}

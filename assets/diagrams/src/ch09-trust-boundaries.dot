@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ u [label="Users, partners\nand workloads"];
+ p [label="Public ingress\nidentity-aware"];
+ a [label="Application zone\nworkload identity, mTLS"];
+ d [class="focal", label="Data zone\ntenant and environment\nsegregation"];
+ k [label="Key and secret\nservice"];
+ m [label="Management zone\nprivileged, audited"];
+ u->p->a->d; a->k [style=dashed]; m->a [label=" just-in-time", style=dashed]; m->d [label=" audited", style=dashed];
+}

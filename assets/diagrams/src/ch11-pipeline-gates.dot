@@ -1,0 +1,26 @@
+digraph G {
+
+ rankdir=TB;
+ c [label="Reviewed,\nsigned\ncommit"];
+ b [label="Build once\n(immutable\nartifact,\ndigest\nrecorded)"];
+ r [label="Artifact\nregistry\n(signed,\nversioned,\nretained)"];
+ g [label="Tests,\ncontract\nchecks,\nscans and\npolicy gates\nall pass?", shape=diamond, style="filled"];
+ s [label="Staging /\npre-production\n(performance,\nsecurity,\nacceptance)"];
+ p [label="Production\n(canary,\nthen full\ncohort)"];
+ rb [label="Roll back or\nfix forward"];
+ n [label="Provenance\nrecord:\ncommit,\nbuild,\napprovals,\ndeployment", shape=note];
+
+ c -> b [constraint=false];
+ b -> r [constraint=false];
+ r -> g;
+ g -> s [label="promote same\ndigest"];
+ s -> p [label="go/no-go", constraint=false];
+ g -> rb [label="no", style=dashed];
+ p -> rb [label="health\nsignal fails", style=dashed, constraint=false];
+ n -> g [style=dotted, arrowhead=none, constraint=false];
+ p -> rb [style=invis];
+
+ {rank=same; c; b; r;}
+ {rank=same; g; n;}
+ {rank=same; s; p; rb;}
+}

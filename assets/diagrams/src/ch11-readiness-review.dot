@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=LR;
+ o [label="Owner and\non-call\nrotation"];
+ sl [label="SLOs,\nactionable\nalerts,\ndashboards"];
+ ru [label="Runbooks\nwith\ncommands\nand\nverification\nsteps"];
+ bk [label="Restore-tested\nbackups"];
+ cp [label="Capacity\nassumptions\nand\ndependency\ninventory"];
+ rv [label="Readiness\nreview:\nevidence\ninspected,\ncritical\nfailure\nrehearsed"];
+ dc [label="Ready to\ntake\ntraffic?", shape=diamond, style="filled"];
+ gp [label="Gaps with\nowner,\ndate and\ninterim\ncontrol"];
+ go [label="Go-live\nand\non-call\nhandover"];
+ o -> rv; sl -> rv; ru -> rv; bk -> rv; cp -> rv; rv -> dc; dc -> go [label="yes"]; dc -> gp [label="no"];
+ gp -> rv [label="re-review", style=dashed, constraint=false];
+}

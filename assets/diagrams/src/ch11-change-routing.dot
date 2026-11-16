@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ c [label="Change request\n(commit, ticket,\npipeline run)"];
+ d [label="Classify risk and\nrepeatability", shape=diamond, style="filled"];
+ st [label="Standard\npre-authorized\nchange model"];
+ nm [label="Normal authority for\nthe assessed risk"];
+ em [label="Emergency small\nauthority, expedited"];
+ r [label="Change record linked\nto commit, review,\napprovals and\ndeployment"];
+ p [label="Post-implementation\nreview updates the\nchange models", shape=note];
+ c -> d; d -> st; d -> nm; d -> em; st -> r; nm -> r; em -> r; r -> p [style=dashed]; p -> d [label="review feeds back\ninto the model", style=dashed, constraint=false];
+}

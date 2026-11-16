@@ -1,0 +1,28 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_customer { label="Customer lane";
+  c1 [label="Submit order"];
+ }
+ subgraph cluster_checkout { label="Checkout lane";
+  co1 [label="Validate and accept order"];
+  co2 [class="focal", label="Confirm or reject order"];
+ }
+ subgraph cluster_payments { label="Payments lane";
+  p1 [label="Authorize with payment_attempt_id"];
+  p2 [label="Reconcile UNKNOWN"];
+ }
+ subgraph cluster_provider { label="Provider lane";
+  pr1 [label="AUTHORIZED / DECLINED / UNKNOWN"];
+ }
+ {rank=same; c1;}
+ {rank=same; co1; co2;}
+ {rank=same; p1; p2;}
+ {rank=same; pr1;}
+ c1 -> co1 [label=" order"];
+ co1 -> p1 [label=" attempt"];
+ p1 -> pr1 [label=" request"];
+ pr1 -> p2 [label=" UNKNOWN", style=dashed];
+ pr1 -> co2 [label=" decision"];
+ p2 -> co2 [label=" resolved", style=dashed];
+}

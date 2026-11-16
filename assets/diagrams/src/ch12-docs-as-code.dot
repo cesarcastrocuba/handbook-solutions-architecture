@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ src [label="Text and model sources\nin version control"];
+ pr [label="Change request: owner\nand reviewers approve"];
+ chk [label="Automated checks: links,\nnames against inventory,\ndiagram rendering"];
+ pub [label="Published description\nwith version and date"];
+ inv [label="Deployed inventory\nexport"];
+ trig [label="Revision trigger:\nADR, release, incident"];
+ {rank=same; src; trig;}
+ {rank=same; chk; inv;}
+ src->pr; pr->chk; chk->pub;
+ inv->chk [label=" drift check"];
+ trig->src [label=" owner updates"];
+ pub->trig [style=dashed, label=" readers report gaps"];
+}

@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ j [label="Join / contract"];
+ p [label="Provision minimum role\n(SCIM or JIT)"];
+ a [class="focal", label="Authenticate\n(MFA, SSO, passkey)"];
+ r [label="Authorize per\nresource and tenant"];
+ m [label="Move / role change\nre-review"];
+ o [label="Leave / expire\nrevoke and wipe"];
+ v [label="Verify revocation\nand access review", shape=diamond, style="filled"];
+ j->p->a->r; r->m; m->r [style=dashed]; r->o->v; v->p [label="  exception or rehire", style=dashed, constraint=false];
+}

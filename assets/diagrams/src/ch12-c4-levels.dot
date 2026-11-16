@@ -1,0 +1,16 @@
+digraph G {
+ rankdir=TB;
+ l1 [label="Level 1 — System context\nCustomer, checkout system,\npayment, tax and notification\nproviders"];
+ l2 [label="Level 2 — Container\nWeb application, Order and\nPayments services, order store,\noutbox and queue"];
+ l3 [label="Level 3 — Component\nInside Payments: authorization,\nidempotency guard, provider\nadapter, reconciliation"];
+ l4 [label="Level 4 — Code\nClasses or modules of one\ncomponent, drawn only for\na specific design risk"];
+ dyn [label="Dynamic diagram\nruntime interactions\nfor one flow"];
+ dep [label="Deployment diagram\ncontainers mapped to\nnodes and zones"];
+ {rank=same; l2; dyn;}
+ {rank=same; l3; dep;}
+ l1->l2 [label=" zoom into checkout"];
+ l2->l3 [label=" zoom into Payments"];
+ l3->l4 [label=" zoom into a component"];
+ l2->dyn [style=dashed, label=" supplements"];
+ l2->dep [style=dashed, label=" supplements"];
+}
