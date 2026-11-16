@@ -3,8 +3,9 @@ PYTHON ?= python3
 COMMIT ?= $(shell git rev-parse HEAD)
 OUTPUT ?= ../dist
 BUILD_FLAGS ?=
+RELEASE_ASSETS_DIR ?= _build/release-assets
 
-.PHONY: check full build book-checks checklist-exports
+.PHONY: check full build book-checks checklist-exports release-assets
 
 # Fast checks: book-owned gates plus descriptor, reading order and cross-references.
 check: book-checks
@@ -29,3 +30,8 @@ book-checks:
 checklist-exports:
 	$(PYTHON) scripts/checklists.py --check --export
 	$(PYTHON) scripts/export_checklists_csv.py --all
+
+# Book-owned extra release assets for the template release workflow (hub change 0057, gap G6).
+release-assets: checklist-exports
+	@mkdir -p "$(RELEASE_ASSETS_DIR)"
+	cp _build/checklists/exports/* "$(RELEASE_ASSETS_DIR)/"

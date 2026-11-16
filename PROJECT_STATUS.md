@@ -14,7 +14,7 @@ Appendices A–J, Conclusions and References. Generated sections remain pending;
 | Imported slices | Slices 1–6: front matter; Chapters 1–18; Appendices A–J; Conclusions; References (`DEC-004`) |
 | Figures | All 121 rendered PNGs and 121 DOT sources copied byte-for-byte from the frozen source |
 | Generated sections | Analytic Index and glossary definition pointers pending platform support; catalog appendices H–J are frozen source snapshots, with regeneration checks passing |
-| Book-owned tooling | Catalog regeneration, canonical checklist parity and portable diagram-manifest checks run in `make check`; reference tests and checklist data imported; analytic index vocabulary staged as data for hub change 0053 |
+| Book-owned tooling | Catalog regeneration, canonical checklist parity and portable diagram-manifest checks run in `make check`; reference tests and checklist data imported; `release-assets` Makefile target stages checklist exports for release packaging; analytic index vocabulary staged as data for hub change 0053 |
 | Canonical pins | Toolkit `0.12.0` (hub commit `0824ddfaebd28f170f157fcb38641c7dc65d6c20`), standard profile `1.1.0` (DEC-012); the release workflow accepts `X.Y.Z-rc.N` pre-releases |
 | Releases | None. Next planned: `v3.1.0-rc.1` with the Owner's tag approval (`DEC-005`, `DEC-010`); the complete edition still requires generated-section parity |
 | Catalog | Not listed; only `v3.1.0` will be listed |
@@ -22,7 +22,7 @@ Appendices A–J, Conclusions and References. Generated sections remain pending;
 
 ## Next actions
 
-1. Publish checklist exports as release assets once hub template gap G6 is closed; `make checklist-exports` generates CSV/JSON/Markdown into ignored `_build/checklists/exports/`.
+1. Publish checklist exports as release assets; the `release-assets` Makefile target copies generated exports to `$(RELEASE_ASSETS_DIR)`. Gap G6 closes once a template that ships hub change 0057 is released.
 2. Restore the analytic Index, glossary pointers and cross-reference links, and close numbering gaps in the hub.
 3. Complete publication parity and the Owner's desktop Word check before any tag.
 
