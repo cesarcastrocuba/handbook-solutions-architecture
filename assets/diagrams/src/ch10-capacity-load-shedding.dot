@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ dem [label="Demand rises burst or\ndegraded dependency"];
+ sig [label="Leading signals queue age,\npool use, p99, dependency\nquota"];
+ head [label="Headroom available?", shape=diamond, style="filled"];
+ serve [label="Serve normally"];
+ scale [label="Scale out (reactive,\nlagging)"];
+ shed [label="Admission control and load\nshedding (429, 503)"];
+ pri [label="Protect the critical\njourney, degrade the rest"];
+ dem -> sig -> head; head -> serve [label="yes"]; head -> scale [label="no"]; scale -> shed; shed -> pri;
+ pri -> sig [label="measure again", style=dashed, constraint=false];
+}

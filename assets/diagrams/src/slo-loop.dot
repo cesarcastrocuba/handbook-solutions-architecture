@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ sli [label="SLI measured\nat the edge"]; slo [label="SLO and\nerror budget"];
+ alert [label="Burn-rate alerts\n(page fast burn,\nticket slow burn)", shape=diamond, style="filled"];
+ inc [label="Incident response\n(roles, severities)"]; pm [label="Postmortem\nand actions"];
+ pol [label="Error-budget policy\n(pause risky releases)"];
+ rel [label="Releases and\nreliability work"];
+ sli -> slo -> alert -> inc -> pm; slo -> pol [label=" budget spent"]; pol -> rel; pm -> rel [label=" backlog"];
+ rel -> sli [label="  changed behavior is measured again", style=dashed, constraint=false];
+}

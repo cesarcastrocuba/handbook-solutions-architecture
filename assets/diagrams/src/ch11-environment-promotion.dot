@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ a [label="One signed artifact (one\ndigest)"];
+ e [label="Ephemeral preview (per\npull request, synthetic\ndata)"];
+ d [label="Development (branch\nbuilds, unit tests)"];
+ t [label="Test / integration\n(automated suites,\ncontract checks)"];
+ s [label="Staging / pre-production\n(production-like scale,\nmasked data, acceptance)"];
+ p [label="Production (canary, then\nfull cohort)"];
+ a -> d [label="promote"]; e -> d [label="merge"]; d -> t [label="promote"]; t -> s [label="promote"]; s -> p [label="go/no-go"];
+}

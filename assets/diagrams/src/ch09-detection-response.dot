@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ ev [label="Security events auth,\nauthz, keys, privileged\nactions"];
+ det [label="Detection rules and\ncorrelation"];
+ tri [label="Triage and severity", shape=diamond, style="filled"];
+ ic [label="Incident command roles and\ncomms"];
+ rec [class="focal", label="Contain, eradicate,\nrecover"];
+ pm [label="Postmortem actions and\naudit"];
+ ev->det->tri->ic->rec->pm; pm->det [label="detection tuning", style=dashed, constraint=false];
+}

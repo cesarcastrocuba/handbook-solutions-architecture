@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=LR; 
+ svc [label="Instrumented\nservices\n(OpenTelemetry\nSDK or agent)"];
+ biz [label="Business\nmilestones\n(order, payment,\nsettlement)"];
+ col [label="Collector\nreceive, sample,\nredact, enforce\ncardinality,\nbatch"];
+ m [label="Metrics store\ncounters,\ngauges,\nhistograms"];
+ l [label="Log store\nstructured\nrecords,\ncorrelation IDs"];
+ t [label="Trace store\nspans joined by\ntrace ID"];
+ slo [label="SLO and\nburn-rate alerts"];
+ dash [label="Dashboards"];
+ inv [label="Investigation\n(trace ID,\ncorrelation ID)"];
+ svc -> col; biz -> col; col -> m; col -> l; col -> t;
+ m -> slo; m -> dash; l -> inv; t -> inv;
+ {rank=same; slo; dash; inv}
+}

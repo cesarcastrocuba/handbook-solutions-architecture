@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ a [label="Assets, actors\nand data flows"];
+ b [label="Trust boundaries\nand abuse paths"];
+ c [label="Ranked threats\n(STRIDE + context)", shape=diamond, style="filled"];
+ d [label="Controls mapped\nto owners and tests"];
+ e [label="Verification\n(SAST, DAST, review,\npenetration test)"];
+ f [class="focal", label="Residual risk\naccepted by owner"];
+ a->b->c->d->e->f;
+ f->a [label="  trust-boundary or design change", style=dashed, constraint=false];
+}
