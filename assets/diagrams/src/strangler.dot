@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ cl [label="Clients"];
+ f [label="Routing façade\nper-slice routing, cohorts,\nrollback"];
+ n [class="focal", label="New implementation\nmigrated slices"];
+ l [label="Legacy system\nremaining capabilities"];
+ acl [label="Anti-corruption\nlayer"];
+ rc [label="Reconciliation and\nparity comparison", shape=note];
+ cl->f; f->n [label=" migrated slice"]; f->l [label=" not yet migrated"];
+ n->acl; acl->l [label=" translated calls\n and data"];
+ rc->n [style=dashed, arrowhead=none]; rc->l [style=dashed, arrowhead=none];
+ {rank=same; n; acl; l;}
+}

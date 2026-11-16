@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ brd [label="Business case and BRD\noutcomes, scope, benefit,\ncost and risk"];
+ prd [label="PRD\nproblem, users, journeys,\nacceptance criteria"];
+ srs [label="SRS and quality scenarios\nmeasurable functional and\nnon-functional requirements"];
+ gate [label="Measurable,\nbounded and owned?", shape=diamond, style="filled"];
+ acc [class="focal", label="Requirement accepted for design\nacceptance criteria, success metrics\nand links to evaluation"];
+ brd->prd; prd->srs; srs->gate; gate->acc [label=" yes"];
+ gate->prd [label=" no: clarify scope, measure or owner", style=dashed, constraint=false];
+}

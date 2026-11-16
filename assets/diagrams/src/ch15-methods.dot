@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ q [label="Quality scenarios\nprioritized and owned (QAW)"];
+ d [label="Design decisions\n(ADD, DDD, Event Storming)"];
+ a [label="Decision recorded\n(ADR: options, consequences)"];
+ e [label="Evaluation (ATAM)\nrisks, sensitivity, trade-offs;\niteration returns to design"];
+ c [label="Economic comparison\n(CBAM, multi-year TCO)"];
+ s [class="focal", label="Assurance\n(review records, fitness functions)"];
+ q->d->a->e->c;
+ a->s [style=dashed]; e->s; c->s;
+}

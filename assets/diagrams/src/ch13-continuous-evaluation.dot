@@ -1,0 +1,14 @@
+digraph G {
+ rankdir=TB;
+ d [label="Decision recorded\nwith trigger (ADR)"];
+ e [label="Evaluation at the\nchosen weight"];
+ v [label="Evidence: fitness functions,\nprototypes, tests"];
+ o [label="Production signals:\nSLOs, incidents, cost"];
+ t [label="Trigger met or\nassumption broken?", shape=diamond, style="filled"];
+ r [label="Findings register:\nrisks with owners"];
+ g [label="Governance review\n(risk themes)"];
+ d->e->v->o->t;
+ t->e [label=" yes: re-evaluate"];
+ t->o [label=" no: keep watching", style=dashed];
+ e->r; v->r; r->g;
+}

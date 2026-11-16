@@ -1,0 +1,23 @@
+digraph G {
+
+ rankdir=TB;
+ u [class="focal", label="User or workload\nidentity"];
+ app [label="Application\njourney, policy,\noutput checks"];
+ o [label="Orchestrator\ninstruction and\ndata separation,\ncontext assembly"];
+ r [label="Retrieval\nquery-time ACL,\ntenant and purpose\nfilters"];
+ model [label="Model endpoint\nmanaged or\nself-hosted"];
+ tools [label="Tools and actions\nleast privilege,\napproval, audit,\nkill switch"];
+ unt [label="Untrusted content\n— documents,\npages, tool\nresponses: may\ncarry instructions\nor request actions", style="filled,dashed"];
+
+ u -> app [constraint=false];
+ app -> o;
+ o -> r [constraint=false];
+ r -> model;
+ model -> tools [constraint=false];
+ unt -> o [style=dotted, arrowhead=none, constraint=false];
+ unt -> tools [style=dotted, arrowhead=none, constraint=false];
+
+ {rank=same; u; app;}
+ {rank=same; o; r;}
+ {rank=same; model; tools;}
+}

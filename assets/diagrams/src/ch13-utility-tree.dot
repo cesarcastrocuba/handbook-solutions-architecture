@@ -1,0 +1,14 @@
+digraph G {
+ rankdir=LR;
+ u [label="Utility"];
+ p [label="Performance"];
+ a [label="Availability"];
+ i [label="Integrity"];
+ m [label="Modifiability"];
+ p1 [label="Order acknowledged within 2 s\nat p99 at peak (H, M)"];
+ a1 [label="Orders accepted during a\n10-minute provider outage (H, H)"];
+ i1 [label="No second charge after\na timeout (H, H)"];
+ m1 [label="Second payment provider\nadded in four weeks (M, M)"];
+ u->p; u->a; u->i; u->m;
+ p->p1; a->a1; i->i1; m->m1;
+}

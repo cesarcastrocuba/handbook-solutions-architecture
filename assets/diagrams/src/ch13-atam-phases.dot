@@ -1,0 +1,9 @@
+digraph G {
+ rankdir=TB;
+ p0 [label="Phase 0: partnership and preparation\nscope, evaluation team, logistics"];
+ p1 [label="Phase 1, with decision makers:\npresent the method, business drivers\nand architecture; identify approaches;\nbuild the utility tree; analyze approaches"];
+ p2 [label="Phase 2, with stakeholders:\nbrainstorm and prioritize scenarios;\nanalyze approaches again; present results"];
+ p3 [label="Phase 3: follow-up report;\nrisk themes into backlog and governance"];
+ p0->p1->p2->p3;
+ p2:e->p1:e [style=dashed, label=" new top scenario", constraint=false];
+}

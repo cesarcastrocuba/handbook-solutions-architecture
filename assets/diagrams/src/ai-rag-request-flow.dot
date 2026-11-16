@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ q [label="User question\n(tenant, purpose)"];
+ auth [label="Identity and authorization\n(resolve subject + ACLs)"];
+ ret [label="Retrieval\n(hybrid search + metadata filter)"];
+ rank [label="Rerank and filter\n(relevance, freshness, ACLs)"];
+ prompt [label="Prompt assembly\n(instructions + context + citations)"];
+ model [label="Model endpoint\n(generate)"];
+ guard [label="Output guardrails\n(citations, safety, PII)"];
+ ans [label="Answer with citations\nor explicit refusal"];
+ human [label="Human escalation\n(low confidence, high impact)"];
+ trace [label="Audit and trace\n(query, sources, model, decision)", shape=box, style="rounded,dashed"];
+ q->auth->ret->rank->prompt->model->guard->ans; guard->human [label="uncertain or high impact", style=dashed]; auth->trace [style=dashed, constraint=false]; ret->trace [style=dashed, constraint=false]; model->trace [style=dashed, constraint=false]; guard->trace [style=dashed, constraint=false];
+}

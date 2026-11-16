@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=TB;
+ av [label="Architecture Vision\nscope, drivers, guardrails"];
+ ba [label="Business, IS and Technology Architectures"];
+ os [label="Opportunities and Solutions"];
+ mp [label="Migration Planning"];
+ ig [label="Implementation Governance"];
+ cm [label="Architecture Change Management"];
+ sol [class="focal", label="Solution team\narc42 structure  ·  C4 views\nADRs  ·  ICDs  ·  tests"];
+ av->ba->os->mp->ig->cm;
+ av->sol [label=" scope and drivers"];
+ sol->ig [label=" evidence for governance"];
+ cm->av [label=" next cycle", style=dashed, constraint=false];
+ {rank=same; os; sol;}
+}

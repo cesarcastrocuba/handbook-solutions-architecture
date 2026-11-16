@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ rfc [label="RFC proposal, alternatives"];
+ adr [label="ADR decision, rationale,\nconsequences"];
+ hld [label="HLD structure and\ntrade-offs"];
+ lld [label="LLD / TDD modules,\nschemas, failure handling"];
+ rfc->adr [label="consultation closes"];
+ adr->hld [label="frames"];
+ hld->lld [label="decomposes"];
+ lld->adr [label="evidence reopens the\ndecision", style=dashed, constraint=false];
+}

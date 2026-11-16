@@ -1,0 +1,21 @@
+digraph G { 
+
+ rankdir=TB;
+ iac [label="Environment definition\nin infrastructure as\ncode"];
+ eph [label="Ephemeral environment\ncreated per change"];
+ data [label="Synthetic or masked data\nseeded at creation"];
+ virt [label="Service virtualization\nfor providers outside\nthe team's control"];
+ suites [label="Suites: unit, component,\narchitecture, contract,\nend-to-end"];
+ gate [label="Quality gates pass?", shape=diamond, style="filled"];
+ ok [label="Promote the artifact"];
+ no [label="Block, publish the\nevidence and open the\nfinding"];
+ prod [label="Production-like\nenvironment for\nperformance, failure and\nrecovery tests"];
+ guard [label="No production personal\ndata in test\nenvironments (9.4.3)", shape=note, style="filled"];
+ iac->eph->data->suites->gate;
+ virt->suites;
+ iac->prod;
+ prod->suites [label="results reported with\nthe change"];
+ gate->ok [label="yes"];
+ gate->no [label="no"];
+ guard->data [style=dashed, arrowhead=none, label="constraint"];
+}

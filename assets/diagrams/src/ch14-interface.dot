@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ p [label="Producing team"];
+ c [label="Consuming team"];
+ icd [label="ICD — ownership,\nsemantics, security,\ntimeouts, retries,\nerrors, deprecation,\nescalation"];
+ spec [label="Machine-readable\nspecification\nOpenAPI, AsyncAPI,\nJSON Schema, Avro or\nProtocol Buffers"];
+ data [label="Data contract system\nof record, quality\nrules,\nclassification,\nretention"];
+ tm [label="Threat model trust\nboundaries, threats,\nmitigations,\nresidual risk"];
+ ci [label="CI compatibility\ngate contract and\nschema tests,\nconsumer-driven\nchecks"];
+ p->icd; c->icd; icd->spec; icd->data; icd->tm; spec->ci; data->ci; tm->ci; ci->p; ci->c;
+ {rank=same; p; c;}
+}

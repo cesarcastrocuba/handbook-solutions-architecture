@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=TB;
+ i [label="Instrument identified\n(law, regulation,\nstandard, scheme)"];
+ a [label="Applies to our role,\nsector and jurisdiction?", shape=diamond, style="filled"];
+ n [label="Record exclusion, reason\nand review date"];
+ y [label="Legal or compliance\nowner confirms\napplicability and scope"];
+ o [label="Obligation translated\ninto requirement and\ncontrol"];
+ e [class="focal", label="Evidence defined and\nowned (test, record,\nattestation)"];
+ r [label="Review on change of\nrole, sector or\ninstrument edition"];
+ i->a;
+ a->n [label="no"];
+ a->y [label="yes"];
+ y->o->e->r;
+ r->a [label="obligations change", style=dashed, constraint=false];
+}

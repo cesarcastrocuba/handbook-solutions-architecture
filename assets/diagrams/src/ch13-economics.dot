@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=TB;
+ d [label="Capability with\na sourcing\ndecision"];
+ b [label="Build one-time,\nrecurring, risk\nand exit cost"];
+ u [label="Buy or SaaS\nlicense,\nintegration,\nrisk and exit\ncost"];
+ m [label="Managed service\nconsumption,\ndependency, risk\nand exit cost"];
+ c [label="Multi-year TCO\nand benefit per\ncost", shape=diamond, style="filled"];
+ a [label="ADR: selected\noption,\nassumptions,\nreview trigger"];
+ x [label="Exit plan and\nprotected\nportability\nboundary"];
+ e [label="Unit cost at\nnormalized\ndemand"];
+ d->b; d->u; d->m; b->c; u->c; m->c; c->a; a->x; x->e;
+ e->c [label="operating\nevidence changes\nthe ranking and\nthe assumptions", style=dashed, constraint=false];
+ {rank=same; b; u; m;}
+ {rank=same; a; x; e;}
+}
