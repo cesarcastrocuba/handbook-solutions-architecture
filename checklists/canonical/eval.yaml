@@ -1,0 +1,60 @@
+schema_version: 3.0.0
+domain: SA-EVAL
+title: Architecture evaluation
+manuscript: chapters/ch13-architecture-evaluation.qmd
+items:
+- id: SA-EVAL-001
+  title: Evaluation weight proportionate to risk
+  question: Is the evaluation weight proportionate to risk, with sensitivity points, trade-offs and re-evaluation triggers recorded?
+  rationale: A lightweight review cannot expose systemic risk, while a full evaluation of a reversible change wastes stakeholder time.
+  applicability: Architecture evaluations of material changes.
+  expected_evidence: Review record stating the chosen evaluation method and rationale, assessed scenarios, sensitivity and trade-off points, unresolved risks and re-evaluation triggers.
+  section: 13.1.3
+  external_reference: 'Kazman, Klein and Clements (2000), ATAM: Method for Architecture Evaluation'
+  risk_relevance: Medium
+  version: '3.0'
+  status: active
+- id: SA-EVAL-002
+  title: Ranked, measurable scenarios
+  question: Are the evaluated scenarios ranked by business importance and difficulty, each with a measurable response?
+  rationale: Unranked or unmeasurable scenarios spend the evaluation on easy questions and leave the important, hard ones unjudged.
+  applicability: Architecture evaluations of material changes.
+  expected_evidence: Utility tree or ranked scenario list agreed by the decision makers, with a stimulus, environment and measurable response per analyzed scenario.
+  section: 13.1.2
+  external_reference: ''
+  risk_relevance: Medium
+  version: '3.0'
+  status: active
+- id: SA-EVAL-003
+  title: Independent evaluators and filed report
+  question: Were the evaluators independent of the design, and is the report filed as an architecture review record?
+  rationale: Evaluations run by the design authors confirm their own assumptions, and unfiled reports are not acted on.
+  applicability: Evaluations that inform a commitment or an approval.
+  expected_evidence: Participant list showing evaluators outside the design team; report with scope, scenarios, findings, risk themes and open questions filed as a review record.
+  section: 13.2.3
+  external_reference: ''
+  risk_relevance: Medium
+  version: '3.0'
+  status: active
+- id: SA-EVAL-004
+  title: Evidence behind ranked assumptions
+  question: Does every ranked risk that rests on an untested assumption have a prototype, benchmark or other evidence?
+  rationale: A risk accepted on the strength of a slide fails after integration, when changing course is expensive.
+  applicability: Designs whose top risks depend on product, provider or performance assumptions.
+  expected_evidence: Experiment records stating question, criteria and time box, with results linked to the ADR or evaluation record.
+  section: 13.3.2
+  external_reference: ''
+  risk_relevance: High
+  version: '3.0'
+  status: active
+- id: SA-EVAL-005
+  title: Findings owned and triggers monitored
+  question: Does every finding have an owner, a response and a due date, and is each decision’s re-evaluation trigger monitored?
+  rationale: Findings without owners are a record of what was known before the incident, and unmonitored triggers let sound decisions become unsound unnoticed.
+  applicability: All architecture evaluations.
+  expected_evidence: Findings register with owner, response and due date; re-evaluation triggers in the ADRs with the alert, fitness function or review that watches each.
+  section: 13.3.4
+  external_reference: ''
+  risk_relevance: High
+  version: '3.0'
+  status: active

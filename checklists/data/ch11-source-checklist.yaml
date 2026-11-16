@@ -1,0 +1,50 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "11. Deployment and Operations",
+  "items": [
+    {
+      "id": "CHK-CH11-01",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Is the same signed artifact promoted through every environment?",
+      "source_id": "RC2-B1170"
+    },
+    {
+      "id": "CHK-CH11-02",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Can old and new versions coexist with the current schema and messages?",
+      "source_id": "RC2-B1171"
+    },
+    {
+      "id": "CHK-CH11-03",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Are rollback limits stated, including irreversible data changes?",
+      "source_id": "RC2-B1172"
+    },
+    {
+      "id": "CHK-CH11-04",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Has operational readiness been demonstrated, not just documented?",
+      "source_id": "RC2-B1173"
+    },
+    {
+      "id": "CHK-CH11-05",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Is the branching strategy consistent with the intended release frequency?",
+      "source_id": "RC2-B1174"
+    },
+    {
+      "id": "CHK-CH11-06",
+      "section": "11. Deployment and Operations",
+      "group": "Review checklist — Deployment and operations",
+      "question": "Is each change type routed to the lightest approval model that controls its risk, with auditable evidence?",
+      "source_id": "RC2-B1175"
+    }
+  ]
+}

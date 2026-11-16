@@ -1,0 +1,104 @@
+schema_version: 3.0.0
+domain: SA-EVO
+title: Evolution and economics
+manuscript: chapters/ch15-architecture-evolution-and-economics.qmd
+items:
+- id: SA-EVO-001
+  title: Modernization justified by capability value
+  question: Is the modernization option justified by capability value and change drivers?
+  rationale: Rewriting for novelty reproduces old constraints at higher cost instead of delivering the intended benefit.
+  applicability: All modernization or migration proposals.
+  expected_evidence: Capability-level options analysis naming value, change drivers, chosen option and rejected alternatives, with expected benefit and cost.
+  section: 15.1.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-EVO-002
+  title: Migration slices with writer, reconciliation, rollback
+  question: Does each migration slice have a single authoritative writer, reconciliation and rollback?
+  rationale: Dual writes without a single authoritative writer create divergent records that cannot be reconciled or safely reversed.
+  applicability: All incremental migrations with coexisting systems.
+  expected_evidence: Per-slice migration gate defining authoritative writer, cut-over point, reconciliation frequency and thresholds, rollback boundary and exit criteria.
+  section: 15.1.2
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-EVO-003
+  title: Multi-year cost including operations and exit
+  question: Are cost comparisons multi-year, including operations and exit costs?
+  rationale: License or build price hides recurring operations, risk and exit costs that reverse the apparent cheapest option.
+  applicability: Build, buy and managed-service comparisons.
+  expected_evidence: Three-to-five-year total cost of ownership covering one-time, recurring, risk and exit categories with stated assumptions for each option.
+  section: 15.2.3
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-EVO-004
+  title: Validated rehearsed data migration with rollback
+  question: Is there a data migration strategy with validation, rehearsal and a rollback point?
+  rationale: Data is the hardest migration component; unvalidated transformation silently corrupts records during cut-over.
+  applicability: Migrations that move or transform persistent data.
+  expected_evidence: Data migration plan with profiling and cleansing, business-owned transformation rules, validation by counts, checksums and business totals, a production-like rehearsal and a defined rollback point.
+  section: 15.1.3
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-EVO-005
+  title: Technical debt with interest and trigger
+  question: Is technical debt recorded with its interest, owner and repayment trigger?
+  rationale: Debt without a recorded consequence, owner or repayment trigger accumulates until it blocks delivery.
+  applicability: All solutions carrying known design shortcuts.
+  expected_evidence: Debt register entry stating the concrete interest, supporting evidence, remediation cost, owner and repayment trigger or date, prioritized by interest paid.
+  section: 15.2.1
+  external_reference: Fowler (2009), Technical Debt Quadrant
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-EVO-006
+  title: Roadmap retires legacy assets
+  question: Does the roadmap include retirement criteria for legacy assets?
+  rationale: A target-state diagram without sequencing or retirement criteria produces permanent coexistence and rising cost.
+  applicability: Programs with legacy assets in a roadmap.
+  expected_evidence: Roadmap with transition states, dependencies, milestones and explicit retirement criteria and dates for each legacy asset, tracked by endpoints retired.
+  section: 15.3.2
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-EVO-007
+  title: Options ranked by benefit per cost
+  question: Where options differ in cost and quality, are they compared on benefit per cost with utility and cost assumptions recorded?
+  rationale: Comparing cost and quality without explicit utility assumptions turns a trade-off into an opinion.
+  applicability: Decisions where options differ in both cost and quality.
+  expected_evidence: Cost-benefit comparison stating scenarios improved, utility gain, multi-year cost and benefit-per-cost ratio, with assumptions available for challenge.
+  section: 15.2.5
+  external_reference: 'Kazman, Asundi and Klein (2002), Making Architecture Design Decisions: An Economic Approach'
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-EVO-008
+  title: Tested exit plan for critical dependencies
+  question: Does each critical dependency have a tested exit plan that meets applicable regulatory requirements?
+  rationale: Portability assumed but never exercised fails when a provider changes terms, price or availability, and some regulations require the plan.
+  applicability: All critical provider or platform dependencies.
+  expected_evidence: Exit plan with data export format, tested export, contractual termination and return terms, candidate alternative and estimated migration effort.
+  section: 15.2.4
+  external_reference: DORA (Regulation (EU) 2022/2554), Articles 28(8) and 30
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-EVO-009
+  title: Evidence-based product selection
+  question: Are products selected using mandatory criteria and weights agreed before bids are opened, with the riskiest claims proven against exit criteria?
+  rationale: Criteria written after a preference has formed only justify a decision already made.
+  applicability: Solutions selecting a significant product or supplier.
+  expected_evidence: Dated criteria and weights, independent and moderated scores, proof-of-concept results and the decision record.
+  section: 15.2.6
+  external_reference: ''
+  risk_relevance: High
+  version: '2.2'
+  status: active

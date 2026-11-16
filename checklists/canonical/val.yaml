@@ -1,0 +1,104 @@
+schema_version: 3.0.0
+domain: SA-VAL
+title: Architecture documentation
+manuscript: chapters/ch12-architecture-documentation.qmd
+items:
+- id: SA-VAL-001
+  title: Every view serves a named concern
+  question: Does each view address a named stakeholder concern?
+  rationale: Views without a consumer become stale decoration and hide the concerns stakeholders actually need answered.
+  applicability: All solutions with an architecture description.
+  expected_evidence: View catalog recording audience, concern, owner, revision trigger and authoritative location for each diagram.
+  section: 12.1.1
+  external_reference: ISO/IEC/IEEE 42010:2022
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-VAL-002
+  title: Consistent names across views and deployment
+  question: Are names and boundaries consistent across views and with the deployed system?
+  rationale: Inconsistent identifiers make reviewers reconcile diagrams by guesswork and conceal real integration gaps.
+  applicability: All multi-view architecture descriptions.
+  expected_evidence: Cross-view consistency check confirming that actors, services, stores and interfaces match the deployed inventory.
+  section: 12.1.1
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-VAL-003
+  title: Failure paths shown in dynamic views
+  question: Do failure paths appear in sequence diagrams?
+  rationale: Happy-path diagrams hide timeouts, retries, duplicates and compensation, which is where most incidents occur.
+  applicability: Solutions with asynchronous or multi-service flows.
+  expected_evidence: Sequence diagrams covering timeout, retry, duplicate delivery, unknown outcome and compensation paths for critical journeys.
+  section: 12.2.1
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-VAL-004
+  title: Quality scenarios linked to test evidence
+  question: Is every priority quality scenario linked to test evidence?
+  rationale: A reviewed diagram is not validation; unverified latency, availability or recovery claims surface as production incidents.
+  applicability: All priority quality scenarios.
+  expected_evidence: Scenario-to-test matrix naming the load, fault-injection, recovery or security test and its recorded result for each priority scenario.
+  section: 14.1.4
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: retired
+- id: SA-VAL-005
+  title: Risk-proportionate test strategy
+  question: Does the test strategy define levels, contract testing, environments, test data and quality gates proportionate to risk?
+  rationale: A test strategy without levels, environments, data rules or gates produces late, unreliable feedback and untested claims.
+  applicability: All solutions with quality obligations.
+  expected_evidence: Current test strategy covering scope, levels, contract testing, environments, test data, tooling, quality gates and exit criteria, with pipeline gate results.
+  section: 14.1.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: retired
+- id: SA-VAL-006
+  title: Evaluation weight proportionate to risk
+  question: Is the evaluation weight proportionate to risk, with sensitivity points, trade-offs and re-evaluation triggers recorded?
+  rationale: A lightweight review cannot expose systemic risk, while a full evaluation of a reversible change wastes stakeholder time.
+  applicability: Architecture evaluations of material changes.
+  expected_evidence: Review record stating the chosen evaluation method and rationale, assessed scenarios, sensitivity and trade-off points, unresolved risks and re-evaluation triggers.
+  section: 13.1.3
+  external_reference: 'Kazman, Klein and Clements (2000), ATAM: Method for Architecture Evaluation'
+  risk_relevance: Medium
+  version: '2.1'
+  status: retired
+- id: SA-VAL-007
+  title: View ownership and currency
+  question: Does every view have an owner, a revision trigger and a last-reviewed date, with drift checked at each release?
+  rationale: Stale views are acted on as if they were true, so a wrong assumption is found during an incident or an audit.
+  applicability: All solutions with an architecture description.
+  expected_evidence: View list with owner, revision trigger and last-reviewed date; drift report against the deployed inventory for the latest release.
+  section: 12.3.5
+  external_reference: ''
+  risk_relevance: Medium
+  version: '3.0'
+  status: active
+- id: SA-VAL-008
+  title: Description reviewed with change; briefs derived
+  question: Is the description reviewed with the changes that alter it, and are audience briefs derived from it rather than redrawn?
+  rationale: Documentation maintained apart from change falls behind, and redrawn slides become a second, diverging architecture.
+  applicability: Solutions whose interfaces, deployment or decisions change after the first release.
+  expected_evidence: Documentation changes in the same review history as the code; briefs citing the description version they came from.
+  section: 12.3.3
+  external_reference: ''
+  risk_relevance: Medium
+  version: '3.0'
+  status: active
+- id: SA-VAL-009
+  title: Named description template
+  question: 'Does the description follow a named template, such as arc42, with every section filled, linked or marked not applicable with a reason?'
+  rationale: Without a common outline, readers cannot tell a missing view from an unnecessary one, and rationale is duplicated and drifts.
+  applicability: Every solution architecture description.
+  expected_evidence: Description outline with each section filled, linked or marked not applicable with a reason.
+  section: 12.3.2
+  external_reference: ''
+  risk_relevance: Medium
+  version: '3.0'
+  status: active

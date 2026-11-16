@@ -1,0 +1,113 @@
+# Index vocabulary: terms kept findable in the analytic Index although they are not
+# glossary entries. `defined` must be a real section. A `term` equal to a retained
+# glossary term merges its aliases into that entry; `see` creates a visible
+# see-canonical row for a consolidated acronym. Policy: DEC-012.
+terms:
+- term: Accountable decision-making
+  defined: '2.13'
+  rationale: Ordinary practice phrase; section 2.13 owns it.
+- term: Application boundary
+  defined: 7.1.1
+  rationale: Heading restatement; section 7.1.1 owns it.
+- term: Application resilience
+  defined: 7.4.2
+  rationale: Heading restatement; section 7.4.2 owns it.
+- term: Application scalability
+  defined: 7.4.3
+  rationale: Heading restatement; section 7.4.3 owns it.
+- term: Architecture documentation
+  defined: 12.2.2
+  rationale: Generic practice heading; section 12.2.2 owns it.
+- term: Budget constraint
+  defined: 1.3.5
+  rationale: Constraint-taxonomy heading; section 1.3.5 owns it.
+- term: Business alignment
+  defined: '2.2'
+  rationale: Ordinary phrase; section 2.2 owns it.
+- term: Change approval
+  defined: 11.4.1
+  rationale: Heading restatement; section 11.4.1 owns it.
+- term: Change history
+  defined: 5.3.9
+  rationale: Heading restatement; section 5.3.9 owns it.
+- term: Change impact
+  defined: 1.5.2
+  rationale: Heading restatement; section 1.5.2 owns it.
+- term: Change type
+  defined: 11.4.2
+  rationale: Heading restatement; section 11.4.2 owns it.
+- term: Communication design
+  defined: 7.4.1
+  rationale: Heading restatement; section 7.4.1 owns it.
+- term: Compute selection
+  defined: 8.1.2
+  rationale: Heading restatement; section 8.1.2 owns it.
+- term: Cost architecture
+  defined: 8.3.2
+  rationale: Heading restatement; section 8.3.2 owns it.
+- term: Cost-benefit comparison
+  defined: 15.2.5
+  rationale: Method phrase; the CBAM entry and section 15.2.5 cover it.
+- term: Data processing requirement
+  defined: 1.1.4
+  rationale: Heading restatement; section 1.1.4 owns it.
+- term: Decision criterion
+  defined: 3.3.1
+  rationale: Heading restatement; section 3.3.1 owns it.
+- term: Decision input
+  defined: '3.2'
+  rationale: Heading restatement; section 3.2 owns it.
+- term: Decision process
+  defined: '3.5'
+  rationale: Heading restatement; section 3.5 owns it.
+- term: Delivery constraint
+  defined: 1.3.7
+  rationale: Constraint-taxonomy heading; section 1.3.7 owns it.
+- term: Environment and promotion
+  defined: 11.1.4
+  rationale: Heading restatement; section 11.1.4 owns it.
+- term: Governance lifecycle
+  defined: '4.8'
+  rationale: Heading restatement; section 4.8 owns it.
+- term: Infrastructure constraint
+  defined: 1.3.2
+  rationale: Constraint-taxonomy heading; section 1.3.2 owns it.
+- term: Integration boundary
+  defined: 6.1.1
+  rationale: Heading restatement; section 6.1.1 owns it.
+- term: Integration requirement
+  defined: 1.1.5
+  rationale: Heading restatement; section 1.1.5 owns it.
+- term: Legacy constraint
+  defined: 1.3.6
+  rationale: Constraint-taxonomy heading; section 1.3.6 owns it.
+- term: Method selection
+  defined: 17.3.5
+  rationale: Heading restatement; section 17.3.5 owns it.
+- term: Modernization option
+  defined: 15.1.1
+  rationale: Heading restatement; section 15.1.1 owns it.
+- term: Organizational constraint
+  defined: 1.3.4
+  rationale: Constraint-taxonomy heading; section 1.3.4 owns it.
+- term: Record anatomy
+  defined: 3.4.2
+  rationale: Heading restatement; section 3.4.2 owns it.
+- term: Reference sequence
+  defined: 6.7.1
+  rationale: Worked-example label; section 6.7.1 owns it.
+- term: Repository structure
+  defined: 7.5.3
+  rationale: Heading restatement; section 7.5.3 owns it.
+- term: Resource and operation design
+  defined: 6.2.6
+  rationale: Heading restatement; section 6.2.6 owns it.
+- term: Technology constraint
+  defined: 1.3.1
+  rationale: Constraint-taxonomy heading; section 1.3.1 owns it.
+- term: Test effectiveness
+  defined: 14.4.1
+  rationale: Heading restatement; section 14.4.1 owns it.
+- term: DR
+  see: Disaster recovery
+  rationale: Consolidated acronym; retained as a see row for alphabetical lookup.

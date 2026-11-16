@@ -1,0 +1,50 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "13. Architecture Evolution and Economics",
+  "items": [
+    {
+      "id": "CHK-CH13-01",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Is the modernization option justified by capability value and change drivers?",
+      "source_id": "RC2-B1287"
+    },
+    {
+      "id": "CHK-CH13-02",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Does each migration slice have a single authoritative writer, reconciliation and rollback?",
+      "source_id": "RC2-B1288"
+    },
+    {
+      "id": "CHK-CH13-03",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Are cost comparisons multi-year, including operations and exit costs?",
+      "source_id": "RC2-B1289"
+    },
+    {
+      "id": "CHK-CH13-04",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Is there a data migration strategy with validation, rehearsal and a rollback point?",
+      "source_id": "RC2-B1290"
+    },
+    {
+      "id": "CHK-CH13-05",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Is technical debt recorded with its interest, owner and repayment trigger?",
+      "source_id": "RC2-B1291"
+    },
+    {
+      "id": "CHK-CH13-06",
+      "section": "13. Architecture Evolution and Economics",
+      "group": "Review checklist — Evolution and economics",
+      "question": "Does the roadmap include retirement criteria for legacy assets?",
+      "source_id": "RC2-B1292"
+    }
+  ]
+}

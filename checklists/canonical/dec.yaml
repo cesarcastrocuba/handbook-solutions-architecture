@@ -1,0 +1,49 @@
+schema_version: 3.0.0
+domain: SA-DEC
+title: Decisions
+manuscript: chapters/ch03-architecture-decisions.qmd
+items:
+- id: SA-DEC-001
+  title: Decision tied to named requirement or risk
+  question: Can the reviewer name the requirement or risk that motivated the decision?
+  rationale: A choice without a motivating requirement or risk cannot be evaluated later and looks like accidental complexity.
+  applicability: Every architecturally significant decision.
+  expected_evidence: ADR context section naming the requirement, constraint or risk and linking to its identifier.
+  section: '3.2'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DEC-002
+  title: Credible alternatives compared on same criteria
+  question: Were at least two credible alternatives evaluated against the same criteria?
+  rationale: A single-option decision hides cheaper or safer choices and cannot show that trade-offs were considered.
+  applicability: Decisions with more than one feasible approach.
+  expected_evidence: ADR alternatives section with at least two viable options assessed against the same criteria, after screening mandatory constraints.
+  section: 3.3.1
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DEC-003
+  title: Consequences, owner, status and review triggers
+  question: Are consequences, owner, status and review triggers recorded?
+  rationale: Without consequences, ownership and revisit conditions an accepted ADR becomes unmaintainable history.
+  applicability: Every accepted ADR.
+  expected_evidence: ADR stating positive and negative consequences, named approver, lifecycle status and an explicit review date or trigger.
+  section: '3.4'
+  external_reference: Nygard (2011), Documenting Architecture Decisions
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-DEC-004
+  title: Evidence attached rather than asserted
+  question: Is the evidence (spike, test, measurement) attached rather than asserted?
+  rationale: Claims of feasibility or performance without measurement are assumptions that surface as delivery or production risk.
+  applicability: Decisions that depend on uncertain feasibility, capacity or behavior.
+  expected_evidence: Attached spike report, benchmark, prototype result or test output referenced from the ADR acceptance evidence.
+  section: '3.5'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active

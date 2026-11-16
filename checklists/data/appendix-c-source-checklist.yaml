@@ -1,0 +1,120 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "Appendix C — Architecture Assurance Checklist",
+  "items": [
+    {
+      "id": "CHK-APC-01",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Intent and decisions",
+      "question": "Business outcome, scope and constraints are explicit.",
+      "source_id": "RC2-B1519"
+    },
+    {
+      "id": "CHK-APC-02",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Intent and decisions",
+      "question": "Priority quality attributes have measurable scenarios.",
+      "source_id": "RC2-B1520"
+    },
+    {
+      "id": "CHK-APC-03",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Intent and decisions",
+      "question": "Alternatives, risks and ADRs are recorded with owners.",
+      "source_id": "RC2-B1521"
+    },
+    {
+      "id": "CHK-APC-04",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "Context and container views and interface contracts have owners.",
+      "source_id": "RC2-B1523"
+    },
+    {
+      "id": "CHK-APC-05",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "Data ownership, classification and a retention schedule (including files, logs and backups) are defined.",
+      "source_id": "RC2-B1524"
+    },
+    {
+      "id": "CHK-APC-06",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "Audit trails and data change history meet regulatory and contractual requirements.",
+      "source_id": "RC2-B1525"
+    },
+    {
+      "id": "CHK-APC-07",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "Threats are modeled and controls mapped to tests.",
+      "source_id": "RC2-B1526"
+    },
+    {
+      "id": "CHK-APC-08",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "Authentication, SSO and authorization designs are reviewed; privileged access is controlled.",
+      "source_id": "RC2-B1527"
+    },
+    {
+      "id": "CHK-APC-09",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Design",
+      "question": "The security test strategy (SAST, SCA, authenticated DAST, penetration test) and vulnerability remediation objectives are defined.",
+      "source_id": "RC2-B1528"
+    },
+    {
+      "id": "CHK-APC-10",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "Failure scenarios, RTO/RPO and capacity assumptions are tested; BCP and DRP are current.",
+      "source_id": "RC2-B1530"
+    },
+    {
+      "id": "CHK-APC-11",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "A cloud well-architected review is completed, and critical suppliers are assessed.",
+      "source_id": "RC2-B1531"
+    },
+    {
+      "id": "CHK-APC-12",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "Deployment, rollback and observability are operationally ready.",
+      "source_id": "RC2-B1532"
+    },
+    {
+      "id": "CHK-APC-13",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "A test strategy covers priority quality scenarios, contract tests and quality gates.",
+      "source_id": "RC2-B1533"
+    },
+    {
+      "id": "CHK-APC-14",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "The change approval model for the solution is agreed and produces auditable evidence.",
+      "source_id": "RC2-B1534"
+    },
+    {
+      "id": "CHK-APC-15",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "Governance exceptions have owners, expiry dates and remediation plans.",
+      "source_id": "RC2-B1535"
+    },
+    {
+      "id": "CHK-APC-16",
+      "section": "Appendix C — Architecture Assurance Checklist",
+      "group": "Evidence and operations",
+      "question": "Operational ownership and runbooks are accepted by the operating team.",
+      "source_id": "RC2-B1536"
+    }
+  ]
+}

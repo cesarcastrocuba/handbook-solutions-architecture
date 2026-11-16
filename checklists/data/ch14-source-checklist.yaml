@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "14. Software Engineering and Architecture Artifacts",
+  "items": [
+    {
+      "id": "CHK-CH14-01",
+      "section": "14. Software Engineering and Architecture Artifacts",
+      "group": "Review checklist — Artifacts",
+      "question": "Is the artifact set proportional to the change’s risk and cross-team impact?",
+      "source_id": "RC2-B1342"
+    },
+    {
+      "id": "CHK-CH14-02",
+      "section": "14. Software Engineering and Architecture Artifacts",
+      "group": "Review checklist — Artifacts",
+      "question": "Does each artifact have an owner, status, location and review trigger?",
+      "source_id": "RC2-B1343"
+    },
+    {
+      "id": "CHK-CH14-03",
+      "section": "14. Software Engineering and Architecture Artifacts",
+      "group": "Review checklist — Artifacts",
+      "question": "Are artifacts linked by identifier rather than duplicated?",
+      "source_id": "RC2-B1344"
+    },
+    {
+      "id": "CHK-CH14-04",
+      "section": "14. Software Engineering and Architecture Artifacts",
+      "group": "Review checklist — Artifacts",
+      "question": "Do linked artifacts agree on thresholds, contracts and decisions?",
+      "source_id": "RC2-B1345"
+    }
+  ]
+}

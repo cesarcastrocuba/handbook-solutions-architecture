@@ -1,0 +1,71 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "9. Security Architecture",
+  "items": [
+    {
+      "id": "CHK-CH09-01",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Are trust boundaries, assets and ranked threats documented and current?",
+      "source_id": "RC2-B1026"
+    },
+    {
+      "id": "CHK-CH09-02",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Are authentication methods phishing-resistant where risk requires, with SSO and automated deprovisioning?",
+      "source_id": "RC2-B1027"
+    },
+    {
+      "id": "CHK-CH09-03",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Is authorization enforced per resource and tenant in the owning service?",
+      "source_id": "RC2-B1028"
+    },
+    {
+      "id": "CHK-CH09-04",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Are credentials short-lived, stored in a secret manager and rotatable?",
+      "source_id": "RC2-B1029"
+    },
+    {
+      "id": "CHK-CH09-05",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Is an ASVS level selected, with each applicable requirement mapped to a verification method?",
+      "source_id": "RC2-B1030"
+    },
+    {
+      "id": "CHK-CH09-06",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Does the security test strategy combine static, composition, dynamic (authenticated) and penetration testing?",
+      "source_id": "RC2-B1031"
+    },
+    {
+      "id": "CHK-CH09-07",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Are vulnerabilities prioritized by exploitation and context, not CVSS alone, with tracked remediation objectives?",
+      "source_id": "RC2-B1032"
+    },
+    {
+      "id": "CHK-CH09-08",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Do auditable actions produce complete, tamper-evident audit records retained for the required period?",
+      "source_id": "RC2-B1033"
+    },
+    {
+      "id": "CHK-CH09-09",
+      "section": "9. Security Architecture",
+      "group": "Review checklist — Security",
+      "question": "Are critical suppliers assessed with current evidence and contractual commitments?",
+      "source_id": "RC2-B1034"
+    }
+  ]
+}

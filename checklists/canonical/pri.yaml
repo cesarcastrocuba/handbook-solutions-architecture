@@ -1,0 +1,49 @@
+schema_version: 3.0.0
+domain: SA-PRI
+title: Principles
+manuscript: chapters/ch02-architecture-principles.qmd
+items:
+- id: SA-PRI-001
+  title: Complete principle anatomy and ownership
+  question: Does each principle have a rationale, implications, measurable guardrails, exceptions and an owner?
+  rationale: A principle without rationale, consequences, guardrails or an owner becomes a slogan that teams ignore or escalate.
+  applicability: Organizations that publish architecture principles.
+  expected_evidence: Published principle containing statement, rationale, implications, measurable guardrails, exception conditions and owner, with current guardrail results.
+  section: '2.1'
+  external_reference: The Open Group (2022), The TOGAF Standard, 10th Edition
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-PRI-002
+  title: Principles distinguished from policies and standards
+  question: Are principles distinguished from policies, standards and guidelines?
+  rationale: Mixing binding rules with advisory preferences creates governance ambiguity and contested enforcement.
+  applicability: Organizations with principles, policies, standards or guidelines.
+  expected_evidence: Classified register labeling each instrument as principle, policy, standard or guideline, with its owner and enforcement route.
+  section: '2.1'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-PRI-003
+  title: Time-limited tracked principle exceptions
+  question: Are approved exceptions time-limited and tracked?
+  rationale: Exceptions without expiry become permanent drift and erode the principle they bypass.
+  applicability: Any approved deviation from an architecture principle.
+  expected_evidence: Exception register entry with scope, owner, compensating control, expiry date and remediation milestone, enforced by automatic expiry in the governance process.
+  section: '2.16'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active
+- id: SA-PRI-004
+  title: Recurring exceptions trigger principle revision
+  question: Have recurring exceptions prompted a revision of the principle?
+  rationale: When exceptions become the normal path the principle is mis-scoped and should change rather than be bypassed repeatedly.
+  applicability: Principles with recurring approved exceptions.
+  expected_evidence: Exception trend review showing recurrence counts and a recorded revision, rescope or retirement decision for the principle.
+  section: '2.16'
+  external_reference: ''
+  risk_relevance: Medium
+  version: '2.1'
+  status: active

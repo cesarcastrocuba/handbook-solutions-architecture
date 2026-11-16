@@ -1,0 +1,49 @@
+schema_version: 3.0.0
+domain: SA-REQ
+title: Requirements
+manuscript: chapters/ch01-architecture-requirements.qmd
+items:
+- id: SA-REQ-001
+  title: Measurable architecturally significant scenarios
+  question: Is each ASR expressed as a measurable scenario with a stated workload, boundary and percentile?
+  rationale: Untestable quality goals cannot justify design or spending. A measurable scenario exposes the workload, boundary and percentile that a decision must satisfy.
+  applicability: All solutions with architecturally significant requirements.
+  expected_evidence: Approved quality attribute scenario naming stimulus, environment, response and measure, linked to a test plan that reproduces the stated workload and percentile.
+  section: '1.4'
+  external_reference: ISO/IEC/IEEE 29148:2018
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REQ-002
+  title: Constraints separated from assumptions
+  question: Are hard constraints separated from assumptions and preferences, each with a source and owner?
+  rationale: Treating an assumption as a fact hides risk; without a source and owner a constraint cannot be challenged or revisited.
+  applicability: All solutions with externally imposed constraints or open assumptions.
+  expected_evidence: Constraint register with source, authority, validity period and design impact; assumption log with owner, evidence date, confidence and impact if false.
+  section: '1.3'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REQ-003
+  title: Explicit quality goal prioritization
+  question: Are conflicting quality goals prioritized explicitly?
+  rationale: Conflicting quality goals resolved silently produce designs that satisfy nobody. Explicit priorities make trade-offs reviewable and stable.
+  applicability: All solutions where quality attributes compete for the same budget.
+  expected_evidence: Prioritized quality attribute scenario list from a quality attribute workshop or equivalent, with rationale, owners and recorded rejected or deferred scenarios.
+  section: 1.4.1
+  external_reference: SEI (2003), Quality Attribute Workshops (QAW), CMU/SEI-2003-TR-016
+  risk_relevance: High
+  version: '2.1'
+  status: active
+- id: SA-REQ-004
+  title: Requirement to decision and test traceability
+  question: Does every significant requirement link to at least one decision and one verification method?
+  rationale: Unlinked requirements cannot be verified and drift silently when priorities change. Traceability shows which decisions and evidence must be revisited.
+  applicability: All significant requirements.
+  expected_evidence: Traceability record linking each requirement to its quality scenario, ADR, verification method, dashboard and operational owner.
+  section: '1.5'
+  external_reference: ''
+  risk_relevance: High
+  version: '2.1'
+  status: active

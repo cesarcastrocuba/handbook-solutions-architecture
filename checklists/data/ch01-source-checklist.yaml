@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "1. Architecture Requirements",
+  "items": [
+    {
+      "id": "CHK-CH01-01",
+      "section": "1. Architecture Requirements",
+      "group": "Review checklist — Requirements",
+      "question": "Is each ASR expressed as a measurable scenario with a stated workload, boundary and percentile?",
+      "source_id": "RC2-B0388"
+    },
+    {
+      "id": "CHK-CH01-02",
+      "section": "1. Architecture Requirements",
+      "group": "Review checklist — Requirements",
+      "question": "Are hard constraints separated from assumptions and preferences, each with a source and owner?",
+      "source_id": "RC2-B0389"
+    },
+    {
+      "id": "CHK-CH01-03",
+      "section": "1. Architecture Requirements",
+      "group": "Review checklist — Requirements",
+      "question": "Are conflicting quality goals prioritized explicitly?",
+      "source_id": "RC2-B0390"
+    },
+    {
+      "id": "CHK-CH01-04",
+      "section": "1. Architecture Requirements",
+      "group": "Review checklist — Requirements",
+      "question": "Does every significant requirement link to at least one decision and one verification method?",
+      "source_id": "RC2-B0391"
+    }
+  ]
+}

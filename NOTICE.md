@@ -33,3 +33,5 @@ The toolkit renders PDF editions with the bundled Source Sans 3, Source Serif 4 
 distributed under the SIL Open Font License 1.1 and embedded as subsets. The font license does not
 extend to the document that uses them. If a book distributes the font files themselves, it must
 include the license files shipped with the toolkit.
+
+Book-owned generators/tests are MIT and checklist/catalog/index data are CC BY-SA 4.0, imported from the same author’s frozen reference `13d295b` (DEC-001, DEC-006).

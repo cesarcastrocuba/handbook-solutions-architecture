@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0-RC2-source",
+  "authority_sha256": "adc725e3ae42c4b77ae9f8d7c7450f3fcedcafab60adc9f29cf86eb8b626bcd1",
+  "sources_sha256": "f50f43af92eb17cc7c94a9c7bef706bad505039249454c11f582190df5f25501",
+  "section": "12. Architecture Documentation, Validation and Testing",
+  "items": [
+    {
+      "id": "CHK-CH12-01",
+      "section": "12. Architecture Documentation, Validation and Testing",
+      "group": "Review checklist — Documentation, validation and testing",
+      "question": "Does each view address a named stakeholder concern?",
+      "source_id": "RC2-B1232"
+    },
+    {
+      "id": "CHK-CH12-02",
+      "section": "12. Architecture Documentation, Validation and Testing",
+      "group": "Review checklist — Documentation, validation and testing",
+      "question": "Are names and boundaries consistent across views and with the deployed system?",
+      "source_id": "RC2-B1233"
+    },
+    {
+      "id": "CHK-CH12-03",
+      "section": "12. Architecture Documentation, Validation and Testing",
+      "group": "Review checklist — Documentation, validation and testing",
+      "question": "Do failure paths appear in sequence diagrams?",
+      "source_id": "RC2-B1234"
+    },
+    {
+      "id": "CHK-CH12-04",
+      "section": "12. Architecture Documentation, Validation and Testing",
+      "group": "Review checklist — Documentation, validation and testing",
+      "question": "Is every priority quality scenario linked to test evidence?",
+      "source_id": "RC2-B1235"
+    },
+    {
+      "id": "CHK-CH12-05",
+      "section": "12. Architecture Documentation, Validation and Testing",
+      "group": "Review checklist — Documentation, validation and testing",
+      "question": "Does the test strategy define levels, contract testing, environments, test data and quality gates proportionate to risk?",
+      "source_id": "RC2-B1236"
+    }
+  ]
+}
