@@ -21,7 +21,7 @@ Contributing: [`AGENTS.md`](AGENTS.md) · Licensing: [`NOTICE.md`](NOTICE.md)
 | `manuscript/` | Canonical Quarto sources |
 | `publishing/_quarto.yml` | Quarto project configuration for HTML, Typst/PDF and DOCX |
 | `publishing/metadata.yaml` | Edition version and status consumed by the build |
-| `Makefile` | `check`, `book-checks`, `checklist-exports`, `build` and `full` targets |
+| `Makefile` | `check`, `book-checks`, `checklist-exports`, `release-assets`, `build` and `full` targets |
 | `scripts/`, `checklists/` | Book-owned generators, tests and canonical checklist definitions |
 | `.github/workflows/` | `ci.yml` (fast checks), `release.yml` (guarded release and Pages), `initialize-book.yml` (one-time identity rewrite, already run) |
 
@@ -32,6 +32,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 make check TOOLKIT=.venv/bin/handbook-toolkit PYTHON=.venv/bin/python
 # Includes book-owned freshness/parity checks and unit tests, descriptor and cross-references.
 make checklist-exports PYTHON=.venv/bin/python  # generated files in _build/checklists/exports/
+make release-assets RELEASE_ASSETS_DIR=/path/to/assets PYTHON=.venv/bin/python  # copies checklist exports to release dir
 make full TOOLKIT=.venv/bin/handbook-toolkit PYTHON=.venv/bin/python
 # Full also builds the edition (Quarto 1.11.9, pdfinfo).
 ```
