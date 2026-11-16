@@ -1,0 +1,37 @@
+digraph G {
+
+ newrank=true;
+ rankdir=TB;
+ users [label="External\nusers and\npartners"];
+ onprem [label="On-premises\nsystems"];
+ dns [label="Private DNS\nand\ncertificates"];
+ subgraph cluster_edge { label="Public ingress zone"; labeljust="l"; labelloc="t";
+   lb [label="L7 load\nbalancer,\nTLS, health\nchecks"];
+   cdn [label="CDN / WAF"];
+   cdn->lb [constraint=false];
+   { rank=same; cdn; lb; }
+ }
+ subgraph cluster_app { label="Application zone"; labeljust="l"; labelloc="t";
+   svc [label="Services\n(workload\nidentity,\nmTLS)"];
+ }
+ subgraph cluster_data { label="Data zone"; labeljust="l"; labelloc="t";
+   db [label="Databases,\nprivate\nendpoints"];
+ }
+ subgraph cluster_mgmt { label="Management zone"; labeljust="l"; labelloc="t";
+   adm [label="Privileged\naccess,\nCI/CD,\nmonitoring"];
+ }
+ egress [label="Egress\ncontrol NAT\n/ proxy"];
+
+ users -> cdn;
+ lb -> svc;
+ svc -> db [label="least\nprivilege"];
+ onprem -> svc [label="VPN or\ninterconnect", style=dashed];
+ svc -> egress [label="outbound"];
+ adm -> svc [style=dashed, label="audited"];
+ adm -> db [style=dashed];
+ dns -> svc [style=dotted, arrowhead=none, label="resolution"];
+
+ {rank=same; users; onprem; dns;}
+ {rank=same; svc; adm;}
+ {rank=same; egress; db;}
+}

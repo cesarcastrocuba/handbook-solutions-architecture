@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ p [label="Data principle"];
+ r [label="Enforceable rule"];
+ c [label="Control + evidence"];
+ x [label="Exception?", shape=diamond, style="filled"];
+ e [class="focal", label="Evidence"];
+ ex [label="Time-boxed exception"];
+ b [label="Slogan, not a principle"];
+ p->r->c->x;
+ x->e [label="no"];
+ x->ex [label="yes"];
+ ex->b [label="no expiry", style=dashed, constraint=false];
+}

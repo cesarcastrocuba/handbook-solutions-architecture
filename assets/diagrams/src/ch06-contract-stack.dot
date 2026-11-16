@@ -1,0 +1,10 @@
+digraph G { 
+
+ rankdir=TB;
+ icd [label="Interface Control Document — owners, guarantees, deadlines,\nretry responsibility, version and deprecation policy, reconciliation"];
+ spec [label="Machine-readable specification — OpenAPI or AsyncAPI:\noperations, schemas, status codes, security schemes"];
+ sem [label="Semantic definition — meaning, units, time basis,\nstate transitions, idempotency scope"];
+ ver [label="Compatibility and versioning — what is breaking,\nhow long old versions stay supported"];
+ ev [label="Evidence — contract tests (positive and negative paths),\nconsumer tests against historical messages, fault injection"];
+ icd->spec->sem->ver->ev;
+}

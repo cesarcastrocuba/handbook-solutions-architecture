@@ -1,0 +1,21 @@
+digraph G {
+ rankdir=TB;
+ q1 [label="Multi-step\nprocess with\nwaits or\ncompensation?", shape=diamond, style="filled"];
+ q2 [label="Both sides\nowned and\nmodern?", shape=diamond, style="filled"];
+ q3 [label="Maintained\nconnector\nexists?", shape=diamond, style="filled"];
+ q4 [label="Within\nplatform\nlimits?", shape=diamond, style="filled"];
+ wf [label="Workflow\norchestrator;\nsteps call owners"];
+ dc [label="Direct contract;\nsimple transport"];
+ pl [label="Approved bus\nor iPaaS:\nmapping only"];
+ ad [label="Dedicated\nadapter with\nanti-corruption\nlayer"];
+ ex [label="Exception\nand ADR (4.5)"];
+ {rank=same; q1; wf;}
+ {rank=same; q2; dc;}
+ {rank=same; q3; ad;}
+ {rank=same; q4; pl;}
+ q1->wf [label="yes"]; q1->q2 [label=" no"];
+ q2->dc [label="yes"]; q2->q3 [label=" no"];
+ q3->q4 [label=" yes"]; q3->ad [label="no"];
+ q4->pl [label="yes"]; q4->ex [label=" no"];
+ ex->ad [constraint=false];
+}

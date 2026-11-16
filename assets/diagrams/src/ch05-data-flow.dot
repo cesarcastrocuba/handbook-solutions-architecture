@@ -1,0 +1,28 @@
+digraph G {
+
+ newrank=true;
+ rankdir=TB;
+ subgraph cluster_boundary { label="Trust boundary — domain authority";
+  src [label="Producer (owner)"];
+  val [label="Validation\n(schema,\nsemantics)"];
+  xf [label="Transformation\n(units, time\nbasis)"];
+  store [label="Authoritative\nstore (SoR)"];
+  src->val;
+  val->xf;
+  xf->store;
+ }
+ rej [label="Rejected payload"];
+ api [class="focal", label="Published API,\nevent or product"];
+ rep [label="Replica or read\nmodel"];
+ an [label="Analytical copy"];
+
+ val -> rej [label="invalid", constraint=false];
+ store -> api [constraint=false];
+ api -> rep;
+ api -> an;
+ an -> store [label="reconciliation\nand deletion\npropagation", style=dashed, constraint=false];
+
+ {rank=same; val; rej;}
+ {rank=same; store; api;}
+ {rank=same; rep; an;}
+}

@@ -1,0 +1,20 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_write { label="Write path — invariants and authority"; labeljust="l"; labelloc="b";
+  cmd [label="Command API\nPlaceOrder, CancelOrder"];
+  agg [class="focal", label="Aggregate enforces\ninvariants and transitions"];
+  st [label="Authoritative store\n+ outbox row (one transaction)"];
+  cmd->agg->st;
+ }
+ ev [label="Published events"];
+ subgraph cluster_read { label="Read path — derived, rebuildable, may lag"; labeljust="l"; labelloc="b";
+  proj [label="Projection handler\nidempotent and versioned"];
+  rm [label="Read model\norder history, search"];
+  fresh [label="Freshness and rebuild status\npublished to consumers"];
+  qry [label="Query API\nshaped for the screen"];
+  proj->rm->qry;
+  fresh->qry [style=dashed, constraint=false];
+ }
+ st->ev; ev->proj;
+}

@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ src [label="Versioned definitions"];
+ rev [label="Reviewed change"];
+ plan [label="Plan reviewed"];
+ pol [label="Policy gate", shape=diamond, style="filled"];
+ app [class="focal", label="Apply to the environment"];
+ drift [label="Drift detection and\nreconciliation"];
+ src->rev->plan->pol; pol->app [label="pass"]; app->drift;
+ pol->rev [label="fail", style=dashed];
+ drift->src [label="manual change becomes code", style=dashed, constraint=false];
+}

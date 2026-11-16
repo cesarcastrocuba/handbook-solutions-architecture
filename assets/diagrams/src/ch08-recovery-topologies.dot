@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ b [label="Backup and restore\nRTO hours, RPO hours"];
+ pl [label="Pilot light: core data\nreplicated, compute on failover"];
+ ws [class="focal", label="Warm standby: scaled-down\ncopy, promoted on failover"];
+ aa [label="Active-active: multi-region\nwrites, conflict handling"];
+ b->pl [label=" shorter RTO"]; pl->ws; ws->aa [label=" near-zero RTO"];
+ cost [label="Cost and operational complexity rise down the list;\nmeasured exercise results are the only evidence"];
+ cost->b [style=dashed, constraint=false];
+}

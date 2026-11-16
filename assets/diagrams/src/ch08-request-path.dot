@@ -1,0 +1,19 @@
+digraph G {
+ rankdir=TB;
+ c [label="Client"];
+ d [label="DNS"];
+ e [label="CDN and WAF:\ncache, filter,\nabsorb attacks"];
+ l [label="Load balancer or\nreverse proxy: TLS,\nrouting, health checks"];
+ g [label="API gateway:\nconsumer identity,\nquotas, versions"];
+ subgraph cluster_app { label="Application platform"; labelloc=b;
+  b [label="BFF: composition\nper client"];
+  s1 [label="Service A"];
+  s2 [label="Service B"];
+  b->s1; b->s2;
+  s1->s2 [label="mesh: identity\nand policy", dir=both, constraint=false]; }
+ {rank=same; c; d;}
+ {rank=same; e; l;}
+ {rank=same; g; b;}
+ c->d [style=dashed, label="resolve"];
+ c->e; e->l; l->g; g->b;
+}

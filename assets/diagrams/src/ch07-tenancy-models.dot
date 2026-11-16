@@ -1,0 +1,13 @@
+digraph G {
+ rankdir=TB;
+ r [label="Authenticated\nrequest or event"];
+ c [label="Verified\napplication-tenant\ncontext"];
+ subgraph cluster_app { label="Application plane"; labelloc=b;
+  s [label="Pooled compute\nwith per-tenant\nquotas"];
+  d1 [label="Pool: shared store,\nrow-level policy"];
+  d2 [label="Silo: dedicated\nstore and key"];
+  s->d1; s->d2; }
+ subgraph cluster_ctl { label="Control plane";
+  m [label="Onboarding, tiers,\nconfiguration,\nmetering, offboarding"]; }
+ r->c; c->s; m->s [style=dashed, label="configures"];
+}

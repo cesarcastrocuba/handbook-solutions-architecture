@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ scope [label="One workload,\nhosting provider's\nframework"];
+ q [label="Pillar questions\nanswered with the\noperating team"];
+ find [label="Findings register:\nrisk, owner, due date"];
+ ev [class="focal", label="Closure on evidence,\nnot a changed answer"];
+ meas [label="Measurements the review\ncannot provide: load,\nfailure and restore tests,\nSLO data"];
+ scope->q->find->ev;
+ meas->ev [label=" closes the gap", style=dashed];
+ ev->q [label=" next periodic review", style=dashed, constraint=false];
+}

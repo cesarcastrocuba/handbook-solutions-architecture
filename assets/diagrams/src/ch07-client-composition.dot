@@ -1,0 +1,11 @@
+digraph G {
+ rankdir=TB;
+ subgraph cluster_exp { label="Owned with each experience: shaping, aggregation, session";
+  web [label="Web\napplication"]; mob [label="Mobile\napplication"];
+  bw [label="Web BFF"]; bm [label="Mobile BFF"];
+  web->bw; mob->bm; }
+ gw [label="API gateway:\nauthentication,\nrate limits"];
+ subgraph cluster_dom { label="Owned by domains: rules, state, invariants"; labelloc=b;
+  o [label="Order"]; i [label="Inventory"]; p [label="Payments"]; }
+ bw->gw; bm->gw; gw->o; gw->i; gw->p;
+}

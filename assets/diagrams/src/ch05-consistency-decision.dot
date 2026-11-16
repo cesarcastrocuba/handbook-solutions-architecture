@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ i [label="Named business invariant\n(no double capture, one reservation per order)"];
+ one [label="Enforceable inside one\ntransaction and one store?", shape=diamond, style="filled"];
+ local [label="Atomic constraint:\nunique index, conditional\nupdate, expected version"];
+ dist [label="Multi-step workflow:\nsaga with compensation\nand idempotent steps"];
+ part [label="Partition possible?", shape=diamond, style="filled"];
+ cp [label="Favor consistency:\nrefuse or queue the write\n(CAP, partition branch)"];
+ el [label="Favor latency:\nserve possibly stale reads\nwith declared staleness (PACELC)"];
+ rec [label="Reconciliation with owner,\nwatermark and target time\nto close differences"];
+ i->one; one->local [label=" yes"]; one->dist [label=" no"];
+ dist->part; part->cp [label=" strong correctness"]; part->el [label=" availability or\nlatency matters"];
+ cp->rec; el->rec;
+}

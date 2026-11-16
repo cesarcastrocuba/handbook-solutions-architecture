@@ -1,0 +1,16 @@
+digraph G {
+ rankdir=TB;
+ q1 [label="Needs OS control\nor unsupported\nsoftware?", shape=diamond, style="filled"];
+ q2 [label="Short-lived and\nevent-driven?", shape=diamond, style="filled"];
+ q3 [label="Many services and\na team to run\nthe platform?", shape=diamond, style="filled"];
+ vm [label="Virtual machines\nwith image pipeline"];
+ fn [label="Functions:\nfit limits and\ncold starts"];
+ ko [label="Orchestrated\ncontainers\n(managed if possible)"];
+ sc [label="Managed container\nservice without\ncluster operations"];
+ {rank=same; q1; vm;}
+ {rank=same; q2; fn;}
+ {rank=same; q3; ko;}
+ q1->vm [label="yes"]; q1->q2 [label=" no"];
+ q2->fn [label="yes"]; q2->q3 [label=" no"];
+ q3->ko [label="yes"]; q3->sc [label=" no"];
+}

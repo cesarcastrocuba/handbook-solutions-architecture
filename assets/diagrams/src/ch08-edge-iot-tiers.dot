@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ d [label="Devices and sensors:\nper-device identity,\nsigned firmware"];
+ subgraph cluster_site { label="Edge site"; labelloc=b; labeljust=l;
+  g [label="Gateway: protocol\ntranslation,\nstore and forward"];
+  e [label="Edge compute: local\ndecisions continue\nwhile disconnected"];
+  g->e; }
+ subgraph cluster_cloud { label="Central platform"; labelloc=b;
+  i [label="Ingestion and\ntelemetry stream"];
+  a [label="Fleet management,\nanalytics, training\nand update rollout"];
+  i->a; }
+ d->g [label=" telemetry"];
+ e->i [label=" filtered, buffered\n upload"];
+ a->d [style=dashed, label="  signed updates\l  and configuration\l", constraint=false];
+}
