@@ -1,0 +1,17 @@
+digraph G {
+ rankdir=LR;
+
+ a [label="1 Concern raised"];
+ b [label="2 Options evaluated"];
+ c [label="3 Authority established"];
+ d [label="4 Decision recorded"];
+ e [label="5 Controls implemented"];
+ f [label="6 Evidence collected"];
+ g [label="7 Outcomes monitored"];
+ h [label="8 Reassessment trigger"];
+ {rank=same; a->b->c->d;}
+ {rank=same; e->f->g->h;}
+ a->e [style=invis];
+ d->e [constraint=false];
+ h->d [label=" changed scale,\n regulation, vendor\n or incident history", style=dashed, constraint=false];
+}

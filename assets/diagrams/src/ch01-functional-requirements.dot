@@ -1,0 +1,18 @@
+digraph G { 
+ 
+  rankdir=LR;
+ {rank=same; cap; uc}
+ {rank=same; br; dp}
+ {rank=same; it; ev}
+ cap [label="Business capability what\nthe business must do"];
+ uc [label="Use case actor, trigger,\npaths"];
+ br [label="Business rule invariant\nand authority"];
+ dp [label="Data processing origin →\ntransform → lineage"];
+ it [label="Integration contract\nproducer and consumer"];
+ ev [class="focal", label="Acceptance test per\nrequirement, with an\nowner"];
+ cap->uc [constraint=false];
+ uc->br;
+ br->dp [constraint=false];
+ dp->it;
+ it->ev [constraint=false];
+}

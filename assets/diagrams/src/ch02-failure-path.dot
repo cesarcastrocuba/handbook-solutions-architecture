@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ call [label="Dependency call\ndeadline, idempotency key"];
+ q [label="How did it fail?", shape=diamond, style="filled"];
+ t [label="Transient\nbounded retry"];
+ p [label="Persistent\nbreaker, degrade"];
+ d [label="Poison payload\ndead-letter, owner"];
+ al [label="Alert, evidence,\nrunbook"];
+ call->q; q->t [label=" timeout"]; q->p [label=" down"]; q->d [label=" bad input"];
+ t->al; p->al; d->al;
+ t->call [style=dashed, label=" until budget spent", constraint=false];
+ {rank=same; t; p; d;}
+}

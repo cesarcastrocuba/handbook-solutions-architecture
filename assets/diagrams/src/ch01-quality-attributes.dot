@@ -1,0 +1,12 @@
+digraph G { 
+ 
+  rankdir=LR;
+ root [label="Quality attribute\nrequirement\n(section 1.2)"];
+ f1 [label="Operational continuity\navailability · reliability\nresilience · fault tolerance\nrecoverability (RTO / RPO)"];
+ f2 [label="Capacity\nperformance · scalability"];
+ f3 [label="Trust and compliance\nsecurity · privacy · auditability\n(privacy pulls against auditability)"];
+ f4 [label="Change and use\nmaintainability · observability\nusability and accessibility"];
+ root->f1; root->f2; root->f3; root->f4;
+ f1->f2 [label=" headroom\n has a cost", style=dashed, dir=both, constraint=false];
+ f3->f4 [label=" control friction\n vs task completion", style=dashed, dir=both, constraint=false];
+}

@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ e [label="Enabling team:\ncoaches a skill\nfor a limited time"];
+ c [label="Complicated-subsystem\nteam: specialist\ncomponent"];
+ s1 [label="Stream-aligned\nteam A:\nowns a flow of change"];
+ s2 [label="Stream-aligned\nteam B:\nowns a flow of change"];
+ p [label="Platform team:\nself-service\ninternal product"];
+ {rank=same; e; c;}
+ {rank=same; s1; s2;}
+ e->s1 [label=" facilitating"];
+ c->s2 [label=" X-as-a-service"];
+ s1->s2 [label="published\ncontract", dir=both];
+ p->s1 [label=" X-as-a-service", dir=back];
+ p->s2 [label=" X-as-a-service", dir=back];
+}

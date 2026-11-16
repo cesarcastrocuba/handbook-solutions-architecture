@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ c [label="Architectural\ncharacteristic"];
+ m [label="Cheapest mechanism\nthat tests the concern"];
+ d [label="Fast and\ndeterministic?", shape=diamond, style="filled"];
+ ci [label="Continuous integration\nblocking or advisory"];
+ sc [label="Scheduled experiment\nbenchmark or failure test"];
+ o [class="focal", label="Signal\ngate, report, escalate"];
+ c->m->d; d->ci [label=" yes"]; d->sc [label=" no"]; ci->o; sc->o;
+ o->m [style=dashed, label=" false positives and\n coverage gaps revise\n the check", constraint=false];
+}

@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ need [label="Team need: identity, telemetry,\ndeployment, contract conventions"];
+ q [label="Served by the paved road?", shape=diamond, style="filled"];
+ road [label="Paved road defaults\nsecure and observable by default,\nno extra review"];
+ exc [label="Exception review\nwith evidence and reviewer"];
+ waiver [label="Time-boxed waiver\nowner and expiry"];
+ back [label="Waiver becomes roadmap input\nand closes the gap"];
+ need->q;
+ q->road [label=" yes"]; q->exc [label=" no"];
+ exc->waiver->back;
+ back->road [style=dashed, label=" gap closed"];
+ {rank=same; road; exc;}
+}

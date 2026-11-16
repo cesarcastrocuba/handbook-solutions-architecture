@@ -1,0 +1,21 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_chain { label="Alignment chain\n— each step must\nname the\nprevious one";
+  c1 [label="Capability\ncheckout"];
+  o1 [label="Outcome lower\nabandonment"];
+  i1 [label="Indicator\nconversion, p95\ncheckout"];
+  c1->o1 [label="enables"]; o1->i1 [label="measured by", style=dashed];
+  c2 [label="Capability\nsettlement"];
+  o2 [label="Outcome faster\ncash settlement"];
+  i2 [label="Indicator\nsettlement cycle\ntime"];
+  c2->o2 [label="enables"]; o2->i2 [label="measured by", style=dashed];
+ }
+ subgraph cluster_test { label="Investment test";
+  chg [label="Proposed\nplatform or\ntooling change"];
+  q [label="Which outcome\nand indicator\ndoes it move?", shape=diamond, style="filled"];
+  fund [label="Fund with\nbaseline and\nexpected\nmovement"];
+  def [label="Challenge, defer\nor fund as pure\nrisk reduction"];
+  chg->q; q->fund [label="plausible and\ntestable"]; q->def [label="none to modest"];
+ }
+}

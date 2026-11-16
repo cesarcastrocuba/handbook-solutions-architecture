@@ -1,0 +1,19 @@
+digraph G { 
+ 
+  rankdir=LR;
+ {rank=same; gap; req}
+ {rank=same; scn; adr}
+ {rank=same; tst; sig}
+ gap [label="Gap register\ncurrent vs\ntarget"];
+ req [label="Requirement\nREQ-CHECKOUT-04"];
+ scn [label="Quality\nscenario\nQA-AV-01"];
+ adr [label="Decision\nADR-012\nasynchronous\npayment"];
+ tst [label="Verification\nzone-loss and\ntimeout test"];
+ sig [label="Signal and\nowner journey\nSLI, error\nbudget,\non-call"];
+ gap->req [constraint=false];
+ req->scn;
+ scn->adr [constraint=false];
+ adr->tst;
+ tst->sig [constraint=false];
+ sig->scn [label="a priority or\nassumption\nchange reopens\nthese links", style=dashed, constraint=false];
+}

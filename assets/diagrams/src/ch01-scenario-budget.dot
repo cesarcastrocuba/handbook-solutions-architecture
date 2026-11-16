@@ -1,0 +1,14 @@
+digraph G { 
+ 
+  rankdir=TB;
+ goal [label="Business goal\n\"always-on checkout\""];
+ scn [label="Quality scenario\nsource, stimulus, environment,\nartifact, response, measure"];
+ b1 [label="Edge and identity\n200 ms"];
+ b2 [label="Checkout API and\norder store\n450 ms"];
+ b3 [label="Payment adapter\n900 ms timeout"];
+ dec [label="Decision\nacknowledge as\nPAYMENT_PENDING"];
+ ev [label="Evidence\np99 1.4 s at 500/s;\nno acknowledged order lost"];
+ goal->scn; scn->b1; scn->b2; scn->b3;
+ b1->dec; b2->dec; b3->dec [label=" off the critical path", style=dashed];
+ dec->ev;
+}

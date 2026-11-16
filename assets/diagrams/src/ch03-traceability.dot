@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ b [label="Business outcome"];
+ rq [label="Requirement — what must be achieved"];
+ cc [label="Constraint and concern — why a choice is needed"];
+ ad [class="focal", label="Decision record — alternatives, rationale, owner"];
+ ds [label="Component and interface design"];
+ ct [label="Implementation control — contract, test, policy"];
+ ev [label="Operational evidence — measurement, incident, review"];
+ b->rq->cc->ad->ds->ct->ev; ev->ad [style=dashed, label=" evidence reopens or confirms", constraint=false];
+}

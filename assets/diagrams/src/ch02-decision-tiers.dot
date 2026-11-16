@@ -1,0 +1,18 @@
+digraph G { 
+
+ rankdir=TB;
+ prop [label="Decision proposal"];
+ q1 [label="Reversible within one\nrelease, one team's boundary?", shape=diamond, style="filled"];
+ q2 [label="How far does the\nimpact reach?", shape=diamond, style="filled"];
+ t1 [label="Team decides\nshort record in the backlog"];
+ t2 [label="Consult affected owners\nrecord a short ADR"];
+ t3 [label="Focused review, named\nrisk owner accepts"];
+ adr [class="focal", label="Recorded decision\ncontext, options, consequences"];
+ rev [label="Sampled review and\nexception expiry"];
+ prop->q1;
+ q1->t1 [label=" yes"];
+ q1->q2 [label=" no"];
+ q2->t2 [label=" other domains\n or budgets"]; q2->t3 [label=" irreversible or\n safety-critical"];
+ t2->adr; t3->adr; t1->adr [style=dashed];
+ adr->rev;
+}

@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=TB;
+ oapi [label="Orders\npublished contract"];
+ oimpl [label="Orders\ndomain model"];
+ ost [label="Orders\ndata store"];
+ bapi [label="Billing\npublished contract"];
+ bimpl [label="Billing\ndomain model"];
+ bst [label="Billing\ndata store"];
+ oapi->oimpl->ost; bapi->bimpl->bst;
+ {rank=same; oapi; bapi;} {rank=same; oimpl; bimpl;} {rank=same; ost; bst;}
+ oapi->bapi [label=" allowed:\n contract call"];
+ ost->bst [label=" not allowed:\n shared table write", style=dashed];
+ chk [class="focal", label="Dependency check in CI\nfails any new edge"];
+ chk->oapi [style=dashed, arrowhead=none, label=" enforces", constraint=false];
+}

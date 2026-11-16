@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=LR;
+ d1 [label="Local\nimplementation\nreversible, one\nteam"];
+ d2 [label="Shared platform\nor interface\nchange"];
+ d3 [label="Cross-domain,\nirreversible or\nhigh residual\nrisk"];
+ a1 [label="Team decides\nwithin published\nstandards"];
+ a2 [label="Platform owner\ndecides;\naffected teams\nconsulted"];
+ a3 [label="Architecture\ncouncil or\ndelegated risk\nowner decides"];
+ s [label="Security,\nprivacy and\nlegal\nauthorities\napprove where\npolicy or law\nrequires"];
+ r [class="focal", label="Decision owner\nnamed in the\nADR, with\nconsulted\nparties,\napproval record,\nimplementation\nlink and review\ntrigger"];
+ d1->a1; d2->a2; d3->a3;
+ s->a2 [style=dashed, label="mandated\napproval"]; s->a3 [style=dashed];
+ a1->r; a2->r; a3->r;
+}

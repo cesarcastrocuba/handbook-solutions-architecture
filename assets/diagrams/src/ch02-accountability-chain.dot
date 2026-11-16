@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ own [label="Accountable owner\nrole, not team"];
+ ctl [label="Control\npolicy, approval,\ntest"];
+ ev [class="focal", label="Evidence\nimmutable log,\nADR, ticket"];
+ aud [label="Audit or sample"];
+ q [label="Finding?", shape=diamond, style="filled"];
+ rem [label="Remediation\nwith due date"];
+ own->ctl->ev->aud->q->rem;
+ rem->ctl [style=dashed, label=" revises", constraint=false];
+}

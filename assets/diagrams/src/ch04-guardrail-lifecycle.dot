@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ p [label="Standard or\npolicy requirement"];
+ g [label="Guardrail definition\nowner, severity, version"];
+ k [label="Enforcement\npoint", shape=diamond, style="filled"];
+ prev [label="Preventive\nblocks the change"];
+ det [label="Detective\nfinds drift later"];
+ adv [label="Advisory\nrecommends only"];
+ o [label="Outcome\npass, block, warn"];
+ w [label="Waiver\nexpiry, remediation"];
+ p->g->k; k->prev; k->det; k->adv; prev->o; det->o; adv->o;
+ o->w [label=" justified\n violation"];
+ w->g [style=dashed, label=" recurring waivers\n revise the control", constraint=false];
+}

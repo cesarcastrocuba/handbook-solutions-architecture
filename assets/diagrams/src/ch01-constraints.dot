@@ -1,0 +1,18 @@
+digraph G { 
+ 
+  rankdir=LR;
+ {rank=same; cand; q}
+ {rank=same; mand; asm; pref}
+ {rank=same; reg; log; exc}
+ cand [label="Candidate statement\nfrom stakeholder,\nlaw or platform"];
+ q [label="Imposed\nfrom outside?", shape=diamond, style="filled"];
+ mand [label="Mandatory\nlaw, contract,\nplatform mandate"];
+ asm [label="Assumption\nnot yet confirmed"];
+ pref [label="Preference\nchallengeable"];
+ reg [label="Constraint register\nsource, authority,\nexpiry, design impact"];
+ log [label="Assumption log\nowner, evidence date,\nconfidence, impact"];
+ exc [label="Exception route\napprover, expiry,\nresidual risk"];
+ cand->q [constraint=false]; q->mand; q->asm; q->pref;
+ mand->reg; asm->log;
+ reg->exc [label=" blocks the\n better design", style=dashed];
+}

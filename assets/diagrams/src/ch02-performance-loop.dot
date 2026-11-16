@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ demand [label="Demand model\nconcurrency, growth, traffic mix"];
+ obj [label="Latency and throughput objectives\np50, p95, p99, queue age"];
+ test [label="Realistic load test\nnot instance-count arithmetic"];
+ meas [label="Evidence: percentiles,\nsaturation, headroom"];
+ q [label="Objectives met with the\nstated headroom?", shape=diamond, style="filled"];
+ mech [label="Scaling mechanism\nvertical, horizontal,\ncache, queue, partitioning"];
+ cost [class="focal", label="Cost and complexity\naccepted explicitly"];
+ demand->obj->test->meas->q;
+ q->mech [label=" no"]; mech->cost;
+ cost->test [style=dashed, label=" re-test", constraint=false];
+ {rank=same; q; mech;}
+}

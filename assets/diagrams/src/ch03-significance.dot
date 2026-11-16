@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ c [label="Candidate choice"];
+ q [label="Changes a boundary, quality attribute,\noperating obligation, exposure\nor migration cost?", shape=diamond, style="filled"];
+ h [label="Expensive\nto reverse?", shape=diamond, style="filled"];
+ adr [class="focal", label="Record an ADR: alternatives,\nconsequences, revisit trigger"];
+ log [label="Decision log entry\nwith owner and date"];
+ std [label="Team standard,\nreviewed in code"];
+ c->q; q->h [label=" yes"]; q->std [label=" no"]; h->adr [label=" yes"]; h->log [label=" no"];
+ {rank=same; std; h;} {rank=same; log; adr;}
+}
