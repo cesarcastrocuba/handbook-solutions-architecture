@@ -1,0 +1,168 @@
+# Appendix F — Security Reference
+
+This appendix collects the detailed reference tables that support Chapter 9.
+
+## F.1 Authentication Methods Compared
+
+| Method | Phishing resistance | Notes |
+| :--- | :--- | :--- |
+| Password only | None | Requires breach-password checks and rate limiting; insufficient alone for sensitive access |
+| SMS or voice one-time code | Low | Vulnerable to SIM swap and interception; NIST treats it as a restricted authenticator |
+| Authenticator-app code (TOTP) | Low | Can be relayed by a real-time phishing proxy |
+| Push approval | Low to medium | Vulnerable to “MFA fatigue” unless number matching is used |
+| FIDO2/WebAuthn security key or passkey | High | Public-key credential bound to the site origin; cannot be replayed on a phishing site |
+| Certificate or smart card | High | Strong but heavier to issue and manage |
+
+: Authentication methods compared
+
+## F.2 Federation Protocols and OAuth 2.0 Flows
+
+| Protocol | Purpose | Format and typical use |
+| :--- | :--- | :--- |
+| SAML 2.0 | Web browser SSO (authentication) | XML assertions; enterprise and SaaS integrations |
+| OpenID Connect (OIDC) | Authentication built on OAuth 2.0 | JWT ID tokens; web, mobile and single-page applications |
+| OAuth 2.0 | Delegated authorization to call APIs | Access tokens; not an authentication protocol by itself |
+| Kerberos | Network authentication inside a domain | Tickets; on-premises Windows and legacy environments |
+| LDAP | Directory access | Directory queries; binding with a password is not federation |
+
+: Federation protocols
+
+NTLM, which Microsoft has deprecated, should not be used in new designs.
+
+| OAuth 2.0 flow | Use | Status |
+| :--- | :--- | :--- |
+| Authorization code with PKCE | Web, mobile and single-page applications acting for a user | Recommended for user-facing clients |
+| Client credentials | Service-to-service calls without a user | Recommended, with short-lived tokens |
+| Device authorization (RFC 8628) | Devices with limited input, such as TVs and CLIs | Recommended for that case |
+| Implicit grant | Former browser flow | Deprecated (RFC 9700) |
+| Resource owner password credentials | Application collects the user’s password | Deprecated (RFC 9700) |
+
+: OAuth 2.0 flows and their status
+
+OAuth 2.1, still a draft at the time of writing, folds the current best practice into the core specification. Sender-constrained tokens bind a token to a client certificate (RFC 8705) or a proof-of-possession key (DPoP, RFC 9449).
+
+## F.3 OWASP Resources and ASVS
+
+| OWASP resource | Use |
+| :--- | :--- |
+| Top 10:2025 | Awareness of the most critical web application risk categories |
+| API Security Top 10 (2023) | Risks specific to APIs, led by broken object-level authorization |
+| ASVS 5.0 | Verifiable security requirements in three levels of increasing rigor |
+| Web Security Testing Guide (WSTG) | Methodology for testing web applications |
+| SAMM | Maturity model for a software security program |
+| Cheat Sheet Series | Concise implementation guidance by topic |
+
+: OWASP resources and their use
+
+**Top 10:2025 categories:** Broken Access Control; Security Misconfiguration; Software Supply Chain Failures; Cryptographic Failures; Injection; Insecure Design; Authentication Failures; Software or Data Integrity Failures; Security Logging and Alerting Failures; Mishandling of Exceptional Conditions.
+
+**ASVS 5.0 chapters:** Encoding and Sanitization; Validation and Business Logic; Web Frontend Security; API and Web Service; File Handling; Authentication; Session Management; Authorization; Self-contained Tokens; OAuth and OIDC; Cryptography; Secure Communication; Configuration; Data Protection; Secure Coding and Architecture; Security Logging and Error Handling; WebRTC.
+
+**Using ASVS across the lifecycle:**
+
+| Stage | How ASVS is used |
+| :--- | :--- |
+| Requirements | Selected requirements become security requirements in the PRD or SRS, cited with the version prefix (for example `v5.0.0-` followed by the requirement number), because numbering changes between versions |
+| Design | Requirements are mapped to architectural controls and to threats; gaps become design tasks or ADRs |
+| Build | Requirements serve as developer guidance, complemented by the Cheat Sheet Series |
+| Verification | Each requirement is assigned a verification method — automated test, SAST rule, authenticated DAST, manual review or penetration test |
+| Procurement | Contracts and supplier assessments require a named ASVS level and evidence of verification |
+| Assurance | Coverage — verified, failed and not applicable — is reported per release and reviewed at architecture review |
+
+: Using ASVS across the lifecycle
+
+**Example for the reference checkout (L2):**
+
+| ASVS area | Control in the design | Verification | Evidence |
+| :--- | :--- | :--- | :--- |
+| Authentication | OIDC with the corporate IdP; phishing-resistant MFA for administrators | Integration tests; authenticated DAST | Test results; IdP policy export |
+| Authorization | Object- and tenant-level checks in Order and Payments | Negative tests for cross-customer access | Automated test report |
+| Self-contained tokens | Signature, issuer, audience and expiry validated on every request | Unit tests; SAST rule | Test and scan results |
+| Secure communication | TLS 1.2 minimum, 1.3 preferred, on all endpoints | Configuration scan | Scan report |
+| Security logging | Authentication, authorization and payment events logged without card data | Log review; detection test | Review record |
+
+: ASVS example for the reference checkout
+
+## F.4 Security Testing Techniques
+
+| Technique | What it examines | Finds well | Limits | When |
+| :--- | :--- | :--- | :--- | :--- |
+| SAST | Source code or bytecode without running it | Injection patterns, unsafe APIs, hard-coded secrets | False positives; no runtime or configuration context | On every change in CI |
+| SCA | Third-party dependencies, producing an SBOM | Known vulnerabilities and license issues | Known vulnerabilities only; reachability often unknown | Every build, and continuously for new advisories |
+| Secret scanning | Repositories, images, build logs | Committed credentials and keys | Detection after the fact; secrets must be rotated | Pre-commit and in CI |
+| IaC and configuration scanning | Infrastructure definitions and cloud configuration | Public storage, open network rules, missing encryption | Policy coverage limits | In CI and continuously in the cloud |
+| Container image scanning | Packages and libraries in images | Vulnerable base images | Known vulnerabilities only | At build and in the registry |
+| DAST | The running application through its interfaces | Injection, misconfiguration, authentication and session flaws | Limited code-path coverage; unauthenticated scans see little | Test environment, per release |
+| IAST | Instrumented application during functional tests | Confirmed, code-located runtime flaws | Needs agents and good test coverage | During integration testing |
+| Penetration testing | The system as a skilled attacker would | Logic flaws, chained attacks, authorization bypass | Point in time; depends on testers and scope | Before major releases; at least annually for exposed systems |
+| Bug bounty and red teaming | Production-like attack by external or internal experts | Novel and organizational attack paths | Requires mature triage and response | Mature programs |
+
+: Security testing techniques
+
+**Authenticated DAST checklist:**
+
+- Dedicated test accounts for each role and tenant, so that horizontal and vertical privilege escalation can be attempted.
+- Configured session handling: login sequence, token refresh and logout detection.
+- API definitions (OpenAPI) supplied so that APIs are covered, not only browsable pages.
+- A production-like test environment with synthetic data, never production customer data.
+- Agreed scope, rate limits and exclusions for destructive operations.
+
+## F.5 Vulnerability Scoring and Remediation
+
+| CVSS severity | Score range |
+| :--- | :--- |
+| None | 0.0 |
+| Low | 0.1–3.9 |
+| Medium | 4.0–6.9 |
+| High | 7.0–8.9 |
+| Critical | 9.0–10.0 |
+
+: CVSS severity bands
+
+CVSS v4.0 labels scores by the metric groups used, for example CVSS-B (base only) or CVSS-BTE (base, threat and environmental).
+
+| Priority | Example remediation objective |
+| :--- | :--- |
+| Critical, or known exploited | Days (for example, 7–15) |
+| High | About 30 days |
+| Medium | About 90 days |
+| Low | Next planned maintenance |
+
+: Illustrative remediation objectives
+
+These objectives are illustrative; contracts and regulations may impose stricter ones.
+
+## F.6 Security Testing Tools: Reference Examples
+
+The tools below are examples of each category, current as of October 2026, listed to help readers recognize the categories in practice. Inclusion is not an endorsement, and the market changes quickly; evaluate tools against your languages, platforms, pipeline and budget.
+
+| Category | Open-source examples | Commercial examples |
+| :--- | :--- | :--- |
+| SAST | Semgrep Community Edition, CodeQL (free for open-source projects), SonarQube Community Build | Checkmarx, OpenText Fortify, Veracode, SonarQube commercial editions |
+| SCA and SBOM | OWASP Dependency-Check, OWASP Dependency-Track, Syft, Dependabot | Snyk, Mend, Black Duck |
+| Secret scanning | Gitleaks, TruffleHog | GitHub secret scanning, GitGuardian |
+| IaC and container scanning | Trivy, Checkov, KICS, Grype | Wiz, Prisma Cloud, cloud-provider security services |
+| DAST | ZAP, Nuclei | Burp Suite Professional and DAST, Invicti |
+| IAST | — | Contrast Security, Black Duck Seeker |
+| Threat modeling | OWASP Threat Dragon, Microsoft Threat Modeling Tool | IriusRisk |
+| Cloud security posture | Prowler | Microsoft Defender for Cloud, AWS Security Hub, Google Security Command Center |
+| Testing methodology | OWASP WSTG, OWASP ASVS | — |
+
+: Security testing tool categories: reference examples
+
+## F.7 Common Web Vulnerabilities
+
+The table names frequent classes of web application vulnerability and the primary defense against each. It complements the OWASP resources (F.3) and does not replace a threat model (9.1.1).
+
+| Vulnerability | Cause | Primary defense | How to verify |
+| :--- | :--- | :--- | :--- |
+| Injection (SQL, NoSQL, operating system command) | Untrusted input interpreted as part of a query or command | Parameterized queries and safe interfaces; input validation as a further layer | Static analysis and dynamic tests with injection payloads |
+| Cross-site scripting (XSS) | Untrusted data rendered as active content in a page | Context-aware output encoding, safe templates and a content security policy | Dynamic testing and review of unsafe rendering functions |
+| Cross-site request forgery (CSRF) | A browser sends authenticated requests triggered by another site | SameSite cookies, anti-forgery tokens and origin checks on state changes | Attempt a state-changing request from another origin |
+| Broken object-level authorization | An identifier is accepted without checking access to that object | Authorization check on every object, on the server | Authenticated tests using another user's identifiers |
+| Server-side request forgery (SSRF) | The server fetches a location supplied by the user | Allowlist destinations; block internal ranges and metadata endpoints | Attempt requests to internal addresses |
+| Broken authentication and session handling | Weak credentials, unprotected tokens or sessions that do not expire | Standard identity provider, MFA, secure cookies and short token lifetimes | Authentication tests and token-handling review |
+| Unsafe deserialization | Untrusted data reconstructed into executable objects | Data-only formats and strict schema validation | Static analysis and malformed payload tests |
+| Path traversal and unsafe file upload | User input controls a file path or stored content | Generated names, storage outside the web root, type and size checks | Tests with traversal sequences and disallowed content |
+
+: Common web vulnerabilities and their primary defenses

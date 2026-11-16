@@ -1,0 +1,34 @@
+digraph G {
+
+ rankdir=TB;
+ cu [label="Customer", shape=ellipse];
+ api [label="Checkout API"];
+ subgraph cluster_ord { label="Order service";
+   odb [label="Order DB\norders +\noutbox", shape=cylinder];
+   os [label="Order +\nworkflow\n(saga\norchestrator)"];
+   os->odb [label="1 tx:\nACCEPTED +\nOrderAccepted", constraint=false];
+   {rank=same; os; odb;}
+ }
+ br [label="Event broker", shape=cylinder];
+ inv [label="Inventory\nservice"];
+ pay [label="Payments\nservice\n(inbox,\nattempts)"];
+ pp [label="External\npayment\nprovider", shape=box3d];
+ nt [label="Notification\nservice"];
+ cu->api [label="PlaceOrder\n(idempotency\nkey)"];
+ api->os;
+ odb->br [label="relay"];
+ // The request edge enters the inventory service from the west so its curve stays
+ // clear of the InventoryReserved/Failed external label.
+ br->inv [label="ReserveInventory", headport=w];
+ br->pay [label="AuthorizePayment"];
+ pay->pp [label="authorize\n(payment_attempt_id)"];
+ // External label keeps the event name clear of the solid authorize edge;
+ // the invisible spacer preserves the width that keeps the tall-page cap clear.
+ inv->br [xlabel="InventoryReserved\n/ Failed", style=dashed, constraint=false];
+ pay->br [label="AUTHORIZED /\nDECLINED /\nUNKNOWN", style=dashed, constraint=false];
+ br->os [label="outcomes", style=dashed];
+ br->nt [label="OrderConfirmed\n/ Rejected"];
+ {rank=same; inv; pay;}
+ {rank=same; pp; sp; nt;}
+ sp [style=invis, width=1.8];
+}
