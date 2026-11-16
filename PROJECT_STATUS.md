@@ -6,16 +6,16 @@
 **Updated:** 2026-11-16
 **State:** All manuscript sources imported. The platform edition contains all 33 manuscript files
 and 121 figures from the frozen reference `v3.0.0` (`13d295b`): front matter, Chapters 1–18,
-Appendices A–J, Conclusions and References. Generated sections remain pending; book-owned generators and checks are imported.
+Appendices A–J, Conclusions and References. Generated sections come from the toolkit (cross-reference links, glossary pointers and the analytic Index, DEC-013); book-owned generators and checks are imported.
 
 | Item | State |
 | --- | --- |
 | Content source | Private reference `solutions-architecture-handbook`, tag `v3.0.0`, commit `13d295b` (`DEC-001`) |
 | Imported slices | Slices 1–6: front matter; Chapters 1–18; Appendices A–J; Conclusions; References (`DEC-004`) |
 | Figures | All 121 rendered PNGs and 121 DOT sources copied byte-for-byte from the frozen source |
-| Generated sections | Analytic Index and glossary definition pointers pending platform support; catalog appendices H–J are frozen source snapshots, with regeneration checks passing |
+| Generated sections | Cross-reference links, glossary definition pointers and the analytic Index are built by toolkit 0.13.0 (DEC-013); catalog appendices H–J are frozen source snapshots, with regeneration checks passing; checklist exports ship as `book-extras.zip` through `make release-assets` |
 | Book-owned tooling | Catalog regeneration, canonical checklist parity and portable diagram-manifest checks run in `make check`; reference tests and checklist data imported; `release-assets` Makefile target stages checklist exports for release packaging; analytic index vocabulary staged as data for hub change 0053 |
-| Canonical pins | Toolkit `0.12.0` (hub commit `0824ddfaebd28f170f157fcb38641c7dc65d6c20`), standard profile `1.1.0` (DEC-012); the release workflow accepts `X.Y.Z-rc.N` pre-releases |
+| Canonical pins | Toolkit `0.13.0` (hub commit `4b9e3114d0a6c638eb7715784e7f0bb622f88322`), standard profile `1.1.0` (DEC-012, DEC-013); the release workflow accepts `X.Y.Z-rc.N` pre-releases |
 | Releases | None. Next planned: `v3.1.0-rc.1` with the Owner's tag approval (`DEC-005`, `DEC-010`); the complete edition still requires generated-section parity |
 | Catalog | Not listed; only `v3.1.0` will be listed |
 | Reading site | Pages source set to GitHub Actions; not deployed |
@@ -38,7 +38,7 @@ layout; the old effective-print-size assertions are not evidence about the platf
 Not ported: `build_book.py`, `docx_postprocess.py`, `reference_docx.py`, `check_docx.py`,
 `check_crossrefs.py`, `check_links.py` and `check_structure.py` (shared toolkit responsibilities);
 `rc2_*` and `verify_rc2_parity.py` (legacy inventory/normalization); `artifact_optimize.py`
-(size optimization is a hub gap with its decision pending). Source transcription data remain frozen;
+(lossless size optimization is in toolkit 0.13.0; PDF compression awaits an Owner decision). Source transcription data remain frozen;
 source provenance is preserved rather than regenerated from the legacy DOCX. Generated exports are
 not source files and are not committed (HUB-DEC-003).
 
