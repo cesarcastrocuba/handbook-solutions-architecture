@@ -1,0 +1,14 @@
+digraph G {
+ rankdir=TB;
+ run [label="Test run: version,\nenvironment, data"];
+ res [label="Results store with\nscenario identifiers"];
+ gate [label="Quality gate:\npass, fail or waiver"];
+ rel [label="Release record:\nevidence and approvals"];
+ aud [label="Review or audit\nsamples the record"];
+ esc [label="Escaped defect\nanalysis"];
+ str [label="Test strategy\nupdated"];
+ {rank=same; esc; str;}
+ run->res->gate->rel->aud;
+ rel->esc [style=dashed, label=" production\n defect"];
+ esc->str; str->run [label=" new or moved test"];
+}

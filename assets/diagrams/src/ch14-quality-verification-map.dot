@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ q [label="Priority quality\nscenario"];
+ m1 [label="Load, stress\nand soak tests"];
+ m2 [label="Fault injection\nand recovery drill"];
+ m3 [label="Security scans\nand penetration test"];
+ m4 [label="Migration rehearsal\nand compatibility test"];
+ e1 [label="Pipeline\nenvironment"];
+ e2 [label="Production-like\nenvironment"];
+ e3 [label="Production with\ncanary or flag"];
+ gate [label="Gate decision and\nrecorded evidence"];
+ q->m1; q->m2; q->m3; q->m4;
+ m3->e1; m3->e2; m4->e1; m4->e2; m1->e2; m2->e2; m2->e3;
+ e1->gate; e2->gate; e3->gate;
+}

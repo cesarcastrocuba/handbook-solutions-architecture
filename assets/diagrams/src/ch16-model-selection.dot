@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ ev [label="Representative\nevaluation\nset and\nacceptance\nthresholds\nbefore\ncomparing\nmodels"];
+ cr [label="Criteria and\nweights\nquality,\nlatency,\ncost,\nprivacy,\noperations,\nportability,\nexit"];
+ m [label="Managed\nmodel API"];
+ s [label="Self-hosted\nmodel"];
+ h [label="Hybrid\nrouting"];
+ f [label="Fine-tuned\nor adapted\nmodel"];
+ adr [label="ADR: chosen\noption,\nevidence,\nuncertainty,\nfallback and\nreassessment\ntriggers"];
+ ev->cr; cr->m; cr->s; cr->h; cr->f; m->adr; s->adr; h->adr; f->adr;
+ {rank=same; m; s; h; f;}
+ adr->ev [label="a provider,\nprice or\nworkload\nchange\nreopens the\ncomparison", style=dashed, constraint=false];
+}

@@ -1,0 +1,17 @@
+digraph G { 
+
+ rankdir=LR;
+ c1 [label="Retrieval and\nre-indexing"];
+ c2 [label="Inference tokens\ninput and output"];
+ c3 [label="Evaluation and\nobservability"];
+ c4 [label="Human review\nand escalation"];
+ cost [class="focal", label="Cost per successful\noutcome, per journey\nor tenant"];
+ c1->cost; c2->cost; c3->cost; c4->cost;
+ cache [label="Caching\nmust be authorization-aware\nand invalidation-safe"];
+ route [label="Routing and model sizing\nlower cost, more evaluation\nand operational complexity"];
+ batch [label="Batch and distillation\nlatency trade-off, drift risk"];
+ cost->cache [style=dashed, arrowhead=none];
+ cost->route [style=dashed, arrowhead=none];
+ cost->batch [style=dashed, arrowhead=none];
+ {rank=same; cache; route; batch;}
+}

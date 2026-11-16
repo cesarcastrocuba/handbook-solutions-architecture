@@ -1,0 +1,19 @@
+digraph G {
+ rankdir=TB;
+ u [label="User request and\nverified identity"];
+ subgraph cluster_run { label="Agent runtime"; labelloc=b;
+  o [label="Plan-act-observe\nloop with step,\ntime and spend limits"];
+  m [label="Model and\nscoped memory"];
+  o->m [dir=both]; }
+ g [label="Policy gateway:\nauthorize each\ntool call"];
+ q [label="High-impact\naction?", shape=diamond, style="filled"];
+ h [label="Human approval\nwith the proposed\naction shown"];
+ t [label="Tools and\nMCP servers\nwith contracts"];
+ l [label="Trace and audit\nrecord per step"];
+ {rank=same; q; h;}
+ u->o; o->g; g->q;
+ q->h [label="yes"]; q->t [label=" no"];
+ h->t;
+ t->o [label="  untrusted\l  result\l", constraint=false, tailport=e, headport=e];
+ g->l [style=dashed, constraint=false];
+}

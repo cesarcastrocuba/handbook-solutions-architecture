@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ draft [label="Draft — owner, scope and status recorded"];
+ review [label="Reviewed — findings linked; changes\nmay return it to draft"];
+ approved [label="Approved — conditions recorded"];
+ live [label="In use — referenced by tests; a review\ntrigger reopens the artifact"];
+ sup [label="Superseded — successor named, old version retained"];
+ ret [class="focal", label="Retired — links removed from current guidance"];
+ draft->review->approved->live->sup->ret;
+ review->draft [style=dashed, constraint=false];
+ live->review [style=dashed, constraint=false];
+}

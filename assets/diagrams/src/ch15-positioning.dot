@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ ent [label="Enterprise direction —\nportfolio and\ntransformation TOGAF ADM ·\nArchiMate · Zachman · SAFe"];
+ sol [label="Solution description — one\nsystem, stakeholder\nconcerns ISO/IEC/IEEE\n42010 · arc42 · C4"];
+ dec [label="Decision and evidence —\nwhat was chosen and proved\nADRs · ATAM · fitness\nfunctions · tests"];
+ std [label="Standards and assurance —\nobligations and proof\nISO/IEC 27001 · NIST CSF ·\nPCI DSS · EU AI Act"];
+ ent->sol [label="constrains scope and\nguardrails"];
+ sol->dec [label="frames the decisions\nto record"];
+ dec->sol [label="evidence\nrevises the\ndescription", style=dashed, constraint=false];
+ std->ent [label="obligations", style=dashed, constraint=false];
+ std->sol [label="obligations", style=dashed, constraint=false];
+ std->dec [label="evidence required", style=dashed, constraint=false];
+}

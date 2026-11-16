@@ -1,0 +1,26 @@
+digraph G {
+
+ rankdir=TB;
+ t [label="Transversal\nartifacts — not\nsteps in the\nchain\n\nADR: one record\nper significant\ndecision ICD:\none agreement\nper cross-team\ninterface", style="filled,dashed"];
+ a [label="1 Objective"];
+ b [label="2 PRD and\nscenarios"];
+ c [label="3 HLD"];
+ d [label="4 LLD / TDD"];
+ e [label="5 Tests"];
+ f [label="6 Runbooks,\nSLOs"];
+
+ a -> b [constraint=false];
+ b -> c [constraint=false];
+ c -> d;
+ d -> e [constraint=false];
+ e -> f [constraint=false];
+ t -> a [style=invis];
+ t -> b [style=dotted, arrowhead=none, constraint=false];
+ t -> c [style=dotted, arrowhead=none, constraint=false];
+ t -> d [style=dotted, arrowhead=none, constraint=false];
+ t -> e [style=dotted, arrowhead=none, constraint=false];
+ t -> f [style=dotted, arrowhead=none, constraint=false];
+
+ {rank=same; a; b; c;}
+ {rank=same; d; e; f;}
+}

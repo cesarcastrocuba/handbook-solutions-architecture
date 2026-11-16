@@ -1,0 +1,14 @@
+digraph G { 
+
+ rankdir=TB;
+ plan [label="Plan wave: capability,\ndependencies, rollback boundary"];
+ exec [label="Migrate slice: single\nauthoritative writer, parallel\nrun, reconciliation"];
+ gate [label="Exit criteria met?", shape=diamond, style="filled"];
+ retire [label="Retire legacy path and\nrecord the cost reduction"];
+ next [label="Next wave"];
+ target [label="Target state:\ncapabilities, owners, SLOs"];
+ debt [label="Debt repayment capacity\nreserved in every wave"];
+ plan->exec; exec->gate; gate->retire [label=" yes"]; gate->exec [label=" no: correct or roll back", style=dashed];
+ retire->next; next->plan [label=" repeat until the roadmap ends"]; next->target [label=" last wave"];
+ plan->debt [style=dashed, constraint=false]; debt->target [style=dashed, constraint=false];
+}

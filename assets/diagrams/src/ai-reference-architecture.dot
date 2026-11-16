@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ u [label="User and application\n(identity, journey,\npolicy)"];
+ k [label="Knowledge plane (sources,\ningestion, index, ACLs)"];
+ o [label="Orchestrator (prompt,\ntools, limits)"];
+ m [label="Model endpoint (managed or\nself-hosted)", shape=cylinder];
+ g [label="Guardrails and evaluation\n(input, output, citations,\nquality)"];
+ a [label="Answer with citations or\nexplicit refusal"];
+ h [label="Human escalation\n(uncertain or high impact)"];
+ x [label="Identity, observability\nand cost (user/workload\nscopes, traces, budgets)", shape=box, style="rounded,dashed"];
+ u->o; k->o [label="authorized context"]; o->m; o->g [label="bounded tools"]; m->g; g->a; g->h [label="uncertain / high impact", style=dashed]; a->u; x->o [style=dashed]; x->g [style=dashed];
+}

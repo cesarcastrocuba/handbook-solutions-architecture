@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ e2e [label="End-to-end\nfew, critical journeys only\nminutes per test, brittle"];
+ int [label="Integration and contract\nreal infrastructure, or published\nconsumer contracts, without deploying both"];
+ arch [label="Component and architecture\ncontained dependencies, dependency and\nlayer rules, automated fitness functions"];
+ unit [label="Unit and static analysis\nmany tests, milliseconds, deterministic"];
+ inv [label="Anti-pattern — inverted pyramid\n(ice-cream cone): many manual\nend-to-end tests, late and flaky\nfeedback, low trust in failures"];
+ e2e->int; int->arch;
+ arch->unit [label="  more tests, faster, cheaper to change"];
+}
