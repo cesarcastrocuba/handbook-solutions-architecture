@@ -1,0 +1,145 @@
+# The Solutions Architect Role
+
+The Solutions Architect is accountable for the design integrity of a solution across domains, teams and its whole lifecycle. The role connects business outcomes with technical design: it makes sure that requirements are understood, significant decisions are made consciously and recorded, the parts of the solution fit together, and the result can be built, operated and evolved. The rest of this handbook describes the knowledge the role applies; this section describes how the role works.
+
+## Responsibilities
+
+| Area | Responsibilities |
+| :--- | :--- |
+| Business understanding | Understand outcomes, value, constraints and the capabilities affected; challenge requests that do not serve a stated outcome |
+| Security and privacy | Ensure security and privacy requirements are designed into the solution, threat-modeled, traced to controls and evidence. The security architect is accountable for security controls; the privacy officer or DPO is accountable for privacy advice, monitoring and the record of processing, while the business owner remains accountable for the processing itself. |
+| Requirements | Identify architecturally significant requirements and make quality attributes measurable (Chapter 1) |
+| Solution design | Define the structure across data, integration, application, infrastructure and security; keep views consistent (Chapters 5–9, 12) |
+| Decisions | Frame options and trade-offs, recommend, and record decisions with owners (Chapter 3) |
+| Risk and governance | Surface risks, route decisions to the right authority, follow approval conditions to closure (Chapter 4) |
+| Delivery support | Guide teams through detailed design and implementation, resolve cross-team design issues, protect key decisions from erosion |
+| Operational readiness | Ensure the solution is observable, recoverable and supportable before release (Chapters 10, 11) |
+| Evolution | Maintain the roadmap, manage technical debt and plan migrations (Chapter 15) |
+
+: Responsibilities
+
+## Boundaries with Other Roles
+
+Responsibilities overlap with neighboring roles, and unclear boundaries cause either gaps or duplicated authority. Agree them explicitly for each engagement. A typical allocation (R responsible, A accountable, C consulted, I informed):
+
+Accountability for processing personal data sits with the controller — in practice the business or product owner — while the privacy officer or DPO advises, monitors and keeps the record of processing. The two are deliberately not merged: a DPO who owns the processing cannot independently monitor it.
+
+| Activity | SA | EA | SwA | PO | TL | SecA | SRE | DPO |
+| :--------------------------------- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Business outcomes and priorities | C | C | I | A/R | I | I | I | I |
+| Quality attributes and constraints | A/R | C | C | C | C | C | C | C |
+| Solution structure and cross-team interfaces | A/R | C | C | I | C | C | C | I |
+| Component and code-level design | C | I | A | I | R | C | I | I |
+| Threat model and security controls | R | I | C | I | C | A | C | C |
+| Operability, SLOs and runbooks | C | I | C | C | R | I | A | I |
+| Alignment with enterprise standards and roadmap | R | A | C | I | I | C | I | C |
+| Privacy requirements and data protection impact assessment | R | C | C | A | C | C | I | C |
+| Personal-data lifecycle and data-subject rights | C | I | C | A | C | C | R | C |
+| Cross-border transfers and retention | R | C | I | A | I | C | C | C |
+
+: RACI for Architecture Activities
+
+*Role abbreviations:* SA solutions architect; EA enterprise architect; SwA software architect; PO product owner; TL tech lead; SecA security architect; SRE site reliability engineering; DPO privacy officer or data protection officer.
+
+In many organizations the software architect and the tech lead are the same person, and smaller teams may not have a dedicated software or security architect; the activities remain, and the table shows who should perform them. Specialist architects — data, integration, cloud or platform — are consulted on decisions in their domain.
+
+## Engagement Lifecycle
+
+| Stage | Key activities | Typical outputs |
+| :--- | :--- | :--- |
+| Discovery | Understand outcomes, stakeholders, current landscape, constraints and risks | Context view, current-state baseline, gap register, initial requirements and quality scenarios, assumption log, options |
+| Solution definition | Evaluate options, take key decisions, define the target design and transition | HLD, principal ADRs, interface agreements, estimates and risks |
+| Detailed design | Support teams on LLDs and contracts; resolve cross-team issues | Reviewed LLDs, ICDs, updated ADRs |
+| Build and validation | Check implementation against decisions; drive validation of quality attributes | Test and exercise evidence, fitness-function results |
+| Transition | Confirm operational readiness and approval conditions | Readiness review, handover package, runbooks, release approval |
+| Operate and evolve | Learn from production, manage debt, plan the next increment | Benefits and quality review, roadmap updates, revisited ADRs |
+
+: Engagement Lifecycle
+
+**Discovery questions.** Early conversations should establish: the business outcome and how it will be measured; the users and their critical journeys; the data involved, its owners and sensitivity; the systems and organizations to integrate with; the quality attributes that really matter and their targets; regulatory, contractual and technology constraints; who will operate the solution; and the main risks and unknowns.
+
+## Current State, Gaps and Transition
+
+A solution design is only credible when it starts from an explicit current state and ends with an operable handover. Keep this work solution-scoped; the enterprise architecture function owns the organization-wide portfolio.
+
+| Activity | Key question | Evidence or output |
+| :--- | :--- | :--- |
+| Current-state baseline | What capabilities, applications, interfaces, data, volumes, incidents and constraints exist today? | Capability/application and interface inventory, data ownership, baseline metrics, known pain points, evidence dates |
+| Gap register | What must change, why, and what happens if it does not? | Gap, current shortfall, affected users or quality attributes, owner, consequence, validation approach |
+| Feasibility | Which assumptions could invalidate the design, and how will they be tested? | Ranges, assumptions, time-boxed spikes, decision criteria, stop/go conditions |
+| Handover | Can the operating team run, observe, recover and change the solution? | Architecture package, decisions, contracts, open assumptions, risks, runbooks, readiness evidence |
+| Post-deployment review | Did the solution deliver the intended outcome and quality, and what should change? | Benefits and quality review, incident and SLO trends, debt and ADR reassessment |
+
+: Current State, Gaps and Transition
+
+The gap register is not a wish list. Each entry must be traceable to a requirement, a decision or a deliberate deferral. Categorize gaps as capability, technology, data or process, and prioritize them by outcome, risk, dependency and effort; sequence the result into a roadmap with owners and validation points. At handover, state which assumptions remain unproven and who owns them; at post-deployment review, compare measured outcomes with the original quality scenarios and record what the next increment should change. Chapter 1, 1.5.1 links the baseline and gap outputs to the requirement set.
+
+## Working with Stakeholders
+
+Map stakeholders by their influence and interest, and adapt the message to the audience:
+
+- **Executives and sponsors:** options, cost, risk, timeline and a recommendation, on one page.
+- **Product owners:** impact on scope, user experience and delivery sequence.
+- **Engineering teams:** views, contracts, decisions and their rationale.
+- **Security, risk and compliance:** threat model, controls, evidence and residual risk.
+- **Operations:** SLOs, observability, recovery procedures and support model.
+
+**Communicating trade-offs.** Present a decision as an options memo: context, the decision required and by when, two or three options (including doing nothing where relevant), the criteria, the consequences of each option in business terms, and a recommendation with its main risk. Quantify where possible — cost, latency, recovery time, delivery effort — and state assumptions. Decision-makers should be able to disagree with the recommendation on informed grounds.
+
+### Stakeholder Engagement and Influence
+
+A stakeholder map records each party’s interest, influence, decision role (approve, consult, inform), main concern, preferred channel and required cadence. Turn it into an engagement plan: which decisions need whose sign-off, when options will be reviewed, how external suppliers and regulators are involved, and how disagreement escalates to the accountable owner. Review the map when scope, risk or ownership changes.
+
+Influence is not the same as authority. Separate interests from stated positions, bring evidence rather than assertion, pre-wire consequential decisions with the people who must commit, and respect the decision rights recorded in the governance model (Chapter 4). When agreement is not possible, state the unresolved trade-off and escalate it transparently rather than bypassing the owner or reopening a settled decision without new evidence.
+
+## Estimation and Feasibility
+
+Architectural estimates establish feasibility and order of magnitude, not delivery commitments. Give ranges rather than single figures, state the assumptions and the largest uncertainties, and narrow the range with time-boxed spikes on the riskiest assumptions. Revisit estimates when the scope or a key assumption changes.
+
+## Presales and Proposals
+
+Many solutions architects also support bids and proposals, either for a company that sells solutions or when a customer issues a request for proposal. The discipline is the same as for delivery design, with less information and more time pressure, and a proposal is an architectural commitment made before the design exists.
+
+- **Qualify.** Support the bid or no-bid decision with an honest view of fit, technical risk and the capacity to deliver.
+- **Discover.** Establish the business outcome, constraints, quality attributes and current state, and do not rely on the written requirements alone. Ask what would make the customer reject a proposal.
+- **Shape the solution.** Present a small number of options and a recommendation, and map the proposal to each stated requirement with an honest compliance position.
+- **State assumptions.** Record assumptions, exclusions, dependencies on the customer and open risks in the proposal itself, because these define the commitment as much as the design does.
+- **Estimate.** Give ranges with their assumptions and name the uncertainties, then have the people who will deliver review the figures.
+- **Prove.** Use a time-boxed proof of concept to reduce the largest risks, as described in 15.2.6.
+- **Hand over.** Transfer the decisions, assumptions, customer commitments and open risks to the delivery team, and keep the architect available through mobilization.
+
+Do not promise a capability that does not exist, and do not leave delivery to discover what the proposal implied. On the buying side, the same preparation allows a customer to compare bids fairly (15.2.6).
+
+### Negotiation, Facilitation and Mentoring
+
+Architects are often asked to settle disagreements in which they have no authority over either party. Before negotiating, establish what each side needs, what it would do without an agreement and which constraints cannot move. Trade on differences in priority, and keep any concession explicit in the decision record.
+
+Facilitate rather than dominate design sessions: state the decision to be made, ask the quietest participants first, and separate generating options from judging them. Close each session with the decision, its owner and its open questions. Practice clear writing, since a short, well-structured document reaches people who never attend the meeting.
+
+Grow others' judgment instead of being the only person who has it. Explain the reasoning behind a review comment, let engineers lead designs with support, and share the architect's role in decisions as teams mature. Handling disagreement well also means disagreeing and committing once the decision has been made.
+
+## Working with Delivery Teams
+
+Scale involvement with risk: a high-risk integration may need the architect in design sessions every week, while a low-risk change needs only a check of its ADR. Stay close enough to the code to keep designs realistic — reviewing pull requests on critical paths, pairing on spikes — without becoming the bottleneck for routine decisions. Prefer coaching and published guardrails to approval of every detail.
+
+### Implementation Support
+
+Agree the support model at the start of delivery: who answers design questions, where decisions and assumptions are recorded, which increments need architecture review, and what constitutes done for the architecture. Keep a small design-intent and decision log so teams can act without waiting for the architect, and review at risk-based checkpoints rather than every task.
+
+In agile delivery, provide just-enough architecture ahead of the next increment, maintain an architecture runway for known enablers, and make decision latency visible; a weekly design forum that cannot decide is a bottleneck, not governance. At handover, provide the architecture package, open assumptions, contracts, risks, runbooks and readiness evidence defined in the lifecycle above. After deployment, review outcomes and quality against the original scenarios (13.3.4, 14.1.4) and record which assumptions or decisions need revisiting.
+
+### Architecture in Agile Delivery
+
+Architecture work follows the same cadence as the delivery. In backlog refinement, identify items with architectural significance and add enabler work for them. In planning, confirm that the decisions needed for the coming increment have been made or that a spike is scheduled to inform them. Include architectural conditions, such as a passing fitness function or an updated decision record, in the definition of done. Use reviews and retrospectives to check assumptions against what the increment showed. Where several teams deliver one product, align dependencies and shared decisions at the start of each planning interval. Agility changes when decisions are made, and it does not remove the need to make and record them. A plan-driven contract can use the same practices within its fixed milestones.
+
+## Competencies and Anti-Patterns
+
+The role needs technical breadth across domains with depth in at least one, business understanding, clear writing and facilitation, and the judgment to make proportionate decisions under uncertainty.
+
+Common anti-patterns:
+
+- **Ivory-tower architect** — designs without delivery feedback; decisions are ignored or quietly reversed.
+- **Architecture astronaut** — adds abstraction and generality beyond what the requirements justify.
+- **Slideware architecture** — produces diagrams without decisions, contracts or evidence, and no follow-through.
+- **Decision bottleneck** — every choice waits for the architect, slowing teams and hiding risk.
+- **Technology-first design** — selects products before understanding outcomes and constraints.
