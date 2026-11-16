@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ n1 [label="Requirement\nREQ-114"];
+ n2 [label="Decision\nADR-021"];
+ n3 [label="View and contract\nICD-3, API-7"];
+ n4 [label="Control or guardrail\nGR-5"];
+ n5 [class="focal", label="Test and evidence\nEV-2026-04"];
+ n1->n2->n3->n4->n5;
+ n5->n2 [style=dashed, label=" contradicted evidence\n reopens the decision", constraint=false];
+}

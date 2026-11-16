@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ b [label="Decision brief boundary,\nscenarios, assumptions"];
+ q [label="Review questions\nalternatives, failure\nmodes, evidence"];
+ d [label="Claims hold on evidence?", shape=diamond, style="filled"];
+ y [label="Approve with conditions\nowner and deadline"];
+ n [label="Reject or defer gap and\nowner"];
+ v [label="Verify conditions"];
+ b->q->d; d->y [label="yes"]; d->n [label="no"]; y->v;
+}

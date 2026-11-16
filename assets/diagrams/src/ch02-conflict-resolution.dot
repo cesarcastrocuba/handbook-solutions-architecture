@@ -1,0 +1,17 @@
+digraph G { 
+
+ rankdir=TB;
+ p1 [label="Principle A\nloose coupling across capabilities"];
+ p2 [label="Principle B\nstrict consistency for money movement"];
+ q [label="Are both mandatory for\nthis specific decision?", shape=diamond, style="filled"];
+ dom [label="Name the dominant\nbusiness concern"];
+ revise [label="Revise or rescope\na principle"];
+ exc [label="Time-bound exception\nwith compensating control"];
+ comp [label="Bounded compromise\nwith measurable limits"];
+ adr [label="ADR: choice, limits and\nreassessment triggers"];
+ mon [label="Guardrails and exception\ntrend trigger review"];
+ p1->q; p2->q; q->dom;
+ dom->revise; dom->exc; dom->comp;
+ revise->adr; exc->adr; comp->adr; adr->mon;
+ mon->revise [style=dashed, label=" recurring conflict", constraint=false];
+}

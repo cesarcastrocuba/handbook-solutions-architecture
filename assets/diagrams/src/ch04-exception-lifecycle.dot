@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ p [label="Request\npolicy, assets, scope"];
+ a [label="Assess residual risk\nand compensating controls"];
+ ac [label="Accept\nrisk owner"];
+ act [label="Active waiver\nowner, expiry, plan"];
+ rem [class="focal", label="Remediate and verify\ncontrol restored"];
+ exp [label="Expire or escalate\ndrift, no renewal"];
+ p->a->ac->act; act->rem [label=" before expiry"]; act->exp [style=dashed, label=" no renewal"];
+}

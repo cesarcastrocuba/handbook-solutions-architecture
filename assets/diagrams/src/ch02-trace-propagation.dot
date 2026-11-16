@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ act [label="User action\ntrace id created"];
+ svc [label="Services\nspans and baggage"];
+ q [label="Queue\ncontext in headers"];
+ cons [label="Consumer\ncontinues the trace"];
+ sink [label="Logs, metrics, traces\nredacted at export"];
+ alert [label="Symptom alert\nowner and runbook"];
+ act->svc->q->cons->sink;
+ cons->alert [style=dashed, label=" error rate"];
+ alert->svc [style=dashed, label=" diagnosis", constraint=false];
+}

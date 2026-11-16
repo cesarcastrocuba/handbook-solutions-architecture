@@ -1,0 +1,17 @@
+digraph G { 
+
+ rankdir=LR;
+ own [class="focal", label="Owning service\nonly writer of\norder state"];
+ api [label="Published API\ncommands and\nqueries"];
+ ev [label="Published events\nOrderPlaced,\nOrderShipped"];
+ prod [label="Governed data\nproduct\nfreshness and\naccess defined"];
+ subgraph cluster_consumers { label="Consumers —\nnever writers";
+  proj [label="Read model or\nprojection"];
+  an [label="Analytics and\nreporting"];
+ }
+ rec [label="Reconciliation\njob measures lag\nand drift"];
+ own->api; own->ev; own->prod;
+ api->proj; ev->proj; prod->an;
+ rec->proj [style=dashed, arrowhead=none, label="compares"];
+ rec->own [style=dashed, label="drift finding", constraint=false];
+}

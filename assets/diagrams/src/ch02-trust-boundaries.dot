@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ cl [label="Client\nuntrusted input"];
+ gw [label="Edge\nterminate TLS, authenticate"];
+ idp [label="Identity provider\nshort-lived tokens"];
+ svc [class="focal", label="Owning service\nauthorize every operation"];
+ vault [label="Secret store\nno secrets in code or config"];
+ store [label="Sensitive data store\nleast-privilege identity"];
+ bnd [label="Trust boundary — re-authenticate\nand re-authorize on every crossing", shape=note, style="filled"];
+ cl->gw [label=" credential"]; gw->svc; svc->store [label=" scoped credential"];
+ idp->gw [style=dashed, label=" validation keys", constraint=false];
+ vault->svc [style=dashed, label=" runtime secret", constraint=false];
+ {rank=same; gw; idp;} {rank=same; svc; vault;} {rank=same; store; bnd;}
+}

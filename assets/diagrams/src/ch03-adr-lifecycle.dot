@@ -1,0 +1,12 @@
+digraph G { 
+
+ rankdir=TB;
+ p [label="Proposed\nopen; alternatives compared"];
+ a [class="focal", label="Accepted\nnamed approver;\nconsequences recorded"];
+ s [label="Superseded\nlink to the replacement ADR,\nwhich cites the changed assumption"];
+ dp [label="Deprecated\nhistory only"];
+ r [label="Rejected\nrationale retained"];
+ n [label="An accepted rationale is never\nedited to imply later information\nwas known earlier", style="rounded,dashed"];
+ p->a [label=" approver accepts"]; p->r [label=" another option chosen"]; a->s [label=" assumption fails"]; a->dp [label=" no longer recommended"];
+ {rank=same; r; a;} {rank=same; dp; n;}
+}

@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ req [label="Requirement\noutcome to achieve"];
+ con [label="Constraint\nlimit on the solution space"];
+ cnc [label="Concern\nquestion that needs a decision"];
+ alt [label="Alternatives\ncandidate solutions"];
+ dec [class="focal", label="Decision\ncommitment with rationale"];
+ mech [label="Mechanism\nconcrete implementation"];
+ pat [label="Pattern\nreusable approach"];
+ {rank=same; req; con; pat;}
+ req->cnc; con->cnc; pat->alt [style=dashed, label=" expands"]; cnc->alt; alt->dec [label=" narrows"]; dec->mech;
+}

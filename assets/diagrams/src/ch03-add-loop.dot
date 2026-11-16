@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ d [label="Select the driver that most\nconstrains the current design"];
+ s [label="Choose a solution that\naddresses the driver"];
+ i [label="Instantiate elements,\ninterfaces and responsibilities"];
+ v [label="Verify the structure against\nthe scenario and constraints"];
+ adr [class="focal", label="Record the resulting\nchoice as an ADR"];
+ n1 [label="Drivers come from requirements,\nconstraints and risks", style="rounded,dashed"];
+ n2 [label="One iteration may decompose a module,\nadd a component or change an interface", style="rounded,dashed"];
+ d->s->i->v; v->d [label="next driver", style=dashed, constraint=false]; v->adr [label=" design closes"];
+ {rank=same; d; n1;} {rank=same; i; n2;}
+}

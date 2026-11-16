@@ -1,0 +1,16 @@
+digraph G { 
+
+ rankdir=LR;
+ col [label="Collect\npurpose, lawful basis,\nminimum fields"];
+ use [label="Use\npurpose limitation,\naccess on need"];
+ share [label="Share\nprocessor terms,\nregion, contract"];
+ ret [label="Retain\nschedule with\njustification"];
+ del [label="Delete or anonymize\nverifiable and tested"];
+ dsr [label="Data-subject requests — access, correction\nand erasure — are served at every stage", shape=note, style="filled"];
+ ev [label="Evidence: DPIA, records\nof processing, deletion log"];
+ col->use->share->ret->del;
+ del->ev [style=dashed];
+ {rank=same; col; use; share;}
+ {rank=same; ret; del; ev;}
+ {rank=same; dsr; ev;}
+}

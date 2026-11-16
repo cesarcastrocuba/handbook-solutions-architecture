@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=LR;
+ p [class="focal", label="Principle one durable\ndecision preference"];
+ s [label="Statement what is\npreferred, in one sentence"];
+ r [label="Rationale business or\ntechnical reason"];
+ i [label="Implications what teams do\ndifferently, and the cost"];
+ g [label="Guardrails measurable\nchecks of adherence"];
+ e [label="Exception conditions who\nmay approve, until when"];
+ o [label="Owner who revises or\nretires it"];
+ p->s; p->r; p->i; p->g; p->e; p->o;
+ {rank=same; s; r; i; g; e; o;}
+ n [label="A missing element turns\nthe principle into a\nslogan: ignored, or\nescalated case by case", shape=note, style="filled"];
+ o->n [style=dashed, arrowhead=none];
+}

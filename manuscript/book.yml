@@ -4,7 +4,10 @@ front:
   - front-matter/introduction.qmd
   - front-matter/solutions-architect-role.qmd
 chapters:
-  - chapters/01-example.qmd
+  - chapters/ch01-architecture-requirements.qmd
+  - chapters/ch02-architecture-principles.qmd
+  - chapters/ch03-architecture-decisions.qmd
+  - chapters/ch04-architecture-governance.qmd
 back: []
 appendices: []
 references: []

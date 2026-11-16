@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ gb [label="Governing body sets risk\nappetite, receives\nassurance"];
+ l1 [label="First line — delivery and\noperations, including\narchitects owns and\noperates controls, designs\nthe evidence"];
+ l2 [label="Second line — risk and\ncompliance sets policy,\noversees and challenges"];
+ l3 [label="Third line — internal\naudit independent\nassurance, does not own\ncontrols"];
+ ev [class="focal", label="System-generated evidence\ncontrol matrix, pipeline\nrecords, test results"];
+ gb->l1 [label="delegates ownership"];
+ l1->l2 [label="evidence for oversight"];
+ l1->ev [label="produces"];
+ {rank=same; l2; ev;}
+ ev->l3 [label="tested by"];
+ gb->l3 [style=dashed, label="independent assurance"];
+}

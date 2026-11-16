@@ -1,0 +1,22 @@
+digraph G { 
+
+ rankdir=LR;
+ subgraph cluster_today { label="Today — provider\ncalled from\nevery consumer"; labelloc="b";
+  c1 [label="Checkout"];
+  c2 [label="Billing"];
+  c3 [label="Reporting"];
+  sdk [label="Provider SDK in\ndomain code"];
+  c1->sdk; c2->sdk; c3->sdk;
+ }
+ subgraph cluster_target { label="Target — one\nreplaceable\nboundary";
+  d1 [label="Checkout"];
+  d2 [label="Billing"];
+  d3 [label="Reporting"];
+  port [class="focal", label="Domain port\nsmall stable\ninterface"];
+  adapter [label="Adapter\nprovider-specific\ncode"];
+  pt [label="Provider or\nreplacement"];
+  d1->port; d2->port; d3->port; port->adapter->pt;
+ }
+ // External label; the trailing spaces shift it clear of the dashed edge.
+ sdk->port [style=dashed, xlabel="replaced behind\nthe port        ", constraint=false];
+}

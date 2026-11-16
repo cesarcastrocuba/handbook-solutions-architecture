@@ -1,0 +1,23 @@
+digraph G {
+
+ rankdir=TB;
+ need [label="Change request or new\ncapability"];
+ q1 [label="Do independent\ndeployability or\nindependent scaling\npay for their failure\nmodes?", shape=diamond, style="filled"];
+ mod [label="Modular monolith one\ndeployable, enforced\nmodule boundaries"];
+ dist [label="Distributed services\nnetwork, telemetry,\ncoordination"];
+ cost [label="Compare total cost\nover the stated\nlifetime"];
+ choose [label="Choose the option with\nthe lower lifetime\ncost that still meets\nthe quality attributes"];
+ revisit [label="Revisit when change\nfrequency, scale or\nteam topology changes"];
+
+ need -> q1;
+ q1 -> mod [label="no"];
+ q1 -> dist [label="yes"];
+ mod -> cost;
+ dist -> cost;
+ cost -> choose [constraint=false];
+ choose -> revisit [constraint=false];
+ revisit -> q1 [style=dashed, label="new evidence", constraint=false];
+
+ {rank=same; mod; dist;}
+ {rank=same; cost; choose;}
+}

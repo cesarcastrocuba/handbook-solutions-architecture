@@ -1,4 +1,4 @@
-# The Solutions Architect Role
+# The Solutions Architect Role {.unnumbered}
 
 The Solutions Architect is accountable for the design integrity of a solution across domains, teams and its whole lifecycle. The role connects business outcomes with technical design: it makes sure that requirements are understood, significant decisions are made consciously and recorded, the parts of the solution fit together, and the result can be built, operated and evolved. The rest of this handbook describes the knowledge the role applies; this section describes how the role works.
 
