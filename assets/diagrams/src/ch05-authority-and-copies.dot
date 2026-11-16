@@ -1,0 +1,18 @@
+digraph G { 
+
+ rankdir=TB;
+ so [class="focal", label="Business fact with an\nattribute-level owner\n(system of record)"];
+ c [label="Data contract\n(semantics, classification,\nquality, compatibility)"];
+ d [label="Delivery: API, event\nor governed data\nproduct"];
+ cp [label="Copy: replica, cache,\nsearch index, extract"];
+ u [label="Consumer decision\n(freshness is part\nof the input)"];
+ rec [label="Reconcile against the\nauthority, not the\nlargest timestamp"];
+ { rank=same; so; rec; }
+ { rank=same; c; u; }
+ { rank=same; d; cp; }
+ so->c->d;
+ d->cp;
+ cp->u;
+ u->rec;
+ rec->so [label=" correction re-published\nto every copy", style=dashed];
+}

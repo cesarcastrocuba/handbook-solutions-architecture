@@ -1,0 +1,19 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_transport { label="Transport health — necessary, not sufficient"; labeljust="l"; labelloc="t";
+  broker [label="Broker up,\npartitions balanced"];
+  lag [label="Consumer lag\nwithin threshold"];
+  dlq [label="Dead-letter rate\nlow"];
+  broker->lag->dlq;
+ }
+ subgraph cluster_business { label="Business convergence — what the SLO promises"; labeljust="l"; labelloc="b";
+  comp [label="Orders completed\nper unit of demand"];
+  dup [label="Duplicate suppression\nproof"];
+  rec [label="Reconciliation age\nand open discrepancies"];
+  comp->rec; dup->rec;
+ }
+ trace [label="Trace and correlation identifiers\nacross HTTP, events and batches"];
+ trace->comp; trace->dup;
+ dlq->comp [style=dashed, label=" feeds"];
+}

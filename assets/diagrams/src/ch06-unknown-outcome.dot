@@ -1,0 +1,19 @@
+digraph G { 
+
+ rankdir=TB;
+ req [label="Payment command\nwith payment_attempt_id"];
+ ded [label="Deduplicate\nand record attempt"];
+ call [label="Call provider with\nidempotency key"];
+ out [label="Outcome\nreceived?"];
+ ok [label="AUTHORIZED or DECLINED\npublished"];
+ unk [label="UNKNOWN persisted,\nno new attempt"];
+ q [label="Status query to\nthe provider"];
+ rec [label="Reconciliation with\nthe provider ledger"];
+ req->ded->call->out;
+ out->ok [label=" yes"];
+ out->unk [label=" timeout"];
+ unk->q [label=" within the\nretry window"];
+ q->ok [label=" resolved"];
+ q->rec [label=" still unknown"];
+ rec->ok [label=" evidence of\nthe true outcome", style=dashed, constraint=false];
+}

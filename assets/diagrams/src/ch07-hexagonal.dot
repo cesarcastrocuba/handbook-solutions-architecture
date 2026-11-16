@@ -1,0 +1,19 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_driving { label="Driving adapters"; labeljust="l"; labelloc="b";
+  http [label="HTTP controller"];
+  msg [label="Event consumer"];
+ }
+ subgraph cluster_core { label="Core — infrastructure imports rejected by CI"; labeljust="l"; labelloc="b";
+  app [label="Application layer\nhandlers and\ntransaction coordination"];
+  dom [class="focal", label="Domain\naggregates, invariants,\nstate transitions"];
+  ports [label="Ports defined by the domain\nOrderRepository,\nPaymentAuthorization,\nEventPublisher"];
+  app->dom; app->ports;
+ }
+ subgraph cluster_driven { label="Driven adapters"; labeljust="l"; labelloc="b";
+  db [label="Repository\n(database)"];
+  prov [label="Provider client\n(HTTP, queue or stub)"];
+ }
+ http->app; msg->app; ports->db; ports->prov;
+}

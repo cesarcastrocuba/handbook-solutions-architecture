@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ subgraph cluster_p2p { label="Point to point";
+  a1 [label="System A\n+ mapping"]; b1 [label="System B\n+ mapping"];
+  a1->b1 [dir=both]; }
+ subgraph cluster_bus { label="Hub or service bus";
+  a2 [label="System A"]; h2 [label="Hub or bus:\nrouting, mapping,\nprotocol, policy"]; b2 [label="System B"];
+  a2->h2 [dir=both]; h2->b2 [dir=both]; }
+ subgraph cluster_smart { label="Smart endpoints";
+  a3 [label="Service A\n+ logic"]; t3 [label="Transport:\ndelivery only"]; b3 [label="Service B\n+ logic"];
+  a3->t3 [dir=both]; t3->b3 [dir=both]; }
+ subgraph cluster_layer { label="Layered APIs";
+  a4 [label="System A"]; e4 [label="Experience and\nprocess APIs"]; s4 [label="System API\n+ mapping"]; b4 [label="System B"];
+  a4->e4 [dir=both]; e4->s4 [dir=both]; s4->b4 [dir=both]; }
+}

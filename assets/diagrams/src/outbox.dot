@@ -1,0 +1,18 @@
+digraph G { 
+
+ rankdir=TB;
+ subgraph cluster_o { label="Order service — one local DB transaction";
+   t [label="orders table\n(status = ACCEPTED)"];
+   ob [label="outbox table (event_id,\naggregate_id, payload,\nschema_version)"];
+   { rank=same; t; ob; }
+ }
+ rl [label="Relay\n(polling or CDC)"];
+ b [label="Message broker\n(at-least-once)", shape=cylinder];
+ subgraph cluster_c { label="Consumer — one local DB transaction";
+   ib [label="inbox table\nunique(consumer, event_id)"];
+   ef [label="business effect"];
+   { rank=same; ib; ef; }
+ }
+ ob->rl [label="read unpublished"]; rl->b [label="publish\n(may repeat)"]; b->ib [label="deliver\n(may duplicate)"]; ib->ef [label="first time only"];
+ rl->ob [label="mark published", style=dashed, constraint=false];
+}

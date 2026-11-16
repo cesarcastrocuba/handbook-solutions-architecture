@@ -1,0 +1,19 @@
+digraph G { 
+
+ rankdir=TB;
+ q1 [label="Must the\ncaller act\non the\noutcome\nbefore\ncontinuing?", shape=diamond, style="filled"];
+ q2 [label="Is a\nbounded\nlatency\nbudget\ncredible?", shape=diamond, style="filled"];
+ q3 [label="Is per-key\norder and\nreplay\nrequired?", shape=diamond, style="filled"];
+ q4 [label="Scheduled\nbulk with\na legacy\npeer?", shape=diamond, style="filled"];
+ rr [label="Request/response:\ndeadline,\nidempotency\nkey"];
+ acc [label="Async\nacceptance:\n202 +\nstatus\nresource"];
+ wh [label="Webhook or\npolling,\nplus\nreconciliation"];
+ st [label="Event\nstreaming:\npartitions,\nretention,\noffsets"];
+ ba [label="Batch or\nfile:\nmanifest,\nchecksum"];
+ qu [label="Durable\nqueue:\nretry,\ndead-letter"];
+ q1->q2 [label="yes"]; q1->q3 [label="no"];
+ q2->rr [label="yes"]; q2->acc [label="no"];
+ acc->wh;
+ q3->st [label="yes"]; q3->q4 [label="no"];
+ q4->ba [label="yes"]; q4->qu [label="no"];
+}

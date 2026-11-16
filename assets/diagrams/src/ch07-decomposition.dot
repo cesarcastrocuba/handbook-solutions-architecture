@@ -1,0 +1,15 @@
+digraph G { 
+
+ rankdir=TB;
+ c [label="Cohesive responsibility,\ninvariant and named owner"];
+ m [label="Module inside one\ndeployment (modular\nmonolith)"];
+ q [label="Independent scale, release\ncadence, isolation or team\nautonomy demonstrably\nneeded?", shape=diamond, style="filled"];
+ s [label="Service: the module's port\nbecomes the service\ncontract"];
+ k [label="Keep the module: enforce\nwith dependency rules and\narchitecture tests"];
+ x [label="Service per database\nentity: distributed\ntransactions and chatty\ndependencies"];
+ c->m->q;
+ q->s [label="yes"];
+ q->k [label="no"];
+ k->q [label="measure again after\ncoupling or scale changes", style=dashed];
+ q->x [label="entity-based split is\nrejected", style=dashed];
+}

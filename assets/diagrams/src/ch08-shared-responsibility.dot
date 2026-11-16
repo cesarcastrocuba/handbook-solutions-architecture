@@ -1,0 +1,20 @@
+digraph G { 
+
+ rankdir=LR;
+ subgraph cluster_provider { label="Provider"; labeljust="l"; labelloc="b";
+  p1 [label="Facilities,\nhardware,\nhypervisor"];
+  p2 [label="Managed\nplatform and\nruntime\npatching"];
+  p3 [label="Provider\nattestations\nand audit\nreports —\nthese cover\nonly the\nprovider side"];
+ }
+ subgraph cluster_shared { label="Shared —\nunowned until\na person is\nnamed"; labeljust="l"; labelloc="b";
+  s1 [label="Network\nconfiguration\nand exposure"];
+  s2 [label="Platform\noptions:\nencryption,\nlogging,\ntenant\nsettings"];
+ }
+ subgraph cluster_customer { label="Customer"; labeljust="l"; labelloc="b";
+  c1 [label="Identity and\nprivileged\naccess"];
+  c2 [label="Data\nclassification,\nkeys and\nbackups"];
+  c3 [class="focal", label="Workload\nlogging,\nmonitoring and\nincident\nresponse"];
+ }
+ p2->s1 [label="the boundary\nmoves with the\nservice model", style=dashed];
+ s1->c1; s2->c2;
+}

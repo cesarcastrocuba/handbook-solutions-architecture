@@ -1,0 +1,11 @@
+digraph G { 
+
+ rankdir=TB;
+ need [label="Workload team needs\na capability"];
+ gp [class="focal", label="Golden path: template, pipeline,\nsecrets and observability\nwired by default"];
+ own [label="Workload team owns\napplication-specific controls"];
+ met [label="Adoption, onboarding time and\nexception count reported as\nproduct metrics"];
+ tq [label="Ticket queue: every request\nwaits for the platform team"];
+ need->gp->own; own->met;
+ need->tq [label=" the anti-pattern", style=dashed];
+}

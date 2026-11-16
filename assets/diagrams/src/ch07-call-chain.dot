@@ -1,0 +1,13 @@
+digraph G { 
+
+ rankdir=TB;
+ cl [label="Client\nend-to-end deadline 800 ms"];
+ a [label="Service A\nremaining 700 ms"];
+ b [label="Service B\nremaining 550 ms"];
+ c [label="Provider call\n400 ms budget"];
+ cl->a [label=" 100 ms"]; a->b [label=" 150 ms"]; b->c [label=" 150 ms"];
+ ctl [label="Shared, not per hop: retry budget with jitter,\ncircuit breaker, bulkhead per dependency,\nqueue limits and backpressure"];
+ ctl->b [style=dashed, label=" governs"];
+ note [label="Five dependencies at 99.9% each yield\nat most about 99.5% for the chain"];
+ note->cl [style=dashed, label=" why the deadline is end to end"];
+}
