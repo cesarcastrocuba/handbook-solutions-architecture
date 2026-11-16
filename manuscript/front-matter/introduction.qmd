@@ -1,0 +1,153 @@
+# Introduction
+
+## Purpose
+
+This handbook is a practitioner reference for designing, evaluating, documenting and governing solution architectures. It explains what each architectural concept means, why it matters, which options and trade-offs exist, and which evidence demonstrates that a design is sound. It is written to be consulted during design work, decision-making and architecture reviews rather than read once from cover to cover.
+
+## Objectives
+
+The handbook aims to help a Solutions Architect:
+
+::: {.rc2-list-group}
+1. Turn business needs into architecturally significant, measurable requirements.
+2. Compare design alternatives with explicit criteria and record decisions with their rationale.
+3. Apply sound practice across data, integration, application, infrastructure, security, reliability and operations.
+4. Produce right-sized artifacts — views, decision records, contracts, test evidence — whose content is consistent.
+5. Review a design and decide, on evidence, whether it is ready to build, release or operate.
+6. Plan the evolution of a solution, including its migration path and lifecycle cost.
+:::
+
+## Scope
+
+**In scope.** The responsibilities of a Solutions Architect across the lifecycle of a solution: requirements and constraints, principles, decisions, governance, the main technical domains, documentation, validation, evolution and economics, and the frameworks that support this work. Technology-specific guidance appears only as labeled examples.
+
+**Out of scope.** Product-specific configuration, programming-language guidance, detailed enterprise portfolio management, and legal or regulatory interpretation. Regulatory topics are treated as architectural obligations to be confirmed by the accountable compliance owner.
+
+## Enterprise, Solutions and Software Architecture
+
+Three architecture disciplines overlap but differ in scope, time horizon and audience. This handbook covers solution architecture and the interfaces with the other two.
+
+|  | Enterprise architecture | Solutions architecture | Software architecture |
+| :--- | :--- | :--- | :--- |
+| Scope | The whole organization | One solution or program, often spanning several systems and teams | The internal structure of one system |
+| Time horizon | Years | Months to a few years | Releases and iterations |
+| Typical concerns | Capability maps, application portfolio, target state, transition roadmaps, investment governance | Cross-domain integration, quality attributes, trade-offs, decisions, risk and delivery feasibility | Module structure, design patterns, code quality, testability, refactoring |
+| Typical artifacts | Capability models, roadmaps, standards, principles | Requirements, HLD, ADRs, ICDs, review records | Component designs, LLD, code-level conventions |
+| Coverage here | Interfaces only: principles, standards, capability context, TOGAF and ArchiMate (Chapter 17; context in Chapters 2 and 4) | Full coverage | Interfaces only: decomposition, internal structure and engineering practice where they affect architecture (Chapters 7, 11, 16) |
+
+: Architecture Discipline Comparison
+
+## Audience and Prerequisites
+
+Three groups of readers use the handbook, and each needs a different route through it. Architects — solutions architects first, as the handbook's primary readers, and also enterprise, software, domain, cloud, platform, integration, data and security — use it to make and defend design decisions in their area and at its boundaries. The practitioners who build and run the solution — tech leads, principal, staff and senior engineers, and developers — use it for the contracts, quality attributes and evidence their work has to satisfy. Managers — Software Development Managers, Engineering Managers, Directors and Head of Engineering or VP of Engineering — use it as a reference for judging whether a design is sound and whether the evidence supports the claims made for it.
+
+| Profile | What they use the handbook for | Start with |
+| :--- | :--- | :--- |
+| Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–4, then 12–14; Appendix C |
+| Enterprise architect | The principles, standards and governance a solution must respect, and the decisions that feed the portfolio | 2, 4, 17 |
+| Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 14, 16 |
+| Data architect | Data ownership, flows, retention and quality across the solution | 5 |
+| Integration architect | Interfaces, contracts and messaging between systems and teams | 6 |
+| Cloud or platform architect | Hosting, landing zones and the shared platform the solution runs on | 8 |
+| Security architect | Threats, identity, controls and the evidence that proves them | 9 |
+| Tech lead | Turning a design into delivery: contracts, pipelines, environments and readiness | 6, 11 |
+| Principal or staff engineer | Reviewing and steering designs across teams, and settling trade-offs with evidence | 3, 4, 13 |
+| Senior engineer moving into architecture | The full method in order, then the domain chapter they work in | 1–4, then the relevant domain chapter |
+| Developer | The requirements, contracts and tests that touch their code | 1.4, 6.2, 14.1 |
+| Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 10, 13; Appendix C |
+
+: The handbook as a reference for each role and reader
+
+The routes overlap rather than exclude: an enterprise architect reviewing a cross-organization integration reads Chapter 6 as well, and a developer who owns an interface reads the contract guidance before the code.
+
+Hands-on readers are assumed to have practical software delivery experience and familiarity with networked applications, databases and cloud services. Managers without that background can start from the review checklists and Appendix C, which state the questions a review asks rather than assuming the technology. Specialized concepts are explained where they first appear and listed in the glossary (Appendix G).
+
+## Structure of the Handbook
+
+- **The Solutions Architect Role:** responsibilities, boundaries with other roles, engagement lifecycle and stakeholder communication.
+- **Architecture process (Chapters 1–4):** requirements, principles, decisions and governance.
+- **Technical domains (Chapters 5–11):** data, integration, application, infrastructure and cloud, security, observability and reliability, deployment and operations.
+- **Documentation, evaluation and testing (Chapters 12–14):** architecture description and communication; architecture evaluation, including ATAM; test strategy and quality verification.
+- **Evolution and artifacts (Chapters 15–16):** evolution and economics; engineering artifacts.
+- **Frameworks (Chapter 17):** how established frameworks, methods and standards support the work.
+- **AI and machine learning (Chapter 18):** AI architecture fundamentals, patterns, data and knowledge, model selection, security, privacy, governance, evaluation, operations and economics.
+- **Conclusions** summarize the cross-cutting principles. **Appendices** provide worked cases, templates, an assurance checklist, a consistency matrix, a security requirements baseline, a security reference (protocols, OWASP and ASVS, testing techniques, vulnerability scoring and tools), a glossary, and catalogs of the anti-patterns, decisions and patterns discussed in the chapters. **References** list the sources cited and recommended for further reading.
+
+Each concept is explained in one primary location and referenced elsewhere. Each chapter ends with an architecture review checklist and suggested further reading.
+
+## How to Use This Handbook
+
+Rows are ordered by the handbook’s reading sequence: by the earliest chapter or section each route points to, not by urgency. A reader working front to back meets each route near the chapter where its reasoning is explained.
+
+| If you need to… | Start with |
+| :--- | :--- |
+| Clarify responsibilities with other roles | The Solutions Architect Role |
+| Prepare a proposal or respond to a bid | The Solutions Architect Role; 15.2.6 |
+| Plan high availability or disaster recovery | 1.2.10; 8.2 |
+| Design privacy and auditability into a solution | 1.2.12–1.2.13; 2.14; 9.9 |
+| Turn a stakeholder request into testable requirements | 1.4 Quality Attribute Scenarios; Appendix B.1 |
+| Choose, revise or reconcile architecture principles | Chapter 2; 2.16 |
+| Choose between design options and record the choice | Chapter 3; Appendix B.6 |
+| Decide how much review a change needs | Chapter 4 |
+| Prepare audit evidence | 4.9; 9.7.2 |
+| Align teams with the architecture | 4.10 |
+| Choose a consistency model or isolation level | 5.4 |
+| Design an integration between teams or organizations | Chapter 6; Appendix A.4 |
+| Design or review an API | 6.2.5–6.2.8 |
+| Push real-time updates to clients | 6.1.9 |
+| Choose an integration platform or connect a legacy system | 6.6; 15.1.2 |
+| Choose a caching pattern or event sourcing | 7.3.3–7.3.5 |
+| Choose a branching strategy or repository structure | 7.5.3; 11.1.3 |
+| Design web or mobile clients | 7.6 |
+| Support several languages and regions | 7.6.6 |
+| Design a multi-tenant application | 7.7; 9.4.3 |
+| Select block, file, object or archive storage | 8.1.5 |
+| Run a cloud well-architected review | 8.5 |
+| Choose between a load balancer, reverse proxy and API gateway | 8.6.3 |
+| Choose a container or runtime platform | 8.1.2; 8.7 |
+| Design edge or IoT solutions | 8.8 |
+| Define a security test strategy | 9.5; Appendix F |
+| Set application security requirements | 9.5.2 (OWASP ASVS) |
+| Assess a supplier or answer a customer security questionnaire | 9.8; Appendix E |
+| Set reliability, observability and SLO objectives | 10.2.1 |
+| Set latency budgets or find a performance constraint | 10.4.3; 14.3.1 |
+| Set up environments and promotion | 11.1.4 |
+| Decide how production changes are approved | 11.4 |
+| Structure, publish and maintain an architecture description | 12.3 |
+| Run an architecture evaluation or an ATAM | 13.1.3; 13.2.1 |
+| Assess an existing system before a major change | 13.3.3 |
+| Define a test strategy | 14.1 |
+| Plan performance and failure testing | 14.3.1 |
+| Deal with flaky tests or unreliable pipelines | 14.2.3 |
+| Plan a legacy migration | 15.1; 15.4 |
+| Assess a portfolio before a cloud migration | 15.1.4 |
+| Evaluate vendors or run a proof of concept | 15.2.6; Appendix B.13 |
+| Decide which documents to produce | 16.1.2 Artifact Catalog |
+| Select a framework, method or notation | Chapter 17; 17.1 |
+| Design an AI agent or tool integration | 18.8 |
+| Review a design before approval | Chapter review checklists; Appendix C |
+| Look up anti-patterns or decisions across chapters | Appendix H; Appendix I |
+| Find where a pattern is discussed | Appendix J |
+| Check common web vulnerabilities and defenses | Appendix F.7 |
+
+: Task-Based Reading Routes
+
+## Conventions
+
+**Normative language.** *Must* marks a condition without which the stated claim or guarantee does not hold. *Should* marks a recommended default that may be overridden with a recorded reason. *May* marks an option.
+
+**Numbers and products.** All numeric targets are illustrative and must be calibrated to each organization’s demand, constraints and capacity tests. Vendor products are named only as labeled examples.
+
+**Terminology.** TDD means Technical Design Document unless Test-Driven Development is stated explicitly. Identifiers such as REQ-CHECKOUT-04 and ADR-021 illustrate traceable naming.
+
+## Reference Scenario
+
+Several chapters use the same online checkout to illustrate decisions. Its assumptions are fixed so that examples remain consistent:
+
+- An Order service accepts orders; an Inventory service reserves stock; a Payments service calls an external payment provider; a Notification service informs customers.
+- Peak load is 500 order submissions per second. Order acknowledgment must complete within 2 seconds at the 99th percentile, and an acknowledged order must be durable.
+- The availability objective is 99.9% of valid checkout requests receiving a durable order identifier within 2 seconds, measured over a rolling 28-day window.
+- No customer may be charged twice for one payment attempt, identified by a stable `payment_attempt_id`.
+- Order states are ACCEPTED → PAYMENT\_PENDING → CONFIRMED or REJECTED; payment attempt outcomes are AUTHORIZED, DECLINED or UNKNOWN.
+
+The complete reference design is in Appendix A.1.

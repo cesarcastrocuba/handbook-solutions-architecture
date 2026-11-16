@@ -1,5 +1,8 @@
 # Reading order for the book. Every manuscript/*.qmd file must appear exactly once.
-front: []
+front:
+  - front-matter/document-control.qmd
+  - front-matter/introduction.qmd
+  - front-matter/solutions-architect-role.qmd
 chapters:
   - chapters/01-example.qmd
 back: []
