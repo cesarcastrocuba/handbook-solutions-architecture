@@ -3,10 +3,10 @@
 **This file is the single source of current status for this book.** Decisions live only in
 [`DECISIONS.md`](DECISIONS.md).
 
-**Updated:** 2026-11-16
+**Updated:** 2026-11-17
 **State:** All manuscript sources imported. The platform edition contains all 33 manuscript files
 and 121 figures from the frozen reference `v3.0.0` (`13d295b`): front matter, Chapters 1–18,
-Appendices A–J, Conclusions and References. Generated sections come from the toolkit (cross-reference links, glossary pointers and the analytic Index, DEC-013); book-owned generators and checks are imported.
+Appendices A–J, Conclusions and References. Generated sections come from the toolkit (cross-reference links, glossary pointers and the analytic Index, DEC-013); book-owned generators and checks are imported. Document Control states the platform pre-release as `3.1 RC1` and no longer carries the completed Planned Revisions table (DEC-014).
 
 | Item | State |
 | --- | --- |
