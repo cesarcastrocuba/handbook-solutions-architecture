@@ -5,7 +5,7 @@
 | Title | Solutions Architecture Handbook |
 | Author | Franz César Castro Cuba |
 | Approver and maintainer | Franz César Castro Cuba |
-| Version | 3.1 |
+| Version | 3.1.1 |
 | Status | Released |
 | Date | November 2026 |
 | Language | English |
@@ -40,6 +40,7 @@
 | 3.0 | November 2026 | Final release of the RC2 content, approved by the author and maintainer; section references that the build left as plain text become links, and Appendix J adds the Architecture test pattern |
 | 3.1 RC1 | November 2026 | The content of 3.0 published with the Handbook Hub design and toolkit; analytic index, glossary pointers and cross-reference links rebuilt by the toolkit |
 | 3.1 | November 2026 | Final release of the RC1 content, approved by the author and maintainer |
+| 3.1.1 | November 2026 | Web edition: figures blend with the page in the light theme and read as light lines in the dark theme, and switching themes no longer moves the page; no content change |
 
 Section and chapter numbers in this history follow the current numbering, so each reference leads to the content it describes.
 
