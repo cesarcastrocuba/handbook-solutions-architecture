@@ -3,19 +3,19 @@
 **This file is the single source of current status for this book.** Decisions live only in
 [`DECISIONS.md`](DECISIONS.md).
 
-**Updated:** 2026-11-17
+**Updated:** 2026-11-18
 **State:** All manuscript sources imported. The platform edition contains all 33 manuscript files
 and 121 figures from the frozen reference `v3.0.0` (`13d295b`): front matter, Chapters 1–18,
-Appendices A–J, Conclusions and References. Generated sections come from the toolkit (cross-reference links, glossary pointers and the analytic Index, DEC-013); book-owned generators and checks are imported. Document Control states the platform pre-release as `3.1 RC1` and no longer carries the completed Planned Revisions table (DEC-014). Toolkit 0.14.0 supplies the edition layout: literal appendix labels, one validated Document Control table, page-sized tables kept with their captions and lead-ins, natural figure sizes, qpdf PDF compaction and numbered PDF bookmarks (DEC-015).
+Appendices A–J, Conclusions and References. Generated sections come from the toolkit (cross-reference links, glossary pointers and the analytic Index, DEC-013); book-owned generators and checks are imported. Document Control states the platform pre-release as `3.1 RC1` and no longer carries the completed Planned Revisions table (DEC-014). Toolkit 0.14.0 supplies the edition layout: literal appendix labels, one validated Document Control table, page-sized tables kept with their captions and lead-ins, natural figure sizes, qpdf PDF compaction and numbered PDF bookmarks (DEC-015); white-backed raster figures are staged transparent for PDF and Word, so they blend with the page instead of showing a white box, while HTML keeps the original PNG (DEC-016).
 
 | Item | State |
 | --- | --- |
 | Content source | Private reference `solutions-architecture-handbook`, tag `v3.0.0`, commit `13d295b` (`DEC-001`) |
 | Imported slices | Slices 1–6: front matter; Chapters 1–18; Appendices A–J; Conclusions; References (`DEC-004`) |
 | Figures | All 121 rendered PNGs and 121 DOT sources copied byte-for-byte from the frozen source |
-| Generated sections | Cross-reference links, glossary definition pointers and the analytic Index are built by toolkit 0.14.0 (DEC-013); page-sized tables stay with their captions and lead-ins, figures keep their natural size, and the release PDF is compacted with qpdf (DEC-015); catalog appendices H–J are frozen source snapshots, with regeneration checks passing; checklist exports ship as `book-extras.zip` through `make release-assets` |
+| Generated sections | Cross-reference links, glossary definition pointers and the analytic Index are built by toolkit 0.14.0 (DEC-013); page-sized tables stay with their captions and lead-ins, figures keep their natural size and blend with the page in PDF and Word (DEC-016), and the release PDF is compacted with qpdf (DEC-015); catalog appendices H–J are frozen source snapshots, with regeneration checks passing; checklist exports ship as `book-extras.zip` through `make release-assets` |
 | Book-owned tooling | Catalog regeneration, canonical checklist parity and portable diagram-manifest checks run in `make check`; reference tests and checklist data imported; `release-assets` Makefile target stages checklist exports for release packaging; analytic index vocabulary staged as data for hub change 0053 |
-| Canonical pins | Toolkit `0.14.0` (hub commit `80b833875bce2018b6c15a2ee0acc4726b659175`), standard profile `1.1.0` (DEC-012, DEC-013, DEC-015); the release workflow accepts `X.Y.Z-rc.N` pre-releases and requires a compacted PDF |
+| Canonical pins | Toolkit `0.14.0` (hub commit `9dedd3c70bb7ad345eb2e3dbcb54773de9bc4ea2`), standard profile `1.1.0` (DEC-012, DEC-013, DEC-015, DEC-016); the release workflow accepts `X.Y.Z-rc.N` pre-releases and requires a compacted PDF |
 | Releases | None. Next planned: `v3.1.0-rc.1` with the Owner's tag approval (`DEC-005`, `DEC-010`); the complete edition still requires generated-section parity |
 | Catalog | Not listed; only `v3.1.0` will be listed |
 | Reading site | Pages source set to GitHub Actions; not deployed |
