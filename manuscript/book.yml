@@ -12,16 +12,16 @@ chapters:
   - chapters/ch06-integration-architecture.qmd
   - chapters/ch07-application-architecture.qmd
   - chapters/ch08-infrastructure-and-cloud-architecture.qmd
-  - chapters/ch09-security-architecture.qmd
-  - chapters/ch10-observability-reliability-and-sre.qmd
-  - chapters/ch11-deployment-and-operations.qmd
-  - chapters/ch12-architecture-documentation.qmd
-  - chapters/ch13-architecture-evaluation.qmd
-  - chapters/ch14-testing-and-quality-verification.qmd
-  - chapters/ch15-architecture-evolution-and-economics.qmd
-  - chapters/ch16-software-engineering-and-architecture-artifacts.qmd
-  - chapters/ch17-architecture-frameworks-methods-and-standards.qmd
-  - chapters/ch18-ai-and-machine-learning-architecture.qmd
+  - chapters/ch10-security-architecture.qmd
+  - chapters/ch11-observability-reliability-and-sre.qmd
+  - chapters/ch12-deployment-and-operations.qmd
+  - chapters/ch13-architecture-documentation.qmd
+  - chapters/ch14-architecture-evaluation.qmd
+  - chapters/ch15-testing-and-quality-verification.qmd
+  - chapters/ch16-architecture-evolution-and-economics.qmd
+  - chapters/ch17-software-engineering-and-architecture-artifacts.qmd
+  - chapters/ch18-architecture-frameworks-methods-and-standards.qmd
+  - chapters/ch19-ai-and-machine-learning-architecture.qmd
 back:
   - back-matter/conclusions.qmd
 appendices:

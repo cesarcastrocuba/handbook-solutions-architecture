@@ -1,10 +1,10 @@
 # Appendix B — Reusable Artifact Schemas
 
-The schemas in this appendix describe what each artifact should contain and what to write in every section. They are checklists of sections, not a mandate to fill all of them: match the depth to the risk of the change (16.1.2), mark a section not applicable with the reason, and delete sections that no reader will use. Each schema states the section, the content expected and the quality check a reviewer applies. Chapter 16 defines the artifacts themselves and their fiches; this appendix is the working outline.
+The schemas in this appendix describe what each artifact should contain and what to write in every section. They are checklists of sections, not a mandate to fill all of them: match the depth to the risk of the change (17.1.2), mark a section not applicable with the reason, and delete sections that no reader will use. Each schema states the section, the content expected and the quality check a reviewer applies. Chapter 17 defines the artifacts themselves and their fiches; this appendix is the working outline.
 
 **Using a schema.** Copy the section names into your template, keep the identifiers stable so that other artifacts can link to them, and record the artifact’s owner and status in its header. A section that is empty and not marked not applicable is a defect, because a reader cannot tell whether the omission was deliberate.
 
-**Scope of this appendix.** The schemas cover the artifacts most often reused across solutions: the quality scenario, PRD, HLD, LLD, ICD, ADR, RFC, review record, audit-event catalog, control-and-evidence matrix and retention schedule. The remaining catalog artifacts in 16.1.2 have a fiche but no full schema here, because their content is specific to one domain or is defined in the chapter that owns it: the BRD and business case (16.2.1), the full SRS (16.2.3; B.1 covers its quality scenarios), the API and event specification (16.4.1), the data model, dictionary and lineage (16.4.2), the threat model and risk register (16.4.3), the test strategy (16.5.1) and the runbook and SLOs (16.5.2). Their fiche is the minimum content to start from; add a schema here when a second team needs the same structure.
+**Scope of this appendix.** The schemas cover the artifacts most often reused across solutions: the quality scenario, PRD, HLD, LLD, ICD, ADR, RFC, review record, audit-event catalog, control-and-evidence matrix and retention schedule. The remaining catalog artifacts in 17.1.2 have a fiche but no full schema here, because their content is specific to one domain or is defined in the chapter that owns it: the BRD and business case (17.2.1), the full SRS (17.2.3; B.1 covers its quality scenarios), the API and event specification (17.4.1), the data model, dictionary and lineage (17.4.2), the threat model and risk register (17.4.3), the test strategy (17.5.1) and the runbook and SLOs (17.5.2). Their fiche is the minimum content to start from; add a schema here when a second team needs the same structure.
 
 ## B.1 Quality Attribute Scenario
 
@@ -190,7 +190,7 @@ The platform assessment schema compares an integration or runtime platform with 
 
 ## B.13 Vendor Evaluation Matrix
 
-The vendor evaluation matrix records criteria and scores for each candidate (15.2.6). Agree on the criteria and weights before opening any bid.
+The vendor evaluation matrix records criteria and scores for each candidate (16.2.6). Agree on the criteria and weights before opening any bid.
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |

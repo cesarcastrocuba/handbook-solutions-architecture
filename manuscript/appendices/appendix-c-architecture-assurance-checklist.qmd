@@ -18,7 +18,7 @@
 
 ☐  Threats are modeled and controls mapped to tests.
 
-☐  Privacy decisions — minimization, retention, transfers, data-subject requests and a DPIA where required — are recorded (9.9).
+☐  Privacy decisions — minimization, retention, transfers, data-subject requests and a DPIA where required — are recorded (10.9).
 
 ☐  Authentication, SSO and authorization designs are reviewed; privileged access is controlled.
 

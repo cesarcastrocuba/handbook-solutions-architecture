@@ -8,14 +8,14 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Table | Scope | Where covered |
 | :--- | :--- | :--- |
-| E.2 | Governance, assurance and audit | 4.1.2, 4.9, 9.1.2, 9.7.2, 9.8.2 |
-| E.3 | Third parties and personnel | 9.2.6, 9.8 |
-| E.4 | Access control and identity | 9.2.1–9.2.6, 9.3, 9.4.4 |
-| E.5 | System security | 9.4.4, 9.5.3, 9.5.7, 9.6, 9.6.4 |
-| E.6 | Data protection | 5.2.4, 9.4.2, 9.4.3, 9.4.5, 9.9 |
-| E.7 | Application security | 9.1.1, 9.5.1–9.5.6 |
-| E.8 | Cloud services | 8.1.1, 8.1.4, 8.5, 9.2.1, 9.2.3, 9.4.6, 9.7.2, 9.8 |
-| E.9 | Business continuity and incident management | 8.2.2, 8.2.3, 9.4.6, 9.7.1, 9.7.3, 10.3 |
+| E.2 | Governance, assurance and audit | 4.1.2, 4.9, 10.1.2, 10.7.2, 10.8.2 |
+| E.3 | Third parties and personnel | 10.2.6, 10.8 |
+| E.4 | Access control and identity | 10.2.1–10.2.6, 10.3, 10.4.4 |
+| E.5 | System security | 10.4.4, 10.5.3, 10.5.7, 10.6, 10.6.4 |
+| E.6 | Data protection | 5.2.4, 10.4.2, 10.4.3, 10.4.5, 10.9 |
+| E.7 | Application security | 10.1.1, 10.5.1–10.5.6 |
+| E.8 | Cloud services | 8.1.1, 8.1.4, 8.5, 10.2.1, 10.2.3, 10.4.6, 10.7.2, 10.8 |
+| E.9 | Business continuity and incident management | 8.2.2, 8.2.3, 10.4.6, 10.7.1, 10.7.3, 11.3 |
 
 : Coverage map: baseline tables and handbook sections
 
@@ -28,7 +28,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | Provide independent assurance for restricted data | SOC 1 Type II report (financial-reporting controls) or SOC 2 Type II report (an attestation that controls operated over a period), or ISO/IEC 27001:2022 certification (of the management system) whose scope includes the service; these are not equivalent, and a customer may require one specifically | AICPA Trust Services Criteria; ISO/IEC 27001:2022 |
 | Provide PCI DSS evidence when handling cardholder data | Attestation of Compliance and responsibility matrix | PCI DSS v4.0.1 |
 | Permit audits and share relevant audit findings | Audit clause; evidence repository; control matrix | Contract; 4.9 |
-| Keep a tamper-evident audit trail of privileged actions and access to customer data | Audit-event catalog; protected audit store | 9.7.2 |
+| Keep a tamper-evident audit trail of privileged actions and access to customer data | Audit-event catalog; protected audit store | 10.7.2 |
 
 : Governance, assurance and audit requirements
 
@@ -36,7 +36,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Assess and monitor material subcontractors annually; disclose subprocessors | Supplier register with risk tier and review dates | ISO/IEC 27001:2022; 9.8 |
+| Assess and monitor material subcontractors annually; disclose subprocessors | Supplier register with risk tier and review dates | ISO/IEC 27001:2022; 10.8 |
 | Train personnel with data or system access in security annually | Training records | ISO/IEC 27001:2022 |
 | Screen personnel before granting access | Background-check records, subject to local law | ISO/IEC 27001:2022 |
 
@@ -46,12 +46,12 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Use strong authentication, with MFA for all remote and privileged access | IdP policy; MFA coverage report | NIST SP 800-63-4 (2025); 9.2.2 |
-| Grant access on business need; review periodically; revoke promptly | Access-review records; automated deprovisioning | 9.2.1; 9.3 |
-| Protect remote connections with encryption and network access control | VPN or zero-trust access design | NIST SP 800-207; 9.4.1 |
+| Use strong authentication, with MFA for all remote and privileged access | IdP policy; MFA coverage report | NIST SP 800-63-4 (2025); 10.2.2 |
+| Grant access on business need; review periodically; revoke promptly | Access-review records; automated deprovisioning | 10.2.1; 10.3 |
+| Protect remote connections with encryption and network access control | VPN or zero-trust access design | NIST SP 800-207; 10.4.1 |
 | Control mobile access to data with mobile device and application management | Mobile device and application management policy | Organizational policy |
-| Support customer SSO (SAML 2.0 or OIDC) for cloud services | SSO configuration per tenant; SCIM provisioning | 9.2.3 |
-| Secure programmatic access with tokens or certificates that are rotated regularly | Workload identity design; rotation evidence | 9.2.5 |
+| Support customer SSO (SAML 2.0 or OIDC) for cloud services | SSO configuration per tenant; SCIM provisioning | 10.2.3 |
+| Secure programmatic access with tokens or certificates that are rotated regularly | Workload identity design; rotation evidence | 10.2.5 |
 
 : Access control and identity requirements
 
@@ -59,13 +59,13 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Apply a formal change control process | Change records and approval model | 11.4 |
+| Apply a formal change control process | Change records and approval model | 12.4 |
 | Use anti-malware or endpoint detection and response, firewalls and intrusion detection or prevention | Control inventory per environment | NIST SP 800-53 Rev. 5 (2020) |
-| Harden and securely configure systems | Configuration baselines; configuration scanning | CIS Benchmarks; 9.5.3 |
-| Scan for vulnerabilities periodically and remediate by criticality | Vulnerability register; remediation metrics | 9.6 |
-| Patch firmware, operating systems, middleware and applications | Patch policy with risk-based timelines | 9.6.3 |
-| Penetration-test externally accessible systems at least annually | Test report and retest | 9.5.5 |
-| Log, monitor and respond to security events continuously | Monitoring design; on-call coverage | 9.7.1 |
+| Harden and securely configure systems | Configuration baselines; configuration scanning | CIS Benchmarks; 10.5.3 |
+| Scan for vulnerabilities periodically and remediate by criticality | Vulnerability register; remediation metrics | 10.6 |
+| Patch firmware, operating systems, middleware and applications | Patch policy with risk-based timelines | 10.6.3 |
+| Penetration-test externally accessible systems at least annually | Test report and retest | 10.5.5 |
+| Log, monitor and respond to security events continuously | Monitoring design; on-call coverage | 10.7.1 |
 
 : System security requirements
 
@@ -73,17 +73,17 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Segregate customer data from other customers and environments | Tenancy and environment design | 9.4.3 |
-| Encrypt data in transit (TLS 1.2 minimum, 1.3 preferred) and restricted data at rest, including backups | Encryption design; configuration evidence | 9.4.2 |
-| Protect encryption keys against unauthorized access and loss | Key-management design; key-access audit | 9.4.2 |
-| Separate production from test and development; use masked or synthetic test data | Environment design; data-masking procedure | 9.4.3 |
-| Log access to customer data and retain logs (commonly at least one year) | Logging design and retention configuration | 5.2.4, 9.7.2 |
+| Segregate customer data from other customers and environments | Tenancy and environment design | 10.4.3 |
+| Encrypt data in transit (TLS 1.2 minimum, 1.3 preferred) and restricted data at rest, including backups | Encryption design; configuration evidence | 10.4.2 |
+| Protect encryption keys against unauthorized access and loss | Key-management design; key-access audit | 10.4.2 |
+| Separate production from test and development; use masked or synthetic test data | Environment design; data-masking procedure | 10.4.3 |
+| Log access to customer data and retain logs (commonly at least one year) | Logging design and retention configuration | 5.2.4, 10.7.2 |
 | Prohibit restricted data on removable media and unapproved cloud services | Data-loss prevention and policy controls | Organizational policy |
 | Back up data to meet agreed RTO and RPO | Backup design; restore test results | 1.2.10; 8.2 |
 | Return or securely destroy data at contract end, with a certificate of destruction | Data export capability; sanitization procedure | NIST SP 800-88 Rev. 2 (2025) |
-| Assess privacy risk before high-risk processing goes live | DPIA with mitigations and a residual-risk owner | GDPR Article 35; 9.9.2 |
-| Fulfill data-subject requests within statutory deadlines | Subject-data locator, export and erasure procedures; request log | GDPR Articles 15–22; 9.9.3 |
-| Disclose data locations and subprocessors; use a lawful mechanism for cross-border transfers | Data-flow map; transfer register | GDPR Chapter V; 9.9.5 |
+| Assess privacy risk before high-risk processing goes live | DPIA with mitigations and a residual-risk owner | GDPR Article 35; 10.9.2 |
+| Fulfill data-subject requests within statutory deadlines | Subject-data locator, export and erasure procedures; request log | GDPR Articles 15–22; 10.9.3 |
+| Disclose data locations and subprocessors; use a lawful mechanism for cross-border transfers | Data-flow map; transfer register | GDPR Chapter V; 10.9.5 |
 
 : Data protection requirements
 
@@ -92,13 +92,13 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
 | Train developers in secure development; follow secure coding standards | Training records; coding standards | OWASP; SEI CERT |
-| Meet an agreed OWASP ASVS level for applications handling customer data | ASVS level in requirements; verification coverage report | OWASP ASVS 5.0.0 (2025); 9.5.2 |
-| Threat-model applications and systems | Threat models per release | 9.1.1 |
-| Perform static source code analysis | SAST results in the pipeline | 9.5.3 |
-| Perform software composition analysis | SCA results; SBOM | 9.5.3; 9.5.6 |
-| Perform authenticated dynamic web application security scans | Authenticated DAST reports | 9.5.4 |
-| Perform penetration tests | Penetration-test report with retest | 9.5.5 |
-| Notify customers of vulnerabilities with their CVSS rating | Disclosure procedure; advisories with vector strings | 9.6 |
+| Meet an agreed OWASP ASVS level for applications handling customer data | ASVS level in requirements; verification coverage report | OWASP ASVS 5.0.0 (2025); 10.5.2 |
+| Threat-model applications and systems | Threat models per release | 10.1.1 |
+| Perform static source code analysis | SAST results in the pipeline | 10.5.3 |
+| Perform software composition analysis | SCA results; SBOM | 10.5.3; 10.5.6 |
+| Perform authenticated dynamic web application security scans | Authenticated DAST reports | 10.5.4 |
+| Perform penetration tests | Penetration-test report with retest | 10.5.5 |
+| Notify customers of vulnerabilities with their CVSS rating | Disclosure procedure; advisories with vector strings | 10.6 |
 
 : Application security requirements
 
@@ -107,10 +107,10 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
 | Document the shared responsibility model and recommended secure configuration | Customer-facing security documentation | Chapter 8 |
-| Integrate with the customer’s SSO | SAML 2.0 or OIDC support | 9.2.3 |
-| Maintain an inventory of cloud identities and account or tenant mappings | Cloud identity inventory; account and tenant map | 9.2.1; 8.1.1 |
-| Provide access logs to the customer in real time or near real time | Log export or streaming interface | 9.7.2 |
-| Delete personal data when no longer required; export all customer data at contract end | Deletion and export capabilities | 5.2.4; 9.9 |
+| Integrate with the customer’s SSO | SAML 2.0 or OIDC support | 10.2.3 |
+| Maintain an inventory of cloud identities and account or tenant mappings | Cloud identity inventory; account and tenant map | 10.2.1; 8.1.1 |
+| Provide access logs to the customer in real time or near real time | Log export or streaming interface | 10.7.2 |
+| Delete personal data when no longer required; export all customer data at contract end | Deletion and export capabilities | 5.2.4; 10.9 |
 
 : Cloud service requirements
 
@@ -120,8 +120,8 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | :--- | :--- | :--- |
 | Maintain BCP and DRP, updated and tested at least annually | Plans and exercise reports | ISO 22301:2019; 8.2.3 |
 | Document RTO and RPO in the service agreement | Service agreement; recovery design | 1.2.10 |
-| Report security incidents affecting the customer within the agreed deadline (commonly 24–48 hours) | Incident procedure with notification step | 9.7.3 |
-| Provide a security contact and deliver a corrective plan after an incident | Contact register; post-incident action plan | 9.7.3, 10.5.2 |
+| Report security incidents affecting the customer within the agreed deadline (commonly 24–48 hours) | Incident procedure with notification step | 10.7.3 |
+| Provide a security contact and deliver a corrective plan after an incident | Contact register; post-incident action plan | 10.7.3, 11.5.2 |
 | Restrict physical access to systems and media | Facility controls, or provider attestation for cloud | ISO/IEC 27001:2022 |
 
 : Business continuity and incident management requirements
@@ -132,26 +132,26 @@ Editions cited in this handbook, checked at the review date. Confirm the edition
 
 | Standard | Edition cited | Where used |
 | :--- | :--- | :--- |
-| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 9.1.2, 9.8.2, E.1, 17.4.2 |
-| ISO/IEC 27002 | 2022 | 9.1.2, 17.4.2 |
-| ISO/IEC 27017 | 2026 | 17.4.2 |
-| ISO/IEC 27018 | 2025 | 17.4.2 |
-| ISO 22301 | 2019 | 8.2.3, E.8, 17.4.2 |
-| NIST Cybersecurity Framework | 2.0 (2024) | 9.1.2, E.1, 17.4.2 |
-| NIST SP 800-53 | Rev. 5 (2020) | 9.1.2, E.4, 17.4.2 |
-| NIST SP 800-63-4 | 2025 | 9.2.2, E.3 |
-| NIST SP 800-88 | Rev. 2 (2025) | 9.4.6, E.5 |
-| NIST SP 800-207 | 2020 | 9.4.1, E.3 |
-| NIST SP 800-218 | 2022 | 9.5.1, 17.4.2 |
-| OWASP ASVS | 5.0.0 (2025) | 9.5.2, E.6, F.3 |
-| OWASP Top 10 | 2025 | 9.5.1, F.3 |
-| OWASP API Security Top 10 | 2023 | 9.5.1, F.3 |
-| PCI DSS | v4.0.1 | 9.8.2, E.1, 17.4.2 |
-| CVSS | v4.0 (2023) | 9.6.1, F.5 |
-| AICPA Trust Services Criteria | 2017, with revised points of focus 2022 | 9.8.2, E.1 |
-| CIS Benchmarks | Living document; record the benchmark name and version used | 9.5.3, 9.5.7, E.4 |
-| GDPR | Regulation (EU) 2016/679 | 9.7.1, 9.7.3, 9.9, 17.4.1 |
-| NIS2 | Directive (EU) 2022/2555 | 9.7.1, 9.7.3, 17.4.1 |
-| DORA | Regulation (EU) 2022/2554 | 9.7.3, 15.2.4, 17.4.1 |
+| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 10.1.2, 10.8.2, E.1, 18.4.2 |
+| ISO/IEC 27002 | 2022 | 10.1.2, 18.4.2 |
+| ISO/IEC 27017 | 2026 | 18.4.2 |
+| ISO/IEC 27018 | 2025 | 18.4.2 |
+| ISO 22301 | 2019 | 8.2.3, E.8, 18.4.2 |
+| NIST Cybersecurity Framework | 2.0 (2024) | 10.1.2, E.1, 18.4.2 |
+| NIST SP 800-53 | Rev. 5 (2020) | 10.1.2, E.4, 18.4.2 |
+| NIST SP 800-63-4 | 2025 | 10.2.2, E.3 |
+| NIST SP 800-88 | Rev. 2 (2025) | 10.4.6, E.5 |
+| NIST SP 800-207 | 2020 | 10.4.1, E.3 |
+| NIST SP 800-218 | 2022 | 10.5.1, 18.4.2 |
+| OWASP ASVS | 5.0.0 (2025) | 10.5.2, E.6, F.3 |
+| OWASP Top 10 | 2025 | 10.5.1, F.3 |
+| OWASP API Security Top 10 | 2023 | 10.5.1, F.3 |
+| PCI DSS | v4.0.1 | 10.8.2, E.1, 18.4.2 |
+| CVSS | v4.0 (2023) | 10.6.1, F.5 |
+| AICPA Trust Services Criteria | 2017, with revised points of focus 2022 | 10.8.2, E.1 |
+| CIS Benchmarks | Living document; record the benchmark name and version used | 10.5.3, 10.5.7, E.4 |
+| GDPR | Regulation (EU) 2016/679 | 10.7.1, 10.7.3, 10.9, 18.4.1 |
+| NIS2 | Directive (EU) 2022/2555 | 10.7.1, 10.7.3, 18.4.1 |
+| DORA | Regulation (EU) 2022/2554 | 10.7.3, 16.2.4, 18.4.1 |
 
 : Standards editions cited

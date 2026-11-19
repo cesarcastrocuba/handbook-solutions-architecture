@@ -1,4 +1,4 @@
-# 16. Software Engineering and Architecture Artifacts
+# 17. Software Engineering and Architecture Artifacts
 
 Engineering artifacts serve different decisions and audiences. They are living evidence, not approvals in themselves, and they should be right-sized. A low-risk change inside one team may need only tests and a short design note — plus an ADR if it involves an architecturally significant decision — while a cross-organization integration needs an ICD, contract tests and a runbook. This chapter defines each artifact in the catalog, gives it a fiche that states its audience, owner, mandatory trigger and quality criteria, and shows how the artifacts link together.
 
@@ -13,21 +13,21 @@ Engineering artifacts serve different decisions and audiences. They are living e
 Artifacts are evidence for decisions, not deliverables in themselves. Size them to the risk of the change, link them by identifier instead of copying content, and treat a contradiction between two artifacts as a defect.
 :::
 
-## 16.1 Artifact Catalog and Traceability
+## 17.1 Artifact Catalog and Traceability
 
 The catalog is the inventory; traceability is what turns an inventory into evidence. The section defines the chain that carries intent from an objective to production behavior, and the transversal artifacts that are written whenever a decision or an interface appears.
 
-### 16.1.1 The Artifact Chain
+### 17.1.1 The Artifact Chain
 
 **Definition.** The artifact chain is the ordered set of artifacts that carries intent from a business objective to operational evidence: objective, requirements and quality scenarios, high-level design, detailed design, tests, and runbooks with telemetry.
 
 **Purpose.** The chain shows what must exist for a claim to be traceable, and in what order the artifacts can be created without guessing. It informs the artifact set for a change, the questions a reviewer asks, and the impact analysis when a requirement or decision changes: everything downstream of the changed link must be re-checked.
 
-**What it includes.** Each link refers to the previous one by identifier rather than copying its content. Two artifacts are transversal rather than sequential: the Architecture Decision Record (ADR) and the Interface Control Document (ICD) are written whenever a significant decision or a cross-team interface arises — during high-level design, detailed design or later — and are referenced by every artifact they constrain (Figure 16.1).
+**What it includes.** Each link refers to the previous one by identifier rather than copying its content. Two artifacts are transversal rather than sequential: the Architecture Decision Record (ADR) and the Interface Control Document (ICD) are written whenever a significant decision or a cross-team interface arises — during high-level design, detailed design or later — and are referenced by every artifact they constrain (Figure 17.1).
 
-![Figure 16.1 — The artifact chain and its two transversal artifacts](../../assets/diagrams/rendered/chain.png){#fig-16-1 width="100%"}
+![Figure 17.1 — The artifact chain and its two transversal artifacts](../../assets/diagrams/rendered/chain.png){#fig-17-1 width="100%"}
 
-Table 16.1 makes the chain operational: it states what each link carries forward and the failure that appears when the link is missing or ignored.
+Table 17.1 makes the chain operational: it states what each link carries forward and the failure that appears when the link is missing or ignored.
 
 | Link | Carries forward | Fails when |
 | :--- | :--- | :--- |
@@ -42,30 +42,30 @@ Table 16.1 makes the chain operational: it states what each link carries forward
 
 **Why it is needed.** Consistency between artifacts matters as much as their content: an ICD that allows a three-second timeout contradicts an end-to-end requirement of two seconds, and the conflict is a defect even though each document is internally valid. Without identifier links, the same fact is copied into several documents and drifts. The evidence is a sampled end-to-end trace from a priority scenario to the decision, contract, test and operational check that address it. Appendix D lists the main consistency checks.
 
-### 16.1.2 Artifact Catalog
+### 17.1.2 Artifact Catalog
 
 **Definition.** The artifact catalog is the complete list of artifacts a solution may produce, each with an owner, a mandatory trigger and a fiche that defines its content and quality criteria.
 
 **Purpose.** The catalog turns “which documents do we need?” into a decision with criteria. It informs the artifact set chosen at the start of a change, the evidence a review expects for a given risk tier, and the conversation about what will deliberately not be produced.
 
-**What it includes.** Fourteen artifacts across requirements, design and decisions, interfaces, data and security, and verification and operations (Table 16.2). Each artifact has a fiche later in this chapter with its purpose, audience, owner, mandatory trigger, minimum content, quality criteria, related artifacts and a short example. Chapter 18 extends this set for AI solutions: evaluation reports (18.6.1–18.6.2), release manifests (18.6.3) and the model card and impact assessment named in the artifact list of 18.9 (item 10).
+**What it includes.** Fourteen artifacts across requirements, design and decisions, interfaces, data and security, and verification and operations (Table 17.2). Each artifact has a fiche later in this chapter with its purpose, audience, owner, mandatory trigger, minimum content, quality criteria, related artifacts and a short example. Chapter 19 extends this set for AI solutions: evaluation reports (19.6.1–19.6.2), release manifests (19.6.3) and the model card and impact assessment named in the artifact list of 19.9 (item 10).
 
 | Artifact | Typical owner | Mandatory when |
 | :--- | :--- | :--- |
-| BRD and business case (Table 16.3) | Business sponsor; architect advises | New investment or significant scope change |
-| PRD (Table 16.4) | Product manager | New product capability |
-| SRS and quality scenarios (Table 16.5) | Architect with product and QA | Quality attributes drive design |
-| HLD (Table 16.6) | Solutions Architect | Change spans components or teams |
-| LLD / TDD (Table 16.7) | Lead engineer | Component is complex or carries failure risk |
-| RFC (Table 16.8) | Proposer | Change is contested or crosses team boundaries |
-| ADR (Table 16.9) | Decision owner | Every architecturally significant decision |
-| ICD (Table 16.10) | Interface owners on both sides | Interface between teams or organizations |
-| API / event specification (Table 16.11) | Producing team | Every published interface |
-| Data model, dictionary, lineage (Table 16.12) | Data owner and steward | Shared, regulated or replicated data |
-| Threat model and risk register (Table 16.13) | Architect with security | New trust boundary or sensitive data |
-| Test strategy and reports (Table 16.14) | QA and engineering | Every release with quality obligations |
-| Runbook, SLOs, DR plan (Table 16.15) | Service owner and SRE | Before first production use |
-| Architecture review record (Table 16.17) | Reviewers and decision owner | Changes in higher risk tiers |
+| BRD and business case (Table 17.3) | Business sponsor; architect advises | New investment or significant scope change |
+| PRD (Table 17.4) | Product manager | New product capability |
+| SRS and quality scenarios (Table 17.5) | Architect with product and QA | Quality attributes drive design |
+| HLD (Table 17.6) | Solutions Architect | Change spans components or teams |
+| LLD / TDD (Table 17.7) | Lead engineer | Component is complex or carries failure risk |
+| RFC (Table 17.8) | Proposer | Change is contested or crosses team boundaries |
+| ADR (Table 17.9) | Decision owner | Every architecturally significant decision |
+| ICD (Table 17.10) | Interface owners on both sides | Interface between teams or organizations |
+| API / event specification (Table 17.11) | Producing team | Every published interface |
+| Data model, dictionary, lineage (Table 17.12) | Data owner and steward | Shared, regulated or replicated data |
+| Threat model and risk register (Table 17.13) | Architect with security | New trust boundary or sensitive data |
+| Test strategy and reports (Table 17.14) | QA and engineering | Every release with quality obligations |
+| Runbook, SLOs, DR plan (Table 17.15) | Service owner and SRE | Before first production use |
+| Architecture review record (Table 17.17) | Reviewers and decision owner | Changes in higher risk tiers |
 
 : Artifact catalog, fiche and mandatory trigger
 
@@ -74,7 +74,7 @@ Table 16.1 makes the chain operational: it states what each link carries forward
 **Example.** A payments team opening a new capability uses the catalog to select a PRD, HLD, ADR for the asynchronous confirmation decision, an ICD with the provider, contract tests and a runbook. A later change that adds a field to an internal report selects a contract update and tests only, and records that decision in the change ticket.
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Producing every artifact for every change. Teams spend effort on documents nobody reads, the documents drift from the code, and reviewers lose trust in all of them — including the few that matter. Decide the artifact set by risk at the start of the work (16.1.2), and retire or update an artifact whenever the decision it records changes.
+Producing every artifact for every change. Teams spend effort on documents nobody reads, the documents drift from the code, and reviewers lose trust in all of them — including the few that matter. Decide the artifact set by risk at the start of the work (17.1.2), and retire or update an artifact whenever the decision it records changes.
 :::
 
 ::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
@@ -87,19 +87,19 @@ How much design documentation should precede implementation?
 | Full chain: PRD, HLD, ADRs, ICD, LLD, test strategy, runbook | New capability, cross-organization integration or regulated scope | Complete traceability and audit evidence; slowest to produce, and wasteful if applied to small changes |
 :::
 
-## 16.2 Requirements Artifacts
+## 17.2 Requirements Artifacts
 
 Requirements artifacts record what the solution must achieve and how success will be recognized. They are the only artifacts whose audience includes the business, which makes clarity and testability their dominant quality criteria.
 
-![Figure 16.2 — Requirements artifacts and the gate into design](../../assets/diagrams/rendered/ch14-requirements.png){#fig-16-2 width="100%"}
+![Figure 17.2 — Requirements artifacts and the gate into design](../../assets/diagrams/rendered/ch14-requirements.png){#fig-17-2 width="100%"}
 
-### 16.2.1 BRD and Business Case
+### 17.2.1 BRD and Business Case
 
 **Definition.** A Business Requirements Document (BRD) captures business outcomes, scope, stakeholders, benefits and constraints, while the business case compares expected value, cost, alternatives and risk over a stated time horizon.
 
 **Purpose.** Together they justify the investment and define what “success” means in business terms. They inform the funding decision, the scope boundary and the benefit that later architecture trade-offs are measured against, and they give the architect the change drivers that a modernization or sourcing decision must serve.
 
-**What it includes.** Quantified benefits separated from assumptions, a named decision owner, the alternatives considered and the consequence of not proceeding (Table 16.3). A BRD that dictates implementation prematurely restricts viable designs; the document should state the outcome and the constraints, not choose the technology. The fiche gives the minimum content and the quality test for both the requirement document and the business case; attach the case as an annex when the funding decision and the requirement document are separate.
+**What it includes.** Quantified benefits separated from assumptions, a named decision owner, the alternatives considered and the consequence of not proceeding (Table 17.3). A BRD that dictates implementation prematurely restricts viable designs; the document should state the outcome and the constraints, not choose the technology. The fiche gives the minimum content and the quality test for both the requirement document and the business case; attach the case as an annex when the funding decision and the requirement document are separate.
 
 | Field | Content |
 | :--- | :--- |
@@ -109,20 +109,20 @@ Requirements artifacts record what the solution must achieve and how success wil
 | Mandatory when | New investment, significant scope change or a regulated commitment |
 | Minimum content | Outcomes, scope, stakeholders, quantified benefits, costs, alternatives, risks, constraints, decision owner |
 | Quality criteria | Benefits quantified and dated; assumptions separated from facts; cost horizon stated; alternatives compared; scope exclusions explicit |
-| Related artifacts | PRD (16.2.2), quality scenarios (16.2.3), ADRs funding architectural constraints, review record (16.5.4) |
+| Related artifacts | PRD (17.2.2), quality scenarios (17.2.3), ADRs funding architectural constraints, review record (17.5.4) |
 | Example | Checkout replacement: 18-month horizon, cost per order reduced by a stated amount, provider fees and migration cost included, do-nothing option priced |
 
 : Artifact fiche: BRD and business case
 
 **Why it is needed.** A business case that counts only build cost, or a BRD whose benefits are adjectives, cannot support a later trade-off: every option appears equally justified and the cheapest-looking one wins. The evidence is a funded decision whose benefit, cost and risk assumptions can be re-read when the architecture changes, and a scope statement that names what is excluded.
 
-### 16.2.2 PRD
+### 17.2.2 PRD
 
 **Definition.** The Product Requirements Document (PRD) specifies the product problem, target users, journeys, functional requirements with acceptance criteria, success metrics, priorities, accessibility needs, assumptions and exclusions.
 
 **Purpose.** The PRD connects business intent to something a design and a test can act on. It informs journey design, prioritization and acceptance, and it is the artifact product, engineering and design use to agree what is in scope before architecture commits to a shape.
 
-**What it includes.** User journeys with acceptance criteria, prioritized functional requirements, success metrics, accessibility and localization needs, dependencies, assumptions and explicit exclusions (Table 16.4). It links to, rather than restates, the quality scenarios that make non-functional requirements measurable.
+**What it includes.** User journeys with acceptance criteria, prioritized functional requirements, success metrics, accessibility and localization needs, dependencies, assumptions and explicit exclusions (Table 17.4). It links to, rather than restates, the quality scenarios that make non-functional requirements measurable.
 
 | Field | Content |
 | :--- | :--- |
@@ -132,20 +132,20 @@ Requirements artifacts record what the solution must achieve and how success wil
 | Mandatory when | A new product capability or a material change to an existing journey |
 | Minimum content | Problem, users and jobs, journeys, functional requirements with acceptance criteria, success metrics, priorities, accessibility, assumptions, exclusions |
 | Quality criteria | Every requirement has an acceptance criterion; scope boundaries explicit; priorities justified; metrics measurable and owned |
-| Related artifacts | BRD (16.2.1), quality scenarios (16.2.3), HLD (16.3.1), test strategy (16.5.1) |
+| Related artifacts | BRD (17.2.1), quality scenarios (17.2.3), HLD (17.3.1), test strategy (17.5.1) |
 | Example | Payment confirmation: journeys for pay-now and pay-later, acceptance criteria for pending state, metric for confirmation conversion |
 
 : Artifact fiche: PRD
 
 **Why it is needed.** Unbounded scope and ambiguous acceptance criteria cause architecture churn: design starts, the requirement moves, and the work is re-planned instead of reviewed. A PRD without exclusions invites every stakeholder to assume their need is included. The evidence is a requirement set where each item can be accepted or rejected by a test, and a scope boundary the sponsor has seen.
 
-### 16.2.3 SRS and Quality Attribute Scenarios
+### 17.2.3 SRS and Quality Attribute Scenarios
 
 **Definition.** A Software Requirements Specification (SRS) states externally observable functional and quality requirements, and quality attribute scenarios make the non-functional ones measurable; the scenario format and its use in prioritization are defined in 1.4.
 
 **Purpose.** The SRS is the requirements artifact the architecture is evaluated against. It informs which quality attributes drive design, which trade-offs are acceptable and which tests must exist before a release, and it gives reviewers a stable definition of “meets the requirement” that is independent of the chosen design.
 
-**What it includes.** Functional requirements at the system boundary, quality attribute scenarios with stimulus, response and measure, constraints, and links to the tests and monitoring that will demonstrate each one (Table 16.5). Numeric thresholds are illustrative until the business and operations owners confirm them.
+**What it includes.** Functional requirements at the system boundary, quality attribute scenarios with stimulus, response and measure, constraints, and links to the tests and monitoring that will demonstrate each one (Table 17.5). Numeric thresholds are illustrative until the business and operations owners confirm them.
 
 | Field | Content |
 | :--- | :--- |
@@ -155,7 +155,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 | Mandatory when | Any quality attribute drives a design decision or a release gate |
 | Minimum content | Functional requirements at the boundary; scenarios with source, stimulus, environment, response and measure; constraints; verification links |
 | Quality criteria | Measures are numeric and testable; workload and failure conditions stated; priorities agreed; each scenario maps to a test or measurement |
-| Related artifacts | PRD (16.2.2), HLD (16.3.1), ADRs (16.3.3), test strategy (16.5.1), SLOs (16.5.2) |
+| Related artifacts | PRD (17.2.2), HLD (17.3.1), ADRs (17.3.3), test strategy (17.5.1), SLOs (17.5.2) |
 | Example | “Under 500 submissions/s, p99 acknowledgment ≤ 2 s, measured at the edge over a 10-minute window” |
 
 : Artifact fiche: SRS and quality attribute scenarios
@@ -178,19 +178,19 @@ How should requirements artifacts be maintained?
 | Requirements in the backlog with scenarios in the architecture repository | Continuous delivery with a stable product owner | Requirements stay close to delivery; the architectural view needs a curated index to remain reviewable |
 :::
 
-## 16.3 Design and Decision Artifacts
+## 17.3 Design and Decision Artifacts
 
 Design artifacts describe the intended structure; decision artifacts explain why it is that structure. Separating them keeps the description current while preserving the reasoning that a later change must respect or deliberately overturn.
 
-![Figure 16.3 — From proposal to decision to design; evidence can reopen the decision](../../assets/diagrams/rendered/ch14-design.png){#fig-16-3 width="100%"}
+![Figure 17.3 — From proposal to decision to design; evidence can reopen the decision](../../assets/diagrams/rendered/ch14-design.png){#fig-17-3 width="100%"}
 
-### 16.3.1 HLD — High-Level Design
+### 17.3.1 HLD — High-Level Design
 
 **Definition.** The High-Level Design (HLD) communicates system context, major containers, data stores, integration paths, trust boundaries, deployment topology and quality trade-offs, with references to the principal ADRs.
 
 **Purpose.** The HLD is the shared design artifact for everyone who must agree on the shape of the solution: engineering, operations, security, data and the business. It informs reviews, estimation, interface planning and the deployment model, and it is the artifact a new team member reads to understand how the system fits together.
 
-**What it includes.** Context and container views, trust boundaries, data ownership, priority quality scenarios, deployment and recovery assumptions, principal ADRs, open risks and approval responsibilities (Table 16.6). At handoff to detailed design, each major component has an accountable team, an interface owner and a deployment boundary, and assumptions that must be validated are marked and linked to ADRs or time-boxed spikes.
+**What it includes.** Context and container views, trust boundaries, data ownership, priority quality scenarios, deployment and recovery assumptions, principal ADRs, open risks and approval responsibilities (Table 17.6). At handoff to detailed design, each major component has an accountable team, an interface owner and a deployment boundary, and assumptions that must be validated are marked and linked to ADRs or time-boxed spikes.
 
 | Field | Content |
 | :--- | :--- |
@@ -200,20 +200,20 @@ Design artifacts describe the intended structure; decision artifacts explain why
 | Mandatory when | The change spans components, teams or a trust boundary |
 | Minimum content | Context and container views, data ownership, integration paths, trust boundaries, deployment and recovery, priority scenarios, principal ADRs, open risks |
 | Quality criteria | Every container has a responsibility and an owner; no product list without data flow; trade-offs name the alternative; assumptions marked and owned |
-| Related artifacts | Requirements (16.2), ADRs (16.3.3), ICDs (16.4.1), threat model (16.4.3), runbook (16.5.2) |
+| Related artifacts | Requirements (17.2), ADRs (17.3.3), ICDs (17.4.1), threat model (17.4.3), runbook (17.5.2) |
 | Example | Checkout HLD: context and container views, order and payment ownership, async payment path, zone failure assumption, links to three ADRs |
 
 : Artifact fiche: HLD
 
 **Why it is needed.** An HLD that lists cloud products without responsibilities and data flows is not a design; it cannot be reviewed for failure behavior or ownership, and it cannot be used to plan work. A design without trade-offs invites re-litigation of settled decisions in every review. The evidence is a design package in which each component has an owner, each boundary is drawn, and each significant choice points to its ADR.
 
-### 16.3.2 LLD / TDD — Low-Level or Technical Design Document
+### 17.3.2 LLD / TDD — Low-Level or Technical Design Document
 
 **Definition.** The Low-Level Design (LLD), also called Technical Design Document (TDD), details modules, interfaces, schemas, algorithms, state transitions, error handling, concurrency, idempotency, observability, configuration and rollout.
 
 **Purpose.** The LLD turns an approved high-level design into something an engineer can implement and a reviewer can check for failure behavior. It informs implementation sequencing, test design and operational readiness, and it records the decisions that are too local for an ADR but too consequential to leave in a code review comment.
 
-**What it includes.** Component responsibilities and sequence flows, data schemas and state transitions, failure modes with timeouts, retries and idempotency, deployment configuration and secret handling, test strategy and observability instrumentation, and migration, rollout and rollback (Table 16.7). The acronym TDD also means Test-Driven Development, so expand it on first use.
+**What it includes.** Component responsibilities and sequence flows, data schemas and state transitions, failure modes with timeouts, retries and idempotency, deployment configuration and secret handling, test strategy and observability instrumentation, and migration, rollout and rollback (Table 17.7). The acronym TDD also means Test-Driven Development, so expand it on first use.
 
 | Field | Content |
 | :--- | :--- |
@@ -223,20 +223,20 @@ Design artifacts describe the intended structure; decision artifacts explain why
 | Mandatory when | The component is complex, stateful, concurrent or carries material failure risk |
 | Minimum content | Responsibilities, sequence flows, schemas and states, error and timeout behavior, retries and idempotency, configuration and secrets, tests, observability, rollout and rollback |
 | Quality criteria | Every external call has a timeout and an unknown-outcome path; state transitions enumerated; duplicates and ordering handled; rollback stated |
-| Related artifacts | HLD (16.3.1), ADR (16.3.3), ICD and schemas (16.4.1), threat model (16.4.3), tests (16.5.1) |
+| Related artifacts | HLD (17.3.1), ADR (17.3.3), ICD and schemas (17.4.1), threat model (17.4.3), tests (17.5.1) |
 | Example | Payment-attempt state machine with idempotency key, provider timeout path and reconciliation job |
 
 : Artifact fiche: LLD / TDD
 
 **Why it is needed.** Over-detailed design too early constrains discovery, and undocumented complexity slows review: a reviewer cannot see the failure paths in a diagram that only shows the happy path. The evidence is a document in which each external dependency has a defined timeout, each state has an exit, and the rollback is described in operational terms.
 
-### 16.3.3 RFC and ADR
+### 17.3.3 RFC and ADR
 
 **Definition.** A Request for Comments (RFC) solicits structured feedback on a proposal, and an Architecture Decision Record (ADR) records a decision with its context, options and consequences; ADR content and lifecycle are defined in 3.4.
 
 **Purpose.** The pair separates consultation from commitment. The RFC informs a decision that is still open, collecting objections while they can still change the design; the ADR informs everyone who later depends on the choice, preserving why the option was selected and what was traded away.
 
-**What it includes.** An RFC states the problem, the proposed change, alternatives, compatibility and migration impact, security and operational implications, reviewers and open questions (Table 16.8). An ADR states identifier, status, date, decision owner, context and drivers, options with criteria, the decision and rationale, consequences with mitigations, acceptance evidence and review triggers (Table 16.9).
+**What it includes.** An RFC states the problem, the proposed change, alternatives, compatibility and migration impact, security and operational implications, reviewers and open questions (Table 17.8). An ADR states identifier, status, date, decision owner, context and drivers, options with criteria, the decision and rationale, consequences with mitigations, acceptance evidence and review triggers (Table 17.9).
 
 | Field | Content |
 | :--- | :--- |
@@ -246,7 +246,7 @@ Design artifacts describe the intended structure; decision artifacts explain why
 | Mandatory when | The change crosses team boundaries, is contested or is hard to reverse |
 | Minimum content | Problem, proposal, alternatives, compatibility and migration impact, security and operational implications, reviewers, open questions, outcome |
 | Quality criteria | Options are genuinely comparable; impact on existing consumers stated; comment period and decision date explicit; outcome recorded |
-| Related artifacts | ADR (16.3.3), HLD (16.3.1), ICD (16.4.1) |
+| Related artifacts | ADR (17.3.3), HLD (17.3.1), ICD (17.4.1) |
 | Example | RFC for moving payment confirmation to an asynchronous workflow, with three options and a two-week comment window |
 
 : Artifact fiche: RFC
@@ -259,7 +259,7 @@ Design artifacts describe the intended structure; decision artifacts explain why
 | Mandatory when | A decision is architecturally significant: hard to reverse, cross-cutting, or constraining a quality attribute |
 | Minimum content | Identifier and status, date, owner, context and drivers, options and criteria, decision, consequences, acceptance evidence, review triggers |
 | Quality criteria | Rejected options and reasons recorded; consequences include the bad ones; review trigger is an event or date, not “periodically” |
-| Related artifacts | RFC (16.3.3), HLD (16.3.1), LLD (16.3.2), tests that validate the decision |
+| Related artifacts | RFC (17.3.3), HLD (17.3.1), LLD (17.3.2), tests that validate the decision |
 | Example | “ADR-014: asynchronous payment confirmation” — context, options, chosen option, pending-state consequence, revisit if provider SLA changes |
 
 : Artifact fiche: ADR
@@ -282,19 +282,19 @@ Which design and decision artifacts should a change produce?
 | RFC, HLD, ADRs and LLD | Contested, cross-team or hard-to-reverse change | Objections surface before commitment and the decision is durable; heaviest process, justified only by coordination risk |
 :::
 
-## 16.4 Interface, Data and Security Specifications
+## 17.4 Interface, Data and Security Specifications
 
 These artifacts describe the boundaries where independent teams, systems and trust domains meet. Their quality is measured by whether two parties can work independently and still interoperate.
 
-![Figure 16.4 — Interface artifacts around a shared boundary](../../assets/diagrams/rendered/ch14-interface.png){#fig-16-4 width="100%"}
+![Figure 17.4 — Interface artifacts around a shared boundary](../../assets/diagrams/rendered/ch14-interface.png){#fig-17-4 width="100%"}
 
-### 16.4.1 ICD and API/Event Specifications
+### 17.4.1 ICD and API/Event Specifications
 
 **Definition.** The Interface Control Document (ICD) is the authoritative agreement on an interface between two parties, and the API or event specification is its machine-readable expression in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers; the integration semantics are defined in 6.2.3.
 
 **Purpose.** The ICD informs the commercial and operational relationship between teams or organizations: who owns what, what the other party may rely on, how failures and changes are handled. The machine-readable specification informs tooling — code generation, validation and contract tests — and gives CI something to enforce. Together they let two teams ship independently without a shared integration environment.
 
-**What it includes.** Ownership, business semantics, security, timeouts, retry eligibility, idempotency, versioning, error codes, observability, deprecation and escalation (Table 16.10), with the machine-readable surface linked rather than restated (Table 16.11). A syntactically valid schema does not prove business interoperability; the ICD carries the meaning the schema cannot.
+**What it includes.** Ownership, business semantics, security, timeouts, retry eligibility, idempotency, versioning, error codes, observability, deprecation and escalation (Table 17.10), with the machine-readable surface linked rather than restated (Table 17.11). A syntactically valid schema does not prove business interoperability; the ICD carries the meaning the schema cannot.
 
 | Field | Content |
 | :--- | :--- |
@@ -304,7 +304,7 @@ These artifacts describe the boundaries where independent teams, systems and tru
 | Mandatory when | An interface crosses a team, organizational or trust boundary |
 | Minimum content | Parties and owners, purpose and interaction, protocol and auth, payload semantics and schema reference, compatibility policy, errors, timeouts, retries, idempotency, service levels, observability, escalation, change control |
 | Quality criteria | Both parties have signed the semantics; unknown outcomes defined; compatibility and deprecation rules stated; escalation path tested |
-| Related artifacts | API/event specification (16.4.1), data contract (16.4.2), threat model (16.4.3), contract tests (16.5.1) |
+| Related artifacts | API/event specification (17.4.1), data contract (17.4.2), threat model (17.4.3), contract tests (17.5.1) |
 | Example | PAYMENT-AUTH-v1 clauses in Appendix A.4, covering idempotency key and unknown-outcome handling |
 
 : Artifact fiche: ICD
@@ -317,20 +317,20 @@ These artifacts describe the boundaries where independent teams, systems and tru
 | Mandatory when | An interface is published to another team, a partner or the public |
 | Minimum content | Schema, operations or event types, errors, examples, authentication scheme, version; generated or validated in CI |
 | Quality criteria | Spec is the single source for generated artifacts; compatibility checks run on every change; examples are executable; breaking change requires a major version |
-| Related artifacts | ICD (16.4.1), data contract (16.4.2), contract tests (16.5.1) |
+| Related artifacts | ICD (17.4.1), data contract (17.4.2), contract tests (17.5.1) |
 | Example | OpenAPI document for the payment authorization endpoint, validated and contract-tested in the provider pipeline |
 
 : Artifact fiche: API and event specification
 
 **Why it is needed.** Interfaces fail at the semantics, not the syntax: both sides accept the same JSON and disagree about whether a timeout means “declined”, whether retries are safe, or who owns the duplicate. The evidence is a pair of artifacts that agree, a compatibility test that runs on every change, and a negative test showing that an incompatible change is blocked before deployment.
 
-### 16.4.2 Data Artifacts
+### 17.4.2 Data Artifacts
 
 **Definition.** Data artifacts are the models, dictionaries, data contracts, lineage maps, classification matrices and retention schedules that make the meaning, ownership and obligations of data explicit; Chapter 5 defines the data architecture they describe.
 
 **Purpose.** These artifacts let data be shared without losing its meaning or its constraints. They inform integration design, privacy and retention decisions, analytics correctness and the response to a data-subject request, and they establish which system is authoritative for each attribute.
 
-**What it includes.** The system of record, authoritative attributes, quality rules, classification, lineage, retention and deletion obligations (Table 16.12). They are written for the consumers of the data — other teams, analytics, regulators — not only for the database administrator.
+**What it includes.** The system of record, authoritative attributes, quality rules, classification, lineage, retention and deletion obligations (Table 17.12). They are written for the consumers of the data — other teams, analytics, regulators — not only for the database administrator.
 
 | Field | Content |
 | :--- | :--- |
@@ -340,20 +340,20 @@ These artifacts describe the boundaries where independent teams, systems and tru
 | Mandatory when | Data is shared, replicated, regulated or used for decisions |
 | Minimum content | Entities and keys, system of record, attribute definitions, classification, quality rules, lineage, retention and deletion obligations |
 | Quality criteria | Every attribute has one authoritative definition and owner; lineage current; retention justified by a legal or business driver; deletion tested end to end |
-| Related artifacts | Data contract (5.3.3), ICD (16.4.1), retention schedule (Appendix B.11), privacy assessment (16.4.3) |
+| Related artifacts | Data contract (5.3.3), ICD (17.4.1), retention schedule (Appendix B.11), privacy assessment (17.4.3) |
 | Example | Customer entity: party identifier, system of record, classification, retention, lineage to the analytics store, deletion propagated to backups |
 
 : Artifact fiche: data model, dictionary and lineage
 
 **Why it is needed.** Unowned replicated data causes reconciliation and compliance failures: two systems hold different values, neither is authoritative, and a deletion request cannot be completed because a copy is unaccounted for. The evidence is an attribute-level map with owners, a lineage that includes derived and cached copies, and a deletion test that reaches every one of them.
 
-### 16.4.3 Security and Risk Artifacts
+### 17.4.3 Security and Risk Artifacts
 
-**Definition.** Security and risk artifacts record security reasoning: threat models, trust-boundary diagrams, data protection impact assessments where legally required, risk registers and control mappings, with threats, mitigations, residual risk, owners and verification evidence; Chapter 9 defines the controls.
+**Definition.** Security and risk artifacts record security reasoning: threat models, trust-boundary diagrams, data protection impact assessments where legally required, risk registers and control mappings, with threats, mitigations, residual risk, owners and verification evidence; Chapter 10 defines the controls.
 
 **Purpose.** They inform which threats are credible, which controls are justified, what risk remains and who accepts it. They give security reviewers a structured basis for challenge and give auditors traceability from a requirement to a control and to evidence that it operates.
 
-**What it includes.** Trust boundaries, threat scenarios with likelihood and impact, controls with owners, residual risk with an accepting owner, and the test or monitoring that demonstrates each control (Table 16.13). Distinguish regulatory obligations from design preferences so that the register does not mix “required by law” with “we would prefer”.
+**What it includes.** Trust boundaries, threat scenarios with likelihood and impact, controls with owners, residual risk with an accepting owner, and the test or monitoring that demonstrates each control (Table 17.13). Distinguish regulatory obligations from design preferences so that the register does not mix “required by law” with “we would prefer”.
 
 | Field | Content |
 | :--- | :--- |
@@ -363,7 +363,7 @@ These artifacts describe the boundaries where independent teams, systems and tru
 | Mandatory when | A new trust boundary, sensitive data, external exposure or a regulated scope |
 | Minimum content | Data flow and trust boundaries, threats and attack paths, controls and verification, residual risk and acceptance, review trigger |
 | Quality criteria | Threats tied to the actual data flow; every control has evidence; residual risk has an owner and an expiry; assumptions about attacker capability stated |
-| Related artifacts | HLD (16.3.1), ICD (16.4.1), test strategy (16.5.1), review record (16.5.4) |
+| Related artifacts | HLD (17.3.1), ICD (17.4.1), test strategy (17.5.1), review record (17.5.4) |
 | Example | Payment provider boundary: spoofed callback, replayed authorization and leaked credentials, each with a control and a test |
 
 : Artifact fiche: threat model and risk register
@@ -386,19 +386,19 @@ Where should the interface contract live?
 | ICD owned by an integration or platform team | Many consumers, regulated interfaces or a shared gateway | Consistent standards and central enforcement; distance from both business domains and a potential bottleneck |
 :::
 
-## 16.5 Verification and Operational Artifacts
+## 17.5 Verification and Operational Artifacts
 
 An architecture is only as good as the evidence that it works and the instructions that keep it working. These artifacts turn design claims into measurements and measurements into operating practice.
 
-![Figure 16.5 — Artifact lifecycle from draft to retirement](../../assets/diagrams/rendered/ch14-lifecycle.png){#fig-16-5 width="100%"}
+![Figure 17.5 — Artifact lifecycle from draft to retirement](../../assets/diagrams/rendered/ch14-lifecycle.png){#fig-17-5 width="100%"}
 
-### 16.5.1 Test and Verification Artifacts
+### 17.5.1 Test and Verification Artifacts
 
 **Definition.** Test and verification artifacts are the test strategy, plans, acceptance criteria, performance baselines, resilience reports and fitness functions that provide evidence that the design meets its requirements.
 
 **Purpose.** They inform release decisions and architecture reviews by showing which claims have been demonstrated and under what conditions. They also inform design: a requirement that cannot be tested cheaply is a signal that the architecture is hard to verify.
 
-**What it includes.** A strategy that maps priority quality scenarios to test types and gates, test data and environments, performance and resilience baselines with workload and limits, and fitness functions that run continuously (Table 16.14). Each test records the version, environment, workload and result so that a green result can be reproduced.
+**What it includes.** A strategy that maps priority quality scenarios to test types and gates, test data and environments, performance and resilience baselines with workload and limits, and fitness functions that run continuously (Table 17.14). Each test records the version, environment, workload and result so that a green result can be reproduced.
 
 | Field | Content |
 | :--- | :--- |
@@ -408,20 +408,20 @@ An architecture is only as good as the evidence that it works and the instructio
 | Mandatory when | Every release with quality obligations, and every architecture review claiming a quality attribute |
 | Minimum content | Scope, levels and portfolio shape, scenario-to-test map, environments and data, tooling and automation, gates and exit criteria, non-functional and security testing, responsibilities, reporting |
 | Quality criteria | Every priority scenario has a test; pass criteria numeric; workload and failure conditions realistic; results reproducible; limitations stated |
-| Related artifacts | Quality scenarios (16.2.3), ADRs (16.3.3), ICD (16.4.1), SLOs (16.5.2) |
+| Related artifacts | Quality scenarios (17.2.3), ADRs (17.3.3), ICD (17.4.1), SLOs (17.5.2) |
 | Example | Checkout: load at 500 submissions/s, duplicate-event injection, provider-timeout test and a fitness function for contract compatibility |
 
 : Artifact fiche: test strategy and verification reports
 
 **Why it is needed.** Green unit tests do not establish end-to-end reliability, and a benchmark under ideal conditions does not establish resilience. Test evidence without workload, environment and limits is not evidence, because nobody can tell what was actually demonstrated. The evidence is a strategy with a scenario-to-test map, and reports that name the version, conditions, results and unverified claims.
 
-### 16.5.2 Operational Artifacts
+### 17.5.2 Operational Artifacts
 
-**Definition.** Operational artifacts are the runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and support handover material that define how the service is operated; Chapters 10 and 11 own the practices they encode.
+**Definition.** Operational artifacts are the runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and support handover material that define how the service is operated; Chapters 11 and 12 own the practices they encode.
 
 **Purpose.** They inform the operating team’s ability to detect, diagnose, recover and change the service without the architects present. They also inform design: a service that cannot be described in a runbook is usually a service whose failure behavior is not understood.
 
-**What it includes.** Runbooks for routine and failure procedures, SLOs with error budgets, dashboards and alerts with owners, deployment and rollback steps, DR assumptions and tested recovery times, and the support handover record (Table 16.15). The operations team accepts the artifacts before first production use, not after.
+**What it includes.** Runbooks for routine and failure procedures, SLOs with error budgets, dashboards and alerts with owners, deployment and rollback steps, DR assumptions and tested recovery times, and the support handover record (Table 17.15). The operations team accepts the artifacts before first production use, not after.
 
 | Field | Content |
 | :--- | :--- |
@@ -431,20 +431,20 @@ An architecture is only as good as the evidence that it works and the instructio
 | Mandatory when | Before first production use, and whenever a failure mode or dependency changes |
 | Minimum content | Runbook procedures, escalation, SLOs and error budget, dashboards and alerts, deploy and rollback, backup and restore, RTO/RPO, DR exercise record, known failure modes |
 | Quality criteria | Every alert names an action; recovery steps tested; SLO measures a user outcome; RTO/RPO demonstrated rather than asserted; on-call can execute without the author |
-| Related artifacts | HLD (16.3.1), design failure modes (16.3.2), test reports (16.5.1), review record (16.5.4) |
+| Related artifacts | HLD (17.3.1), design failure modes (17.3.2), test reports (17.5.1), review record (17.5.4) |
 | Example | Payment service runbook: provider-degradation procedure, pending-payment reconciliation query, restore drill result and error-budget policy |
 
 : Artifact fiche: runbook, SLOs and DR plan
 
 **Why it is needed.** A technically complete application is not ready for production without them: incident response becomes improvisation, and recovery objectives remain claims. Runbooks written by the author and never exercised fail at the moment they are needed. The evidence is a runbook exercised by someone other than its author, an SLO measured from a user-visible signal, and a restore or failover result with a measured time.
 
-### 16.5.3 Artifact Lifecycle
+### 17.5.3 Artifact Lifecycle
 
 **Definition.** The artifact lifecycle is the set of states an artifact passes through — draft, reviewed, approved where required, in use, superseded and retired — together with the owner, location and review trigger that keep it trustworthy.
 
 **Purpose.** The lifecycle informs how a reader knows whether an artifact can be relied on, and how an organization keeps a large document set from becoming a set of contradictory historical layers. It also informs the review process: an artifact whose trigger has fired is stale evidence until it is revisited.
 
-**What it includes.** A status for every artifact, an authoritative location, an owner, review triggers and a successor pointer for superseded versions (Table 16.16). Superseded documents are retained where audit or history requires it, but every current reference must resolve to the current version. Define lightweight schemas (Appendix B) and risk-based minimum evidence; avoid mandatory documents that nobody reads.
+**What it includes.** A status for every artifact, an authoritative location, an owner, review triggers and a successor pointer for superseded versions (Table 17.16). Superseded documents are retained where audit or history requires it, but every current reference must resolve to the current version. Define lightweight schemas (Appendix B) and risk-based minimum evidence; avoid mandatory documents that nobody reads.
 
 | State | Entered when | What must be recorded |
 | :--- | :--- | :--- |
@@ -461,13 +461,13 @@ An architecture is only as good as the evidence that it works and the instructio
 
 **Example.** The payment HLD is superseded when the asynchronous workflow replaces the synchronous design. The new version is approved, the old one is retained with a successor pointer for audit, and the ICD, tests and runbook are updated in the same change so that no current reference points to the retired design.
 
-### 16.5.4 Architecture Review Record
+### 17.5.4 Architecture Review Record
 
 **Definition.** An architecture review record is the artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed.
 
 **Purpose.** The record informs the decision owner, the delivery team and any later auditor. It makes the review reproducible — the scope, the evidence and the findings are all named — and it is the artifact that turns a meeting into an accountable decision (Chapter 4, 4.4).
 
-**What it includes.** Scope and risk tier, requirement and decision inventory, findings by domain, SLO and capacity evidence, exceptions with owners and expiry, the outcome with its conditions and follow-up actions (Table 16.17). The review lead records the outcome; the decision owner signs it.
+**What it includes.** Scope and risk tier, requirement and decision inventory, findings by domain, SLO and capacity evidence, exceptions with owners and expiry, the outcome with its conditions and follow-up actions (Table 17.17). The review lead records the outcome; the decision owner signs it.
 
 | Field | Content |
 | :--- | :--- |
@@ -477,7 +477,7 @@ An architecture is only as good as the evidence that it works and the instructio
 | Mandatory when | The change falls in a risk tier that requires review |
 | Minimum content | Scope and risk tier, requirement and decision inventory, findings by domain, SLO and capacity evidence, exceptions with owners and expiry, outcome and conditions, follow-up actions |
 | Quality criteria | Findings cite evidence; each exception has an owner and an expiry date; conditions are verifiable; the decision owner signs the outcome |
-| Related artifacts | HLD (16.3.1), ADRs (16.3.3), threat model (16.4.3), test reports (16.5.1) |
+| Related artifacts | HLD (17.3.1), ADRs (17.3.3), threat model (17.4.3), test reports (17.5.1) |
 | Example | Payment capability review: no critical findings, two conditions on reconciliation evidence, one exception expiring after the first quarter |
 
 : Artifact fiche: architecture review record
@@ -500,7 +500,7 @@ How should artifact status and location be managed?
 | A wiki with a maintained index and owners | Mixed audiences and rapidly evolving content | Easy contribution and linking; weak enforcement, so status and owners must be reviewed explicitly |
 :::
 
-## 16.6 Worked Example: Right-Sizing Artifacts for a Payment Capability
+## 17.6 Worked Example: Right-Sizing Artifacts for a Payment Capability
 
 *In practice:* This example shows that the same capability needs a full artifact chain at creation and almost none for a later low-risk change.
 
@@ -519,7 +519,7 @@ A later change that only adds a field to an internal report needs none of the ne
 ☐  Do linked artifacts agree on thresholds, contracts and decisions?
 :::
 
-## 16.7 Further Reading
+## 17.7 Further Reading
 
 - ISO/IEC/IEEE 29148:2018 — requirements engineering processes and information items.
 - Clements et al. (2010), *Documenting Software Architectures: Views and Beyond* — documentation packages and views.

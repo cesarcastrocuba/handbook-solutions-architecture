@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-SEC
 title: Security
-manuscript: chapters/ch09-security-architecture.qmd
+manuscript: chapters/ch10-security-architecture.qmd
 items:
 - id: SA-SEC-001
   title: Current threat model with ranked threats
@@ -9,7 +9,7 @@ items:
   rationale: Controls copied from a checklist miss the abuse paths specific to this design and become stale after trust-boundary changes.
   applicability: All solutions crossing trust boundaries or holding sensitive assets.
   expected_evidence: Data-flow diagram with trust boundaries, asset inventory, ranked threat register, and owner and test links for each mitigation.
-  section: 9.1.1
+  section: 10.1.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Relayable factors and stale accounts are the most common path to account takeover and unauthorized access.
   applicability: All solutions authenticating workforce, customer or workload identities.
   expected_evidence: Authentication design showing phishing-resistant multi-factor authentication where risk requires, SSO configuration and SCIM or equivalent automated deprovisioning evidence.
-  section: 9.2.2
+  section: 10.2.2
   external_reference: NIST SP 800-63-4 (2025)
   risk_relevance: High
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Gateway authentication does not stop a valid caller reading another customer's object; only ownership checks in the service do.
   applicability: All APIs exposing tenant or user-owned resources.
   expected_evidence: Authorization design and negative tests for cross-tenant and cross-object access, with enforcement located in the owning service.
-  section: 9.3.1
+  section: 10.3.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Long-lived shared secrets enlarge the blast radius of a compromise and cannot be revoked safely at speed.
   applicability: All workloads and service-to-service integrations.
   expected_evidence: Identity inventory with credential types, secret-manager configuration, rotation drill results, and no long-lived workload secrets where federation is available.
-  section: 9.2.5
+  section: 10.2.5
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: An unstated assurance level leaves coverage ambiguous and makes security claims unverifiable.
   applicability: Web applications and APIs.
   expected_evidence: ADR recording the ASVS level and rationale, requirement-to-verification mapping, not-applicable justifications and coverage reported per release.
-  section: 9.5.2
+  section: 10.5.2
   external_reference: OWASP ASVS 5.0.0 (2025)
   risk_relevance: High
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: No single technique finds every weakness; static-only or unauthenticated dynamic testing misses most business logic and authorization flaws.
   applicability: All solutions with custom code or third-party dependencies.
   expected_evidence: Security test strategy and pipeline results covering static analysis, software composition analysis with an SBOM, secret and infrastructure scanning, authenticated dynamic testing and scoped penetration testing with retest.
-  section: 9.5.3
+  section: 10.5.3
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -75,7 +75,7 @@ items:
   rationale: CVSS measures severity, not risk; a high score on an unreachable system may matter less than an exploited low score.
   applicability: All solutions with a vulnerability remediation process.
   expected_evidence: Prioritization rules combining exploitation probability, known exploited vulnerabilities, exposure and asset criticality, with tracked remediation-time objectives and overdue exceptions.
-  section: 9.6.2
+  section: 10.6.2
   external_reference: FIRST CVSS v4.0 (2023); CISA KEV catalog
   risk_relevance: High
   version: '2.1'
@@ -86,7 +86,7 @@ items:
   rationale: Ordinary logs may be sampled or rotated, so they cannot prove who did what when an auditor or dispute asks.
   applicability: Solutions with auditable or regulated actions.
   expected_evidence: Audit-event catalog mapped to requirements, write-once or chained storage, completeness and tamper tests, a retrieval test, and retention with legal holds.
-  section: 9.7.2
+  section: 10.7.2
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -97,7 +97,7 @@ items:
   rationale: Inherited provider assurance does not cover the provider scope, subprocessors or continuity commitments.
   applicability: Solutions depending on critical third parties.
   expected_evidence: Supplier tiering, current SOC 2 Type II or ISO/IEC 27001:2022 evidence scoped to the service, completed questionnaires, and contracts covering audit, breach and exit.
-  section: '9.8'
+  section: '10.8'
   external_reference: ISO/IEC 27001:2022
   risk_relevance: High
   version: '2.1'
@@ -108,7 +108,7 @@ items:
   rationale: Privacy obligations shape data flows, residency and retention, and are expensive to retrofit after launch.
   applicability: Solutions processing personal data.
   expected_evidence: Record of processing activities, data protection impact assessment where required, data inventory and flow map, retention and deletion evidence, data-subject request log and transfer register.
-  section: 9.9.2
+  section: 10.9.2
   external_reference: GDPR (Regulation (EU) 2016/679), Articles 25, 30 and 35
   risk_relevance: High
   version: '2.1'

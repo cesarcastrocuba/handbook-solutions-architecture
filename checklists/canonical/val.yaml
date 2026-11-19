@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-VAL
 title: Architecture documentation
-manuscript: chapters/ch12-architecture-documentation.qmd
+manuscript: chapters/ch13-architecture-documentation.qmd
 items:
 - id: SA-VAL-001
   title: Every view serves a named concern
@@ -9,7 +9,7 @@ items:
   rationale: Views without a consumer become stale decoration and hide the concerns stakeholders actually need answered.
   applicability: All solutions with an architecture description.
   expected_evidence: View catalog recording audience, concern, owner, revision trigger and authoritative location for each diagram.
-  section: 12.1.1
+  section: 13.1.1
   external_reference: ISO/IEC/IEEE 42010:2022
   risk_relevance: Medium
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Inconsistent identifiers make reviewers reconcile diagrams by guesswork and conceal real integration gaps.
   applicability: All multi-view architecture descriptions.
   expected_evidence: Cross-view consistency check confirming that actors, services, stores and interfaces match the deployed inventory.
-  section: 12.1.1
+  section: 13.1.1
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Happy-path diagrams hide timeouts, retries, duplicates and compensation, which is where most incidents occur.
   applicability: Solutions with asynchronous or multi-service flows.
   expected_evidence: Sequence diagrams covering timeout, retry, duplicate delivery, unknown outcome and compensation paths for critical journeys.
-  section: 12.2.1
+  section: 13.2.1
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: A reviewed diagram is not validation; unverified latency, availability or recovery claims surface as production incidents.
   applicability: All priority quality scenarios.
   expected_evidence: Scenario-to-test matrix naming the load, fault-injection, recovery or security test and its recorded result for each priority scenario.
-  section: 14.1.4
+  section: 15.1.4
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: A test strategy without levels, environments, data rules or gates produces late, unreliable feedback and untested claims.
   applicability: All solutions with quality obligations.
   expected_evidence: Current test strategy covering scope, levels, contract testing, environments, test data, tooling, quality gates and exit criteria, with pipeline gate results.
-  section: 14.1.1
+  section: 15.1.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: A lightweight review cannot expose systemic risk, while a full evaluation of a reversible change wastes stakeholder time.
   applicability: Architecture evaluations of material changes.
   expected_evidence: Review record stating the chosen evaluation method and rationale, assessed scenarios, sensitivity and trade-off points, unresolved risks and re-evaluation triggers.
-  section: 13.1.3
+  section: 14.1.3
   external_reference: 'Kazman, Klein and Clements (2000), ATAM: Method for Architecture Evaluation'
   risk_relevance: Medium
   version: '2.1'
@@ -75,7 +75,7 @@ items:
   rationale: Stale views are acted on as if they were true, so a wrong assumption is found during an incident or an audit.
   applicability: All solutions with an architecture description.
   expected_evidence: View list with owner, revision trigger and last-reviewed date; drift report against the deployed inventory for the latest release.
-  section: 12.3.5
+  section: 13.3.5
   external_reference: ''
   risk_relevance: Medium
   version: '3.0'
@@ -86,7 +86,7 @@ items:
   rationale: Documentation maintained apart from change falls behind, and redrawn slides become a second, diverging architecture.
   applicability: Solutions whose interfaces, deployment or decisions change after the first release.
   expected_evidence: Documentation changes in the same review history as the code; briefs citing the description version they came from.
-  section: 12.3.3
+  section: 13.3.3
   external_reference: ''
   risk_relevance: Medium
   version: '3.0'
@@ -97,7 +97,7 @@ items:
   rationale: Without a common outline, readers cannot tell a missing view from an unnecessary one, and rationale is duplicated and drifts.
   applicability: Every solution architecture description.
   expected_evidence: Description outline with each section filled, linked or marked not applicable with a reason.
-  section: 12.3.2
+  section: 13.3.2
   external_reference: ''
   risk_relevance: Medium
   version: '3.0'

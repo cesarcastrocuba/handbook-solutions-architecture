@@ -8,7 +8,7 @@ Consistency requirements are expressed per business invariant. Preventing two ca
 - Defining data ownership, contracts and consistency for a solution or domain.
 - Choosing storage, replication, partitioning or an isolation level.
 - Designing retention, deletion, lineage, audit history or data quality controls.
-- Reviewing data risk with security, privacy (9.9) and operations before build or migration.
+- Reviewing data risk with security, privacy (10.9) and operations before build or migration.
 :::
 
 ::: {.callout-tip appearance="simple" icon=false title="Key Takeaway"}
@@ -95,7 +95,7 @@ Evaluate candidates against read/write rates, query shapes, volume, indexing, is
 
 **Definition.** A data-flow view traces each fact from the producer that creates it, through validation, transformation and storage, to every consumer and every copy.
 
-**Purpose.** This subsection is the owning treatment of data-flow views in this handbook. Its purpose is to make one question answerable for every edge of the estate: where does this fact come from, who owns it at this point, how current is it and what happens when the edge fails? Other chapters reference this view rather than restating it — transport mechanics and delivery guarantees belong to Chapter 6 (6.1.2, 6.3), lineage records belong to 5.3.5, and trust boundaries are assessed with Chapter 9.
+**Purpose.** This subsection is the owning treatment of data-flow views in this handbook. Its purpose is to make one question answerable for every edge of the estate: where does this fact come from, who owns it at this point, how current is it and what happens when the edge fails? Other chapters reference this view rather than restating it — transport mechanics and delivery guarantees belong to Chapter 6 (6.1.2, 6.3), lineage records belong to 5.3.5, and trust boundaries are assessed with Chapter 10.
 
 **What it includes.** For every edge document protocol, schema, authentication, sensitivity, volume, frequency, latency, error handling and owner, and mark trust boundaries and places where data is copied (Table 5.3). Show how duplicates, out-of-order records, schema changes and rejected payloads are handled. Distinguish the authoritative path from derived copies, and state the freshness each consumer may rely on. Figure 5.2 shows the shape of the view: one producer, one validation gate, one authoritative store, and every copy declared on the way out.
 
@@ -136,7 +136,7 @@ Record retention per category of data, not per system, so that every copy follow
 | Integration and transfer files | Reprocessing and reconciliation needs | Kept in landing and staging areas only until processed and reconciled, then deleted |
 | Exports and extracts | Purpose of the export | Short expiry by default; tracked like any other copy |
 | Logs and telemetry | Operations and security investigation | Days to months by signal type; sensitive fields redacted at source |
-| Audit records | Regulation, contracts, accountability | Where regulation or contract sets a minimum, commonly at least one year; confirm the legal basis and protect against modification (9.7.2) |
+| Audit records | Regulation, contracts, accountability | Where regulation or contract sets a minimum, commonly at least one year; confirm the legal basis and protect against modification (10.7.2) |
 | Backups and snapshots | Recovery objectives | Rotated according to the backup policy; restore procedures re-apply deletions |
 | Temporary and cache data | Performance | Expires automatically; never the only copy of anything |
 
@@ -144,7 +144,7 @@ Record retention per category of data, not per system, so that every copy follow
 
 **Why it is needed.** Retention defined per system leaves files, exports, logs and backups outside every rule, so an obligation is met on paper and violated in storage; an unmanaged archive also becomes a cost and discovery problem. The evidence is an approved retention schedule mapped to stores and file locations, lifecycle configuration, and a report showing expired data actually gone.
 
-Privacy obligations that shape retention — data-subject rights, international transfers, DPIA triggers and pseudonymization — are covered in 9.9. Chapter 18 (18.3.7) extends retention to embeddings, indexes, prompts, caches, traces and evaluation data.
+Privacy obligations that shape retention — data-subject rights, international transfers, DPIA triggers and pseudonymization — are covered in 10.9. Chapter 19 (19.3.7) extends retention to embeddings, indexes, prompts, caches, traces and evaluation data.
 
 ### 5.2.5 Files, Deletion and Crypto-Shredding
 
@@ -166,7 +166,7 @@ Deleting the primary row is not deletion: replicas, derived views, search indexe
 
 **What it includes.** Operational stores serve transactions and current state; analytical platforms serve reporting, exploration and model training. A warehouse suits governed structured analytics, a lake holds raw or semi-structured data, and a lakehouse combines both; choose from workload, latency, cost, governance and the skills available. A lake without a catalogue, ownership and lifecycle rules becomes an ungoverned copy of the estate, not a platform. Organize a lake in zones with increasing trust, such as raw, validated and published, and use a table format that provides transactional updates and schema evolution when many writers and readers share the data. Separating storage from compute allows each workload to scale independently, at the cost of data-transfer and metadata management.
 
-Pipelines move and transform data through ingestion, validation, transformation, orchestration and publication. Specify batch or streaming behavior, idempotency, replay and backfill, schema evolution, late or duplicate records, and the freshness each consumer needs. Publish data products with an owner and contract rather than letting every consumer copy raw tables. Reuse the data-flow, quality and lineage practices in 5.2.3 and 5.3; the transport mechanics belong to Chapter 6, and platform cost is part of the economics in Chapter 15.
+Pipelines move and transform data through ingestion, validation, transformation, orchestration and publication. Specify batch or streaming behavior, idempotency, replay and backfill, schema evolution, late or duplicate records, and the freshness each consumer needs. Publish data products with an owner and contract rather than letting every consumer copy raw tables. Reuse the data-flow, quality and lineage practices in 5.2.3 and 5.3; the transport mechanics belong to Chapter 6, and platform cost is part of the economics in Chapter 16.
 
 **Why it is needed.** A platform without owners, contracts and lifecycle rules produces the classic failure: several teams build their own extracts of the same source, disagree on definitions, and nobody can say which number is authoritative. Pipelines without idempotency and replay turn a failed night into a manual repair. The evidence is a catalogued platform with an owner per data product, replay and backfill tests, and a stated freshness target measured against the consumers' needs.
 
@@ -313,7 +313,7 @@ Reconciliation compares authoritative records with derived or external state to 
 
 **Purpose.** Both answer questions that ordinary application logs cannot: reconstruct the state used for a decision, prove that history was not altered, and show who had access to regulated data. They are the evidence base for disputes, audits and investigations.
 
-**What it includes.** Two related needs arise for regulated or critical data, and both complement the application audit trail (9.7.2).
+**What it includes.** Two related needs arise for regulated or critical data, and both complement the application audit trail (10.7.2).
 
 | Mechanism | What it provides | Considerations |
 | :--- | :--- | :--- |

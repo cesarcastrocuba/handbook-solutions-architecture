@@ -44,7 +44,7 @@ items:
   question: Context and container views and interface contracts have owners.
   rationale: Unowned views and contracts become stale and leave interface change without an accountable party.
   applicability: All solutions with external or cross-team interfaces.
-  expected_evidence: Context and container views with named owners (12.1), and ICDs with producer and consumer owners plus machine-readable contracts (6.2.3).
+  expected_evidence: Context and container views with named owners (13.1), and ICDs with producer and consumer owners plus machine-readable contracts (6.2.3).
   section: C
   external_reference: ISO/IEC/IEEE 42010:2022
   risk_relevance: High
@@ -68,7 +68,7 @@ items:
   question: Audit trails and data change history meet regulatory and contractual requirements.
   rationale: Regulated data needs verifiable proof of what changed, who changed it and who accessed it.
   applicability: Solutions with regulatory, contractual or financial audit obligations.
-  expected_evidence: Audit-event catalog mapped to obligations, history and access-audit coverage, retrieval and tamper tests, and retention with legal holds (9.7.2, 5.3.9).
+  expected_evidence: Audit-event catalog mapped to obligations, history and access-audit coverage, retrieval and tamper tests, and retention with legal holds (10.7.2, 5.3.9).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -80,7 +80,7 @@ items:
   question: Threats are modeled and controls mapped to tests.
   rationale: Controls that do not trace to an abuse path or a test provide reassurance rather than assurance.
   applicability: All solutions crossing trust boundaries.
-  expected_evidence: Threat model with trust boundaries and ranked threats, and a control-to-test mapping with current results (9.1.1, 9.5).
+  expected_evidence: Threat model with trust boundaries and ranked threats, and a control-to-test mapping with current results (10.1.1, 10.5).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -89,10 +89,10 @@ items:
   group: Design
 - id: SA-ASR-008
   title: Recorded privacy decisions and DPIA
-  question: Privacy decisions — minimization, retention, transfers, data-subject requests and a DPIA where required — are recorded (9.9).
+  question: Privacy decisions — minimization, retention, transfers, data-subject requests and a DPIA where required — are recorded (10.9).
   rationale: Privacy obligations constrain data flows, residency and retention and are costly to retrofit.
   applicability: Solutions processing personal data.
-  expected_evidence: Data protection impact assessment where required, record of processing activities, data inventory and flow map, data-subject request log and transfer register (9.9).
+  expected_evidence: Data protection impact assessment where required, record of processing activities, data inventory and flow map, data-subject request log and transfer register (10.9).
   section: C
   external_reference: GDPR (Regulation (EU) 2016/679)
   risk_relevance: High
@@ -104,7 +104,7 @@ items:
   question: Authentication, SSO and authorization designs are reviewed; privileged access is controlled.
   rationale: Authentication and authorization weaknesses expose every resource behind the interface, including administrative paths.
   applicability: All solutions authenticating users, workloads or administrators.
-  expected_evidence: Authentication and SSO design review, authorization tests for cross-tenant access, access-review records and privileged session logs (9.2, 9.3).
+  expected_evidence: Authentication and SSO design review, authorization tests for cross-tenant access, access-review records and privileged session logs (10.2, 10.3).
   section: C
   external_reference: NIST SP 800-63-4 (2025)
   risk_relevance: High
@@ -116,7 +116,7 @@ items:
   question: The security test strategy (SAST, SCA, authenticated DAST, penetration test) and vulnerability remediation objectives are defined.
   rationale: Without a layered test strategy and remediation objectives, known weaknesses remain untested or indefinitely open.
   applicability: All solutions with custom code or third-party dependencies.
-  expected_evidence: Security test plan covering static analysis, composition analysis, authenticated dynamic testing and penetration testing, ASVS mapping and remediation-time objectives (9.5, 9.6).
+  expected_evidence: Security test plan covering static analysis, composition analysis, authenticated dynamic testing and penetration testing, ASVS mapping and remediation-time objectives (10.5, 10.6).
   section: C
   external_reference: OWASP ASVS 5.0.0 (2025)
   risk_relevance: High
@@ -140,7 +140,7 @@ items:
   question: A cloud well-architected review is completed, and critical suppliers are assessed.
   rationale: Provider guidance and supplier assurance are inherited claims that must be verified in the solution's own scope.
   applicability: Cloud-hosted solutions and solutions depending on critical suppliers.
-  expected_evidence: Dated well-architected review with a findings register, and current supplier assurance scoped to the service (8.5, 9.8).
+  expected_evidence: Dated well-architected review with a findings register, and current supplier assurance scoped to the service (8.5, 10.8).
   section: C
   external_reference: ''
   risk_relevance: Medium
@@ -152,7 +152,7 @@ items:
   question: Deployment, rollback and observability are operationally ready.
   rationale: Deployment success does not prove that a service can be diagnosed, rolled back or recovered by its operators.
   applicability: All services before go-live.
-  expected_evidence: Operational readiness review, rollback decision tree, dashboards, SLOs, alerts with runbooks and a rehearsed failure (11.3.1).
+  expected_evidence: Operational readiness review, rollback decision tree, dashboards, SLOs, alerts with runbooks and a rehearsed failure (12.3.1).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -164,7 +164,7 @@ items:
   question: A test strategy covers priority quality scenarios, contract tests and quality gates.
   rationale: Untested priority scenarios and missing contract tests let incompatible or degraded changes reach production.
   applicability: All solutions with quality obligations.
-  expected_evidence: Test strategy mapped to priority quality scenarios, contract test results and pipeline quality-gate records (14.1).
+  expected_evidence: Test strategy mapped to priority quality scenarios, contract test results and pipeline quality-gate records (15.1).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -176,7 +176,7 @@ items:
   question: The change approval model for the solution is agreed and produces auditable evidence.
   rationale: Change approval that produces no auditable record neither controls risk nor satisfies auditors.
   applicability: All solutions with production change management.
-  expected_evidence: Defined change types and authorities, and pipeline-generated change records linking review, approval and deployment (11.4).
+  expected_evidence: Defined change types and authorities, and pipeline-generated change records linking review, approval and deployment (12.4).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -200,7 +200,7 @@ items:
   question: Operational ownership and runbooks are accepted by the operating team.
   rationale: A service handed over without an accepting operator and usable runbooks becomes an orphaned production risk.
   applicability: All solutions handed over to an operating team.
-  expected_evidence: Signed operational handover, runbooks with commands and verification steps, on-call rotation and dependency inventory (11.3.1).
+  expected_evidence: Signed operational handover, runbooks with commands and verification steps, on-call rotation and dependency inventory (12.3.1).
   section: C
   external_reference: ''
   risk_relevance: Medium

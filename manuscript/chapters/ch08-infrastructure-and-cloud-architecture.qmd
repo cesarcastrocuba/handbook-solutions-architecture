@@ -29,7 +29,7 @@ Foundations are the decisions made before the first workload lands: where it liv
 
 **Purpose.** The landing zone decides what a workload inherits for free and what it must implement itself. It also fixes the isolation and audit boundary, which is expensive to change once several workloads and their data live inside it.
 
-**What it includes.** Separate workloads and environments by isolation, compliance and ownership needs; Section 11.1.5 sets out what each environment is used for and who operates it. Ad hoc subscriptions and shared credentials create invisible trust boundaries: two workloads in one subscription share quotas, role assignments and often a network, whether or not anyone intended it.
+**What it includes.** Separate workloads and environments by isolation, compliance and ownership needs; Section 12.1.5 sets out what each environment is used for and who operates it. Ad hoc subscriptions and shared credentials create invisible trust boundaries: two workloads in one subscription share quotas, role assignments and often a network, whether or not anyone intended it.
 
 **Why it is needed.** A workload created in an ungoverned subscription inherits no logging, no budget alerts and no policy, and the gap is found during an audit rather than at design time. The evidence is deny-by-default policies tested against a deliberately non-compliant deployment, with logging, budget alerts and identity controls verified, and every exception recorded with an approver and an expiry.
 
@@ -50,7 +50,7 @@ Foundations are the decisions made before the first workload lands: where it liv
 
 : Execution models and their trade-offs
 
-**Why it is needed.** Adopting Kubernetes without a platform operating model creates avoidable toil, and functions chosen for cost at low volume become expensive or impossible at steady high volume with long-running work. The evidence is a prototype comparing at least two realistic platforms on deployment, scaling, patching, recovery and total cost, with the rejected option and its measured reason recorded. Chapter 18 (18.4.4) applies hosting and shared-responsibility decisions to managed and self-hosted model endpoints.
+**Why it is needed.** Adopting Kubernetes without a platform operating model creates avoidable toil, and functions chosen for cost at low volume become expensive or impossible at steady high volume with long-running work. The evidence is a prototype comparing at least two realistic platforms on deployment, scaling, patching, recovery and total cost, with the rejected option and its measured reason recorded. Chapter 19 (19.4.4) applies hosting and shared-responsibility decisions to managed and self-hosted model endpoints.
 
 ### 8.1.3 Networking and Connectivity
 
@@ -97,7 +97,7 @@ Figure 8.1 draws the responsibility boundary itself, so the table’s rows can b
 
 The table is a starting point: providers publish their own matrices, which differ by service and change over time. Record the version consulted, and treat any duty marked "shared" as unowned until a person is named.
 
-**Why it is needed.** The provider's attestations (9.8.2) cover only the provider's side, so a review that stops there proves nothing about the workload. The evidence is a per-service responsibility matrix with control owners, the provider matrix version consulted, and provider attestations mapped to the provider-side duties.
+**Why it is needed.** The provider's attestations (10.8.2) cover only the provider's side, so a review that stops there proves nothing about the workload. The evidence is a per-service responsibility matrix with control owners, the provider matrix version consulted, and provider attestations mapped to the provider-side duties.
 
 ### 8.1.5 Storage Selection
 
@@ -252,7 +252,7 @@ Figure 8.3 follows an infrastructure change from definition through apply to dri
 
 **Purpose.** Cost is a quality attribute with the same shape as latency: it is decided by architecture, measured per unit of business value and degraded by unowned variation. Designing it makes trade-offs explicit instead of arriving as a monthly surprise.
 
-**What it includes.** Cost architecture covers consumption models, reservations, storage tiers, data transfer, licensing and operational labor (Table 8.8). Tag resources for allocation, set budgets and track unit economics such as cost per processed order (see 15.2). Low unit prices can conceal high egress or operational cost, and reservations save money only if utilization stays high.
+**What it includes.** Cost architecture covers consumption models, reservations, storage tiers, data transfer, licensing and operational labor (Table 8.8). Tag resources for allocation, set budgets and track unit economics such as cost per processed order (see 16.2). Low unit prices can conceal high egress or operational cost, and reservations save money only if utilization stays high.
 
 | Driver | Why it grows | Lever |
 | :--- | :--- | :--- |
@@ -264,7 +264,7 @@ Figure 8.3 follows an infrastructure change from definition through apply to dri
 
 : Cost drivers and levers
 
-**Why it is needed.** A cost model built on list prices at average load misses both the peak and the egress, and an untagged estate cannot attribute cost to a capability or a customer. The evidence is forecast versus actual cost per transaction at normalized demand, with tags that resolve to a capability and a named owner. Environment promotion is a separate decision, covered in 11.1.4.
+**Why it is needed.** A cost model built on list prices at average load misses both the peak and the egress, and an untagged estate cannot attribute cost to a capability or a customer. The evidence is forecast versus actual cost per transaction at normalized demand, with tags that resolve to a capability and a named owner. Environment promotion is a separate decision, covered in 12.1.4.
 
 **Example.** Cost per completed order is tracked monthly. A rise traces to cross-zone traffic after a failover change, not to compute: the new routing sends every database read across zones. The fix is a read locality rule, and the unit cost returns to baseline without changing capacity.
 
@@ -359,12 +359,12 @@ Each framework is extended for specific workloads or industries: AWS publishes *
 
 | Pillar theme | Where it is covered in this handbook |
 | :--- | :--- |
-| Security (including privacy and compliance) | Chapter 9; 1.3.3; 5.2.4; Appendix E |
-| Reliability and resilience | 1.2.1–1.2.4; 1.2.10; 8.2; Chapter 10 |
-| Performance | 1.2.5–1.2.6; 7.4.3; 10.4.2; 14.3.1 |
-| Cost optimization | 1.3.5; 8.3.2; 15.2 |
-| Operational excellence | Chapters 10 and 11; 8.3.1 |
-| Sustainability | 15.3.1 |
+| Security (including privacy and compliance) | Chapter 10; 1.3.3; 5.2.4; Appendix E |
+| Reliability and resilience | 1.2.1–1.2.4; 1.2.10; 8.2; Chapter 11 |
+| Performance | 1.2.5–1.2.6; 7.4.3; 11.4.2; 15.3.1 |
+| Cost optimization | 1.3.5; 8.3.2; 16.2 |
+| Operational excellence | Chapters 11 and 12; 8.3.1 |
+| Sustainability | 16.3.1 |
 | Distributed and hybrid cloud | 8.1.2–8.1.3; 8.5.3; 8.6 |
 
 : Pillar themes and where they are covered
@@ -462,7 +462,7 @@ The zoning is only half the design; the other half is the decisions it encodes. 
 
 **Purpose.** The names overlap and one product often fills several roles. Deciding by responsibility places each control once and avoids stacked layers that repeat the same work.
 
-**What it includes.** Table 8.13 compares the components. A layer 4 balancer distributes TCP connections or UDP flows, according to the transports it supports, without interpreting application messages; an HTTP-aware layer 7 balancer can route by host or path, and so also acts as a reverse proxy. A reverse proxy terminates client connections and can route, compress, cache and hide the servers behind it. An API gateway adds consumer identity, quotas, plans, versions and transformations. Business decisions and object-level authorization stay in the services (9.5.6). An ingress controller, in Kubernetes or a platform with an equivalent ingress API, turns declared routes into configuration for the proxy, load balancer or API gateway that forwards the traffic; a service mesh governs east-west traffic (8.7.3), and a BFF is application code for one client (7.6.2). Keep a layer only if it has a distinct responsibility, since each hop adds latency, a failure domain and configuration. Timeouts should shorten at each inner hop, and only one layer should retry (7.4.2). State where TLS terminates and whether traffic is re-encrypted (9.4.2). Accept client-address headers such as `Forwarded` only from known proxies. Confirm that each hop supports long-lived connections where needed (6.1.9).
+**What it includes.** Table 8.13 compares the components. A layer 4 balancer distributes TCP connections or UDP flows, according to the transports it supports, without interpreting application messages; an HTTP-aware layer 7 balancer can route by host or path, and so also acts as a reverse proxy. A reverse proxy terminates client connections and can route, compress, cache and hide the servers behind it. An API gateway adds consumer identity, quotas, plans, versions and transformations. Business decisions and object-level authorization stay in the services (10.5.6). An ingress controller, in Kubernetes or a platform with an equivalent ingress API, turns declared routes into configuration for the proxy, load balancer or API gateway that forwards the traffic; a service mesh governs east-west traffic (8.7.3), and a BFF is application code for one client (7.6.2). Keep a layer only if it has a distinct responsibility, since each hop adds latency, a failure domain and configuration. Timeouts should shorten at each inner hop, and only one layer should retry (7.4.2). State where TLS terminates and whether traffic is re-encrypted (10.4.2). Accept client-address headers such as `Forwarded` only from known proxies. Confirm that each hop supports long-lived connections where needed (6.1.9).
 
 | Role | Main responsibility | Typical controls | Should not own | Choose when |
 | :--- | :--- | :--- | :--- | :--- |
@@ -499,7 +499,7 @@ Choose the connectivity and exposure model before selecting network products.
 
 ## 8.7 Container and Runtime Platforms
 
-The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; platform ownership is covered in 8.4 and release mechanics in 11.1.
+The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; platform ownership is covered in 8.4 and release mechanics in 12.1.
 
 ### 8.7.1 Runtime Limits and Isolation
 
@@ -532,7 +532,7 @@ Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at
 
 **Purpose.** It automates placement and recovery for many workloads. This automation helps only when the workloads declare what they need and tolerate being moved.
 
-**What it includes.** Each workload declares resource requests and limits, readiness and liveness checks with different meanings, a graceful shutdown that drains work, and a disruption budget that keeps enough replicas during maintenance. Spread replicas across fault domains (8.2.1). Autoscale on a signal that reflects load, and account for the time required to add nodes. Separate workloads with namespaces, quotas, network policies and workload identities, and restrict privileged containers through admission control (9.5.7). Pin images by digest from a trusted registry. Prefer provider-managed data stores for state; running a database on the cluster makes the team responsible for storage, failover and backup. Decide the number of clusters on blast radius, compliance and upgrade risk: a single large cluster is simpler and concentrates failure, while many clusters isolate failure and multiply fleet operations. Plan the upgrade cycle, because orchestrator versions go out of support on a fixed schedule, and test workloads and add-ons against each new version.
+**What it includes.** Each workload declares resource requests and limits, readiness and liveness checks with different meanings, a graceful shutdown that drains work, and a disruption budget that keeps enough replicas during maintenance. Spread replicas across fault domains (8.2.1). Autoscale on a signal that reflects load, and account for the time required to add nodes. Separate workloads with namespaces, quotas, network policies and workload identities, and restrict privileged containers through admission control (10.5.7). Pin images by digest from a trusted registry. Prefer provider-managed data stores for state; running a database on the cluster makes the team responsible for storage, failover and backup. Decide the number of clusters on blast radius, compliance and upgrade risk: a single large cluster is simpler and concentrates failure, while many clusters isolate failure and multiply fleet operations. Plan the upgrade cycle, because orchestrator versions go out of support on a fixed schedule, and test workloads and add-ons against each new version.
 
 **Why it is needed.** An orchestrator restarts a failing container, but it cannot compensate for missing health checks, unbounded resources or a workload that loses data when terminated. The evidence is declared resources and probes for each workload, a node-drain test without user impact, a tested version upgrade and a recorded rationale for the cluster topology.
 
@@ -542,7 +542,7 @@ Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at
 
 **Purpose.** It provides these controls uniformly across languages and teams. The question for the architect is whether that uniformity justifies a further distributed system to run.
 
-**What it includes.** A mesh typically provides workload identity with mutual TLS (9.2.5), authorization between services, traffic splitting for progressive delivery (11.1.2), and uniform request telemetry (10.1). Compare it with simpler alternatives: network policies give segmentation at the connection level, and a shared library or gateway may cover retries and telemetry for a small, homogeneous estate. Coordinate retries and timeouts with the application, because retries at both layers multiply load and break the deadline budget (7.4.2). Account for the added latency, the resource cost of the proxies and the upgrade path, whether the mesh places a proxy beside each workload or shares one per node. The control plane must not be needed for traffic already flowing, so test its failure. Service discovery, whether through platform DNS or a registry, lets clients find healthy instances without fixed addresses; account for record caching, which can keep traffic on instances that have gone. Adopt incrementally, starting with the workloads that need the control, and define how traffic crosses the mesh boundary.
+**What it includes.** A mesh typically provides workload identity with mutual TLS (10.2.5), authorization between services, traffic splitting for progressive delivery (12.1.2), and uniform request telemetry (11.1). Compare it with simpler alternatives: network policies give segmentation at the connection level, and a shared library or gateway may cover retries and telemetry for a small, homogeneous estate. Coordinate retries and timeouts with the application, because retries at both layers multiply load and break the deadline budget (7.4.2). Account for the added latency, the resource cost of the proxies and the upgrade path, whether the mesh places a proxy beside each workload or shares one per node. The control plane must not be needed for traffic already flowing, so test its failure. Service discovery, whether through platform DNS or a registry, lets clients find healthy instances without fixed addresses; account for record caching, which can keep traffic on instances that have gone. Adopt incrementally, starting with the workloads that need the control, and define how traffic crosses the mesh boundary.
 
 **Why it is needed.** A mesh adopted for a single feature leaves a team operating a critical data-path component without the capacity to debug it, while its absence on a large polyglot estate leaves encryption and policy inconsistent. The evidence is a list of the controls the mesh is expected to deliver, measured latency overhead, a control-plane failure test and an upgrade owner.
 
@@ -552,7 +552,7 @@ Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at
 
 **Purpose.** It makes the repository the reviewable record of what should be running, and it turns unauthorized changes into detectable drift.
 
-**What it includes.** Keep application and platform configuration declarative. Separate the repository or path that holds environment state from application source, so that promotion (11.1.4) is a reviewed change to that state. Reference secrets rather than storing them, using an external secret store or encrypted values (9.4.2). Automatic correction of manual change is the normal behavior under these principles. Alerting without correction is a limited adoption stage, or a recorded and temporary suspension during break-glass work, with an owner and a condition for returning to reconciliation. Commit break-glass changes back to the repository afterwards. Roll out through progressive stages and define rollback as restoring the previous revision, while recognizing that database changes do not roll back in the same way (11.2.2). Protect the reconciling agent, because it holds broad deployment authority. Pull-based delivery removes the need for the build system to hold cluster credentials.
+**What it includes.** Keep application and platform configuration declarative. Separate the repository or path that holds environment state from application source, so that promotion (12.1.4) is a reviewed change to that state. Reference secrets rather than storing them, using an external secret store or encrypted values (10.4.2). Automatic correction of manual change is the normal behavior under these principles. Alerting without correction is a limited adoption stage, or a recorded and temporary suspension during break-glass work, with an owner and a condition for returning to reconciliation. Commit break-glass changes back to the repository afterwards. Roll out through progressive stages and define rollback as restoring the previous revision, while recognizing that database changes do not roll back in the same way (12.2.2). Protect the reconciling agent, because it holds broad deployment authority. Pull-based delivery removes the need for the build system to hold cluster credentials.
 
 **Why it is needed.** Direct changes to a running platform leave the recorded state wrong, which makes recovery unreliable and audits speculative. The evidence is a change history linking each deployed state to a reviewed commit, a drift-detection test, a rebuild of an environment from its repository and a record of break-glass use.
 
@@ -582,7 +582,7 @@ Some workloads must run close to where data is produced because of latency, band
 
 **Purpose.** Placement responds to constraints a central design cannot meet, and it should be justified by those constraints because every additional location increases the operational surface.
 
-**What it includes.** Table 8.15 compares the tiers. Identify the driving constraint for each function: control-loop latency, the cost of moving raw data, continued operation during disconnection, or a requirement to keep data on site (9.9.5). Split responsibilities so that the edge handles local decisions and buffering, and the central platform handles fleet management, cross-site analysis and model training. State what the site can do while disconnected, how long it can stay disconnected, and how conflicting changes are reconciled when connectivity returns (7.6.4). Design for constrained and heterogeneous hardware, unattended sites and physical access by others. Treat each location as a fault domain (8.2.1). Deploy to sites with staged rollouts, and manage software and models from a central control plane with a declared state, as in 8.7.4.
+**What it includes.** Table 8.15 compares the tiers. Identify the driving constraint for each function: control-loop latency, the cost of moving raw data, continued operation during disconnection, or a requirement to keep data on site (10.9.5). Split responsibilities so that the edge handles local decisions and buffering, and the central platform handles fleet management, cross-site analysis and model training. State what the site can do while disconnected, how long it can stay disconnected, and how conflicting changes are reconciled when connectivity returns (7.6.4). Design for constrained and heterogeneous hardware, unattended sites and physical access by others. Treat each location as a fault domain (8.2.1). Deploy to sites with staged rollouts, and manage software and models from a central control plane with a declared state, as in 8.7.4.
 
 | Tier | Typical processing | Choose when | Limits |
 | :--- | :--- | :--- | :--- |
@@ -615,7 +615,7 @@ Figure 8.9 shows the flow between tiers, including the update path back to devic
 
 **Purpose.** Devices are numerous, long-lived and physically exposed, so a shared secret or an update process that cannot be recovered puts the whole fleet at risk.
 
-**What it includes.** Give each device a unique identity, preferably protected in hardware, and revoke it individually (9.2.5). Automate provisioning, and bind each device to its tenant and site at enrollment. Do not ship universal default passwords. Sign software, verify the signature on the device and use an update mechanism that keeps a known-good image and falls back after a failed boot. Roll updates out in rings with health-based stops, and allow for devices that stay offline for months. Segment device networks and allow only the required outbound paths. State the support period and what happens when it ends, then plan decommissioning to revoke credentials and erase local data. ETSI EN 303 645 sets out baseline provisions for consumer devices and NIST IR 8259 Rev. 1 describes foundational activities for manufacturers; check which obligations apply to the product and market (9.1.2). Include firmware and third-party components in the software bill of materials (9.5.6).
+**What it includes.** Give each device a unique identity, preferably protected in hardware, and revoke it individually (10.2.5). Automate provisioning, and bind each device to its tenant and site at enrollment. Do not ship universal default passwords. Sign software, verify the signature on the device and use an update mechanism that keeps a known-good image and falls back after a failed boot. Roll updates out in rings with health-based stops, and allow for devices that stay offline for months. Segment device networks and allow only the required outbound paths. State the support period and what happens when it ends, then plan decommissioning to revoke credentials and erase local data. ETSI EN 303 645 sets out baseline provisions for consumer devices and NIST IR 8259 Rev. 1 describes foundational activities for manufacturers; check which obligations apply to the product and market (10.1.2). Include firmware and third-party components in the software bill of materials (10.5.6).
 
 **Why it is needed.** A single extracted key or a defective update can affect the entire fleet, and devices in remote locations are expensive to recover by hand. The evidence is a per-device identity register, an individual revocation test, a failed-update recovery test on real hardware, a stated support period and a decommissioning record.
 

@@ -119,123 +119,123 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 8
 
-## H.9 Chapter 9: Security Architecture
+## H.9 Chapter 10: Security Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Running threat modeling once at design time and filing the result. | 9.1 |
-| Treating a valid OAuth access token as proof of user identity. | 9.2 |
-| Relying on a role check at the API gateway. | 9.3 |
-| Encrypting data and treating key custody as an implementation detail. | 9.4 |
-| Relying on an unauthenticated DAST scan as the security test. | 9.5 |
-| Prioritizing only by CVSS base score. | 9.6 |
-| Treating operational logs as an audit trail. | 9.7 |
-| Accepting a certification logo without reading its scope and period. | 9.8 |
-| Treating pseudonymized data as anonymous. | 9.9 |
-| Assuming TLS and an API gateway are sufficient. | 9.10 |
-
-: Anti-patterns from Chapter 9
-
-## H.10 Chapter 10: Observability, Reliability and SRE
-
-| Anti-pattern | Section |
-| :--- | :--- |
-| Collecting everything and controlling nothing. | 10.1 |
-| Setting the SLO equal to the SLA, or at 100%. | 10.2 |
-| Setting severity from the technical cause instead of customer impact. | 10.3 |
-| Sizing for the average and trusting autoscaling to cover the peak. | 10.4 |
-| Treating the postmortem as the end of the incident: the document is filed, the actions have no owner or date, and the team moves to the next release. | 10.5 |
+| Running threat modeling once at design time and filing the result. | 10.1 |
+| Treating a valid OAuth access token as proof of user identity. | 10.2 |
+| Relying on a role check at the API gateway. | 10.3 |
+| Encrypting data and treating key custody as an implementation detail. | 10.4 |
+| Relying on an unauthenticated DAST scan as the security test. | 10.5 |
+| Prioritizing only by CVSS base score. | 10.6 |
+| Treating operational logs as an audit trail. | 10.7 |
+| Accepting a certification logo without reading its scope and period. | 10.8 |
+| Treating pseudonymized data as anonymous. | 10.9 |
+| Assuming TLS and an API gateway are sufficient. | 10.10 |
 
 : Anti-patterns from Chapter 10
 
-## H.11 Chapter 11: Deployment and Operations
+## H.10 Chapter 11: Observability, Reliability and SRE
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Building a different artifact for each environment. | 11.1 |
-| Keeping every flag forever. | 11.2 |
-| Treating go-live as a deployment milestone. | 11.3 |
-| Using the emergency route to hit a deadline. | 11.4 |
-| Standing break-glass access. | 11.5 |
-| Assuming every release can be rolled back. | 11.6 |
+| Collecting everything and controlling nothing. | 11.1 |
+| Setting the SLO equal to the SLA, or at 100%. | 11.2 |
+| Setting severity from the technical cause instead of customer impact. | 11.3 |
+| Sizing for the average and trusting autoscaling to cover the peak. | 11.4 |
+| Treating the postmortem as the end of the incident: the document is filed, the actions have no owner or date, and the team moves to the next release. | 11.5 |
 
 : Anti-patterns from Chapter 11
 
-## H.12 Chapter 12: Architecture Documentation
+## H.11 Chapter 12: Deployment and Operations
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Documenting every view the notation allows. | 12.1 |
-| Drawing the success path and calling the dynamic view done. | 12.2 |
-| Treating documentation as a phase deliverable. | 12.3 |
+| Building a different artifact for each environment. | 12.1 |
+| Keeping every flag forever. | 12.2 |
+| Treating go-live as a deployment milestone. | 12.3 |
+| Using the emergency route to hit a deadline. | 12.4 |
+| Standing break-glass access. | 12.5 |
+| Assuming every release can be rolled back. | 12.6 |
 
 : Anti-patterns from Chapter 12
 
-## H.13 Chapter 13: Architecture Evaluation
+## H.12 Chapter 13: Architecture Documentation
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Treating a reviewed diagram or an approval meeting as validation. | 13.1 |
-| Turning the evaluation into design by committee. | 13.2 |
-| Treating the evaluation report as the end of the work. | 13.3 |
+| Documenting every view the notation allows. | 13.1 |
+| Drawing the success path and calling the dynamic view done. | 13.2 |
+| Treating documentation as a phase deliverable. | 13.3 |
 
 : Anti-patterns from Chapter 13
 
-## H.14 Chapter 14: Testing and Quality Verification
+## H.13 Chapter 14: Architecture Evaluation
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Optimizing for a coverage number instead of for evidence. | 14.1 |
-| Re-running the pipeline until it turns green. | 14.2 |
-| Testing quality attributes once, before the first launch. | 14.3 |
-| Turning test metrics into targets for teams. | 14.4 |
+| Treating a reviewed diagram or an approval meeting as validation. | 14.1 |
+| Turning the evaluation into design by committee. | 14.2 |
+| Treating the evaluation report as the end of the work. | 14.3 |
 
 : Anti-patterns from Chapter 14
 
-## H.15 Chapter 15: Architecture Evolution and Economics
+## H.14 Chapter 15: Testing and Quality Verification
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Treating a migration plan as a schedule rather than a risk-reduction sequence. | 15.1 |
-| Comparing options on the number that is easiest to obtain. | 15.2 |
-| A migration that never retires old paths is accumulation, not modernization. | 15.3 |
+| Optimizing for a coverage number instead of for evidence. | 15.1 |
+| Re-running the pipeline until it turns green. | 15.2 |
+| Testing quality attributes once, before the first launch. | 15.3 |
+| Turning test metrics into targets for teams. | 15.4 |
 
 : Anti-patterns from Chapter 15
 
-## H.16 Chapter 16: Software Engineering and Architecture Artifacts
+## H.15 Chapter 16: Architecture Evolution and Economics
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Producing every artifact for every change. | 16.1 |
-| Treating the PRD as the requirements baseline and leaving quality attributes to the architect. | 16.2 |
-| Writing the ADR after the work is done, as a summary that justifies what was built. | 16.3 |
-| Maintaining the ICD as prose while the OpenAPI file evolves independently. | 16.4 |
-| Treating approval as the end of an artifact’s life. | 16.5 |
+| Treating a migration plan as a schedule rather than a risk-reduction sequence. | 16.1 |
+| Comparing options on the number that is easiest to obtain. | 16.2 |
+| A migration that never retires old paths is accumulation, not modernization. | 16.3 |
 
 : Anti-patterns from Chapter 16
 
-## H.17 Chapter 17: Architecture Frameworks, Methods and Standards
+## H.16 Chapter 17: Software Engineering and Architecture Artifacts
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Positioning frameworks by reputation rather than by concern. | 17.1 |
-| Using an enterprise framework to document a single solution. | 17.2 |
-| Running an evaluation method as a ratification ritual. | 17.3 |
-| Citing a regulation by name in a design document without confirming applicability or the current edition. | 17.4 |
+| Producing every artifact for every change. | 17.1 |
+| Treating the PRD as the requirements baseline and leaving quality attributes to the architect. | 17.2 |
+| Writing the ADR after the work is done, as a summary that justifies what was built. | 17.3 |
+| Maintaining the ICD as prose while the OpenAPI file evolves independently. | 17.4 |
+| Treating approval as the end of an artifact’s life. | 17.5 |
 
 : Anti-patterns from Chapter 17
 
-## H.18 Chapter 18: AI and Machine Learning Architecture
+## H.17 Chapter 18: Architecture Frameworks, Methods and Standards
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Reviewing an AI design as if the model were the system. | 18.1 |
-| Starting with the most capable pattern. | 18.2 |
-| Indexing everything and filtering at answer time. | 18.3 |
-| Selecting a model from a public leaderboard or a single impressive demo. | 18.4 |
-| Treating the system prompt as the security boundary. | 18.5 |
-| Shipping prompt and index changes as configuration rather than as releases. | 18.6 |
-| Optimizing the invoice line that is easiest to see. | 18.7 |
-| Giving an agent a service account with the combined permissions of everyone it serves. | 18.8 |
+| Positioning frameworks by reputation rather than by concern. | 18.1 |
+| Using an enterprise framework to document a single solution. | 18.2 |
+| Running an evaluation method as a ratification ritual. | 18.3 |
+| Citing a regulation by name in a design document without confirming applicability or the current edition. | 18.4 |
 
 : Anti-patterns from Chapter 18
+
+## H.18 Chapter 19: AI and Machine Learning Architecture
+
+| Anti-pattern | Section |
+| :--- | :--- |
+| Reviewing an AI design as if the model were the system. | 19.1 |
+| Starting with the most capable pattern. | 19.2 |
+| Indexing everything and filtering at answer time. | 19.3 |
+| Selecting a model from a public leaderboard or a single impressive demo. | 19.4 |
+| Treating the system prompt as the security boundary. | 19.5 |
+| Shipping prompt and index changes as configuration rather than as releases. | 19.6 |
+| Optimizing the invoice line that is easiest to see. | 19.7 |
+| Giving an agent a service account with the combined permissions of everyone it serves. | 19.8 |
+
+: Anti-patterns from Chapter 19

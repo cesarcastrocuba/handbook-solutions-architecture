@@ -22,7 +22,7 @@ An effective model allocates authority according to the scope and reversibility 
 
 ![Figure 4.1 — Risk-tiered governance operating model](../../assets/diagrams/rendered/governance.png){#fig-4-1 width="100%"}
 
-Chapter 18 (18.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
+Chapter 19 (19.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
 
 ### 4.1.1 Governance Taxonomy and Translation Chain
 
@@ -59,7 +59,7 @@ Together they form a translation chain. A law, regulation or contract becomes an
 
 **Purpose.** Name the accountable security leader and the body that sets security policy, then publish the hierarchy from policy to standard to procedure so teams know which document governs a decision. State the organization's risk appetite and who may accept residual risk, because an architecture review that cannot route risk to an accountable owner becomes an advisory opinion.
 
-**What it includes.** Decide how security authority is distributed. A central model gives consistent policy and evidence but can bottleneck delivery; a federated model gives domain teams context but risks divergent interpretation. Most organizations combine a small central policy and assurance function with embedded security architects who advise product teams. Define the interfaces with architecture review (4.4), risk acceptance (4.5), audit (4.9) and supplier assurance (9.8), and record security decisions in the same ADR and exception systems as other architecture decisions.
+**What it includes.** Decide how security authority is distributed. A central model gives consistent policy and evidence but can bottleneck delivery; a federated model gives domain teams context but risks divergent interpretation. Most organizations combine a small central policy and assurance function with embedded security architects who advise product teams. Define the interfaces with architecture review (4.4), risk acceptance (4.5), audit (4.9) and supplier assurance (10.8), and record security decisions in the same ADR and exception systems as other architecture decisions.
 
 **Why it is needed.** Without a named authority, security exceptions accumulate as informal team decisions that nobody can evidence. Review the program at the interval set by contract, regulation or risk assessment, and use incidents, audit findings and control failures as inputs. The output is not a policy library but evidence that responsibilities are assigned, decisions are routed and exceptions are visible.
 
@@ -182,7 +182,7 @@ Review is only as strong as the evidence it accepts, and the table contrasts the
 
 : Claims and the evidence that substantiates them
 
-**Why it is needed.** Approval without follow-up verification is not assurance. Record unresolved questions as conditions with owners and deadlines, then verify them after deployment; a condition nobody closes is an accepted risk with no acceptor. Architecture review approves a design; it does not authorize individual production changes, which is release-time change approval (11.4).
+**Why it is needed.** Approval without follow-up verification is not assurance. Record unresolved questions as conditions with owners and deadlines, then verify them after deployment; a condition nobody closes is an accepted risk with no acceptor. Architecture review approves a design; it does not authorize individual production changes, which is release-time change approval (12.4).
 
 **Example.** For an asynchronous payment workflow, reviewers ask for the state-transition model, duplicate-delivery tests, timeout behavior, reconciliation ownership and incident response evidence. The design may be sound on the diagram; the review is only complete when the tests and the ownership record exist.
 
@@ -266,7 +266,7 @@ The table gives the minimum metadata for each object; anything that cannot fill 
 
 : Repository objects and their minimum metadata
 
-**Why it is needed.** A repository without links is a document store: searchable, rarely read and impossible to audit. A periodic sample audit finds broken links and stale owners before an auditor does, and an evidence artifact that contradicts its decision reopens the decision rather than sitting quietly beside it. Chapter 16 describes the artifact chain in full.
+**Why it is needed.** A repository without links is a document store: searchable, rarely read and impossible to audit. A periodic sample audit finds broken links and stale owners before an auditor does, and an evidence artifact that contradicts its decision reopens the decision rather than sitting quietly beside it. Chapter 17 describes the artifact chain in full.
 
 **Example.** A payment idempotency requirement links to an ADR choosing the key strategy, the API contract that defines the key, the uniqueness constraint in the data model and a test that replays a request. Following those four links answers why the constraint exists and what would break if it were removed.
 
@@ -381,12 +381,12 @@ Choose what the governance report measures.
 
 | Control | Evidence generated by the system |
 | :--- | :--- |
-| Change management | Pipeline records linking change, review, approval and deployment (11.4) |
+| Change management | Pipeline records linking change, review, approval and deployment (12.4) |
 | Access management | Identity-provider reports of access reviews and deprovisioning |
-| Vulnerability management | Scan results and remediation-time metrics (9.6) |
+| Vulnerability management | Scan results and remediation-time metrics (10.6) |
 | Backup and recovery | Restore-test reports with measured RTO and RPO (8.2) |
 | Encryption and configuration | Policy-as-code and configuration-scan results over time (4.3) |
-| Accountability | Application audit trails (9.7.2) |
+| Accountability | Application audit trails (10.7.2) |
 
 : Controls and the evidence systems generate
 

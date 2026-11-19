@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-ART
 title: Artifacts
-manuscript: chapters/ch16-software-engineering-and-architecture-artifacts.qmd
+manuscript: chapters/ch17-software-engineering-and-architecture-artifacts.qmd
 items:
 - id: SA-ART-001
   title: Artifact set proportional to risk
@@ -9,7 +9,7 @@ items:
   rationale: Producing every artifact for every change creates document theater and erodes trust in the artifacts that matter.
   applicability: All changes producing architecture artifacts.
   expected_evidence: Artifact decision recorded at the start of the work, justified by risk and cross-team impact, with unused artifacts explicitly excluded.
-  section: 16.1.2
+  section: 17.1.2
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Documents without owner, status or location drift from reality and are trusted long after they are obsolete.
   applicability: All maintained architecture artifacts.
   expected_evidence: Artifact catalog entry with owner, lifecycle status, authoritative location, review trigger and successor for superseded documents.
-  section: 16.5.3
+  section: 17.5.3
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Copying content between documents creates several versions of one fact that drift apart silently.
   applicability: All related architecture artifacts.
   expected_evidence: Identifier links between requirement, ADR, contract, test and runbook, with a sampled end-to-end trace showing no duplicated content.
-  section: 16.1.1
+  section: 17.1.1
   external_reference: ''
   risk_relevance: Low
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Contradictions between artifacts, such as a timeout exceeding the end-to-end target, are defects that reach production if unreviewed.
   applicability: Artifacts that share thresholds, contracts or decisions.
   expected_evidence: Consistency check confirming that timeouts, contracts and decisions agree across linked artifacts, with conflicts logged as defects.
-  section: 16.1.1
+  section: 17.1.1
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'

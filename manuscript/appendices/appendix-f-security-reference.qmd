@@ -1,6 +1,6 @@
 # Appendix F — Security Reference
 
-This appendix collects the detailed reference tables that support Chapter 9.
+This appendix collects the detailed reference tables that support Chapter 10.
 
 ## F.1 Authentication Methods Compared
 
@@ -152,7 +152,7 @@ The tools below are examples of each category, current as of October 2026, liste
 
 ## F.7 Common Web Vulnerabilities
 
-The table names frequent classes of web application vulnerability and the primary defense against each. It complements the OWASP resources (F.3) and does not replace a threat model (9.1.1).
+The table names frequent classes of web application vulnerability and the primary defense against each. It complements the OWASP resources (F.3) and does not replace a threat model (10.1.1).
 
 | Vulnerability | Cause | Primary defense | How to verify |
 | :--- | :--- | :--- | :--- |
