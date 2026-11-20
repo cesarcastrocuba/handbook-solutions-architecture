@@ -24,7 +24,10 @@ Model:
   suppresses the link.
 * Nothing is written unless the whole run is clean: a reference to a deleted
   target without --alias, a numbering gap, a figure id that disagrees with its
-  alt text or a range whose image is not contiguous aborts the run.
+  alt text or a range whose image leaves a hole aborts the run. A permutation
+  inside a range keeps the range valid: "Chapters 1-19" still denotes every
+  chapter after two chapters swap, so it is rewritten to the min..max of the new
+  numbers instead of failing.
 
 Two guards keep the tool honest:
 
@@ -39,8 +42,9 @@ A table has no literal number, so a run that changes only table numbering has no
 anchor for that state test; the tool refuses it instead of guessing.
 
 Generated appendices C, H, I and J belong to ``scripts/checklists.py`` and
-``scripts/generate_catalogs.py``; the tool counts them for numbering but never
-rewrites them, and prints the regeneration commands.
+``scripts/generate_catalogs.py``. They are recognised by title, not by file
+name, because the edition renames the files when letters swap; the tool counts
+them for numbering, never rewrites them and prints the regeneration commands.
 
 Usage::
 
@@ -118,12 +122,21 @@ KIND_TOKEN = {
 RANGE_SEPARATOR = re.compile(r'^\s*[–—-]\s*$')
 BARE_SECTION = re.compile(r'(?<![\w.])(\d{1,2}(?:\.\d{1,2}){1,3})(?![\w.]|\.\d)')
 NUMBER_LIST = re.compile(r'^\s*\d{1,2}(?:\s*(?:,|and|–|-|to)\s*\d{1,2})*\s*$')
-SECTIONS_RANGE = re.compile(
-    r'\bSections?\s+(\d{1,2}(?:\.\d{1,2})+)\s*[–-]\s*(\d{1,2}(?:\.\d{1,2})+)'
+BARE_RANGE = re.compile(
+    r'(?<![\w.])([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(\s*[–—-]\s*)'
+    r'([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(?![\w.]|\.\d)'
 )
+RANGE_TOKEN_WORDS = re.compile(r'\b(?:Chapters?|Sections?|Figures?|Tables?)\s*$', re.I)
 
-# appendices produced by scripts/generate_catalogs.py and scripts/checklists.py
-GENERATED_PREFIXES = ('appendix-c-', 'appendix-h-', 'appendix-i-', 'appendix-j-')
+# Appendices produced by scripts/generate_catalogs.py (anti-patterns, decisions,
+# patterns) and scripts/checklists.py (assurance checklist). They are recognised
+# by title, not by file name: the edition renames the files when letters swap.
+GENERATED_TITLES = frozenset({
+    'Architecture Assurance Checklist',
+    'Anti-Pattern Catalog',
+    'Decision Catalog',
+    'Pattern Catalog',
+})
 WORD_FOR_KIND = {
     'chapter': 'Chapter',
     'section': 'Section',
@@ -227,7 +240,7 @@ class Document:
 
     @property
     def generated(self) -> bool:
-        return Path(self.path).name.startswith(GENERATED_PREFIXES)
+        return self.group == 'appendices' and self.title in GENERATED_TITLES
 
     @property
     def title(self) -> str:
@@ -398,6 +411,7 @@ class Plan:
     base_appendices: set[str]
     working: list[Document]
     base_documents: list[Document]
+    applied: bool = False
     base_fingerprint: tuple = ()
     work_fingerprint: tuple = ()
 
@@ -420,17 +434,34 @@ class Plan:
         }[kind]
 
     def identity(self) -> 'Plan':
-        """A plan whose maps are the identity of the tree's current labels."""
-        chapters = {d.label: d.label for d in self.working
-                    if d.group == 'chapters' and d.label}
-        appendices = {d.label: d.label for d in self.working
-                      if d.group == 'appendices' and d.label}
-        sections = {h.old: h.old for d in self.working if d.numbered and not d.generated
-                    for h in d.headings if h.level > 1 and h.old}
-        figures = {f.old: f.old for d in self.working if d.numbered and not d.generated
-                   for f in d.figures}
-        tables = {t.target: t.target for d in self.working if d.numbered and not d.generated
-                  for t in d.tables}
+        """Maps that leave every current label untouched.
+
+        Both the literal and the positional label are accepted: a generated
+        appendix keeps its stale letter until it is regenerated, and an appendix
+        section such as E.0 is a literal that no position produces.
+        """
+        def identity(*values: str | None) -> dict[str, str]:
+            return {value: value for value in values if value}
+
+        chapters: dict[str, str] = {}
+        appendices: dict[str, str] = {}
+        sections: dict[str, str] = {}
+        figures: dict[str, str] = {}
+        for document in self.working:
+            if document.group == 'chapters':
+                chapters.update(identity(document.label, document.target))
+            elif document.group == 'appendices':
+                appendices.update(identity(document.label, document.target))
+            if not document.numbered or document.generated:
+                continue
+            for heading in document.headings:
+                if heading.level > 1:
+                    sections.update(identity(heading.old, heading.target))
+            for figure in document.figures:
+                figures.update(identity(figure.old, figure.target))
+        tables = {table.target: table.target for document in self.working
+                  if document.numbered and not document.generated
+                  for table in document.tables}
         return replace(self, chapters=chapters, sections=sections, figures=figures,
                        tables=tables, appendices=appendices)
 
@@ -466,6 +497,7 @@ def label_base_tables(documents: list[Document]) -> set[str]:
 def build_plan(root: Path, rev: str) -> Plan:
     base_groups, base = base_documents(root, rev)
     work_groups, work = manuscript_files(root)
+    applied = applied_numbering(base, work)
 
     base_chapters = {document.label: document for document in base
                      if document.group == 'chapters' and document.label}
@@ -548,22 +580,26 @@ def build_plan(root: Path, rev: str) -> Plan:
             tables[base_labels[index]] = table.target
             pairs.append(('table', base_labels[index], f'{document.path}:{table.line + 1}'))
 
-    problems = []
-    seen: dict[tuple[str, str], str] = {}
-    for kind, old, where in pairs:
-        key = (kind, old)
-        if key in seen:
-            problems.append(f'duplicate old {kind} number {old}: {seen[key]} and {where}')
-        seen[key] = where
-    for kind, mapping in (('chapter', chapters), ('appendix', appendices)):
-        values = list(mapping.values())
-        expected = ([str(index) for index in range(1, len(values) + 1)]
-                    if kind == 'chapter'
-                    else [chr(ord('A') + index) for index in range(len(values))])
-        if sorted(values) != sorted(expected) or len(set(values)) != len(values):
-            problems.append(f'{kind} numbering has a gap or duplicate: {values}')
-    if problems:
-        raise RenumberError('; '.join(problems))
+    # Once the literals are the targets, the map is the identity and this
+    # old-numbering bookkeeping is meaningless (and a stale generated appendix
+    # letter can collide with a fresh one). Validate only in the old state.
+    if not applied:
+        problems = []
+        seen: dict[tuple[str, str], str] = {}
+        for kind, old, where in pairs:
+            key = (kind, old)
+            if key in seen:
+                problems.append(f'duplicate old {kind} number {old}: {seen[key]} and {where}')
+            seen[key] = where
+        for kind, mapping in (('chapter', chapters), ('appendix', appendices)):
+            values = list(mapping.values())
+            expected = ([str(index) for index in range(1, len(values) + 1)]
+                        if kind == 'chapter'
+                        else [chr(ord('A') + index) for index in range(len(values))])
+            if sorted(values) != sorted(expected) or len(set(values)) != len(values):
+                problems.append(f'{kind} numbering has a gap or duplicate: {values}')
+        if problems:
+            raise RenumberError('; '.join(problems))
 
     return Plan(
         chapters=chapters,
@@ -580,12 +616,13 @@ def build_plan(root: Path, rev: str) -> Plan:
         base_appendices=set(base_appendices),
         working=work,
         base_documents=base,
+        applied=applied,
         base_fingerprint=structural_fingerprint(base_groups, base),
         work_fingerprint=structural_fingerprint(work_groups, work),
     )
 
 
-def applied_numbering(plan: Plan) -> bool:
+def applied_numbering(base: list[Document], working: list[Document]) -> bool:
     """True when the literals already carry the positional targets.
 
     Titles (not numbers) match a working document to its --base counterpart, so
@@ -593,8 +630,8 @@ def applied_numbering(plan: Plan) -> bool:
     same physical heading.
     """
     lookup = {(document.group, document.title): document
-              for document in plan.base_documents if document.numbered}
-    for document in plan.working:
+              for document in base if document.numbered}
+    for document in working:
         if not document.numbered or document.generated:
             continue
         source = lookup.get((document.group, document.title))
@@ -718,17 +755,15 @@ class Report:
     dot: list[tuple[str, int, str]] = field(default_factory=list)
 
 
-def contiguous(kind: str, first: str, second: str) -> bool:
-    """True when the second label immediately follows the first."""
+def order_key(kind: str, label: str) -> tuple[int, ...]:
+    """Sort key that compares 9 before 10 and B.9 before B.10."""
     if kind == 'appendix':
-        return len(first) == len(second) == 1 and ord(second) - ord(first) == 1
+        return (ord(label),)
     if kind == 'chapter':
-        return first.isdigit() and second.isdigit() and int(second) - int(first) == 1
-    head = first.rsplit('.', 1)
-    tail = second.rsplit('.', 1)
-    if len(head) == len(tail) == 2 and head[0] == tail[0]:
-        return int(tail[1]) - int(head[1]) == 1
-    return False
+        return (int(label),)
+    if label[0].isalpha():
+        return (ord(label[0]), *(int(part) for part in label[2:].split('.')))
+    return tuple(int(part) for part in label.split('.'))
 
 
 def expand_range(kind: str, first: str, second: str) -> list[str] | None:
@@ -797,51 +832,62 @@ class Rewriter:
         matches = list(KIND_TOKEN[kind].finditer(text))
         if not matches:
             return None
-        replacements: dict[int, tuple[int, int, str, str]] = {}
-        for index, match in enumerate(matches):
+        edits: list[tuple[int, int, str]] = []
+        index = 0
+        while index < len(matches):
+            match = matches[index]
             old = match.group(1)
-            new = self.resolve(kind, old)
-            if new is None:
+            following = matches[index + 1] if index + 1 < len(matches) else None
+            between = text[match.end(): following.start()] if following else ''
+            if following is not None and RANGE_SEPARATOR.match(between):
+                result = self.range_result(kind, old, following.group(1))
+                if result is None:
+                    return None
+                low, high = result
+                if (low, high) != (old, following.group(1)):
+                    self.record(kind, f'{old}–{following.group(1)}', f'{low}–{high}')
+                    edits.append((match.start(), following.end(), f'{low}{between}{high}'))
+                index += 2
                 continue
-            replacements[match.start(1)] = (match.start(1), match.end(1), old, new)
-            if index + 1 < len(matches):
-                between = text[match.end(): matches[index + 1].start()]
-                if RANGE_SEPARATOR.match(between):
-                    following = matches[index + 1].group(1)
-                    if not self.check_range(kind, old, following):
-                        return None
-        if not replacements:
-            return None
-        for start in sorted(replacements, reverse=True):
-            begin, end, old, new = replacements[start]
-            if old != new:
+            new = self.resolve(kind, old)
+            if new is not None and new != old:
                 self.record(kind, old, new)
-            text = text[:begin] + new + text[end:]
-        return text
+                edits.append((match.start(1), match.end(1), new))
+            index += 1
+        if not edits:
+            return None
+        return apply_edits(text, edits)
 
-    def check_range(self, kind: str, first: str, second: str) -> bool:
-        """Validate a range image; report and refuse a non-contiguous one."""
+    def range_result(self, kind: str, first: str, second: str) -> tuple[str, str] | None:
+        """The min and max of a range image, or None when the image is not contiguous.
+
+        A permutation inside a range keeps the range valid: "Chapters 1-19" still
+        denotes every chapter after chapters 18 and 19 swap, so the range is
+        rewritten to min..max of the new numbers (often unchanged). A range whose
+        image leaves a hole ("13-15" -> 5, 6, 16) is refused for manual rewrite.
+        """
         labels = expand_range(kind, first, second)
         if labels is None:
             self.failed_range(kind, first, second, 'crosses a numbering boundary')
-            return False
+            return None
         image = []
         for label in labels:
             new = self.plan.mapping(kind).get(label)
             if new is None:
                 new = self.resolve(kind, label)
             if new is None:
-                return False
+                return None
             image.append(new)
-        # A range is safe when its image is the contiguous span between its own
-        # endpoints, in any order: "Chapters 1-19" stays a whole-book range after
-        # a permutation, while "13-15" does not survive one. The endpoints are
-        # rewritten in place, so a permuted span needs no text edit.
-        span = expand_range(kind, image[0], image[-1])
-        if span and len(set(image)) == len(image) and set(image) == set(span):
-            return True
-        self.failed_range(kind, first, second, f'maps to {", ".join(image)}')
-        return False
+        if len(set(image)) != len(image):
+            self.failed_range(kind, first, second, f'maps to {", ".join(image)}')
+            return None
+        low = min(image, key=lambda value: order_key(kind, value))
+        high = max(image, key=lambda value: order_key(kind, value))
+        span = expand_range(kind, low, high)
+        if span is None or set(span) != set(image):
+            self.failed_range(kind, first, second, f'maps to {", ".join(image)}')
+            return None
+        return low, high
 
     def failed_range(self, kind: str, first: str, second: str, reason: str) -> None:
         phrase = f'{first}–{second}'
@@ -856,18 +902,41 @@ class Rewriter:
 
     # -- toolkit reference matches ---------------------------------------- #
 
-    def sections_range_check(self, line: str) -> None:
-        for match in SECTIONS_RANGE.finditer(line):
-            first, second = match.group(1), match.group(2)
-            if first not in self.plan.sections and second not in self.plan.sections:
+    def bare_range_edits(self, text: str) -> list[tuple[int, int, str]]:
+        """Ranges written without the toolkit's word, such as "(14.1-14.3)"."""
+        edits = []
+        for match in BARE_RANGE.finditer(text):
+            first, separator, second = match.group(1), match.group(2), match.group(3)
+            if RANGE_TOKEN_WORDS.search(text[max(0, match.start() - 20):match.start()]):
+                continue  # Chapters/Figures/Sections/Tables tokens span their range
+            if first not in self.plan.sections or second not in self.plan.sections:
                 continue
-            self.check_range('section', first, second)
+            if expand_range('section', first, second) is None:
+                # A range that jumps levels ("4.1.1-4.4") has no sibling span to
+                # verify; the endpoints are rewritten on their own. Warn only when
+                # one of them actually moves, so an untouched range stays quiet.
+                mapping = self.plan.mapping('section')
+                if mapping.get(first, first) != first or mapping.get(second, second) != second:
+                    self.report.manual.append(
+                        (self.path, self.line + 1,
+                         f'{first}–{second} crosses section levels; endpoints rewritten, '
+                         'verify the wording'))
+                continue
+            result = self.range_result('section', first, second)
+            if result is None:
+                continue
+            low, high = result
+            if (low, high) != (first, second):
+                self.record('section', f'{first}–{second}', f'{low}–{high}')
+                edits.append((match.start(), match.end(), f'{low}{separator}{high}'))
+        return edits
 
     def inline_edits(self, text: str, blocked: tuple[tuple[int, int], ...] = (),
                      reference_cell: bool = False) -> list[tuple[int, int, str]]:
-        self.sections_range_check(text)
-        protected = _protected_spans(text) + list(blocked)
-        edits = []
+        ranges = self.bare_range_edits(text)
+        protected = (_protected_spans(text) + list(blocked)
+                     + [(start, end) for start, end, _ in ranges])
+        edits = list(ranges)
         for match in REFERENCE.finditer(text):
             if any(start < match.end() and match.start() < end for start, end in protected):
                 continue
@@ -1029,6 +1098,10 @@ def suspicious_tokens(text: str, covered: list[tuple[int, int]], rewriter: Rewri
 
 def rewrite_document(document: Document, rewriter: Rewriter) -> str:
     rewriter.path = document.path
+    if document.generated:
+        # Regenerated from the chapters by scripts/generate_catalogs.py or
+        # scripts/checklists.py; the tool prints those commands instead.
+        return document.text
     visible = _visible(document.text)
     lines = document.text.split('\n')
     headings = {heading.line: heading for heading in document.headings}
@@ -1210,7 +1283,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         plan = build_plan(root, args.base)
         aliases = build_aliases(plan, args.alias)
-        applied = applied_numbering(plan)
+        applied = plan.applied
     except RenumberError as exc:
         print(f'renumber: {exc}', file=sys.stderr)
         return 1

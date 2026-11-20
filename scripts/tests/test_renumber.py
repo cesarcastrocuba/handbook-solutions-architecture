@@ -317,17 +317,22 @@ class RenumberTest(unittest.TestCase):
     # -- non-contiguous ranges abort the run ---------------------------------- #
 
     def test_non_contiguous_range_fails(self) -> None:
+        names = ('alpha', 'beta', 'gamma', 'delta', 'epsilon')
         files = {
-            'chapters/ch01-alpha.qmd': chapter(1, 'Alpha', 'Chapters 1–3 cover the process.\n'),
-            'chapters/ch02-beta.qmd': chapter(2, 'Beta', '## 2.1 Body\n\nText.\n'),
-            'chapters/ch03-gamma.qmd': chapter(3, 'Gamma', '## 3.1 Body\n\nText.\n'),
+            f'chapters/ch0{index}-{name}.qmd': chapter(
+                index, name.title(), 'Chapters 1–3 cover the process.\n' if index == 1 else '')
+            for index, name in enumerate(names, 1)
         }
-        order = {'chapters': [f'chapters/ch0{i}-{n}.qmd'
-                              for i, n in ((1, 'alpha'), (2, 'beta'), (3, 'gamma'))]}
+        order = {'chapters': [f'chapters/ch0{i}-{n}.qmd' for i, n in enumerate(names, 1)]}
         self.start(order, files)
+        # 3 lands after 5, so chapters 1-3 map to 1, 2 and 4: a hole at 3.
         self.book.write('manuscript/book.yml',
-                        'chapters:\n  - chapters/ch01-alpha.qmd\n'
-                        '  - chapters/ch03-gamma.qmd\n  - chapters/ch02-beta.qmd\n')
+                        'chapters:\n'
+                        '  - chapters/ch01-alpha.qmd\n'
+                        '  - chapters/ch02-beta.qmd\n'
+                        '  - chapters/ch05-epsilon.qmd\n'
+                        '  - chapters/ch03-gamma.qmd\n'
+                        '  - chapters/ch04-delta.qmd\n')
         before = {name: self.book.read(f'manuscript/{name}') for name in files}
 
         result = self.book.run('--apply')
@@ -336,6 +341,136 @@ class RenumberTest(unittest.TestCase):
         self.assertIn('MANUAL REWRITE: 1', result.stdout)
         for name, text in before.items():
             self.assertEqual(self.book.read(f'manuscript/{name}'), text)
+
+    # -- ranges --------------------------------------------------------------- #
+
+    def test_range_with_same_set_is_rewritten(self) -> None:
+        names = ('alpha', 'beta', 'gamma', 'delta')
+        files = {
+            f'chapters/ch0{index}-{name}.qmd': chapter(
+                index, name.title(),
+                'Chapters 2–4 cover the domains; Chapters 1–4 cover the process.\n'
+                if index == 1 else '')
+            for index, name in enumerate(names, 1)
+        }
+        order = {'chapters': [f'chapters/ch0{i}-{n}.qmd' for i, n in enumerate(names, 1)]}
+        self.start(order, files)
+        # 2->1, 3->2, 4->3, 1->4: the range 2-4 still denotes a contiguous set,
+        # so it becomes 1-3 instead of failing; 1-4 stays 1-4.
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n'
+                        '  - chapters/ch02-beta.qmd\n'
+                        '  - chapters/ch03-gamma.qmd\n'
+                        '  - chapters/ch04-delta.qmd\n'
+                        '  - chapters/ch01-alpha.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('Chapters 1–3 cover the domains', text)
+        self.assertIn('Chapters 1–4 cover the process', text)
+        self.assertIn('MANUAL REWRITE: 0', result.stdout)
+
+    def test_non_contiguous_range_is_refused(self) -> None:
+        names = ('alpha', 'beta', 'gamma', 'delta', 'epsilon')
+        files = {
+            f'chapters/ch0{index}-{name}.qmd': chapter(
+                index, name.title(), 'Chapters 1–3 cover the process.\n' if index == 1 else '')
+            for index, name in enumerate(names, 1)
+        }
+        order = {'chapters': [f'chapters/ch0{i}-{n}.qmd' for i, n in enumerate(names, 1)]}
+        self.start(order, files)
+        # order 1,2,5,3,4 maps 1->1, 2->2 and 3->4: the range image has a hole at 3.
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n'
+                        '  - chapters/ch01-alpha.qmd\n'
+                        '  - chapters/ch02-beta.qmd\n'
+                        '  - chapters/ch05-epsilon.qmd\n'
+                        '  - chapters/ch03-gamma.qmd\n'
+                        '  - chapters/ch04-delta.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('not contiguous', result.stderr)
+        self.assertIn('MANUAL REWRITE: 1', result.stdout)
+
+    def test_cross_level_range_is_not_fatal(self) -> None:
+        files = {
+            'chapters/ch01-alpha.qmd': chapter(
+                1, 'Alpha', '## 1.1 Body\n\n### 1.1.1 Detail\n\n## 1.4 Tail\n\n'
+                            'Covered from 1.1.1–1.4 in one pass.\n'),
+            'chapters/ch02-beta.qmd': chapter(2, 'Beta', '## 2.1 Body\n\nText.\n'),
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd', 'chapters/ch02-beta.qmd']}
+        self.start(order, files)
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch02-beta.qmd\n  - chapters/ch01-alpha.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('crosses section levels', result.stdout)
+
+    # -- appendix letters and generated files --------------------------------- #
+
+    def test_appendix_table_follows_letter_after_rename(self) -> None:
+        glossary = (
+            '# Appendix A — Glossary\n\nTable A.1 lists the terms.\n\n'
+            '| Term | Meaning |\n| :--- | :--- |\n| x | y |\n\n: Glossary of terms\n'
+        )
+        addendum = (
+            '# Appendix B — Addendum\n\n'
+            '| Key | Value |\n| :--- | :--- |\n| a | b |\n\n: Addendum table\n'
+        )
+        files = {
+            'chapters/ch01-alpha.qmd': chapter(1, 'Alpha', 'Table A.1 describes the terms.\n'),
+            'appendices/appendix-a-glossary.qmd': glossary,
+            'appendices/appendix-b-addendum.qmd': addendum,
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd'],
+                 'appendices': ['appendices/appendix-a-glossary.qmd',
+                                'appendices/appendix-b-addendum.qmd']}
+        self.start(order, files)
+        # The glossary moves to the last appendix and its file is renamed; the
+        # name must not decide that the file is generated, and the table number
+        # must follow the letter map, not the path.
+        self.book.write('manuscript/appendices/appendix-j-glossary.qmd',
+                        glossary.replace('# Appendix A — Glossary', '# Appendix A — Glossary'))
+        (self.book.root / 'manuscript' / 'appendices' / 'appendix-a-glossary.qmd').unlink()
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch01-alpha.qmd\n'
+                        'appendices:\n  - appendices/appendix-b-addendum.qmd\n'
+                        '  - appendices/appendix-j-glossary.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        glossary_text = self.book.read('manuscript/appendices/appendix-j-glossary.qmd')
+        self.assertTrue(glossary_text.startswith('# Appendix B — Glossary'))
+        self.assertIn('Table B.1 lists the terms.', glossary_text)
+        alpha = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('Table B.1 describes the terms.', alpha)
+        self.assertTrue(self.book.read('manuscript/appendices/appendix-b-addendum.qmd')
+                        .startswith('# Appendix A — Addendum'))
+
+    def test_generated_appendix_is_not_rewritten(self) -> None:
+        catalog = (
+            '# Appendix A — Pattern Catalog\n\n## A.1 Integration and Messaging\n\n'
+            '| Pattern | Section |\n| :--- | :--- |\n| Request/response | 2.1 |\n\n'
+            ': Generated pattern index\n'
+        )
+        files = {
+            'chapters/ch01-alpha.qmd': chapter(1, 'Alpha', '## 1.1 Body\n\nText.\n'),
+            'appendices/appendix-a-pattern-catalog.qmd': catalog,
+            'appendices/appendix-b-notes.qmd': '# Appendix B — Notes\n\n## B.1 Body\n\nText.\n',
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd'],
+                 'appendices': ['appendices/appendix-a-pattern-catalog.qmd',
+                                'appendices/appendix-b-notes.qmd']}
+        self.start(order, files)
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch01-alpha.qmd\n'
+                        'appendices:\n  - appendices/appendix-b-notes.qmd\n'
+                        '  - appendices/appendix-a-pattern-catalog.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('REGENERATE:', result.stdout)
+        text = self.book.read('manuscript/appendices/appendix-a-pattern-catalog.qmd')
+        self.assertEqual(text, catalog)
 
     # -- YAML sources --------------------------------------------------------- #
 
@@ -422,12 +557,20 @@ class RenumberTest(unittest.TestCase):
 
 
 class HelperTest(unittest.TestCase):
-    def test_contiguous(self) -> None:
-        self.assertTrue(renumber.contiguous('chapter', '5', '6'))
-        self.assertFalse(renumber.contiguous('chapter', '5', '7'))
-        self.assertTrue(renumber.contiguous('section', '4.9', '4.10'))
-        self.assertTrue(renumber.contiguous('appendix', 'G', 'H'))
-        self.assertFalse(renumber.contiguous('appendix', 'G', 'J'))
+    def test_order_key(self) -> None:
+        self.assertLess(renumber.order_key('chapter', '9'), renumber.order_key('chapter', '10'))
+        self.assertLess(renumber.order_key('section', '4.9'), renumber.order_key('section', '4.10'))
+        self.assertLess(renumber.order_key('section', 'B.9'), renumber.order_key('section', 'B.10'))
+        self.assertLess(renumber.order_key('appendix', 'G'), renumber.order_key('appendix', 'J'))
+
+    def test_expand_range(self) -> None:
+        self.assertEqual(renumber.expand_range('chapter', '5', '7'), ['5', '6', '7'])
+        self.assertEqual(renumber.expand_range('section', '4.9', '4.11'),
+                         ['4.9', '4.10', '4.11'])
+        self.assertEqual(renumber.expand_range('appendix', 'G', 'J'),
+                         ['G', 'H', 'I', 'J'])
+        self.assertIsNone(renumber.expand_range('section', '4.1.1', '4.4'))
+        self.assertIsNone(renumber.expand_range('chapter', '7', '5'))
 
     def test_split_kind(self) -> None:
         self.assertEqual(renumber.split_kind('figure:8.4'), ('figure', '8.4'))
