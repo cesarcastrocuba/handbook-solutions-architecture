@@ -43,7 +43,7 @@ Three groups of readers use the handbook, and each needs a different route throu
 
 | Profile | What they use the handbook for | Start with |
 | :--- | :--- | :--- |
-| Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–4, then 5, 6 and 16; Appendix C |
+| Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–6, then 16; Appendix C |
 | Enterprise architect | The principles, standards and governance a solution must respect, and the decisions that feed the portfolio | 2, 4, 19 |
 | Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 10, 16 |
 | Data architect | Data ownership, flows, retention and quality across the solution | 8 |
@@ -54,7 +54,7 @@ Three groups of readers use the handbook, and each needs a different route throu
 | Principal or staff engineer | Reviewing and steering designs across teams, and settling trade-offs with evidence | 3, 4, 6 |
 | Senior engineer moving into architecture | The full method in order, then the domain chapter they work in | 1–4, then the relevant domain chapter |
 | Developer | The requirements, contracts and tests that touch their code | 1.3, 9.2, 16.1 |
-| Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 11, 14; Appendix C |
+| Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 6, 14; Appendix C |
 
 : The handbook as a reference for each role and reader
 

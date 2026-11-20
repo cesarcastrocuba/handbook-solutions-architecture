@@ -36,6 +36,10 @@ Model:
   chapter after two chapters swap, so it is rewritten to the min..max of the new
   numbers instead of failing.
 
+Known limitation: a table cell that mixes a bare chapter list with other text
+(for example ``4, 11, 14; Appendix C``) is neither rewritten nor reported,
+because the bare-cell pass accepts only a pure list. Review those cells by hand.
+
 Two guards keep the tool honest:
 
 * If the working tree has the same structure as --base, old and new numbering
