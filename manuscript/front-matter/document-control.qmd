@@ -5,7 +5,7 @@
 | Title | Solutions Architecture Handbook |
 | Author | Franz César Castro Cuba |
 | Approver and maintainer | Franz César Castro Cuba |
-| Version | 4.0 |
+| Version | 5.0 |
 | Status | Released |
 | Date | November 2026 |
 | Language | English |
@@ -42,6 +42,7 @@
 | 3.1 | November 2026 | Final release of the RC1 content, approved by the author and maintainer |
 | 3.1.1 | November 2026 | Web edition: figures blend with the page in the light theme and read as light lines in the dark theme, and switching themes no longer moves the page; no content change |
 | 4.0 | November 2026 | Chapter 12 Platform Architecture added (platform types, platform as a product, responsibility model, reference architecture, capability contracts, tenancy and isolation, guardrails, reliability, measures, economics and capability lifecycle, sourcing, anti-patterns, worked example), and the chapters that followed it renumbered (now Chapters 5, 6, 7, 13, 14, 15, 16, 17, 18 and 19); platform capability contract schema (B.12), platform review checklist, assurance checklist item, glossary, references and pattern catalog extended; a sentence now separates each table from the figure or table after it (Chapters 12 and 7) |
+| 5.0 | November 2026 | Table of contents reordered: Architecture Documentation, Architecture Evaluation and the artifacts chapter, now *Architecture and Engineering Artifacts*, follow Governance as Chapters 5–7, the technical domains become Chapters 8–15, and AI and Machine Learning Architecture (Chapter 18) precedes the frameworks, methods and standards reference (Chapter 19); quality attribute scenarios follow quality attribute requirements (1.3); Privacy by Design follows Security by Design (2.8), and the two accountability principles are merged (2.14); platform engineering moves from the infrastructure chapter into Chapter 12, and Chapter 11 places network and runtime decisions after its foundations and the well-architected frameworks last; the worked example 9.7 and section 16.3 are retitled; the pattern catalog becomes Appendix G and the glossary Appendix J; Appendix B is ordered by artifact group and Appendix E numbered from E.1; References follow the chapter order |
 
 Section and chapter numbers in this history follow the current numbering, so each reference leads to the content it describes.
 
