@@ -46,7 +46,7 @@ Before a platform is designed, it needs a definition that separates it from othe
 
 **Purpose.** Naming the type keeps each platform focused on one class of consumer need and makes overlaps between platforms visible before two teams build the same capability.
 
-**What it includes.** Table 9.2 lists the common types and where this handbook treats their specific design. Most organizations start with a delivery and runtime platform, because every team builds, deploys and operates software, and add data, integration or AI platforms when demand for them becomes broad. All types stand on the same foundation: the landing zone, identity and network decisions of 8.1. Figure 9.1 shows the types as consumers of that foundation and as providers to the solutions above them. Scope grows by demand: the thinnest viable platform (Skelton and Pais, 2019) — sometimes only documented conventions and templates — is the starting point, and a capability is added when several teams need it and the platform can offer it faster than they can build it.
+**What it includes.** Table 9.2 lists the common types and where this handbook treats their specific design. Most organizations start with a delivery and runtime platform, because every team builds, deploys and operates software, and add data, integration or AI platforms when demand for them becomes broad. All types stand on the same foundation: the landing zone, identity and network decisions of 8.1. Scope grows by demand: the thinnest viable platform (Skelton and Pais, 2019) — sometimes only documented conventions and templates — is the starting point, and a capability is added when several teams need it and the platform can offer it faster than they can build it.
 
 | Type | Typical capabilities | Where the specific design is covered |
 | :--- | :--- | :--- |
@@ -57,6 +57,8 @@ Before a platform is designed, it needs a definition that separates it from othe
 | AI | Model access, retrieval, evaluation, guardrails, cost controls | 19.4 |
 
 : Platform types and where their design is covered
+
+Figure 9.1 shows the types as consumers of the shared foundation and as providers to the solutions above them: each type is a separate scope decision, while the landing zone, identity, network and policy beneath them are shared.
 
 ![Figure 9.1 — Platform types on a shared foundation](../../assets/diagrams/rendered/platform-types.png){#fig-9-1 width="100%"}
 
@@ -98,7 +100,7 @@ A platform succeeds when teams choose it because it is the easiest correct way t
 
 **Purpose.** Product practice keeps the platform aligned with the work its users actually do, rather than with the technology its builders find interesting. It also gives the platform a way to decide what not to build.
 
-**What it includes.** Identify the user groups — product engineers, data engineers, operators, security reviewers — and map their journeys, such as creating a service, adding a data store or responding to an incident. Measure where those journeys lose time or introduce risk, and state the value of each capability in those terms. Table 9.3 relates the product practices to their platform form and to the evidence each produces. A product owner prioritizes the roadmap from user demand, risk reduction and cost, publishes it, and records the requests that were declined and why. Figure 9.2 shows the loop from discovery to measured adoption.
+**What it includes.** Identify the user groups — product engineers, data engineers, operators, security reviewers — and map their journeys, such as creating a service, adding a data store or responding to an incident. Measure where those journeys lose time or introduce risk, and state the value of each capability in those terms. Table 9.3 relates the product practices to their platform form and to the evidence each produces. A product owner prioritizes the roadmap from user demand, risk reduction and cost, publishes it, and records the requests that were declined and why.
 
 | Product practice | Platform form | Evidence |
 | :--- | :--- | :--- |
@@ -109,6 +111,8 @@ A platform succeeds when teams choose it because it is the easiest correct way t
 | Feedback | Surveys, support analysis and office hours | Trend of satisfaction and top support themes |
 
 : Product practices applied to a platform
+
+Figure 9.2 shows the loop from discovery to measured adoption, in which declined requests and adoption measures feed the next round of prioritization instead of ending in a backlog.
 
 ![Figure 9.2 — The platform product loop](../../assets/diagrams/rendered/platform-product-loop.png){#fig-9-2 width="100%"}
 
@@ -150,7 +154,7 @@ A platform moves work from many teams to one. The architecture must state which 
 
 **Purpose.** The model does for an internal platform what the shared responsibility model does for a cloud provider (8.1.4): it shows each consuming team what it inherits and what it still has to design, operate and prove.
 
-**What it includes.** For each capability, state who owns availability, patching and upgrades, baseline security controls, backup and restore, capacity, cost, incident response and the evidence an auditor will ask for. Table 9.4 gives a typical split for a runtime capability. The platform team owns the capability and its baseline; the workload team owns everything specific to its solution, including authorization, data classification, application configuration, its own service levels and the decision to accept a platform default. Figure 9.3 places the boundary between the two layers. Publish the model in the capability contract (9.5.2), and review it whenever a capability changes what it provides.
+**What it includes.** For each capability, state who owns availability, patching and upgrades, baseline security controls, backup and restore, capacity, cost, incident response and the evidence an auditor will ask for. Table 9.4 gives a typical split for a runtime capability. The platform team owns the capability and its baseline; the workload team owns everything specific to its solution, including authorization, data classification, application configuration, its own service levels and the decision to accept a platform default. Publish the model in the capability contract (9.5.2), and review it whenever a capability changes what it provides.
 
 | Concern | Platform team | Workload team |
 | :--- | :--- | :--- |
@@ -162,6 +166,8 @@ A platform moves work from many teams to one. The architecture must state which 
 | Incident response | Platform incidents and their communication | Application incidents and their communication |
 
 : Typical responsibility split for a runtime capability
+
+Figure 9.3 places the boundary between the two layers: the capability contract sits on the line, and every responsibility above it stays with the workload team even when the platform supplies a default.
 
 ![Figure 9.3 — The responsibility boundary between platform and workload](../../assets/diagrams/rendered/platform-responsibility.png){#fig-9-3 width="100%"}
 
@@ -203,7 +209,7 @@ A reference architecture names the parts every internal platform has, whatever p
 
 **Purpose.** The planes give the platform a structure that survives product changes. A team can replace its portal or its pipeline engine without redesigning the platform, and a reviewer can check that each plane has an owner and an interface.
 
-**What it includes.** Table 9.5 describes each plane. The developer interface plane is where consumers state what they need: a portal, a command line, an API or a declarative file in their repository. The orchestration plane turns those requests into configured resources and records what exists and who owns it. The delivery, resource, security and observability planes provide the capabilities themselves, mostly by composing provider services. Figure 9.4 shows the planes and the path of one request through them. The CNCF Platforms White Paper (2023) describes a comparable set of capability areas; use any such model as a checklist, not as a mandate to build every capability.
+**What it includes.** Table 9.5 describes each plane. The developer interface plane is where consumers state what they need: a portal, a command line, an API or a declarative file in their repository. The orchestration plane turns those requests into configured resources and records what exists and who owns it. The delivery, resource, security and observability planes provide the capabilities themselves, mostly by composing provider services. The CNCF Platforms White Paper (2023) describes a comparable set of capability areas; use any such model as a checklist, not as a mandate to build every capability.
 
 | Plane | Responsibility | Typical capabilities |
 | :--- | :--- | :--- |
@@ -215,6 +221,8 @@ A reference architecture names the parts every internal platform has, whatever p
 | Observability | Signals about workloads and about the platform itself | Telemetry collection, dashboards, alerting, cost reporting |
 
 : Planes of an internal platform
+
+Figure 9.4 shows the planes and the path of one request through them, from the developer interface through orchestration to the capability planes that provide the resources.
 
 ![Figure 9.4 — Reference architecture of an internal platform](../../assets/diagrams/rendered/platform-reference-architecture.png){#fig-9-4 width="100%"}
 
@@ -266,7 +274,7 @@ The interface is what consumers depend on. Like any interface between teams (17.
 
 **Purpose.** The style decides how platform requests fit into delivery: whether they are reviewed and versioned like code, or performed by hand. The abstraction level decides how much each consumer must know and how much freedom it keeps.
 
-**What it includes.** Table 9.6 compares the styles. Declarative specifications kept in the component's repository suit most capabilities, because they are reviewed, versioned and reconciled like the rest of the system (8.7.4); a portal and a command line are convenient entry points onto the same API. On abstraction, choose between provider resources exposed with guardrails, composed building blocks such as "a database with backups and monitoring", and application-level abstractions such as "a web service with a database". Figure 9.5 shows the range. Higher abstractions reduce cognitive load (4.10.3) but leak when a requirement falls outside them, so provide an escape hatch: a documented way to use the layer below, with the responsibilities that move to the consumer when it is used.
+**What it includes.** Table 9.6 compares the styles. Declarative specifications kept in the component's repository suit most capabilities, because they are reviewed, versioned and reconciled like the rest of the system (8.7.4); a portal and a command line are convenient entry points onto the same API. On abstraction, choose between provider resources exposed with guardrails, composed building blocks such as "a database with backups and monitoring", and application-level abstractions such as "a web service with a database". Higher abstractions reduce cognitive load (4.10.3) but leak when a requirement falls outside them, so provide an escape hatch: a documented way to use the layer below, with the responsibilities that move to the consumer when it is used.
 
 | Style | Suits | Strength | Limitation |
 | :--- | :--- | :--- | :--- |
@@ -276,6 +284,8 @@ The interface is what consumers depend on. Like any interface between teams (17.
 | Declarative specification in the repository | Components whose configuration should be reviewed and versioned | Reviewed, versioned and reconciled with the code | Needs a reconciliation engine and good error reporting |
 
 : Platform interface styles compared
+
+Figure 9.5 shows the range, from provider resources with guardrails to application-level abstractions, and the escape hatch that moves the stated responsibilities to the team that uses a lower layer.
 
 ![Figure 9.5 — Abstraction levels of a platform interface](../../assets/diagrams/rendered/platform-abstraction-levels.png){#fig-9-5 width="100%"}
 
@@ -327,7 +337,7 @@ The teams and workloads that share a platform are its tenants. Their isolation i
 
 **Purpose.** The model decides the blast radius of a failure, a compromise or a mistake, and whether a regulated workload can share infrastructure with others at all. It also drives a large part of the platform's cost.
 
-**What it includes.** Table 9.7 compares the models across the dimensions that matter: compute, network, identity, data, the control plane and cost visibility. Separate production from non-production environments in every model (10.4.3). Choose the model per risk class rather than once for the whole platform: most workloads can share a runtime with namespace isolation and network policy, while a workload with a regulatory scope, such as card data, or with a materially different trust level gets a dedicated runtime or account. Figure 9.6 shows a mixed arrangement. Account and subscription boundaries come from the landing zone design (8.1.1), and the runtime limits from 8.7.1.
+**What it includes.** Table 9.7 compares the models across the dimensions that matter: compute, network, identity, data, the control plane and cost visibility. Separate production from non-production environments in every model (10.4.3). Choose the model per risk class rather than once for the whole platform: most workloads can share a runtime with namespace isolation and network policy, while a workload with a regulatory scope, such as card data, or with a materially different trust level gets a dedicated runtime or account. Account and subscription boundaries come from the landing zone design (8.1.1), and the runtime limits from 8.7.1.
 
 | Model | Isolation provided | Shared with other tenants | Typical use |
 | :--- | :--- | :--- | :--- |
@@ -336,6 +346,8 @@ The teams and workloads that share a platform are its tenants. Their isolation i
 | Dedicated account or subscription | Separate identity, billing and policy boundary | Only the organization's foundation | Regulated scopes, separate legal entities or high-risk workloads |
 
 : Platform isolation models compared
+
+Figure 9.6 shows a mixed arrangement for the reference checkout: namespaces on a shared production runtime for most services, a separate runtime for non-production environments and a dedicated account for the card-data scope.
 
 ![Figure 9.6 — Mixed isolation models on one platform](../../assets/diagrams/rendered/platform-isolation.png){#fig-9-6 width="100%"}
 
@@ -377,7 +389,7 @@ A platform is the most effective place to enforce standards, because one control
 
 **Purpose.** Executable policy applies the same rule to every workload, at the moment of change, and produces evidence as a side effect. It replaces review checklists for the rules a machine can check, and leaves people to review what it cannot.
 
-**What it includes.** Classify each control by when it acts. Preventive controls stop a non-compliant change: in the template, in the pipeline or at admission into the runtime. Detective controls find drift and non-compliance in running resources. Corrective controls repair a known deviation automatically. Table 9.8 compares them. Give each policy an owner, a rationale, tests with compliant and non-compliant examples, a version history and a stated mode — warn first, then enforce. Report policy results to the owning team in the pipeline and in the catalog (9.4.2), and keep them as audit evidence. Figure 9.7 shows how a policy moves from proposal to enforcement, in the same lifecycle as other guardrails (4.3).
+**What it includes.** Classify each control by when it acts. Preventive controls stop a non-compliant change: in the template, in the pipeline or at admission into the runtime. Detective controls find drift and non-compliance in running resources. Corrective controls repair a known deviation automatically. Table 9.8 compares them. Give each policy an owner, a rationale, tests with compliant and non-compliant examples, a version history and a stated mode — warn first, then enforce. Report policy results to the owning team in the pipeline and in the catalog (9.4.2), and keep them as audit evidence.
 
 | Control type | Acts | Example | Evidence produced |
 | :--- | :--- | :--- | :--- |
@@ -388,6 +400,8 @@ A platform is the most effective place to enforce standards, because one control
 | Corrective | After detection, automatically | Missing retention tag restored | Remediation log |
 
 : Policy control types and their evidence
+
+Figure 9.7 shows how a policy moves from proposal to enforcement, in the same lifecycle as other guardrails (4.3): it is tested, runs in warn mode, is enforced and is reviewed, with each exception recorded in a register.
 
 ![Figure 9.7 — Lifecycle of a platform policy](../../assets/diagrams/rendered/platform-policy-lifecycle.png){#fig-9-7 width="100%"}
 
@@ -439,7 +453,7 @@ Every solution on the platform inherits its reliability. The platform therefore 
 
 **Purpose.** Consumers need these objectives to set their own. A solution with a 99.9% objective cannot be designed on a runtime whose objective is unknown, and a platform without objectives cannot tell whether an incident or a slow quarter matters.
 
-**What it includes.** Define service level indicators and objectives for each capability (11.2.1), as Table 9.9 illustrates. Separate the control plane, which creates and changes resources, from the data plane, which serves running workloads: design so that running workloads continue when the control plane is unavailable, a property sometimes called static stability. Map the platform's own dependencies — identity provider, provider control planes, registries, DNS — and show which capability each one can stop. Figure 9.8 shows the separation. Publish the objectives in each capability contract (9.5.2), alert on their error budgets (11.2.2) and report them to consumers.
+**What it includes.** Define service level indicators and objectives for each capability (11.2.1), as Table 9.9 illustrates. Separate the control plane, which creates and changes resources, from the data plane, which serves running workloads: design so that running workloads continue when the control plane is unavailable, a property sometimes called static stability. Map the platform's own dependencies — identity provider, provider control planes, registries, DNS — and show which capability each one can stop. Publish the objectives in each capability contract (9.5.2), alert on their error budgets (11.2.2) and report them to consumers.
 
 | Capability | Indicator | Example objective |
 | :--- | :--- | :--- |
@@ -450,6 +464,8 @@ Every solution on the platform inherits its reliability. The platform therefore 
 | Support | Time to first response for platform incidents | 15 minutes, at all hours |
 
 : Example platform service level objectives
+
+Figure 9.8 shows the separation: when the control plane is unavailable, no new changes are applied, but workloads in the data plane keep serving with their cached configuration and credentials.
 
 ![Figure 9.8 — Control plane and data plane of a platform](../../assets/diagrams/rendered/platform-planes-failure.png){#fig-9-8 width="100%"}
 
@@ -501,7 +517,7 @@ Measures show whether the platform makes delivery faster and safer than the alte
 
 **Purpose.** For voluntary capabilities, adoption is the clearest evidence of value; for every capability, the time to complete a common task and the users' judgment show where the platform helps and where it adds friction.
 
-**What it includes.** Table 9.10 lists useful measures. Track adoption per capability and per team, the time for a new service to reach production, the time for a new engineer to make a first production change and the share of requests completed through self-service. Survey users periodically about each capability, and combine the results with the cognitive load review of 4.10.3 and the dimensions of the SPACE framework (Forsgren et al., 2021). Figure 9.9 groups the measures by what they show. Report trends rather than single values, and segment by team, because averages hide the teams for which the platform does not work.
+**What it includes.** Table 9.10 lists useful measures. Track adoption per capability and per team, the time for a new service to reach production, the time for a new engineer to make a first production change and the share of requests completed through self-service. Survey users periodically about each capability, and combine the results with the cognitive load review of 4.10.3 and the dimensions of the SPACE framework (Forsgren et al., 2021). Report trends rather than single values, and segment by team, because averages hide the teams for which the platform does not work.
 
 | Measure | What it shows | Caution |
 | :--- | :--- | :--- |
@@ -512,6 +528,8 @@ Measures show whether the platform makes delivery faster and safer than the alte
 | User satisfaction per capability | Perceived value and friction | Small samples; combine with behavior |
 
 : Platform adoption and experience measures
+
+Figure 9.9 groups the measures by what they show — adoption and experience, delivery outcomes, and risk and cost — and links them to the roadmap and funding decisions they inform.
 
 ![Figure 9.9 — Platform measures grouped by what they show](../../assets/diagrams/rendered/platform-measures.png){#fig-9-9 width="100%"}
 
@@ -563,7 +581,7 @@ A platform is a long-lived investment whose capabilities are introduced, changed
 
 **Purpose.** The model decides who feels the cost of a capability and therefore who makes cost decisions. It also determines whether the platform competes fairly with the alternatives available to a team.
 
-**What it includes.** Table 9.11 compares the models. Central funding suits a young platform and capabilities with mandated outcomes, because charging for a control the organization requires only encourages teams to avoid it. Showback makes consumption visible without moving budgets and suits most shared capabilities. Chargeback suits capabilities with variable, team-driven consumption, provided the unit prices are stable and understandable. In every model, attribute consumption to tenants through tags and quotas (9.6.2), report unit costs such as cost per environment or per deployment, and apply the FinOps practices of 16.2.2. Figure 9.10 shows the flow from consumption to the report or charge.
+**What it includes.** Table 9.11 compares the models. Central funding suits a young platform and capabilities with mandated outcomes, because charging for a control the organization requires only encourages teams to avoid it. Showback makes consumption visible without moving budgets and suits most shared capabilities. Chargeback suits capabilities with variable, team-driven consumption, provided the unit prices are stable and understandable. In every model, attribute consumption to tenants through tags and quotas (9.6.2), report unit costs such as cost per environment or per deployment, and apply the FinOps practices of 16.2.2.
 
 | Model | How costs reach teams | Suits | Risk |
 | :--- | :--- | :--- | :--- |
@@ -572,6 +590,8 @@ A platform is a long-lived investment whose capabilities are introduced, changed
 | Chargeback | Consumption charged to each team's budget | Variable, team-driven consumption with stable unit prices | Teams avoid the platform to save cost, or dispute the prices |
 
 : Platform funding models compared
+
+Figure 9.10 shows the flow from tenant consumption, through attribution and unit costs, to a showback report or a chargeback, so that cost decisions rest with the team that controls the consumption.
 
 ![Figure 9.10 — From tenant consumption to cost reports](../../assets/diagrams/rendered/platform-cost-flow.png){#fig-9-10 width="100%"}
 
@@ -613,7 +633,7 @@ Few organizations need to build a platform from parts. The sourcing question is 
 
 **Purpose.** The choice decides where the platform team spends its capacity. Capacity spent rebuilding what a provider offers is not available for the integration and the standards that only the organization can supply.
 
-**What it includes.** Apply the build, buy and managed-service analysis of 16.2.3 to each capability, and Table 9.12 to the platform as a whole. Most platforms compose: provider services for runtime, data and identity; open-source or commercial products for the portal, the policy engine or the pipelines; and internal code only for the integration, the golden paths and the organization-specific policies. Build only what differentiates the organization or what no product does acceptably, and count the cost of operating and upgrading it for its whole life, not only the cost of writing it. Figure 9.11 shows a typical split.
+**What it includes.** Apply the build, buy and managed-service analysis of 16.2.3 to each capability, and Table 9.12 to the platform as a whole. Most platforms compose: provider services for runtime, data and identity; open-source or commercial products for the portal, the policy engine or the pipelines; and internal code only for the integration, the golden paths and the organization-specific policies. Build only what differentiates the organization or what no product does acceptably, and count the cost of operating and upgrading it for its whole life, not only the cost of writing it.
 
 | Option | Strength | Cost profile | Main risk |
 | :--- | :--- | :--- | :--- |
@@ -622,6 +642,8 @@ Few organizations need to build a platform from parts. The sourcing question is 
 | Compose provider and open-source components | Uses mature parts with internal glue | Moderate integration and upgrade cost | Integration work grows with each component and its versions |
 
 : Platform sourcing options compared
+
+Figure 9.11 shows a typical split: the organization builds the golden-path templates, policy set and integration that only it can supply, composes the portal and policy engine from open-source components, and uses provider services for pipelines, managed runtimes and identity.
 
 ![Figure 9.11 — A typical sourcing split across platform planes](../../assets/diagrams/rendered/platform-sourcing.png){#fig-9-11 width="100%"}
 

@@ -41,7 +41,7 @@
 | 3.1 RC1 | November 2026 | The content of 3.0 published with the Handbook Hub design and toolkit; analytic index, glossary pointers and cross-reference links rebuilt by the toolkit |
 | 3.1 | November 2026 | Final release of the RC1 content, approved by the author and maintainer |
 | 3.1.1 | November 2026 | Web edition: figures blend with the page in the light theme and read as light lines in the dark theme, and switching themes no longer moves the page; no content change |
-| 4.0 | November 2026 | Chapter 9 Platform Architecture added (platform types, platform as a product, responsibility model, reference architecture, capability contracts, tenancy and isolation, guardrails, reliability, measures, economics and capability lifecycle, sourcing, anti-patterns, worked example), and the chapters after it renumbered (now Chapters 10–19); platform capability contract schema (B.15), platform review checklist, assurance checklist item, glossary, references and pattern catalog extended |
+| 4.0 | November 2026 | Chapter 9 Platform Architecture added (platform types, platform as a product, responsibility model, reference architecture, capability contracts, tenancy and isolation, guardrails, reliability, measures, economics and capability lifecycle, sourcing, anti-patterns, worked example), and the chapters after it renumbered (now Chapters 10–19); platform capability contract schema (B.15), platform review checklist, assurance checklist item, glossary, references and pattern catalog extended; a sentence now separates each table from the figure or table after it (Chapters 9 and 17) |
 
 Section and chapter numbers in this history follow the current numbering, so each reference leads to the content it describes.
 
