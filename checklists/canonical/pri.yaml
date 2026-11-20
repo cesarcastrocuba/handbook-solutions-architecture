@@ -31,7 +31,7 @@ items:
   rationale: Exceptions without expiry become permanent drift and erode the principle they bypass.
   applicability: Any approved deviation from an architecture principle.
   expected_evidence: Exception register entry with scope, owner, compensating control, expiry date and remediation milestone, enforced by automatic expiry in the governance process.
-  section: '2.16'
+  section: '2.15'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: When exceptions become the normal path the principle is mis-scoped and should change rather than be bypassed repeatedly.
   applicability: Principles with recurring approved exceptions.
   expected_evidence: Exception trend review showing recurrence counts and a recorded revision, rescope or retirement decision for the principle.
-  section: '2.16'
+  section: '2.15'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'

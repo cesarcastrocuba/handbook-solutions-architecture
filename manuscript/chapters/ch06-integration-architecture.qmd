@@ -275,7 +275,7 @@ Paginate every collection. **Cursor-based** pagination (an opaque token pointing
 - **API-first design.** Write and review the specification (OpenAPI or AsyncAPI) before implementation, so that consumers can review and mock it early.
 - **Style guide and linting.** Adopt a published style guide — the Microsoft REST API Guidelines and Google’s API Improvement Proposals (AIP) are widely used references — and enforce it with automated linting in CI.
 - **Catalog and portal.** Register every API with owner, consumers, documentation, classification and lifecycle status.
-- **Gateway.** Centralize authentication, rate limiting, quotas and request logging at the API gateway, while authorization stays in the owning service (10.5.6). Section 8.6.3 distinguishes the gateway from load balancers and reverse proxies.
+- **Gateway.** Centralize authentication, rate limiting, quotas and request logging at the API gateway, while authorization stays in the owning service (10.5.6). Section 8.5.3 distinguishes the gateway from load balancers and reverse proxies.
 - **Versioning.** Prefer evolving one version compatibly (6.2.4). When a breaking change is unavoidable, introduce a new major version — commonly in the path (`/v2/`), alternatively in a header or media type — and run both during a migration window.
 - **Deprecation.** Announce deprecation in documentation and in responses, using the `Deprecation` (RFC 9745) and `Sunset` (RFC 8594) headers, monitor remaining usage per consumer, and retire the version only when usage has stopped or the agreed date has passed.
 
@@ -597,7 +597,7 @@ Choose what carries an interface.
 | Dedicated adapter service | A strategic or demanding interface exceeds platform limits or needs its own release cadence | Full control; the team owns the code, operations and on-call |
 :::
 
-## 6.7 Worked Example: Reference Design and Review
+## 6.7 Worked Example: Order and Payment Integration
 
 *In practice:* This example follows the reference order-and-payment sequence to show how ownership, delivery guarantees, unknown outcomes and evidence fit together in one integration design.
 

@@ -27,26 +27,6 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Rozanski, N. and Woods, E. *Software Systems Architecture*, 2nd ed. Addison-Wesley, 2011.
 - Skelton, M. and Pais, M. *Team Topologies*. IT Revolution, 2019.
 
-## Standards, Frameworks and Notations
-
-- ACORD. *ACORD Standards*. acord.org.
-- BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
-- Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
-- HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
-- IEC 62264 (ISA-95). *Enterprise-control system integration*.
-- ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
-- ISO/IEC 9075. *Information technology — Database languages — SQL*. System-versioned temporal tables were introduced in SQL:2011; the current edition is SQL:2023.
-- ISO/IEC/IEEE 29119-1:2022. *Software and systems engineering — Software testing — Part 1: General concepts*.
-- ISO/IEC/IEEE 29148:2018. *Systems and software engineering — Life cycle processes — Requirements engineering*.
-- ISO/IEC/IEEE 42010:2022. *Software, systems and enterprise — Architecture description*.
-- Scaled Agile, Inc. *SAFe — Scaled Agile Framework*. scaledagileframework.com.
-- Starke, G. and Hruschka, P. *arc42 Architecture Documentation Template*. arc42.org.
-- The Open Group. *ArchiMate 3.2 Specification*. 2022.
-- The Open Group. *The TOGAF Standard*, 10th Edition. 2022.
-- TM Forum. *Open Digital Architecture (ODA)* and *Open APIs*. tmforum.org.
-- W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation, 2023.
-- Zachman, J. A. *The Zachman Framework for Enterprise Architecture*. Zachman International.
-
 ## Domain Design, Data and Consistency
 
 - Abadi, D. “Consistency Tradeoffs in Modern Distributed Database System Design.” *IEEE Computer* 45(2), 2012.
@@ -136,18 +116,6 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - PCI Security Standards Council. *PCI DSS v4.0.1*. 2024.
 - The Institute of Internal Auditors. *The IIA’s Three Lines Model: An Update of the Three Lines of Defense*. 2020.
 
-## Privacy, Regulation and Compliance
-
-- European Union. *Regulation (EU) 2016/679 — General Data Protection Regulation (GDPR)*. 2016.
-- European Union. *Directive 2002/58/EC — Privacy and electronic communications (ePrivacy Directive)*, as amended.
-- European Union. *Directive (EU) 2022/2555 — Measures for a high common level of cybersecurity across the Union (NIS2)*. 2022.
-- European Union. *Regulation (EU) 2022/2554 — Digital operational resilience for the financial sector (DORA)*. 2022.
-- European Union. *Regulation (EU) 2024/1689 — Artificial Intelligence Act*. 2024.
-- European Union. *Directive (EU) 2019/882 — Accessibility requirements for products and services (European Accessibility Act)*. 2019.
-- ETSI. *EN 301 549: Accessibility requirements for ICT products and services*. W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. 2023.
-- ISO/IEC 42001:2023. *Information technology — Artificial intelligence — Management system*.
-- LINDDUN privacy threat modeling framework (linddun.org), KU Leuven DistriNet.
-
 ## Security: Identity and Authentication
 
 - IETF. RFC 6749, *The OAuth 2.0 Authorization Framework*, 2012; RFC 7636, *Proof Key for Code Exchange (PKCE)*, 2015; RFC 8628, *OAuth 2.0 Device Authorization Grant*, 2019.
@@ -171,6 +139,18 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - OWASP Foundation. *OWASP Top 10:2025*; *API Security Top 10 — 2023*; *Application Security Verification Standard (ASVS) 5.0*, 2025; *Web Security Testing Guide*; *Software Assurance Maturity Model (SAMM)*; *Cheat Sheet Series*. owasp.org.
 - Shostack, A. *Threat Modeling: Designing for Security*. Wiley, 2014.
 - Software Engineering Institute. *SEI CERT Coding Standards*. Carnegie Mellon University.
+
+## Privacy, Regulation and Compliance
+
+- European Union. *Regulation (EU) 2016/679 — General Data Protection Regulation (GDPR)*. 2016.
+- European Union. *Directive 2002/58/EC — Privacy and electronic communications (ePrivacy Directive)*, as amended.
+- European Union. *Directive (EU) 2022/2555 — Measures for a high common level of cybersecurity across the Union (NIS2)*. 2022.
+- European Union. *Regulation (EU) 2022/2554 — Digital operational resilience for the financial sector (DORA)*. 2022.
+- European Union. *Regulation (EU) 2024/1689 — Artificial Intelligence Act*. 2024.
+- European Union. *Directive (EU) 2019/882 — Accessibility requirements for products and services (European Accessibility Act)*. 2019.
+- ETSI. *EN 301 549: Accessibility requirements for ICT products and services*. W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. 2023.
+- ISO/IEC 42001:2023. *Information technology — Artificial intelligence — Management system*.
+- LINDDUN privacy threat modeling framework (linddun.org), KU Leuven DistriNet.
 
 ## Reliability, Observability and Delivery
 
@@ -197,18 +177,18 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Vocke, H. “The Practical Test Pyramid.” martinfowler.com, 2018.
 - W3C. *Trace Context*. W3C Recommendation, 2021.
 
+## Service Management and Change Control
+
+- ISACA. *COBIT 2019 Framework*. 2018.
+- ISO/IEC 20000-1:2018. *Information technology — Service management — Part 1: Service management system requirements*.
+- PeopleCert. *ITIL 4* and *ITIL (Version 5)*. peoplecert.org.
+
 ## Evolution and Modernization
 
 - Cunningham, W. “The WyCash Portfolio Management System.” OOPSLA ’92 Experience Report, 1992.
 - Fowler, M. “Strangler Fig Application.” martinfowler.com, 2004.
 - Fowler, M. “Technical Debt Quadrant.” martinfowler.com, 2009.
 - Newman, S. *Monolith to Microservices*. O’Reilly, 2019.
-
-## Service Management and Change Control
-
-- ISACA. *COBIT 2019 Framework*. 2018.
-- ISO/IEC 20000-1:2018. *Information technology — Service management — Part 1: Service management system requirements*.
-- PeopleCert. *ITIL 4* and *ITIL (Version 5)*. peoplecert.org.
 
 ## AI and Machine Learning
 
@@ -220,3 +200,23 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - NIST. *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*. NIST AI 600-1, 2024.
 - OWASP Foundation. *OWASP Top 10 for LLM Applications 2025*. genai.owasp.org.
 - OWASP GenAI Security Project. *OWASP Top 10 for Agentic Applications for 2026*. genai.owasp.org, 2025.
+
+## Standards, Frameworks and Notations
+
+- ACORD. *ACORD Standards*. acord.org.
+- BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
+- Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
+- HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
+- IEC 62264 (ISA-95). *Enterprise-control system integration*.
+- ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
+- ISO/IEC 9075. *Information technology — Database languages — SQL*. System-versioned temporal tables were introduced in SQL:2011; the current edition is SQL:2023.
+- ISO/IEC/IEEE 29119-1:2022. *Software and systems engineering — Software testing — Part 1: General concepts*.
+- ISO/IEC/IEEE 29148:2018. *Systems and software engineering — Life cycle processes — Requirements engineering*.
+- ISO/IEC/IEEE 42010:2022. *Software, systems and enterprise — Architecture description*.
+- Scaled Agile, Inc. *SAFe — Scaled Agile Framework*. scaledagileframework.com.
+- Starke, G. and Hruschka, P. *arc42 Architecture Documentation Template*. arc42.org.
+- The Open Group. *ArchiMate 3.2 Specification*. 2022.
+- The Open Group. *The TOGAF Standard*, 10th Edition. 2022.
+- TM Forum. *Open Digital Architecture (ODA)* and *Open APIs*. tmforum.org.
+- W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation, 2023.
+- Zachman, J. A. *The Zachman Framework for Enterprise Architecture*. Zachman International.

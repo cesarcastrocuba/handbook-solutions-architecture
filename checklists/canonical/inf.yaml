@@ -64,7 +64,7 @@ items:
   rationale: A questionnaire answer is not a fixed risk; findings need owners, dates and verified closure.
   applicability: All workloads on a cloud provider with a well-architected framework.
   expected_evidence: Dated per-workload review report, findings register with owners and due dates, and closure evidence linked to ADRs where decisions changed.
-  section: 8.5.3
+  section: 8.4.3
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -75,7 +75,7 @@ items:
   rationale: Most cloud outages attributed to the platform are DNS, routing, identity, certificate or egress failures that no product diagram shows.
   applicability: Solutions with private connectivity or multiple trust zones.
   expected_evidence: Network and trust-boundary view with owner, covering DNS, certificates, routing, NAT, proxies, firewalls, load balancing and private connectivity.
-  section: '8.6'
+  section: '8.5'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -86,7 +86,7 @@ items:
   rationale: Hybrid identity, private links and egress paths fail in ways that appear only under load or during cut-over.
   applicability: Solutions using hybrid identity, private connectivity or restricted egress.
   expected_evidence: Hybrid-connectivity failover results, DNS and certificate failover tests, and measured latency and bandwidth against per-journey budgets.
-  section: '8.6'
+  section: '8.5'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -97,7 +97,7 @@ items:
   rationale: Runtime platforms adopted by default create unfunded platform work and hidden provider limits.
   applicability: Solutions choosing or changing a compute runtime.
   expected_evidence: Selection record against workload characteristics, named operating owner and a tested upgrade.
-  section: '8.7'
+  section: '8.6'
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -108,7 +108,7 @@ items:
   rationale: Edge fleets operate disconnected and unattended, and a defective update or shared key affects the entire fleet.
   applicability: Solutions with edge locations or IoT devices.
   expected_evidence: Disconnection exercise, per-device identity register, individual revocation test and failed-update recovery test.
-  section: '8.8'
+  section: '8.7'
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -119,7 +119,7 @@ items:
   rationale: Overlapping intermediaries stack retries and timeouts, and forged forwarding headers defeat rate limits and audit records.
   applicability: Solutions with more than one network intermediary.
   expected_evidence: Request-path view, timeout budget per hop, hop-removal test and forged-header test.
-  section: 8.6.3
+  section: 8.5.3
   external_reference: ''
   risk_relevance: High
   version: '2.2'

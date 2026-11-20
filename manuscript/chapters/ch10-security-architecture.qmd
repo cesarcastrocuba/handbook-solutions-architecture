@@ -444,7 +444,7 @@ Table 10.6 maps each testing technique to what it finds and where it stops being
 
 **Purpose.** Build and maintain systems from a known secure configuration, then detect drift before it becomes an exploit path.
 
-**What it includes.** Choose the benchmark or provider baseline that fits the platform and threat model, record its name and version, and state which deviations are approved. Benchmarks such as the CIS Benchmarks are living documents; an unversioned reference cannot be audited. Prefer immutable images or infrastructure as code so that the baseline is built once and tested, rather than applied by hand after deployment. Define the baseline owner and exception route, scan images, containers, operating systems, middleware and managed services, and detect drift continuously. Hardening complements patching (10.6.4) and network segmentation (8.6.2).
+**What it includes.** Choose the benchmark or provider baseline that fits the platform and threat model, record its name and version, and state which deviations are approved. Benchmarks such as the CIS Benchmarks are living documents; an unversioned reference cannot be audited. Prefer immutable images or infrastructure as code so that the baseline is built once and tested, rather than applied by hand after deployment. Define the baseline owner and exception route, scan images, containers, operating systems, middleware and managed services, and detect drift continuously. Hardening complements patching (10.6.4) and network segmentation (8.5.2).
 
 **Why it is needed.** A passing build scan does not prove that production still matches the baseline. The evidence is a baseline register, drift alerts and approved exceptions with expiry.
 

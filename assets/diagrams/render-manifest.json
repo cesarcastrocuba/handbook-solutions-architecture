@@ -280,11 +280,6 @@
       "source_sha256": "813bce4dd4b3de002621e378e7c0d66d874243532ee6321a4e26d6b321592a4e",
       "styled_source_sha256": "3b2b5c1bc6af67a4de9739ed7664c2df747a25bd6a2bc4d7b41f9b74b6605de1"
     },
-    "ch08-platform-path": {
-      "png_sha256": "8f4b07f2784e9e84e8e61f4749a2b91d4db9557cae0575448868e23ddb704ccd",
-      "source_sha256": "1264b91f0050c7d178b3e7beb5e5c0d6cdb90ca738eba54f4aaaae59457f2d68",
-      "styled_source_sha256": "3170a2ba0c713e5c2366a275b3f68a22b60a1ca4c6a49400a1bd226179511e35"
-    },
     "ch08-recovery-topologies": {
       "png_sha256": "bd9b77faedfdf016826feec22e130f2a8a7ed4ef773c4a53ce35a8f9c760b21a",
       "source_sha256": "ea12d8cc6387fb087b6f8dc61ece1a0a18155502a1f2578daa5cad804e3f3511",

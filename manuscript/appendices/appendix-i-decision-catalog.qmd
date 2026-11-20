@@ -30,10 +30,9 @@ This catalog lists the recurring decisions from the Decision & Trade-off callout
 | Instrumentation scope is a cost and privacy decision as well as a technical one. | Journey-based instrumentation; Platform default for every service; Vendor agent with automatic tracing | 2.10 |
 | Isolation costs code now and saves migration later; pick the level the risk justifies. | Domain port with an adapter; Shared client library owned by the platform; Call the SDK directly from domain code | 2.11 |
 | Standardization trades local fit for consistency; choose the balance deliberately. | Central platform, mandated; Paved road with a documented exception route; Team autonomy with published guidance | 2.12 |
-| Every decision can be escalated; the choice is where review stops adding value. | Team decides and records briefly; Consult affected owners, then decide; Focused review with a risk owner | 2.13 |
+| Evidence costs effort to produce and keep; decide what must be retained. | Record every decision with full evidence; Record significant decisions, sample the rest; Rely on tickets and chat history | 2.13 |
 | Privacy controls restrict what the system can do; choose the strength deliberately. | Collect only the fields the journey needs; Pseudonymize and separate identifiers; Retain full data under strict access control | 2.14 |
-| Evidence costs effort to produce and keep; decide what must be retained. | Record every decision with full evidence; Record significant decisions, sample the rest; Rely on tickets and chat history | 2.15 |
-| When principles conflict, decide how the conflict will be resolved and recorded. | Revise the principle; Time-bound exception; Bounded design compromise | 2.16 |
+| When principles conflict, decide how the conflict will be resolved and recorded. | Revise the principle; Time-bound exception; Bounded design compromise | 2.15 |
 
 : Decisions from Chapter 2
 
@@ -111,11 +110,10 @@ This catalog lists the recurring decisions from the Decision & Trade-off callout
 | Choose the foundation before choosing products. | New account or subscription in the landing zone; Shared subscription with policy and tagging; Separate landing zone or tenant | 8.1 |
 | Choose how recovery will be proven. | Restore drill from backup; Failover exercise to a second region; Tabletop with the business and suppliers | 8.2 |
 | Choose how capacity is bought before comparing unit prices. | On-demand, autoscaled; Reserved or committed use against a measured baseline; Provision for the peak and shed or queue the excess | 8.3 |
-| Choose the platform operating model. | Self-service golden path; Central platform team with exceptions; Embedded platform engineers per team | 8.4 |
-| Choose how many frameworks to apply. | One primary framework per workload; One framework plus provider lenses; Several frameworks in parallel | 8.5 |
-| Choose the connectivity and exposure model before selecting network products. | Public ingress with WAF and CDN; Private endpoint, private link or peering; Hybrid VPN or dedicated interconnect; Internal segmentation with service identity | 8.6 |
-| Where should service-to-service traffic policy be enforced? | Application libraries; Network policies and a gateway; Service mesh | 8.7 |
-| How much intelligence should run at the site? | Thin devices, central processing; Local rules and buffering at a gateway; Full local application and inference | 8.8 |
+| Choose how many frameworks to apply. | One primary framework per workload; One framework plus provider lenses; Several frameworks in parallel | 8.4 |
+| Choose the connectivity and exposure model before selecting network products. | Public ingress with WAF and CDN; Private endpoint, private link or peering; Hybrid VPN or dedicated interconnect; Internal segmentation with service identity | 8.5 |
+| Where should service-to-service traffic policy be enforced? | Application libraries; Network policies and a gateway; Service mesh | 8.6 |
+| How much intelligence should run at the site? | Thin devices, central processing; Local rules and buffering at a gateway; Full local application and inference | 8.7 |
 
 : Decisions from Chapter 8
 
@@ -219,7 +217,7 @@ This catalog lists the recurring decisions from the Decision & Trade-off callout
 
 : Decisions from Chapter 16
 
-## I.17 Chapter 17: Software Engineering and Architecture Artifacts
+## I.17 Chapter 17: Architecture and Engineering Artifacts
 
 | Decision | Options compared | Section |
 | :--- | :--- | :--- |

@@ -163,7 +163,7 @@ Environment strategy trades feedback speed against fidelity, and the right answe
 | Ephemeral environments plus a production-like environment for performance and recovery | Claims about load, failover or restore time are part of the release decision | Evidence that can support the claim; the production-like environment is expensive and must be kept honest with a documented difference |
 :::
 
-## 15.3 Quality-Attribute Testing
+## 15.3 Quality Attribute Testing
 
 Functional tests show that features work; the tests in this section show that the system meets its quality scenarios under load, failure, attack, change and diverse use, and that its structure still matches the intended architecture. Figure 15.3 maps scenarios to methods and to the environments where each runs.
 

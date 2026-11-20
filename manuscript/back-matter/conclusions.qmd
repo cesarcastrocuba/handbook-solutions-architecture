@@ -13,7 +13,7 @@ Solution architecture is the discipline of making consequential decisions under 
 6. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 5).
 7. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 7).
 8. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 10).
-9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.14–2.15, 10.9).
+9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.13–2.14, 10.9).
 10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 11).
 11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 12, 16).
 12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 9).

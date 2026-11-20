@@ -35,7 +35,7 @@ Table 18.1 places each framework at one of these layers and states its primary s
 | ADRs | Architecture decision record practice | Individual decisions | Recording rationale and consequences |
 | DDD and Event Storming | Design approach and workshop technique | Domain boundaries | Bounded contexts, language and domain events |
 | ATAM | Evaluation method | Consequential designs | Scenario-based trade-off and risk analysis |
-| Well-architected frameworks | Provider review guidance | Cloud workloads | Structured review across reliability, security, cost and related pillars (8.5) |
+| Well-architected frameworks | Provider review guidance | Cloud workloads | Structured review across reliability, security, cost and related pillars (8.4) |
 | Zachman Framework | Enterprise ontology | Classification of descriptions | Checking completeness of enterprise descriptions |
 | SAFe | Scaled agile delivery framework | Large programs | Architectural runway and enablers in program planning |
 | Industry reference models | Domain vocabularies and interface standards | One industry | Starting point for capability maps and partner interfaces |
@@ -196,7 +196,7 @@ Methods answer different questions: elicitation, design, decision, evaluation, e
 
 **Purpose.** The frameworks inform a structured review of a workload against provider best practice. They are useful as a checklist for concerns a team may have under-weighted — cost allocation, quota limits, recovery — and as a shared vocabulary for a review with platform and security teams.
 
-**What it includes.** Pillars, design principles, questions and recommended practices per service, plus review tooling in some providers. Their pillars, extensions and use in reviews are described in 8.5.
+**What it includes.** Pillars, design principles, questions and recommended practices per service, plus review tooling in some providers. Their pillars, extensions and use in reviews are described in 8.4.
 
 **Why it is needed.** They complement, rather than replace, the evaluation methods above: a framework review checks a workload against provider best practice, while ATAM-style evaluation tests a design against the solution’s own quality scenarios. A review that only applies the provider checklist can pass while the business scenario is unmet. The evidence is the review output mapped to the scenarios it did and did not cover.
 

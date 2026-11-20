@@ -8,8 +8,8 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | ABAC | Attribute-based access control: authorization decided from attributes of the principal, resource and context. | 10.3.1 |
 | Access-controlled retrieval | Retrieval that applies the requesting user’s permissions at query time, so the model only receives content the user is entitled to see. | 19.3.5 |
 | Accessibility | The degree to which people with different abilities can use the experience. | 1.2.11 |
-| Accountability | A named person or role answerable for a principle, decision or control. | 2.15 |
-| ACL | Access control list: the set of permissions attached to a resource or a network path. | 8.6.2 |
+| Accountability | A named person or role answerable for a principle, decision or control. | 2.13 |
+| ACL | Access control list: the set of permissions attached to a resource or a network path. | 8.5.2 |
 | Activity diagram | A UML behavioral diagram showing the flow of actions and control or data through an activity; optional partitions group actions by responsibility. The handbook discusses it alongside swimlane process views. | 13.2.3 |
 | ADD | Attribute-driven design: an iterative method that selects the quality attribute which most constrains the design, chooses a structure for it and verifies the result. | 3.3.4 |
 | ADM | Architecture Development Method: the TOGAF Standard’s iterative cycle from architecture vision to migration planning and implementation governance. | 18.2.1 |
@@ -32,7 +32,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | API | Application programming interface: the contract through which one component calls another. | 6.2.1 |
 | API contract | The machine-readable and human-readable description of what an interface accepts, returns and guarantees. | 6.2.1 |
 | API conventions | Error, pagination and filtering conventions that decide how a consumer distinguishes retryable failures and walks a large result set safely. | 6.2.7 |
-| API gateway | A reverse proxy specialized in managing APIs per consumer, including identity, quotas and versions. | 8.6.3 |
+| API gateway | A reverse proxy specialized in managing APIs per consumer, including identity, quotas and versions. | 8.5.3 |
 | API lifecycle | The practices that keep interfaces discoverable, consistent and retirable over their whole life. | 6.2.8 |
 | API specification | The machine-readable expression of an interface in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers. | 17.4.1 |
 | API style | The protocol and interaction convention used to expose an interface: REST over HTTP, gRPC, GraphQL, asynchronous events or webhooks. | 6.2.5 |
@@ -62,7 +62,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | ATAM | Architecture Tradeoff Analysis Method: an SEI method that evaluates an architecture against prioritized quality scenarios and exposes risks, sensitivity and trade-off points. | 14.2.1; 18.3.1 |
 | Audit readiness | The ability to evidence, on request, that controls were designed adequately and operated effectively over a stated period. | 4.9 |
 | Audit trail | The protected record that establishes who did what, to which resource, when, from where and with what result. | 10.7.2 |
-| Auditability | The quality attribute that lets a reviewer reconstruct who did what, when and under which authority, from records the system keeps. | 1.2.13; 2.15 |
+| Auditability | The quality attribute that lets a reviewer reconstruct who did what, when and under which authority, from records the system keeps. | 1.2.13; 2.13 |
 | Authenticated dynamic testing | Dynamic testing that exercises the running application with real roles and sessions rather than only its public pages. | 10.5.4 |
 | Authentication | Proof that a claimed identity controls a credential. | 10.2.2 |
 | Authorization | The decision that a principal may perform a specific action on a specific resource in a specific context. | 10.3.1 |
@@ -116,7 +116,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Consensus | Agreement among distributed nodes on a single order of operations, reached through an agreement protocol. | 5.4.6 |
 | Consistency | The guarantee a consumer can rely on about how current and how ordered the data it reads is. | 5.3.6 |
 | Consistency model | The contract between a data store and its clients describing which values a read may return. | 5.4.3 |
-| Container orchestrator | A system that schedules containers across machines and continually reconciles them with a declared state. | 8.7.2 |
+| Container orchestrator | A system that schedules containers across machines and continually reconciles them with a declared state. | 8.6.2 |
 | Control plane | The services that manage tenants, such as onboarding, configuration, tier changes and offboarding, as distinct from those serving tenant workloads. | 7.7.4 |
 | Conway’s law | The observation that a system’s structure tends to mirror the communication structure of the organization that designs it. | 4.10.1 |
 | Cost per outcome | The total expense of producing a successful outcome, not the price of one model call. | 19.4.3 |
@@ -166,7 +166,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Drift | A change in the distribution of inputs, sources, index freshness or model behavior that degrades outcomes without any code change. | 19.6.5 |
 | DRP | Disaster recovery plan: the plan that restores the technology supporting critical services. | 8.2.3 |
 | ECAB | Emergency change authority: the smaller authority that approves emergency changes. | 12.4.3 |
-| Edge computing | Processing placed near the source of data or the user instead of only in a central region. | 8.8.1 |
+| Edge computing | Processing placed near the source of data or the user instead of only in a central region. | 8.7.1 |
 | EDI | Electronic data interchange: structured exchange of business documents between organizations, commonly in ANSI X12 or UN/EDIFACT format. | 6.6.5 |
 | Efficiency | Efficient architecture aligns resource consumption with useful work. | 16.3.1 |
 | Embedding | The vector representation of content that makes semantic search possible. | 19.3.2 |
@@ -201,10 +201,10 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Fitness function | A repeatable, preferably automated, check of an architectural characteristic. | 4.7; 14.3.1 |
 | Flaky test | A test that passes and fails on the same code and configuration. | 15.2.3 |
 | Framework | A structured body of guidance — framework, method, notation or standard — that answers a specific question at a specific level of the organization. | 18.1 |
-| Framework review | A facilitated assessment of one workload against a framework’s questions, producing findings tracked as risks. | 8.5.3 |
+| Framework review | A facilitated assessment of one workload against a framework’s questions, producing findings tracked as risks. | 8.4.3 |
 | GDPR | General Data Protection Regulation (EU Regulation 2016/679): the EU law governing processing of personal data. | 10.9.5 |
 | Generative AI | AI that produces text, images, code or other content. | 19.1.1 |
-| GitOps | Managing a runtime from declarative desired state in version control, pulled and continuously reconciled by software agents. | 8.7.4 |
+| GitOps | Managing a runtime from declarative desired state in version control, pulled and continuously reconciled by software agents. | 8.6.4 |
 | Golden path | A supported, opinionated route for a common task that produces a result conforming to the organization’s standards by default. | 9.4.3 |
 | Governance taxonomy | The classification of obligations, rules and evidence that gives each class an authority and a path into architecture. | 4.1.1 |
 | Graceful degradation | A designed reduced mode that keeps the critical part of a journey working during a failure. | 7.4.2 |
@@ -239,7 +239,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Internal platform | A curated set of capabilities offered to the teams that build and run solutions through self-service interfaces, with an owner, a contract and a support path. | 9.1.1 |
 | International transfer | An international transfer moves data or access across a jurisdiction. | 10.9.5 |
 | Internationalization | Preparing a solution to support several languages, regions and formats without code changes. | 7.6.6 |
-| IoT | Internet of Things: networks of physical devices that sense, act and exchange data. | 8.8 |
+| IoT | Internet of Things: networks of physical devices that sense, act and exchange data. | 8.7 |
 | iPaaS | Integration platform as a service: a provider-managed platform for building, running and monitoring integration flows with prebuilt connectors. | 6.6.3 |
 | ISO | International Organization for Standardization: the body that publishes the ISO and ISO/IEC standards the book cites. | 18.4.2 |
 | ISO/IEC/IEEE 42010 | What an architecture description should contain: identified stakeholders and their concerns, viewpoints that frame those concerns, views that apply the viewpoints, and correspondences that keep views consistent. | 18.2.2 |
@@ -255,7 +255,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | LFU | Least frequently used: an eviction policy that removes the entries used least often. | 7.3.4 |
 | LLD | Low-level design: the artifact that details modules, interfaces, schemas, algorithms, state transitions, errors, concurrency and rollout. | 17.3.2 |
 | LLMOps | The practices that automate evaluation, release, registry and monitoring for large language model applications. | 19.6.7 |
-| Load balancer | A component that distributes traffic among healthy instances, at the connection or the request level. | 8.6.3 |
+| Load balancer | A component that distributes traffic among healthy instances, at the connection or the request level. | 8.5.3 |
 | Load shedding | Rejecting lower-priority work early when demand exceeds capacity, so essential work still completes. | 11.4.2 |
 | Localization | Supplying the content and conventions for one specific locale. | 7.6.6 |
 | Log | A timestamped record of a discrete event, structured so it can be queried and correlated. | 11.1.1 |
@@ -280,7 +280,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Model selection criteria | The weighted criteria, evidence and uncertainty used to choose a model and platform, captured as an architecture decision record. | 19.4.6 |
 | Modular monolith | A deployment style in which several modules with explicit boundaries ship as one deployable unit. | 7.1.2 |
 | Modularity | The property that lets one part of a system change without forcing a change in the parts that depend on it. | 2.4 |
-| MQTT | A lightweight publish-subscribe messaging protocol designed for constrained devices and unreliable networks. | 8.8.2 |
+| MQTT | A lightweight publish-subscribe messaging protocol designed for constrained devices and unreliable networks. | 8.7.2 |
 | mTLS | Mutual Transport Layer Security: TLS in which both client and server present certificates. | 10.2.5 |
 | MTPD | Maximum tolerable period of disruption: the longest interruption a business process can absorb before its impact becomes unacceptable. | 8.2.3 |
 | Multi-level cache | Cache tiers checked in order, typically a local tier (L1), then a shared or larger tier (L2). | 7.3.4 |
@@ -314,7 +314,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Pipeline | A governed sequence of jobs that moves and transforms data from sources to consumers. | 5.2.6 |
 | PKCE | Proof Key for Code Exchange: an OAuth 2.0 extension that protects authorization-code flows for public clients. | 10.2.4 |
 | Platform as a product | Running a platform with identified users, a value proposition, a needs-based roadmap and measures of adoption and benefit. | 9.2.1 |
-| Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 8.4 |
+| Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 9.1.1 |
 | Platform responsibility model | The division of duties, per platform capability, between the platform team and the teams whose workloads use it. | 9.3.1 |
 | Policy as code | Organizational rules expressed as versioned, tested code that the platform evaluates automatically. | 9.7.1 |
 | Polling | Periodically querying a system for changes rather than receiving a push. | 6.1.8 |
@@ -323,7 +323,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Postmortem | A blameless written account of an incident that ends in owned, dated changes to the system. | 11.5.2 |
 | PRD | Product Requirements Document: the artifact that specifies the product problem, users, journeys, requirements, success metrics and priorities. | 17.2.2 |
 | Principle | A durable preference for making decisions that applies across many cases without prescribing a single implementation. | 2.1 |
-| Principle conflict | A principle conflict exists when two principles that are both accepted point to different designs for the same decision. | 2.16 |
+| Principle conflict | A principle conflict exists when two principles that are both accepted point to different designs for the same decision. | 2.15 |
 | Privacy | The quality attribute that keeps personal data limited to the purpose for which it was collected and removes it when that purpose ends. | 1.2.12; 10.9.6; 10.9; 19.5.4 |
 | Privacy by default | Starting with the least-revealing setting, so optional data is off unless the user turns it on. | 10.9.1 |
 | Privacy by design | Treating protection of personal data as a design constraint across its lifecycle, not a compliance check before launch. | 2.14 |
@@ -359,12 +359,12 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | REST | Representational State Transfer: an architectural style for APIs built on resources, HTTP methods and representations. | 6.2.5 |
 | Retrieval | The selection of content for the model’s context. | 19.3.3 |
 | Reuse | The use of an existing asset instead of building a new one. | 2.12 |
-| Reverse proxy | A server that receives client requests on behalf of other servers and forwards them. | 8.6.3 |
+| Reverse proxy | A server that receives client requests on behalf of other servers and forwards them. | 8.5.3 |
 | RFC | Request for Comments: a structured proposal that solicits feedback before a decision; in standards citations, an IETF specification. | 17.3.3 |
 | RFP | Request for proposal: a formal invitation for suppliers to submit comparable bids against stated requirements. | 16.2.6 |
 | Risk theme | A group of related evaluation risks stated against the business driver they endanger. | 14.2.1 |
 | Risk-based prioritization | Prioritizing vulnerabilities by combining technical severity with exploitation likelihood, exposure and business context. | 10.6.2 |
-| Routing and segmentation | The decisions about which networks and services may reach each other. | 8.6.2 |
+| Routing and segmentation | The decisions about which networks and services may reach each other. | 8.5.2 |
 | RPA | Robotic process automation: software that operates an application through its user interface in place of a person. | 6.6.5 |
 | RPO | Recovery point objective: the maximum acceptable data loss, expressed as time. | 8.2.2 |
 | RTO | Recovery time objective: the maximum acceptable time to restore service. | 8.2.2 |
@@ -396,8 +396,8 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Serverless | An execution model in which the platform manages capacity, so the solution pays for use rather than for provisioned servers. | 7.1.3 |
 | Server-sent events | A standard for streaming one-way updates from a server to a client over HTTP. | 6.1.9 |
 | Service catalog | The inventory of software components with their owners, lifecycle state, dependencies and operational metadata. | 9.4.2 |
-| Service discovery | A mechanism through which clients find healthy service instances without fixed addresses. | 8.7.3 |
-| Service mesh | An infrastructure layer of proxies and a control plane applying identity, encryption, traffic policy and telemetry between services. | 8.7.3 |
+| Service discovery | A mechanism through which clients find healthy service instances without fixed addresses. | 8.6.3 |
+| Service mesh | An infrastructure layer of proxies and a control plane applying identity, encryption, traffic policy and telemetry between services. | 8.6.3 |
 | Shared responsibility model | The per-service split of security and operational duties between the provider and the customer. | 8.1.4 |
 | Showback | Reporting each consuming team’s share of platform or cloud cost without charging it to the team’s budget. | 9.10.1 |
 | Signal | A metric, log, trace, event or profile that a system emits about its own behavior. | 11.1.1 |
@@ -452,7 +452,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Traceability matrix | The cross-reference of requirements, decisions, views, tests and operational signals, from which change impact is derived by walking the links. | 1.5.2 |
 | Trade-off | The cost accepted in one characteristic in order to improve another. | 3.3.2 |
 | Trade-off point | An architectural decision that moves several quality attributes in opposite directions. | 14.1.1 |
-| Traffic entry | The point and the controls through which a request reaches a workload. | 8.6.1 |
+| Traffic entry | The point and the controls through which a request reaches a workload. | 8.5.1 |
 | Transaction isolation | Isolation levels define which anomalies concurrent transactions can observe within a single database. | 5.4.4 |
 | Transactional outbox | A pattern that makes publishing a fact atomic with the local transaction that created it. | 6.3.1 |
 | UAT | User acceptance testing: business users confirming that a change meets their acceptance criteria. | 12.1.4 |
@@ -466,13 +466,13 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | VPN | Virtual private network: an encrypted tunnel that extends a private network across an untrusted one. | 10.4.4 |
 | Vulnerability disclosure | Communicating a vulnerability so affected parties can respond. | 10.6.3 |
 | W3C | World Wide Web Consortium: the standards body that publishes WCAG and Trace Context. | 11.1.2 |
-| WAF | Web application firewall: an inline control that filters HTTP traffic before it reaches an application. | 8.6.2 |
+| WAF | Web application firewall: an inline control that filters HTTP traffic before it reaches an application. | 8.5.2 |
 | Walking skeleton | A thin, deployable end-to-end slice that exercises every layer and becomes the base for further work. | 14.3.2 |
 | WCAG | Web Content Accessibility Guidelines: the W3C criteria for accessible web content and interfaces. | 1.2.11 |
 | Webhook | An HTTP callback that pushes a notification to a subscriber when an event occurs. | 6.1.8 |
 | WebSocket | A protocol that provides a two-way communication channel over a single connection. | 6.1.9 |
 | Well-architected framework | Cloud providers publish well-architected frameworks that structure workload reviews around pillars such as security, reliability, performance, cost, operations and sustainability. | 18.3.4 |
-| Well-architected pillar | One of the concern areas — security, reliability, performance, cost, operations, sustainability — around which provider frameworks structure workload reviews. | 8.5.1; 8.5.2 |
+| Well-architected pillar | One of the concern areas — security, reliability, performance, cost, operations, sustainability — around which provider frameworks structure workload reviews. | 8.4.1; 8.4.2 |
 | Workflow orchestrator | A service that persists the state of a multi-step process and drives its steps, waits, retries and compensations. | 6.6.4 |
 | Workforce security lifecycle | The workforce security lifecycle covers the controls applied to people before, during and after their access to systems and data. | 10.2.6 |
 | Workload identity | The identity of a service, job or agent, authenticated without a human. | 10.2.5 |

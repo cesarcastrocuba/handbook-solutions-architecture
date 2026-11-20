@@ -1,4 +1,4 @@
-# 17. Software Engineering and Architecture Artifacts
+# 17. Architecture and Engineering Artifacts
 
 Engineering artifacts serve different decisions and audiences. They are living evidence, not approvals in themselves, and they should be right-sized. A low-risk change inside one team may need only tests and a short design note — plus an ADR if it involves an architecturally significant decision — while a cross-organization integration needs an ICD, contract tests and a runbook. This chapter defines each artifact in the catalog, gives it a fiche that states its audience, owner, mandatory trigger and quality criteria, and shows how the artifacts link together.
 
