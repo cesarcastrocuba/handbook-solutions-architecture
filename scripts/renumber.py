@@ -124,7 +124,7 @@ BARE_SECTION = re.compile(r'(?<![\w.])(\d{1,2}(?:\.\d{1,2}){1,3})(?![\w.]|\.\d)'
 NUMBER_LIST = re.compile(r'^\s*\d{1,2}(?:\s*(?:,|and|–|-|to)\s*\d{1,2})*\s*$')
 BARE_RANGE = re.compile(
     r'(?<![\w.])([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(\s*[–—-]\s*)'
-    r'([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(?![\w.]|\.\d)'
+    r'([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(?!\w|\.\d)'
 )
 RANGE_TOKEN_WORDS = re.compile(r'\b(?:Chapters?|Sections?|Figures?|Tables?)\s*$', re.I)
 
@@ -219,6 +219,7 @@ class Table:
     line: int
     caption: str
     copy: str
+    owner: str = ''
     old: str | None = None
     target: str | None = None
 
@@ -257,7 +258,15 @@ def heading_body(rest: str) -> tuple[str, str]:
 def parse_document(path: str, group: str, text: str) -> Document:
     document = Document(path=path, group=group, text=text)
     previous = ''
+    owner = ''
+    visible = _visible(text)
     for number, line in enumerate(text.split('\n')):
+        if number not in visible:
+            # Fenced code, front matter, comments and indented code hold
+            # examples, not headings, figures or numbered tables.
+            if line.strip():
+                previous = line
+            continue
         heading = HEADING.match(line)
         if heading:
             hashes, rest = heading.group(1), heading.group(2)
@@ -273,12 +282,14 @@ def parse_document(path: str, group: str, text: str) -> Document:
                         Heading(number, 1, start, start + 1, appendix.group(1),
                                 appendix.group(2).strip())
                     )
+                    owner = appendix.group(2).strip()
                 elif chapter:
                     document.label = chapter.group(1)
                     document.headings.append(
                         Heading(number, 1, prefix_end, prefix_end + len(chapter.group(1)),
                                 chapter.group(1), chapter.group(2).strip())
                     )
+                    owner = chapter.group(2).strip()
             elif not UNNUMBERED.search(attrs):
                 section = SECTION_LABEL.match(body)
                 if section:
@@ -287,6 +298,7 @@ def parse_document(path: str, group: str, text: str) -> Document:
                         Heading(number, len(hashes), prefix_end, prefix_end + len(label),
                                 label, section.group(3).strip())
                     )
+                    owner = section.group(3).strip()
         for image in IMAGE.finditer(line):
             attrs = image.group('attrs') or ''
             identity = FIGURE_ID.search(attrs)
@@ -309,7 +321,8 @@ def parse_document(path: str, group: str, text: str) -> Document:
         if caption and previous.lstrip().startswith('|'):
             clean = CAPTION_ATTR.sub('', caption.group(1).strip())
             document.tables.append(
-                Table(number, caption.group(1).strip(), re.sub(r'\s+', ' ', clean).strip())
+                Table(number, caption.group(1).strip(), re.sub(r'\s+', ' ', clean).strip(),
+                      owner)
             )
         if line.strip():
             previous = line
@@ -562,15 +575,31 @@ def build_plan(root: Path, rev: str) -> Plan:
             raise RenumberError(
                 f'{document.path}: no target numbered {document.label!r} at {rev}'
             )
-        base_captions = [table.copy for table in source.tables]
         base_labels = [table.old for table in source.tables]
         used: set[int] = set()
         for table in document.tables:
-            candidates = [
-                index for index, caption in enumerate(base_captions)
-                if caption == table.copy and index not in used
-            ]
+            def free(predicate) -> list[int]:
+                return [index for index, candidate in enumerate(source.tables)
+                        if index not in used and predicate(candidate)]
+
+            # The owning heading carries the table through a section move, so it
+            # distinguishes two tables that share a caption. Order inside one
+            # section is the tie-break (those tables cannot cross).
+            candidates = free(lambda candidate: candidate.owner == table.owner
+                              and candidate.copy == table.copy)
+            if not candidates and len(free(lambda candidate: candidate.copy == table.copy)) == 1:
+                candidates = free(lambda candidate: candidate.copy == table.copy)
             if not candidates:
+                same_caption = free(lambda candidate: candidate.copy == table.copy)
+                if same_caption:
+                    owners = ', '.join(
+                        f'{source.tables[index].owner!r} (old {base_labels[index]})'
+                        for index in same_caption)
+                    raise RenumberError(
+                        f'{document.path}:{table.line + 1}: table caption {table.caption!r} is '
+                        f'ambiguous at {rev}: it appears in {owners}; give the captions '
+                        'distinct text or renumber those tables by hand'
+                    )
                 raise RenumberError(
                     f'{document.path}:{table.line + 1}: table caption not found at {rev}: '
                     f'{table.caption!r}'
@@ -902,9 +931,16 @@ class Rewriter:
 
     # -- toolkit reference matches ---------------------------------------- #
 
-    def bare_range_edits(self, text: str) -> list[tuple[int, int, str]]:
-        """Ranges written without the toolkit's word, such as "(14.1-14.3)"."""
+    def bare_range_edits(self, text: str) -> tuple[list[tuple[int, int, str]],
+                                                    list[tuple[int, int]]]:
+        """Ranges written without the toolkit's word, such as "(14.1-14.3)".
+
+        Returns the edits and the spans of every range that was inspected, so the
+        per-number pass cannot rewrite the endpoints of a range whose min..max is
+        unchanged and thereby drop a destination.
+        """
         edits = []
+        spans = []
         for match in BARE_RANGE.finditer(text):
             first, separator, second = match.group(1), match.group(2), match.group(3)
             if RANGE_TOKEN_WORDS.search(text[max(0, match.start() - 20):match.start()]):
@@ -925,17 +961,17 @@ class Rewriter:
             result = self.range_result('section', first, second)
             if result is None:
                 continue
+            spans.append(match.span())
             low, high = result
             if (low, high) != (first, second):
                 self.record('section', f'{first}–{second}', f'{low}–{high}')
                 edits.append((match.start(), match.end(), f'{low}{separator}{high}'))
-        return edits
+        return edits, spans
 
     def inline_edits(self, text: str, blocked: tuple[tuple[int, int], ...] = (),
                      reference_cell: bool = False) -> list[tuple[int, int, str]]:
-        ranges = self.bare_range_edits(text)
-        protected = (_protected_spans(text) + list(blocked)
-                     + [(start, end) for start, end, _ in ranges])
+        ranges, range_spans = self.bare_range_edits(text)
+        protected = (_protected_spans(text) + list(blocked) + range_spans)
         edits = list(ranges)
         for match in REFERENCE.finditer(text):
             if any(start < match.end() and match.start() < end for start, end in protected):

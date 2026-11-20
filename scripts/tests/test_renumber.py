@@ -407,6 +407,131 @@ class RenumberTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('crosses section levels', result.stdout)
 
+    def test_bare_section_range_keeps_every_target(self) -> None:
+        def block(number: str, title: str, body: str, table: str = '') -> str:
+            return f'## {number} {title}\n\n{table}{body}\n\n'
+
+        def table(caption: str, cell: str) -> str:
+            return ('| Where covered | Note |\n| :--- | :--- |\n'
+                    f'| {cell} | x |\n\n: {caption}\n\n')
+
+        base = ('# 1. Alpha\n\n'
+                + block('1.1', 'First', 'See 1.1–1.2.', table('First', '1.1–1.2'))
+                + block('1.2', 'Second', 'Text.')
+                + block('1.3', 'Third', 'Text.', table('Third', '1.1–1.2')))
+        files = {'chapters/ch01-alpha.qmd': base,
+                 'chapters/ch02-beta.qmd': chapter(2, 'Beta', '## 2.1 Body\n\nText.\n')}
+        order = {'chapters': ['chapters/ch01-alpha.qmd', 'chapters/ch02-beta.qmd']}
+        self.start(order, files)
+        # 1.1->1.2, 1.2->1.3, 1.3->1.1: the bare range 1.1-1.2 must become
+        # 1.2-1.3, in prose and in a reference column, not 1.2-1.2.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n'
+                        + block('1.3', 'Third', 'Text.', table('Third', '1.1–1.2'))
+                        + block('1.1', 'First', 'See 1.1–1.2.', table('First', '1.1–1.2'))
+                        + block('1.2', 'Second', 'Text.'))
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('See 1.2–1.3.', text)
+        self.assertEqual(text.count('| 1.2–1.3 |'), 2)
+        self.assertIn('## 1.1 Third', text)
+
+    def test_bare_section_range_unchanged_keeps_targets(self) -> None:
+        base = ('# 1. Alpha\n\n## 1.1 First\n\nText.\n\n## 1.2 Second\n\nText.\n\n'
+                '## 1.3 Third\n\nSee 1.1–1.3.\n')
+        self.start({'chapters': ['chapters/ch01-alpha.qmd']},
+                   {'chapters/ch01-alpha.qmd': base})
+        # 1.1->1.1, 1.2->1.3, 1.3->1.2: the range still covers 1.1-1.3, so it must
+        # stay 1.1-1.3 instead of collapsing to 1.1-1.2.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n## 1.1 First\n\nText.\n\n'
+                        '## 1.3 Third\n\nSee 1.1–1.3.\n\n## 1.2 Second\n\nText.\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('See 1.1–1.3.', text)
+        self.assertIn('## 1.2 Third', text)
+        self.assertIn('## 1.3 Second', text)
+
+    def test_bare_section_range_with_hole_fails(self) -> None:
+        base = (
+            '# 1. Alpha\n\n'
+            '## 1.1 First\n\n## 1.2 Second\n\n## 1.3 Third\n\n## 1.4 Fourth\n\n'
+            'See 1.1–1.3.\n'
+        )
+        order = {'chapters': ['chapters/ch01-alpha.qmd']}
+        self.start(order, {'chapters/ch01-alpha.qmd': base})
+        # 1.1, 1.2, 1.4, 1.3: 1.1-1.3 maps to 1.1, 1.2 and 1.4, a hole at 1.3.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n## 1.1 First\n\n## 1.2 Second\n\n'
+                        '## 1.4 Fourth\n\n## 1.3 Third\n\nSee 1.1–1.3.\n')
+        before = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('not contiguous', result.stderr)
+        self.assertEqual(self.book.read('manuscript/chapters/ch01-alpha.qmd'), before)
+
+    def test_fenced_heading_is_not_a_section(self) -> None:
+        base = (
+            '# 1. Alpha\n\n## 1.1 First\n\nText.\n\n'
+            '```markdown\n## 1.9 Example\n```\n\n'
+            '## 1.2 Second\n\nText.\n'
+        )
+        files = {'chapters/ch01-alpha.qmd': base,
+                 'chapters/ch02-beta.qmd': chapter(2, 'Beta', '## 2.1 Body\n\nText.\n')}
+        order = {'chapters': ['chapters/ch01-alpha.qmd', 'chapters/ch02-beta.qmd']}
+        self.start(order, files)
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch02-beta.qmd\n  - chapters/ch01-alpha.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('## 2.1 First', text)
+        self.assertIn('## 2.2 Second', text)
+        self.assertIn('```markdown\n## 1.9 Example\n```', text)
+
+    def test_duplicate_caption_follows_owning_section(self) -> None:
+        def block(number: str, title: str, cell: str) -> str:
+            return (f'## {number} {title}\n\n'
+                    '| Key | Value |\n| :--- | :--- |\n'
+                    f'| {cell} | x |\n\n: Summary\n\n'
+                    f'Table {number} describes {title}.\n\n')
+
+        base = ('# 1. Alpha\n\n' + block('1.1', 'First', 'a') + block('1.2', 'Second', 'b'))
+        order = {'chapters': ['chapters/ch01-alpha.qmd']}
+        self.start(order, {'chapters/ch01-alpha.qmd': base})
+        # The two tables share the caption "Summary"; swapping the sections must
+        # map each table by the section that owns it, not by caption order.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n' + block('1.2', 'Second', 'b') + block('1.1', 'First', 'a'))
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('## 1.1 Second', text)
+        self.assertIn('Table 1.1 describes Second.', text)
+        self.assertIn('## 1.2 First', text)
+        self.assertIn('Table 1.2 describes First.', text)
+
+    def test_ambiguous_caption_across_sections_fails(self) -> None:
+        def block(number: str, title: str, cell: str) -> str:
+            return (f'## {number} {title}\n\n'
+                    '| Key | Value |\n| :--- | :--- |\n'
+                    f'| {cell} | x |\n\n: Summary\n\n')
+
+        base = ('# 1. Alpha\n\n' + block('1.1', 'First', 'a') + block('1.2', 'Second', 'b'))
+        self.start({'chapters': ['chapters/ch01-alpha.qmd']},
+                   {'chapters/ch01-alpha.qmd': base})
+        # A renamed owning section leaves caption order as the only signal: refuse.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n'
+                        + block('1.1', 'Renamed', 'b') + block('1.2', 'Second', 'a'))
+        before = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('ambiguous', result.stderr)
+        self.assertEqual(self.book.read('manuscript/chapters/ch01-alpha.qmd'), before)
+
     # -- appendix letters and generated files --------------------------------- #
 
     def test_appendix_table_follows_letter_after_rename(self) -> None:
