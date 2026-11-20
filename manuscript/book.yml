@@ -27,7 +27,7 @@ back:
   - back-matter/conclusions.qmd
 appendices:
   - appendices/appendix-a-worked-architecture-cases.qmd
-  - appendices/appendix-b-reusable-artifact-templates.qmd
+  - appendices/appendix-b-reusable-artifact-schemas.qmd
   - appendices/appendix-c-architecture-assurance-checklist.qmd
   - appendices/appendix-d-cross-artifact-consistency-matrix.qmd
   - appendices/appendix-e-security-requirements-baseline.qmd
