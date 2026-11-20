@@ -85,7 +85,7 @@ The table below states the question each category answers and the evidence that 
 
 : Minimum data-flow record for each material dataset
 
-Batch and streaming are execution models with different latency and recovery characteristics. Specify poison-record handling, replay boundaries and reconciliation so that a failed pipeline cannot silently lose or duplicate business effects. Data flows are covered in 5.2.3, pipelines in 5.2.6 and lineage in 5.3.5; the dynamic views that keep a flow diagram readable are in 13.2.1; the durable data artifacts that carry these requirements into delivery are in 17.4.2.
+Batch and streaming are execution models with different latency and recovery characteristics. Specify poison-record handling, replay boundaries and reconciliation so that a failed pipeline cannot silently lose or duplicate business effects. Data flows are covered in 8.2.3, pipelines in 8.2.6 and lineage in 8.3.5; the dynamic views that keep a flow diagram readable are in 5.2.1; the durable data artifacts that carry these requirements into delivery are in 7.4.2.
 
 **Why it is needed.** Datasets without a stated transformation and lineage cannot be reconciled, and records that cannot be reconciled cannot be trusted in a financial or regulatory process. The usual failures are silent: a currency conversion applied twice, a de-identification step skipped on one path, a schema change that breaks a consumer nobody listed. Evidence: every material dataset has a flow record, a reconciliation check compares source and destination totals, and a lineage query can answer where a single order’s amount came from without reading application code.
 
@@ -97,7 +97,7 @@ Batch and streaming are execution models with different latency and recovery cha
 
 **What it includes.** Owners on both sides, transport and protocol, authentication and authorization, schema and versioning rules, latency and throughput expectations, timeout and retry behavior, ordering and delivery guarantees, idempotency, failure handling and the reconciliation path. State the direction of the dependency and what the caller does while waiting. For the reference checkout the payment integration states a 900 ms timeout, two retries with backoff, duplicate detection on the provider reference and an explicit pending state when the provider does not answer.
 
-**Why it is needed.** Vague integrations produce retries that duplicate orders, timeouts that leave the business state unknown and schema changes that break consumers nobody listed. A retry policy cannot substitute for idempotency, and a schema cannot define operational recovery; both must be stated separately. Evidence: a contract test runs against both sides, duplicate and out-of-order delivery are demonstrated, and the reconciliation job reports zero unresolved differences. Chapter 6 covers the mechanisms and their trade-offs.
+**Why it is needed.** Vague integrations produce retries that duplicate orders, timeouts that leave the business state unknown and schema changes that break consumers nobody listed. A retry policy cannot substitute for idempotency, and a schema cannot define operational recovery; both must be stated separately. Evidence: a contract test runs against both sides, duplicate and out-of-order delivery are demonstrated, and the reconciliation job reports zero unresolved differences. Chapter 9 covers the mechanisms and their trade-offs.
 
 **Example.** In the reference checkout, “place an order” is one use case traced across all five categories. The capability is *order capture*; the main path ends with a durable order in state ACCEPTED; the invariant is that one idempotency key creates at most one order; the data flow originates at the Checkout API, replaces card data with a token and lands in the order store with `orderId` as the lineage key; and the payment integration states a 900 ms timeout, two bounded retries and duplicate detection on the provider reference. Each of the five statements has an owner and a test, and none of them describes a screen.
 
@@ -117,7 +117,7 @@ How much structure a functional requirement needs before design starts.
 
 ## 1.2 Quality Attribute Requirements
 
-Quality attributes constrain how the solution behaves under specified conditions. Express each significant attribute as a measurable scenario (see 1.4); adjectives such as fast, secure or highly available are not evidence. The attributes below are frequently confused. Figure 1.2 groups them into the four families an architect reviews together, because they compete for the same budget.
+Quality attributes constrain how the solution behaves under specified conditions. Express each significant attribute as a measurable scenario (see 1.3); adjectives such as fast, secure or highly available are not evidence. The attributes below are frequently confused. Figure 1.2 groups them into the four families an architect reviews together, because they compete for the same budget.
 
 ![Figure 1.2 — Families of quality attributes and the tensions between them](../../assets/diagrams/rendered/ch01-quality-attributes.png){#fig-1-2 width="100%"}
 
@@ -143,7 +143,7 @@ The table states the question each attribute answers and the measure that makes 
 
 ISO/IEC 25010:2023 groups availability, fault tolerance and recoverability as sub-characteristics of reliability. This handbook separates them because they drive different decisions, but state the mapping when a standard taxonomy is required. Privacy and auditability are separated for the same reason: one limits how long data is kept, the other requires that some records survive long enough to be examined, and a single “compliance” label hides that conflict.
 
-Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as task quality, groundedness, safety, cost per outcome and freshness.
+Chapter 18 (18.1.4) extends this attribute set with AI-specific measures such as task quality, groundedness, safety, cost per outcome and freshness.
 
 ### 1.2.1 Availability
 
@@ -213,7 +213,7 @@ Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as
 
 **What it includes.** The protected assets — data, functions and identities; the actors and their privileges; the trust boundaries between them; the sensitive fields and privileged operations; and the confidentiality, integrity and availability obligations attached to each asset. Confidentiality restricts disclosure, integrity protects against unauthorized or accidental change, and availability preserves access to essential functions; name which of the three a requirement is really about.
 
-**Why it is needed.** A design is not validated by citing a framework. Controls chosen without an asset and threat model protect the wrong thing, and the gaps appear as findings in the first penetration test or, worse, in an incident report. Evidence: denied unauthorized access is demonstrated, secrets rotate on a schedule, privileged actions leave an audit trail, and an incident response path has been exercised. Chapter 10 covers mechanisms and threat modeling.
+**Why it is needed.** A design is not validated by citing a framework. Controls chosen without an asset and threat model protect the wrong thing, and the gaps appear as findings in the first penetration test or, worse, in an incident report. Evidence: denied unauthorized access is demonstrated, secrets rotate on a schedule, privileged actions leave an audit trail, and an incident response path has been exercised. Chapter 13 covers mechanisms and threat modeling.
 
 ### 1.2.8 Maintainability
 
@@ -233,7 +233,7 @@ Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as
 
 **What it includes.** Metrics for rates, errors, latency and saturation; structured logs for contextual events; traces that connect work across services and messages; and the identifiers and vocabulary shared between them. An operator must be able to follow one order from acceptance through payment and fulfillment without exposing personal data, which means correlation identifiers are separated from customer data by design.
 
-**Why it is needed.** A system that emits volume without shared identifiers produces dashboards nobody can join, and an on-call engineer reconstructs a timeline by hand while customers wait. Signals also become a privacy liability when payloads are logged wholesale. Evidence: an on-call engineer diagnoses a deliberately injected failure within an agreed time using only the telemetry, and a review confirms that sensitive fields are excluded. Chapter 11 covers service indicators and objectives.
+**Why it is needed.** A system that emits volume without shared identifiers produces dashboards nobody can join, and an on-call engineer reconstructs a timeline by hand while customers wait. Signals also become a privacy liability when payloads are logged wholesale. Evidence: an on-call engineer diagnoses a deliberately injected failure within an agreed time using only the telemetry, and a review confirms that sensitive fields are excluded. Chapter 14 covers service indicators and objectives.
 
 ### 1.2.10 Recoverability
 
@@ -243,7 +243,7 @@ Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as
 
 **What it includes.** The **Recovery Time Objective (RTO)**, the maximum acceptable time to restore service, and the **Recovery Point Objective (RPO)**, the maximum acceptable data loss measured as time before the disruption. Add the scope of recovery — which functions and datasets are restored first — the dependency order, and the credential and configuration restoration that are usually forgotten in plans.
 
-**Why it is needed.** RTO and RPO are business requirements, not properties delivered by a backup product, and backups are not proof of recovery. A restore that takes longer than the business can tolerate, or one that recovers data but not the credentials to use it, is a failed recovery discovered at the worst possible time. Evidence: a timed restore and failover exercise that includes data integrity checks, dependent services and credential restoration, with the measured result recorded against both objectives. Chapter 8 covers recovery topologies.
+**Why it is needed.** RTO and RPO are business requirements, not properties delivered by a backup product, and backups are not proof of recovery. A restore that takes longer than the business can tolerate, or one that recovers data but not the credentials to use it, is a failed recovery discovered at the worst possible time. Evidence: a timed restore and failover exercise that includes data integrity checks, dependent services and credential restoration, with the measured result recorded against both objectives. Chapter 11 covers recovery topologies.
 
 ### 1.2.11 Usability and Accessibility
 
@@ -273,7 +273,7 @@ Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as
 
 **What it includes.** The events in scope, the actor, the action, the target, the timestamp with its clock source, the authority or approval under which the action happened, and the before and after state where relevant. Include privileged and administrative actions, configuration changes, approvals and data exports, not only customer transactions. Specify where the record is written, whether it is append-only, how tampering would be detected, who may read it, and the retention period that the governing obligation requires.
 
-**Why it is needed.** Diagnostic logs are not an audit trail: they are sampled, rotated and mutable, and they usually omit the authority behind an action. When a dispute or an investigation arrives, the organization discovers that the decisive event was never recorded or has already expired. Auditability also pulls against privacy, so the retention rules for the two attributes must be reconciled explicitly rather than by whichever team owns the log store. Evidence: a sample transaction is reconstructed from the audit trail alone within an agreed time, tamper detection is demonstrated, and retention matches the stated obligation (see 1.3.3 and 10.7.2).
+**Why it is needed.** Diagnostic logs are not an audit trail: they are sampled, rotated and mutable, and they usually omit the authority behind an action. When a dispute or an investigation arrives, the organization discovers that the decisive event was never recorded or has already expired. Auditability also pulls against privacy, so the retention rules for the two attributes must be reconciled explicitly rather than by whichever team owns the log store. Evidence: a sample transaction is reconstructed from the audit trail alone within an agreed time, tamper detection is demonstrated, and retention matches the stated obligation (see 1.4.3 and 13.7.2).
 
 **Example.** The reference checkout carries a small, explicit attribute set. Availability is 99.9% of valid checkout requests returning a durable `order_id` within 2 seconds over a rolling 28-day window, measured at the edge; performance is p99 acknowledgment within 2 seconds at 500 submissions per second; reliability is zero lost or double-charged acknowledged orders; privacy limits payment data to a token and a retention period; auditability records every order state transition with actor and authority for the period the obligation requires. The numbers are illustrative, but each one names a boundary and a measurement, and each is reviewed together with the others.
 
@@ -291,11 +291,80 @@ How to resolve competing quality attributes before design commits to one.
 | Adopt platform defaults and revisit after launch | The attribute is not architecturally significant yet | Low upfront cost; the default becomes the requirement by accident and is hard to reverse |
 :::
 
-## 1.3 Architecture Constraints
+## 1.3 Quality Attribute Scenarios and Budgets
 
-Constraints restrict the set of feasible designs regardless of preference. For each constraint record its source, authority, validity period, design impact and the role able to approve an exception. Distinguish mandatory obligations from assumptions, which must be confirmed, and from preferences, which can be challenged. Figure 1.3 shows the classification that separates them.
+A **quality attribute scenario** makes a requirement testable by specifying six parts: source of stimulus, stimulus, environment, affected artifact, response and response measure. The scenario is the unit of review, because it can be traced to a test and to a decision; Figure 1.3 shows how one goal becomes an evidence-backed design choice.
 
-![Figure 1.3 — Classifying a statement as a constraint, an assumption or a preference](../../assets/diagrams/rendered/ch01-constraints.png){#fig-1-3 width="100%"}
+![Figure 1.3 — From business goal to quality scenario, budget and evidence](../../assets/diagrams/rendered/ch01-scenario-budget.png){#fig-1-3 width="100%"}
+
+The table applies the six parts to the reference checkout; the numbers are illustrative and belong to the acceptance test rather than to the diagram.
+
+| Part | Value |
+| :--- | :--- |
+| Source | Customer browser |
+| Stimulus | Valid order submission |
+| Environment | Peak load of 500 submissions/s; payment provider timing out |
+| Artifact | Checkout API and Order service |
+| Response | Order durably recorded and acknowledged as ACCEPTED, or explicitly rejected |
+| Response measure | 99% acknowledged within 2 s; zero acknowledged orders lost |
+
+: The six parts of a quality attribute scenario, applied to the reference checkout
+
+Distinguish accepted, paid and fulfilled states: a quick HTTP response is not evidence that a business transaction completed.
+
+### 1.3.1 Quality Attribute Workshops (QAW)
+
+**Definition.** A **Quality Attribute Workshop (QAW)** is a structured elicitation and prioritization method in which the people who own the business drivers agree the scenarios that will drive the architecture.
+
+**Purpose.** A QAW exists to discover which quality scenarios matter and who must agree them, before design work fixes priorities by accident. It is a method for reaching a decision, not a scoring ceremony, and its output is a small set of measurable scenarios with owners and rationale.
+
+**What it includes.** Business, product, architecture, engineering, security and operations participants; a review of business drivers; a brainstorm of quality attribute scenarios; consolidation of duplicates; and explicit prioritization of the scenarios that will shape the design. Keep the group small enough to decide, and record rejected and deferred scenarios so they are not silently reintroduced later.
+
+**Why it is needed.** Use a QAW when the quality goals are vague, contested or incomplete; when a new solution has no shared definition of “good”; or before a design or evaluation review. Without one, the loudest stakeholder sets the priorities implicitly and the conflicts surface during implementation. The workshop complements the scenario template above: the template makes one scenario precise, while the workshop decides which scenarios deserve that precision. Evidence: an agreed, prioritized scenario list with owners, and a record of what was rejected and why. The Software Engineering Institute’s QAW method is a recognized reference for the technique.
+
+**Example.** In the reference checkout the team first wrote “the checkout must always be available.” A workshop replaced it with a journey-level scenario at 99.9% over 28 days, plus a latency scenario and a provider-timeout scenario, each with an owner. The latency budget in Table 1.5 then showed that a synchronous payment call with a 3-second timeout could not fit inside a 2-second target, which produced the asynchronous confirmation decision and its test.
+
+### 1.3.2 Latency, Availability and Error Budgets
+
+**Definition.** A latency budget allocates an end-to-end response objective across the segments a request traverses; an error budget is the unreliability a service-level objective permits over its window, whether that objective is availability, latency or quality.
+
+**Purpose.** Budgets turn a scenario into numbers a design and a test can meet. They show which segment has to shrink before the target is missed, and make the latency and availability trade-off explicit: a timeout above its allocation consumes the whole budget.
+
+**What it includes.** The end-to-end objective, the segments it crosses and a share of the target for each, plus the headroom that absorbs retries, garbage collection and dependency jitter. The shares stay illustrative until a measurement replaces them. Convert the thresholds into rates: a p99 objective tolerates 1% of acknowledgments above the threshold, and a 99.9% availability objective that counts only durable acknowledgments within it tolerates 0.1%. The table shows an allocation for the reference checkout.
+
+| Segment | Budget at p99 | Note |
+| :--- | :--- | :--- |
+| Edge, TLS and identity | 200 ms | Measured outside the platform, includes token validation |
+| Checkout API and validation | 250 ms | Business rules and idempotency check |
+| Order store write | 200 ms | Durable acknowledgment is part of the target |
+| Headroom | 1,350 ms | Absorbs retries, garbage collection and dependency jitter |
+| Payment adapter | 900 ms timeout | Off the critical path; failure produces PAYMENT\_PENDING |
+
+: Illustrative latency budget for the 2-second acknowledgment
+
+The error budget follows from the availability objective, and the policy for spending it is owned by 14.2.2.
+
+**Why it is needed.** A target that cannot be allocated is a wish. Without the allocation each team optimizes its own segment and the objective is missed by the sum of small indulgences; without the error budget, every release argues about reliability from opinion. Evidence that the budget is real is a share per segment with an owner, a measured p99 against each share, and a recorded decision when the budget is exhausted.
+
+::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
+Accepting “highly available” as a requirement. It is untestable, it can justify unlimited spending, and every stakeholder believes they agreed to a different number. Replace it with a measurable quality scenario: name the user-visible boundary, workload, observation window, target and exclusions, then link it to a test and an owner. If the value genuinely cannot be established yet, record it as an assumption with an owner and an expiry date instead of a requirement.
+:::
+
+::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
+A quality goal is often stated as an adjective. Decide how to treat it before it drives a design.
+
+| Option | Choose when | Consequences |
+| :--- | :--- | :--- |
+| Measurable scenario with target | The goal affects a structural decision or creates a quality obligation | Requires workload, boundary, measure and evidence; enables test and trade-off |
+| Assumption with owner and expiry | The value cannot be established yet | Needs a validation spike; becomes a risk if treated as fact |
+| Constraint with source | A law, contract or platform mandate fixes the value | Narrows the option space; record authority and review trigger |
+:::
+
+## 1.4 Architecture Constraints
+
+Constraints restrict the set of feasible designs regardless of preference. For each constraint record its source, authority, validity period, design impact and the role able to approve an exception. Distinguish mandatory obligations from assumptions, which must be confirmed, and from preferences, which can be challenged. Figure 1.4 shows the classification that separates them.
+
+![Figure 1.4 — Classifying a statement as a constraint, an assumption or a preference](../../assets/diagrams/rendered/ch01-constraints.png){#fig-1-4 width="100%"}
 
 The table lists the fields that make a constraint reviewable; a statement that cannot fill them is not yet a constraint.
 
@@ -311,7 +380,7 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **Constraints versus assumptions.** Constraints are imposed conditions, such as a regulator-approved region or a mandatory identity provider. Assumptions are propositions that require confirmation; treating them as facts hides risk. Maintain an assumption log with owner, evidence date, confidence and impact if false, and reassess at major milestones.
 
-### 1.3.1 Technology Constraints
+### 1.4.1 Technology Constraints
 
 **Definition.** A technology constraint is a mandated runtime, language, platform or standard that the solution must use or must avoid.
 
@@ -321,7 +390,7 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **Why it is needed.** Mandates that nobody owns are never revisited, and the solution inherits an unsupported runtime with no route out. Conversely, treating a preference as a mandate blocks a better option and makes the decision look technical when it is organizational. Evidence: each mandate names its authority and review date, the support position is confirmed, and every design alternative that the constraint removed is recorded with its cost.
 
-### 1.3.2 Infrastructure Constraints
+### 1.4.2 Infrastructure Constraints
 
 **Definition.** Infrastructure constraints are the fixed facts of region, network topology, connectivity, hosting model and operational ownership.
 
@@ -331,17 +400,17 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **Why it is needed.** A topology that ignores routing and quotas is not deployable, however clean it looks on a diagram. The failures are concrete — a subnet with no route to a payment provider, a quota that blocks the peak-load design, a firewall rule that makes an approved pattern impossible. Evidence: address ranges, routes, private connectivity and quotas are verified with the platform owner, and the constraints appear on the deployment and trust-boundary views.
 
-### 1.3.3 Regulatory and Compliance Constraints
+### 1.4.3 Regulatory and Compliance Constraints
 
 **Definition.** A regulatory or compliance constraint is a legal, regulatory or contractual obligation translated into an obligation the system must satisfy.
 
 **Purpose.** These constraints define the outcomes the solution must be able to evidence — retention, deletion, residency, audit trails, evidence preservation — and the accountability that follows a failure. They are non-negotiable in a way that technical preferences are not.
 
-**What it includes.** The obligation and its jurisdiction, the interpretation that applies to this solution, the accountable control owner, the evidence that demonstrates compliance and the review cadence. Data residency, retention periods, deletion on request, record keeping for audits (4.9) and audit trails (10.7.2) are the obligations most likely to shape architecture.
+**What it includes.** The obligation and its jurisdiction, the interpretation that applies to this solution, the accountable control owner, the evidence that demonstrates compliance and the review cadence. Data residency, retention periods, deletion on request, record keeping for audits (4.9) and audit trails (13.7.2) are the obligations most likely to shape architecture.
 
 **Why it is needed.** A diagram alone does not establish compliance, and an interpretation made by the delivery team is not a legal position. When the obligation is recorded only as a sentence in a design document, the evidence is assembled after the request arrives, from whatever data happens to exist. Evidence: legal and compliance stakeholders have validated the interpretation, each obligation maps to a control with an owner, and the evidence is produced on demand rather than reconstructed.
 
-### 1.3.4 Organizational Constraints
+### 1.4.4 Organizational Constraints
 
 **Definition.** Organizational constraints are the approved services, delivery capabilities, skills, support coverage and internal control processes that the solution must work within.
 
@@ -351,7 +420,7 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **Why it is needed.** Ignoring organizational capacity produces architectures that are technically sound and operationally abandoned, and bypassing governance produces a solution that cannot be supported or audited. Evidence: the operating team has reviewed the design, the required skills exist or a hiring and training plan is committed, and every exception to the standard process is recorded with an owner and a business consequence.
 
-### 1.3.5 Budget and Cost Constraints
+### 1.4.5 Budget and Cost Constraints
 
 **Definition.** A budget constraint is a cost limit with a time horizon and a demand model.
 
@@ -359,9 +428,9 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **What it includes.** Initial implementation, recurring consumption, licensing, operational labor and the capacity reserved for recovery. Separate the one-off from the recurring, and state the demand assumptions that drive the recurring figure. Compare alternatives with sensitivity analysis, because the ranking often changes when demand is half or double the estimate.
 
-**Why it is needed.** A lower infrastructure bill frequently shifts substantial cost to engineering operations, and a cost target set without a demand model is satisfied by under-provisioning that the first peak exposes. Evidence: each alternative is costed with the same workload assumptions, the sensitivity range is recorded, and the total cost of ownership including operational labor is compared (see 16.2).
+**Why it is needed.** A lower infrastructure bill frequently shifts substantial cost to engineering operations, and a cost target set without a demand model is satisfied by under-provisioning that the first peak exposes. Evidence: each alternative is costed with the same workload assumptions, the sensitivity range is recorded, and the total cost of ownership including operational labor is compared (see 17.2).
 
-### 1.3.6 Legacy Constraints
+### 1.4.6 Legacy Constraints
 
 **Definition.** Legacy constraints are the systems and interfaces that cannot be changed immediately.
 
@@ -369,9 +438,9 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **What it includes.** Throughput and availability characteristics, data semantics and known defects, release cadence, ownership, supported integration styles and the contractual or vendor limits on change. Include the decommissioning intent and its date, if one exists.
 
-**Why it is needed.** Assuming that a legacy endpoint behaves like a modern service produces duplicate writes, silent data loss and integrations that fail under retry. The cost of these assumptions lands on the new system, which must then compensate for a capability it cannot rely on. Evidence: the legacy behavior is characterized by measurement rather than documentation alone, and the new design protects itself with an anti-corruption layer and a staged migration plan (see 16.1).
+**Why it is needed.** Assuming that a legacy endpoint behaves like a modern service produces duplicate writes, silent data loss and integrations that fail under retry. The cost of these assumptions lands on the new system, which must then compensate for a capability it cannot rely on. Evidence: the legacy behavior is characterized by measurement rather than documentation alone, and the new design protects itself with an anti-corruption layer and a staged migration plan (see 17.1).
 
-### 1.3.7 Delivery Constraints
+### 1.4.7 Delivery Constraints
 
 **Definition.** Delivery constraints are the milestones, staffing, skills, procurement lead times and change windows that shape when parts of the solution can exist.
 
@@ -397,78 +466,9 @@ What to do when a constraint blocks the better design.
 | Escalate to change the constraint | The constraint is outdated, misapplied or owned by a role that can revise it | Removes the restriction permanently; takes time and may fail, so do not schedule the delivery around it |
 :::
 
-## 1.4 Quality Attribute Scenarios and Budgets
-
-A **quality attribute scenario** makes a requirement testable by specifying six parts: source of stimulus, stimulus, environment, affected artifact, response and response measure. The scenario is the unit of review, because it can be traced to a test and to a decision; Figure 1.4 shows how one goal becomes an evidence-backed design choice.
-
-![Figure 1.4 — From business goal to quality scenario, budget and evidence](../../assets/diagrams/rendered/ch01-scenario-budget.png){#fig-1-4 width="100%"}
-
-The table applies the six parts to the reference checkout; the numbers are illustrative and belong to the acceptance test rather than to the diagram.
-
-| Part | Value |
-| :--- | :--- |
-| Source | Customer browser |
-| Stimulus | Valid order submission |
-| Environment | Peak load of 500 submissions/s; payment provider timing out |
-| Artifact | Checkout API and Order service |
-| Response | Order durably recorded and acknowledged as ACCEPTED, or explicitly rejected |
-| Response measure | 99% acknowledged within 2 s; zero acknowledged orders lost |
-
-: The six parts of a quality attribute scenario, applied to the reference checkout
-
-Distinguish accepted, paid and fulfilled states: a quick HTTP response is not evidence that a business transaction completed.
-
-### 1.4.1 Quality Attribute Workshops (QAW)
-
-**Definition.** A **Quality Attribute Workshop (QAW)** is a structured elicitation and prioritization method in which the people who own the business drivers agree the scenarios that will drive the architecture.
-
-**Purpose.** A QAW exists to discover which quality scenarios matter and who must agree them, before design work fixes priorities by accident. It is a method for reaching a decision, not a scoring ceremony, and its output is a small set of measurable scenarios with owners and rationale.
-
-**What it includes.** Business, product, architecture, engineering, security and operations participants; a review of business drivers; a brainstorm of quality attribute scenarios; consolidation of duplicates; and explicit prioritization of the scenarios that will shape the design. Keep the group small enough to decide, and record rejected and deferred scenarios so they are not silently reintroduced later.
-
-**Why it is needed.** Use a QAW when the quality goals are vague, contested or incomplete; when a new solution has no shared definition of “good”; or before a design or evaluation review. Without one, the loudest stakeholder sets the priorities implicitly and the conflicts surface during implementation. The workshop complements the scenario template above: the template makes one scenario precise, while the workshop decides which scenarios deserve that precision. Evidence: an agreed, prioritized scenario list with owners, and a record of what was rejected and why. The Software Engineering Institute’s QAW method is a recognized reference for the technique.
-
-**Example.** In the reference checkout the team first wrote “the checkout must always be available.” A workshop replaced it with a journey-level scenario at 99.9% over 28 days, plus a latency scenario and a provider-timeout scenario, each with an owner. The latency budget in Table 1.6 then showed that a synchronous payment call with a 3-second timeout could not fit inside a 2-second target, which produced the asynchronous confirmation decision and its test.
-
-### 1.4.2 Latency, Availability and Error Budgets
-
-**Definition.** A latency budget allocates an end-to-end response objective across the segments a request traverses; an error budget is the unreliability a service-level objective permits over its window, whether that objective is availability, latency or quality.
-
-**Purpose.** Budgets turn a scenario into numbers a design and a test can meet. They show which segment has to shrink before the target is missed, and make the latency and availability trade-off explicit: a timeout above its allocation consumes the whole budget.
-
-**What it includes.** The end-to-end objective, the segments it crosses and a share of the target for each, plus the headroom that absorbs retries, garbage collection and dependency jitter. The shares stay illustrative until a measurement replaces them. Convert the thresholds into rates: a p99 objective tolerates 1% of acknowledgments above the threshold, and a 99.9% availability objective that counts only durable acknowledgments within it tolerates 0.1%. The table shows an allocation for the reference checkout.
-
-| Segment | Budget at p99 | Note |
-| :--- | :--- | :--- |
-| Edge, TLS and identity | 200 ms | Measured outside the platform, includes token validation |
-| Checkout API and validation | 250 ms | Business rules and idempotency check |
-| Order store write | 200 ms | Durable acknowledgment is part of the target |
-| Headroom | 1,350 ms | Absorbs retries, garbage collection and dependency jitter |
-| Payment adapter | 900 ms timeout | Off the critical path; failure produces PAYMENT\_PENDING |
-
-: Illustrative latency budget for the 2-second acknowledgment
-
-The error budget follows from the availability objective, and the policy for spending it is owned by 11.2.2.
-
-**Why it is needed.** A target that cannot be allocated is a wish. Without the allocation each team optimizes its own segment and the objective is missed by the sum of small indulgences; without the error budget, every release argues about reliability from opinion. Evidence that the budget is real is a share per segment with an owner, a measured p99 against each share, and a recorded decision when the budget is exhausted.
-
-::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Accepting “highly available” as a requirement. It is untestable, it can justify unlimited spending, and every stakeholder believes they agreed to a different number. Replace it with a measurable quality scenario: name the user-visible boundary, workload, observation window, target and exclusions, then link it to a test and an owner. If the value genuinely cannot be established yet, record it as an assumption with an owner and an expiry date instead of a requirement.
-:::
-
-::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
-A quality goal is often stated as an adjective. Decide how to treat it before it drives a design.
-
-| Option | Choose when | Consequences |
-| :--- | :--- | :--- |
-| Measurable scenario with target | The goal affects a structural decision or creates a quality obligation | Requires workload, boundary, measure and evidence; enables test and trade-off |
-| Assumption with owner and expiry | The value cannot be established yet | Needs a validation spike; becomes a risk if treated as fact |
-| Constraint with source | A law, contract or platform mandate fixes the value | Narrows the option space; record authority and review trigger |
-:::
-
 ## 1.5 Requirement Traceability
 
-Record each significant requirement with an identifier, stakeholder, rationale, priority, acceptance method and source. Link it to the decisions and tests that satisfy it — for example, REQ-CHECKOUT-04 → quality scenario → ADR → performance test → dashboard → operational owner. When an assumption or priority changes, the links show which decisions must be revisited, preventing silent architectural drift. Figure 1.5 shows the chain and its maintenance loop; Chapter 17 describes the full artifact chain.
+Record each significant requirement with an identifier, stakeholder, rationale, priority, acceptance method and source. Link it to the decisions and tests that satisfy it — for example, REQ-CHECKOUT-04 → quality scenario → ADR → performance test → dashboard → operational owner. When an assumption or priority changes, the links show which decisions must be revisited, preventing silent architectural drift. Figure 1.5 shows the chain and its maintenance loop; Chapter 7 describes the full artifact chain.
 
 ![Figure 1.5 — The traceability chain from requirement to operational owner](../../assets/diagrams/rendered/ch01-traceability.png){#fig-1-5 width="100%"}
 

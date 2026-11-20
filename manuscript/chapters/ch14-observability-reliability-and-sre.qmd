@@ -1,4 +1,4 @@
-# 11. Observability, Reliability and SRE
+# 14. Observability, Reliability and SRE
 
 Observability helps operators infer internal behavior from telemetry; reliability engineering turns business expectations into measurable objectives and operates the system against them. Site Reliability Engineering (SRE) combines the two with engineering practices: service-level objectives, error budgets, incident response, capacity planning and learning from failure. A green infrastructure dashboard does not prove that customers can complete an order.
 
@@ -14,13 +14,13 @@ Observability helps operators infer internal behavior from telemetry; reliabilit
 Reliability is managed through a small number of user-centric objectives, not component health. Measure the journey at the edge, alert on error-budget burn rather than resource thresholds, and let the budget decide when reliability work takes priority over new releases.
 :::
 
-## 11.1 Telemetry Architecture
+## 14.1 Telemetry Architecture
 
-Telemetry is the evidence a running system emits about itself: instrumented code produces signals, a collector reduces and routes them, and signal-specific stores make them queryable. Figure 11.1 follows that path from the service to the alert, the dashboard and the investigation.
+Telemetry is the evidence a running system emits about itself: instrumented code produces signals, a collector reduces and routes them, and signal-specific stores make them queryable. Figure 14.1 follows that path from the service to the alert, the dashboard and the investigation.
 
-![Figure 11.1 — Telemetry signal pipeline from instrumented services to analysis](../../assets/diagrams/rendered/ch10-telemetry-pipeline.png){#fig-11-1 width="100%"}
+![Figure 14.1 — Telemetry signal pipeline from instrumented services to analysis](../../assets/diagrams/rendered/ch10-telemetry-pipeline.png){#fig-14-1 width="100%"}
 
-### 11.1.1 Signal Types
+### 14.1.1 Signal Types
 
 **Definition.** Each signal type answers a different question about the same request, so the choice decides which questions an investigation can still ask. Metrics, logs and traces are the three core types.
 
@@ -44,11 +44,11 @@ Telemetry is the evidence a running system emits about itself: instrumented code
 
 Events and profiles complete the set: events correlate incidents with changes, and profiles attribute resource use to code locations.
 
-Audit records (10.7.2) are not telemetry: they are evidence of who did what, must be complete rather than sampled, and are retained and protected under different rules.
+Audit records (13.7.2) are not telemetry: they are evidence of who did what, must be complete rather than sampled, and are retained and protected under different rules.
 
 **Why it is needed.** A single signal type leaves a characteristic blind spot. Metrics show that p99 latency rose but not which dependency caused it; traces locate the slow span but not why the request was rejected; logs explain one rejection but not how widespread it is. Correlated by trace and correlation identifiers, the three turn partial answers into one explanation.
 
-### 11.1.2 Instrumentation Standards
+### 14.1.2 Instrumentation Standards
 
 **Definition.** An instrumentation standard is the set of conventions every service follows so that telemetry from different teams can be joined into one query and one trace.
 
@@ -82,15 +82,15 @@ Sampling decides which telemetry is thrown away, and the default discards what a
 | Keep everything on critical journeys, sample elsewhere | A small number of journeys carry the SLO and the rest are diagnostic | Predictable cost for the journeys that matter; requires a maintained list of critical journeys and per-journey policy |
 :::
 
-## 11.2 Service-Level Management
+## 14.2 Service-Level Management
 
-### 11.2.1 SLIs, SLOs and SLAs
+### 14.2.1 SLIs, SLOs and SLAs
 
 **Definition.** A **service level indicator** (SLI) measures behavior users care about, as a ratio of good events to valid events; a **service level objective** (SLO) is the target for that ratio over a window, and a **service level agreement** (SLA) is the contractual commitment behind it.
 
 **Purpose.** The three turn "the system is available" into a measurement the organization can act on: which shortfall is worth paging for, how much unreliability has been promised, and how much margin exists between the internal objective and the contract. They inform release decisions, alerting and the wording of customer commitments.
 
-**What it includes.** An SLI is defined as good events divided by valid events, measured where users experience the service. Table 11.2 lists the common types; each has a natural numerator, denominator and set of exclusions.
+**What it includes.** An SLI is defined as good events divided by valid events, measured where users experience the service. Table 14.2 lists the common types; each has a natural numerator, denominator and set of exclusions.
 
 | SLI type | Good event | Example |
 | :--- | :--- | :--- |
@@ -104,11 +104,11 @@ Sampling decides which telemetry is thrown away, and the default discards what a
 
 The SLO adds a target and a window; the SLA is usually looser than the internal SLO, so that the SLO gives early warning rather than sharing a date with the contract. For the reference checkout, the SLI is valid checkout requests that return a durable `order_id` within 2 s divided by all valid checkout requests, measured at the edge, and the SLO is 99.9% over a rolling 28 days. Specify numerator, denominator, exclusions, data source and behavior when data is missing. Choose SLIs per critical user journey, and keep their number small enough that each one drives a decision.
 
-Chapter 19 (19.6.7) extends SLIs and SLOs to AI quality, groundedness, latency and cost, with evaluation gates and fallback.
+Chapter 18 (18.6.7) extends SLIs and SLOs to AI quality, groundedness, latency and cost, with evaluation gates and fallback.
 
 **Why it is needed.** Without a defined ratio, availability claims come from component health and cannot be checked against the experience that customers pay for. Teams then optimize what is easy to measure — CPU headroom, host counts, error counts — and discover the difference only when a customer reports a journey that was failing while every dashboard stayed green. An SLO with a stated window also makes "better" and "worse" comparable across releases, which is what allows a slow degradation to be seen at all.
 
-### 11.2.2 Error Budgets and Burn-Rate Alerting
+### 14.2.2 Error Budgets and Burn-Rate Alerting
 
 **Definition.** The error budget is the permitted unreliability implied by an SLO; the **burn rate** is how fast that budget is being consumed relative to the SLO window.
 
@@ -116,7 +116,7 @@ Chapter 19 (19.6.7) extends SLIs and SLOs to AI quality, groundedness, latency a
 
 **What it includes.** A 99.9% SLO allows 0.1% of valid requests to fail; over 28 days, that is about 40 minutes of full outage. A burn rate of 1 uses the whole budget over the window, so a rate of 15.4 consumes 2% in an hour.
 
-Alerting on burn rate over several windows detects both sudden outages and slow degradation while ignoring brief noise. Google's *Site Reliability Workbook* documents a commonly cited configuration, reproduced in Table 11.3.
+Alerting on burn rate over several windows detects both sudden outages and slow degradation while ignoring brief noise. Google's *Site Reliability Workbook* documents a commonly cited configuration, reproduced in Table 14.3.
 
 | Budget consumed | Long window | Burn rate | Action |
 | :--- | :--- | :--- | :--- |
@@ -128,9 +128,9 @@ Alerting on burn rate over several windows detects both sudden outages and slow 
 
 Each alert also uses a short window, typically one twelfth as long, so it stops firing quickly once the problem is fixed. The figures assume a 30-day SLO window: burn rate = budget fraction × SLO window ÷ alert window. For the 28-day example the same fractions give about 13.4, 5.6 and 0.93.
 
-Figure 11.2 shows the loop: the SLI feeds the error budget, alerts drive response, and the policy decides what the next releases contain.
+Figure 14.2 shows the loop: the SLI feeds the error budget, alerts drive response, and the policy decides what the next releases contain.
 
-![Figure 11.2 — SLO and error-budget feedback loop](../../assets/diagrams/rendered/slo-loop.png){#fig-11-2 width="100%"}
+![Figure 14.2 — SLO and error-budget feedback loop](../../assets/diagrams/rendered/slo-loop.png){#fig-14-2 width="100%"}
 
 An **error-budget policy** states what happens when the budget is exhausted — for example, prioritizing reliability work over risky releases until the SLI recovers. Without an agreed policy, the budget is only a report.
 
@@ -156,27 +156,27 @@ What should page a person?
 Page on symptoms that threaten the SLO; route cause-level signals to dashboards and tickets.
 :::
 
-## 11.3 Incident Response
+## 14.3 Incident Response
 
 Incident response is the rehearsed path from detecting a disruption to mitigating it, communicating about it, and turning it into a change the system keeps.
 
-### 11.3.1 Detection and On-Call
+### 14.3.1 Detection and On-Call
 
 **Definition.** Detection is the path from a signal to a person who is able and allowed to act on it.
 
 **Purpose.** Detection design decides how long a disruption stays invisible and whether the first responder has what is needed to start work. It informs which signals page, who receives them and what each alert carries with it.
 
-**What it includes.** Alert on symptoms that require human action — SLO burn, stalled workflows, growing backlog — and route each alert to an owner with a runbook; alerting on every internal error produces fatigue and masks critical incidents. Each alert carries the journey affected, the current value, the threshold it crossed and a link to the runbook. A **runbook** is the procedure for a known task or failure; a **playbook** is the decision guide for an unfolding incident that is not a single procedure — which escalation to invoke, what to communicate and when (17.5.2). Track alert noise and on-call load per engineer, because a rota that pages for noise stops reading pages.
+**What it includes.** Alert on symptoms that require human action — SLO burn, stalled workflows, growing backlog — and route each alert to an owner with a runbook; alerting on every internal error produces fatigue and masks critical incidents. Each alert carries the journey affected, the current value, the threshold it crossed and a link to the runbook. A **runbook** is the procedure for a known task or failure; a **playbook** is the decision guide for an unfolding incident that is not a single procedure — which escalation to invoke, what to communicate and when (7.5.2). Track alert noise and on-call load per engineer, because a rota that pages for noise stops reading pages.
 
 **Why it is needed.** An alert that nobody can act on trains the team to ignore the channel, and the one that matters arrives in the same noise. Detection quality is measured, not assumed: the evidence is a game day that records time to detect and time to acknowledge, an alert-to-incident ratio with an owner, and runbooks that were exercised rather than merely written.
 
-### 11.3.2 Severity, Roles and Mitigation
+### 14.3.2 Severity, Roles and Mitigation
 
 **Definition.** Severity is the business-impact classification that decides who is engaged, how fast and with what authority.
 
 **Purpose.** Severity turns a technical event into a response with a known shape, so that mitigation starts before the debate about how bad it is. It also protects the organization from the opposite failure: treating every event as a crisis until the scale means nothing.
 
-**What it includes.** Define severity by business impact, with response expectations for each level (Table 11.4). For major incidents, separate the roles: an **incident commander** coordinates and decides, an **operations lead** works on mitigation, a **communications lead** informs stakeholders and customers, and a **scribe** keeps the timeline. Mitigate first — roll back, fail over, shed load — and diagnose afterwards. Security incidents follow the same structure with the notification obligations in 10.7.1. Figure 11.3 shows the path from detection to a postmortem that improves detection.
+**What it includes.** Define severity by business impact, with response expectations for each level (Table 14.4). For major incidents, separate the roles: an **incident commander** coordinates and decides, an **operations lead** works on mitigation, a **communications lead** informs stakeholders and customers, and a **scribe** keeps the timeline. Mitigate first — roll back, fail over, shed load — and diagnose afterwards. Security incidents follow the same structure with the notification obligations in 13.7.1. Figure 14.3 shows the path from detection to a postmortem that improves detection.
 
 | Severity | Example impact | Typical response |
 | :--- | :--- | :--- |
@@ -187,21 +187,21 @@ Incident response is the rehearsed path from detecting a disruption to mitigatin
 
 : Incident severity and expected response
 
-Figure 11.3 maps the severity levels to the escalation path, so the response expectations in the table become a sequence of decisions rather than a static classification.
+Figure 14.3 maps the severity levels to the escalation path, so the response expectations in the table become a sequence of decisions rather than a static classification.
 
-![Figure 11.3 — Incident severity and escalation path](../../assets/diagrams/rendered/ch10-incident-escalation.png){#fig-11-3 width="100%"}
+![Figure 14.3 — Incident severity and escalation path](../../assets/diagrams/rendered/ch10-incident-escalation.png){#fig-14-3 width="100%"}
 
 **Why it is needed.** Without agreed severity and roles, the loudest person in the channel decides, mitigation competes with diagnosis, and each stakeholder asks the same questions of the person trying to fix the fault. The evidence is a declared severity that matches the customer impact in a sample of incidents, an incident commander named at declaration, and a measured time from declaration to first mitigation.
 
-### 11.3.3 Communication During Incidents
+### 14.3.3 Communication During Incidents
 
 **Definition.** Incident communication is the rehearsed flow of accurate, consistent updates to stakeholders and customers while the incident is still unfolding.
 
 **Purpose.** Communication decides what customers learn, when, and from whom. It keeps the responders working on mitigation instead of answering the same question in five channels, and it leaves a record that the postmortem and any notification obligation can use.
 
-**What it includes.** One channel of record and one voice, with the communications lead publishing at a fixed cadence even when there is nothing new. Separate internal updates from customer-facing ones, state what is known, what is not and when the next update will come, and keep the language free of internal system names. Where regulation or contract sets a notification deadline, it is triggered by the declared severity, not by the discovery of the cause (10.7.1).
+**What it includes.** One channel of record and one voice, with the communications lead publishing at a fixed cadence even when there is nothing new. Separate internal updates from customer-facing ones, state what is known, what is not and when the next update will come, and keep the language free of internal system names. Where regulation or contract sets a notification deadline, it is triggered by the declared severity, not by the discovery of the cause (13.7.1).
 
-**Why it is needed.** Improvised communication is how customers learn about an outage from someone else, and how a regulator hears about it late. The evidence is a status page or customer message published within the declared window, a timeline the scribe can reconstruct, and a postmortem (11.5.2) whose actions have owners and dates.
+**Why it is needed.** Improvised communication is how customers learn about an outage from someone else, and how a regulator hears about it late. The evidence is a status page or customer message published within the declared window, a timeline the scribe can reconstruct, and a postmortem (14.5.2) whose actions have owners and dates.
 
 **Example.** A provider-latency spike pages on burn rate for the reference checkout. The on-call engineer sets SEV2 because order acceptance is degraded for many customers, names an incident commander and routes the status update to support. The operations lead holds new orders in `PAYMENT_PENDING` with reconciliation rather than failing them, and the communications lead publishes one message that support reuses. The postmortem adds a provider-latency probe and rewrites the runbook step that assumed a fast failure.
 
@@ -221,17 +221,17 @@ How much response structure to invoke on a given day decides both speed and over
 The role split usually starts at SEV2; what matters is that the trigger is written down.
 :::
 
-## 11.4 Reliability and Capacity Engineering
+## 14.4 Reliability and Capacity Engineering
 
-### 11.4.1 Reliability Engineering and Chaos Experiments
+### 14.4.1 Reliability Engineering and Chaos Experiments
 
 **Definition.** Reliability engineering designs a system to keep its promises while components fail; chaos engineering tests those promises by injecting realistic failures on purpose.
 
 **Purpose.** The two decide which failures are designed for, which mechanisms are worth their cost — isolation, redundancy, retry budgets, reconciliation — and how much confidence exists before a peak or a release. They inform where redundancy is justified, which dependency needs a fallback, and whether a recovery procedure works outside a diagram.
 
-**What it includes.** Reliability combines correct behavior, failure isolation, redundancy, recovery and data integrity. For critical workflows, define failure modes, idempotency, retry budgets and reconciliation, then test the assumptions. **Chaos engineering** does this deliberately: state a hypothesis about steady-state behavior ("checkout keeps its SLO if one zone fails"), agree the blast radius and abort conditions, inject a realistic fault, and observe against the steady state. Start in test environments and move to production only with mature monitoring and abort controls, as Figure 11.4 shows.
+**What it includes.** Reliability combines correct behavior, failure isolation, redundancy, recovery and data integrity. For critical workflows, define failure modes, idempotency, retry budgets and reconciliation, then test the assumptions. **Chaos engineering** does this deliberately: state a hypothesis about steady-state behavior ("checkout keeps its SLO if one zone fails"), agree the blast radius and abort conditions, inject a realistic fault, and observe against the steady state. Start in test environments and move to production only with mature monitoring and abort controls, as Figure 14.4 shows.
 
-![Figure 11.4 — Chaos experiment loop, from hypothesis to wider scope](../../assets/diagrams/rendered/ch10-chaos-experiment-loop.png){#fig-11-4 width="100%"}
+![Figure 14.4 — Chaos experiment loop, from hypothesis to wider scope](../../assets/diagrams/rendered/ch10-chaos-experiment-loop.png){#fig-14-4 width="100%"}
 
 Resilience mechanisms are means; the measured SLO is the outcome. A standby replica that has never been failed over to, or a retry budget that has never been exceeded, is an argument rather than evidence.
 
@@ -239,7 +239,7 @@ Resilience mechanisms are means; the measured SLO is the outcome. A standby repl
 
 **Evidence.** results of game days with measured time to detect, mitigate and recover; findings that produced a design or guardrail change.
 
-### 11.4.2 Capacity Planning and Load Management
+### 14.4.2 Capacity Planning and Load Management
 
 **Definition.** Capacity planning sizes a system for its busiest and most degraded hours; load management decides what to refuse when demand exceeds what the system can serve.
 
@@ -247,11 +247,11 @@ Resilience mechanisms are means; the measured SLO is the outcome. A standby repl
 
 **What it includes.** Capacity management tracks throughput, queue age, CPU, memory, storage, pools and dependency quotas, and plans headroom for bursts and recovery, not averages. **Little's law** relates the three basic quantities of any stable system: average concurrency equals arrival rate multiplied by average time in the system (L = λW). At 500 requests per second and 200 ms average service time, about 100 requests are in progress at once, which sizes thread and connection pools and instance counts; if a dependency slows to one second, the same arrival rate implies about 500 in flight, which is the case to size for.
 
-Autoscaling reacts with a lag and often after queues or database connections have saturated. Protect the system with **load shedding** (rejecting lower-priority work early, for example with `429` or `503`), admission control and bounded queues, so that overload degrades gracefully instead of collapsing. Figure 11.5 places those decisions in order.
+Autoscaling reacts with a lag and often after queues or database connections have saturated. Protect the system with **load shedding** (rejecting lower-priority work early, for example with `429` or `503`), admission control and bounded queues, so that overload degrades gracefully instead of collapsing. Figure 14.5 places those decisions in order.
 
-![Figure 11.5 — Capacity and load-shedding decision path](../../assets/diagrams/rendered/ch10-capacity-load-shedding.png){#fig-11-5 width="100%"}
+![Figure 14.5 — Capacity and load-shedding decision path](../../assets/diagrams/rendered/ch10-capacity-load-shedding.png){#fig-14-5 width="100%"}
 
-Table 11.5 lists the signals that show capacity pressure and the action each triggers.
+Table 14.5 lists the signals that show capacity pressure and the action each triggers.
 
 | Signal | What it indicates | Action it triggers |
 | :--- | :--- | :--- |
@@ -267,13 +267,13 @@ Table 11.5 lists the signals that show capacity pressure and the action each tri
 
 **Evidence.** p99 latency and backlog drain time measured at peak and during recovery; a capacity model with stated assumptions.
 
-### 11.4.3 Performance Engineering
+### 14.4.3 Performance Engineering
 
 **Definition.** Performance engineering sets latency and throughput objectives for a system, distributes them across its components, and finds and removes what limits them, using measurement.
 
 **Purpose.** Performance is a quality attribute (1.2.5) that erodes through small additions unless it has a budget and an owner. Measuring before changing directs effort at the real constraint.
 
-**What it includes.** Allocate each journey's target as a latency budget per hop, including network and serialization time. Report percentiles and not averages, and take care that a load tool which waits for slow responses does not hide queueing delay. In fan-out designs the slowest dependency sets the response time, so tail latency grows with the number of calls (Dean and Barroso, 2013); reduce fan-out, set deadlines, and consider hedged requests only for idempotent reads. Find the constraint using utilization, saturation and errors per resource (Gregg, 2020), and rate, errors and duration per service, then profile the code under realistic load. Frequent causes are repeated queries within a loop, missing indexes, lock contention, oversized payloads, chatty calls, connection-pool exhaustion and garbage-collection pauses. Apply the fix with the lowest lasting cost: remove work, then batch it, cache it (7.3.3), make it asynchronous, partition it (7.4.3) and, last, add hardware. Gate releases on regression (15.3.1).
+**What it includes.** Allocate each journey's target as a latency budget per hop, including network and serialization time. Report percentiles and not averages, and take care that a load tool which waits for slow responses does not hide queueing delay. In fan-out designs the slowest dependency sets the response time, so tail latency grows with the number of calls (Dean and Barroso, 2013); reduce fan-out, set deadlines, and consider hedged requests only for idempotent reads. Find the constraint using utilization, saturation and errors per resource (Gregg, 2020), and rate, errors and duration per service, then profile the code under realistic load. Frequent causes are repeated queries within a loop, missing indexes, lock contention, oversized payloads, chatty calls, connection-pool exhaustion and garbage-collection pauses. Apply the fix with the lowest lasting cost: remove work, then batch it, cache it (10.3.3), make it asynchronous, partition it (10.4.3) and, last, add hardware. Gate releases on regression (16.3.1).
 
 **Why it is needed.** Average response time can look healthy while the slowest requests go to the most valuable customers, and tuning without a measured constraint adds complexity without improving the result. A budget also shows which team must give way when a new dependency is added to a journey.
 
@@ -295,9 +295,9 @@ How to meet a known peak, such as a seasonal sale or a migration cut-over.
 | Shed and degrade deliberately | Demand can exceed capacity whatever is provisioned, or the critical journey must always survive | Protects the journey that matters and fails fast for the rest; requires priority classes and a product decision about who is refused |
 :::
 
-## 11.5 Business Observability and Learning
+## 14.5 Business Observability and Learning
 
-### 11.5.1 Business Observability
+### 14.5.1 Business Observability
 
 **Definition.** Business observability applies telemetry to the outcome the business sells — an order accepted, a payment settled, a refund paid — rather than only to the components that produce it.
 
@@ -315,15 +315,15 @@ How to meet a known peak, such as a seasonal sale or a migration cut-over.
 
 : Business signals and the record they are checked against
 
-Compare operational totals with the authoritative record for the same period rather than trusting either alone: the telemetry shows what the system believed, the record shows what happened. Figure 11.6 places that comparison inside the learning loop.
+Compare operational totals with the authoritative record for the same period rather than trusting either alone: the telemetry shows what the system believed, the record shows what happened. Figure 14.6 places that comparison inside the learning loop.
 
-![Figure 11.6 — Business outcome reconciliation and learning loop](../../assets/diagrams/rendered/ch10-business-reconciliation.png){#fig-11-6 width="100%"}
+![Figure 14.6 — Business outcome reconciliation and learning loop](../../assets/diagrams/rendered/ch10-business-reconciliation.png){#fig-14-6 width="100%"}
 
 **Why it is needed.** A technically healthy system can silently produce incorrect transactions: every request returns 200, every dependency is fast, and a subset of orders never receives a durable outcome. Without business signals the first detection comes from a customer, a finance reconciliation or an auditor, which is later and more expensive than an alert on stuck milestones.
 
 **Evidence.** a reconciliation report with an agreed tolerance, alerting on age and mismatch thresholds, and a named owner for each discrepancy class.
 
-### 11.5.2 Postmortems and Continuous Improvement
+### 14.5.2 Postmortems and Continuous Improvement
 
 **Definition.** A postmortem is a blameless written account of an incident that ends in owned, dated changes to the system.
 
@@ -351,11 +351,11 @@ How far to take business instrumentation, given that each step adds both detecti
 | Milestones reconciled against authoritative records | Money, entitlements or regulated data move, and an auditor or customer will ask for proof | Detects loss, duplication and mispricing close to the event; needs an owner, a tolerance and a process for discrepancies |
 :::
 
-## 11.6 Worked Example: An SLO that Changes Behavior
+## 14.6 Worked Example: An SLO that Changes Behavior
 
 *In practice:* This example uses an SLO with an error-budget policy that pauses risky releases, tested with a game day on the payment dependency.
 
-For order acceptance, the team adopts the SLI and SLO in 11.2.1. Edge measurement reflects user experience; traces locate dependency latency; logs explain individual failures. Burn-rate alerts page on fast budget consumption and open a ticket on slow consumption. When the budget is exhausted, risky releases pause until reliability work restores it.
+For order acceptance, the team adopts the SLI and SLO in 14.2.1. Edge measurement reflects user experience; traces locate dependency latency; logs explain individual failures. Burn-rate alerts page on fast budget consumption and open a ticket on slow consumption. When the budget is exhausted, risky releases pause until reliability work restores it.
 
 A game day injects payment-provider latency. The dashboard must distinguish orders correctly held in PAYMENT\_PENDING from lost or duplicated orders; HTTP 200 counts alone would hide a broken journey. Capacity is checked with Little's law: longer provider latency increases in-flight work, so connection pools and queue limits are sized for the degraded case, not the average. Business reconciliation against the provider's settlement file then confirms that every held order was either captured or released.
 
@@ -376,7 +376,7 @@ A game day injects payment-provider latency. The dashboard must distinguish orde
 ☐  Are business outcomes reconciled against authoritative records?
 :::
 
-## 11.7 Further Reading
+## 14.7 Further Reading
 
 - Beyer et al. (2016), *Site Reliability Engineering* and (2018) *The Site Reliability Workbook* — SLIs, SLOs, error budgets, burn-rate alerting and incident management.
 - Majors, Fong-Jones and Miranda (2022), *Observability Engineering*.

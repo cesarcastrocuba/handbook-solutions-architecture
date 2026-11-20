@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-INT
 title: Integration
-manuscript: chapters/ch06-integration-architecture.qmd
+manuscript: chapters/ch09-integration-architecture.qmd
 items:
 - id: SA-INT-001
   title: Owned interfaces with ICD and contract
@@ -9,7 +9,7 @@ items:
   rationale: An interface without named owners, an ICD and a machine-readable contract turns every change and outage into an ownership dispute.
   applicability: Every interface between teams, systems or organizations.
   expected_evidence: Signed ICD naming producer and consumer owners, versioned OpenAPI or AsyncAPI specification, and passing contract tests.
-  section: 6.2.3
+  section: 9.2.3
   external_reference: OpenAPI Specification 3.1.0; AsyncAPI Specification 3.0.0
   risk_relevance: High
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Choosing a style by fashion or familiarity hides latency, coupling and failure costs that later dominate operations.
   applicability: Every new or materially changed integration.
   expected_evidence: ADR comparing synchronous, asynchronous and batch options against the latency budget, coupling, replay and failure requirements, with peak-load test results.
-  section: 6.1.2
+  section: 9.1.2
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Protecting publication but not processing still duplicates business effects; at-least-once delivery requires protection on both sides.
   applicability: Integrations using asynchronous messaging or events.
   expected_evidence: Outbox table and relay implementation, consumer uniqueness constraint on consumer name and event identifier, and fault-injection results for relay crashes and duplicate delivery.
-  section: '6.3'
+  section: '9.3'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: A timeout after a successful remote side effect is not a failure; blind retries duplicate charges and corrupt business state.
   applicability: Integrations with remote side effects or non-idempotent operations.
   expected_evidence: Reconciliation job and runbook comparing business records with provider state, pending-state handling, and alerts on the oldest unresolved item.
-  section: 6.4.4
+  section: 9.4.4
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: Ad hoc errors, pagination and deprecation force every consumer to special-case the API and make retirement unsafe.
   applicability: All published HTTP APIs.
   expected_evidence: Passing API lint report, RFC 9457 problem-details tests, bounded cursor pagination, and a deprecation policy with usage metrics and deprecation and sunset headers.
-  section: 6.2.8
+  section: 9.2.8
   external_reference: RFC 9457 (2023); RFC 9745 (2025); RFC 8594 (2019)
   risk_relevance: Medium
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: Logic placed in an integration layer is invisible to the domain owner, tied to the platform release calendar and costly to remove.
   applicability: Every interface carried by a bus, integration platform or workflow orchestrator.
   expected_evidence: Interface inventory naming the intermediary and mapping owner, ADR per interface class, review evidence that flows hold no domain decisions, and automated mapping tests.
-  section: 6.6.1
+  section: 9.6.1
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -75,7 +75,7 @@ items:
   rationale: A connection with no owned contract makes a platform or legacy schema an undeclared dependency and leaves renewal and end-of-support decisions without an alternative.
   applicability: All integrations using a commercial platform or connecting to a legacy system.
   expected_evidence: ICD per legacy interface, platform assessment against the selected criteria, golden test messages kept outside the platform, reconciliation report, and an exit plan with a named owner.
-  section: 6.6.6
+  section: 9.6.6
   external_reference: RFC 4130 (AS2) where applicable
   risk_relevance: Medium
   version: '2.2'

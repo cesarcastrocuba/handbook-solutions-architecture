@@ -686,6 +686,29 @@ class RenumberTest(unittest.TestCase):
         text = self.book.read('manuscript/appendices/appendix-a-pattern-catalog.qmd')
         self.assertEqual(text, catalog)
 
+    def test_assurance_checklist_is_authored_not_generated(self) -> None:
+        checklist = (
+            '# Appendix A — Architecture Assurance Checklist\n\n'
+            '**Intent and decisions**\n\n'
+            '- ☐ Are constraints (1.1) recorded?\n\n'
+            '## A.1 Review Questions\n\nText.\n'
+        )
+        files = {
+            'chapters/ch01-alpha.qmd': chapter(1, 'Alpha', '## 1.1 Body\n\nText.\n'),
+            'chapters/ch02-beta.qmd': chapter(2, 'Beta', '## 2.1 Body\n\nText.\n'),
+            'appendices/appendix-a-assurance.qmd': checklist,
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd', 'chapters/ch02-beta.qmd'],
+                 'appendices': ['appendices/appendix-a-assurance.qmd']}
+        self.start(order, files)
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch02-beta.qmd\n  - chapters/ch01-alpha.qmd\n'
+                        'appendices:\n  - appendices/appendix-a-assurance.qmd\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/appendices/appendix-a-assurance.qmd')
+        self.assertIn('Are constraints (2.1) recorded?', text)
+
     # -- YAML sources --------------------------------------------------------- #
 
     def test_yaml_sources_follow_the_section_map(self) -> None:
@@ -717,6 +740,55 @@ class RenumberTest(unittest.TestCase):
         self.assertIn('section 2.2 owns it.', vocabulary)
         self.assertIn('  section: 2.1', checklist)
         self.assertIn("version: '2.1'", checklist)
+
+    def test_yaml_prose_fields_follow_the_section_map(self) -> None:
+        base = (
+            '# 1. Alpha\n\n'
+            '## 1.1 Functional\n\nText.\n\n'
+            '## 1.2 Quality\n\nText.\n\n'
+            '## 1.3 Constraints\n\nText.\n\n'
+            '## 1.4 Scenarios\n\nText.\n'
+        )
+        root_files = {
+            'checklists/canonical/asr.yaml': (
+                'schema_version: 3.0.0\nitems:\n'
+                '- id: SA-ASR-001\n'
+                '  question: Is the sourced constraint register (1.3) complete and are the scenarios (1.4) measurable?\n'
+                '  expected_evidence: Register (1.3) with owners; scenarios (1.4).\n'
+                "  version: '1.3'\n"
+                '  external_reference: NIST AI RMF 1.0 (2023)\n'
+                '  section: 1.3\n'
+            ),
+            'publishing/index-vocabulary.yaml': (
+                'terms:\n- term: Constraint\n  defined: \'1.3\'\n'
+                '  rationale: Ordinary phrase; section 1.4 cover it.\n'
+            ),
+            'publishing/pattern-catalog.yaml': (
+                'Group:\n  - {name: Pattern, problem: See 1.3 and 1.4, section: 1.3}\n'
+            ),
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd']}
+        self.start(order, {'chapters/ch01-alpha.qmd': base}, root_files)
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n'
+                        '## 1.1 Functional\n\nText.\n\n'
+                        '## 1.2 Quality\n\nText.\n\n'
+                        '## 1.4 Scenarios\n\nText.\n\n'
+                        '## 1.3 Constraints\n\nText.\n')
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        checklist = self.book.read('checklists/canonical/asr.yaml')
+        self.assertIn('constraint register (1.4) complete and are the scenarios (1.3) measurable',
+                      checklist)
+        self.assertIn('Register (1.4) with owners; scenarios (1.3).', checklist)
+        self.assertIn("version: '1.3'", checklist)
+        self.assertIn('external_reference: NIST AI RMF 1.0 (2023)', checklist)
+        self.assertIn('  section: 1.4', checklist)
+        vocabulary = self.book.read('publishing/index-vocabulary.yaml')
+        self.assertIn("defined: '1.4'", vocabulary)
+        self.assertIn('section 1.3 cover it.', vocabulary)
+        catalog = self.book.read('publishing/pattern-catalog.yaml')
+        self.assertIn('problem: See 1.4 and 1.3, section: 1.4', catalog)
 
     # -- guard rails ---------------------------------------------------------- #
 

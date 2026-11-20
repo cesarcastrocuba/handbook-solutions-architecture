@@ -22,7 +22,7 @@ An effective model allocates authority according to the scope and reversibility 
 
 ![Figure 4.1 — Risk-tiered governance operating model](../../assets/diagrams/rendered/governance.png){#fig-4-1 width="100%"}
 
-Chapter 19 (19.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
+Chapter 18 (18.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
 
 ### 4.1.1 Governance Taxonomy and Translation Chain
 
@@ -49,7 +49,7 @@ Chapter 19 (19.5.6) applies this operating model to AI systems, covering model s
 
 : Governance classes, owners and evidence
 
-Together they form a translation chain. A law, regulation or contract becomes an architectural requirement only after its owner interprets its applicability (Chapter 1, 1.3). The requirement drives a choice recorded as an ADR (Chapter 3), which selects controls and guardrails (4.3); those controls produce verification evidence (4.9), and a justified deviation becomes an exception (4.5). A principle (Chapter 2, 2.1) guides decisions but creates no legal obligation and proves no compliance.
+Together they form a translation chain. A law, regulation or contract becomes an architectural requirement only after its owner interprets its applicability (Chapter 1, 1.4). The requirement drives a choice recorded as an ADR (Chapter 3), which selects controls and guardrails (4.3); those controls produce verification evidence (4.9), and a justified deviation becomes an exception (4.5). A principle (Chapter 2, 2.1) guides decisions but creates no legal obligation and proves no compliance.
 
 **Why it is needed.** Conflating the classes lets a team cite a principle as if it were a regulation, or claim compliance from a framework that was never tailored. Keep the chain traceable by identifier — requirement → ADR → control or guardrail → test or evidence → exception. A class with no owner or no evidence is a statement of intent rather than governance.
 
@@ -59,7 +59,7 @@ Together they form a translation chain. A law, regulation or contract becomes an
 
 **Purpose.** Name the accountable security leader and the body that sets security policy, then publish the hierarchy from policy to standard to procedure so teams know which document governs a decision. State the organization's risk appetite and who may accept residual risk, because an architecture review that cannot route risk to an accountable owner becomes an advisory opinion.
 
-**What it includes.** Decide how security authority is distributed. A central model gives consistent policy and evidence but can bottleneck delivery; a federated model gives domain teams context but risks divergent interpretation. Most organizations combine a small central policy and assurance function with embedded security architects who advise product teams. Define the interfaces with architecture review (4.4), risk acceptance (4.5), audit (4.9) and supplier assurance (10.8), and record security decisions in the same ADR and exception systems as other architecture decisions.
+**What it includes.** Decide how security authority is distributed. A central model gives consistent policy and evidence but can bottleneck delivery; a federated model gives domain teams context but risks divergent interpretation. Most organizations combine a small central policy and assurance function with embedded security architects who advise product teams. Define the interfaces with architecture review (4.4), risk acceptance (4.5), audit (4.9) and supplier assurance (13.8), and record security decisions in the same ADR and exception systems as other architecture decisions.
 
 **Why it is needed.** Without a named authority, security exceptions accumulate as informal team decisions that nobody can evidence. Review the program at the interval set by contract, regulation or risk assessment, and use incidents, audit findings and control failures as inputs. The output is not a policy library but evidence that responsibilities are assigned, decisions are routed and exceptions are visible.
 
@@ -182,7 +182,7 @@ Review is only as strong as the evidence it accepts, and the table contrasts the
 
 : Claims and the evidence that substantiates them
 
-**Why it is needed.** Approval without follow-up verification is not assurance. Record unresolved questions as conditions with owners and deadlines, then verify them after deployment; a condition nobody closes is an accepted risk with no acceptor. Architecture review approves a design; it does not authorize individual production changes, which is release-time change approval (12.4).
+**Why it is needed.** Approval without follow-up verification is not assurance. Record unresolved questions as conditions with owners and deadlines, then verify them after deployment; a condition nobody closes is an accepted risk with no acceptor. Architecture review approves a design; it does not authorize individual production changes, which is release-time change approval (15.4).
 
 **Example.** For an asynchronous payment workflow, reviewers ask for the state-transition model, duplicate-delivery tests, timeout behavior, reconciliation ownership and incident response evidence. The design may be sound on the diagram; the review is only complete when the tests and the ownership record exist.
 
@@ -266,7 +266,7 @@ The table gives the minimum metadata for each object; anything that cannot fill 
 
 : Repository objects and their minimum metadata
 
-**Why it is needed.** A repository without links is a document store: searchable, rarely read and impossible to audit. A periodic sample audit finds broken links and stale owners before an auditor does, and an evidence artifact that contradicts its decision reopens the decision rather than sitting quietly beside it. Chapter 17 describes the artifact chain in full.
+**Why it is needed.** A repository without links is a document store: searchable, rarely read and impossible to audit. A periodic sample audit finds broken links and stale owners before an auditor does, and an evidence artifact that contradicts its decision reopens the decision rather than sitting quietly beside it. Chapter 7 describes the artifact chain in full.
 
 **Example.** A payment idempotency requirement links to an ADR choosing the key strategy, the API contract that defines the key, the uniqueness constraint in the data model and a test that replays a request. Following those four links answers why the constraint exists and what would break if it were removed.
 
@@ -375,18 +375,18 @@ Choose what the governance report measures.
 
 ![Figure 4.9 — Three lines of accountability and the evidence they use](../../assets/diagrams/rendered/ch04-three-lines.png){#fig-4-9 width="100%"}
 
-**Control mapping.** Map each applicable requirement — regulatory, contractual or from a framework such as ISO/IEC 27001:2022 Annex A — to the control that satisfies it and the evidence it produces. The Statement of Applicability is edition-specific; one control can satisfy several frameworks (template in Appendix B.10).
+**Control mapping.** Map each applicable requirement — regulatory, contractual or from a framework such as ISO/IEC 27001:2022 Annex A — to the control that satisfies it and the evidence it produces. The Statement of Applicability is edition-specific; one control can satisfy several frameworks (template in Appendix B.15).
 
 **Evidence by design.** Prefer evidence systems generate over screenshots collected before an audit.
 
 | Control | Evidence generated by the system |
 | :--- | :--- |
-| Change management | Pipeline records linking change, review, approval and deployment (12.4) |
+| Change management | Pipeline records linking change, review, approval and deployment (15.4) |
 | Access management | Identity-provider reports of access reviews and deprovisioning |
-| Vulnerability management | Scan results and remediation-time metrics (10.6) |
-| Backup and recovery | Restore-test reports with measured RTO and RPO (8.2) |
+| Vulnerability management | Scan results and remediation-time metrics (13.6) |
+| Backup and recovery | Restore-test reports with measured RTO and RPO (11.4) |
 | Encryption and configuration | Policy-as-code and configuration-scan results over time (4.3) |
-| Accountability | Application audit trails (10.7.2) |
+| Accountability | Application audit trails (13.7.2) |
 
 : Controls and the evidence systems generate
 
@@ -424,7 +424,7 @@ Team structure constrains architecture as firmly as technology does, and a desig
 
 **Purpose.** Alignment makes ownership boundaries and system boundaries reinforce each other, so that most changes stay inside one team and cross-team coordination is reserved for published contracts.
 
-**What it includes.** Compare the target decomposition (7.1) with the current team map, and mark each component with several owning teams and each team that owns unrelated components. Use the change history as evidence: components routinely changed together by different teams show a misplaced boundary or a missing contract. For each mismatch, choose whether to move the boundary, move the responsibility between teams, or accept the coordination cost and record it in an ADR. Treat a reorganization as an architectural change, and assess which interfaces, on-call rotations and system knowledge move with it. Where the architect has no authority over team structure, the decision rights (4.2) say who does: state the constraint, make the cost visible and design for the structure that will actually deliver the work.
+**What it includes.** Compare the target decomposition (10.1) with the current team map, and mark each component with several owning teams and each team that owns unrelated components. Use the change history as evidence: components routinely changed together by different teams show a misplaced boundary or a missing contract. For each mismatch, choose whether to move the boundary, move the responsibility between teams, or accept the coordination cost and record it in an ADR. Treat a reorganization as an architectural change, and assess which interfaces, on-call rotations and system knowledge move with it. Where the architect has no authority over team structure, the decision rights (4.2) say who does: state the constraint, make the cost visible and design for the structure that will actually deliver the work.
 
 **Why it is needed.** Service boundaries that cut across teams produce a distributed monolith in practice, because every release needs several teams to coordinate even though the deployment units are separate. The evidence is a component-to-team ownership map, a cross-team change measure taken from version control, and ADRs for the mismatches that were accepted.
 
@@ -434,7 +434,7 @@ Team structure constrains architecture as firmly as technology does, and a desig
 
 **Purpose.** A shared vocabulary lets the architect state how teams are expected to work together around each boundary, and shows when a boundary is carrying more interaction than its contract was designed for.
 
-**What it includes.** Table 4.10 relates each team type to what the architecture must provide for it. Assign an interaction mode to each significant dependency between teams. Collaboration suits discovery of a new boundary, is expensive and should be time-limited. X-as-a-service suits a stable boundary, and it needs a documented interface, an objective and a support path (9.3.2). Facilitating is a temporary transfer of skill and ends when the receiving team is independent. Review the modes when the boundary matures: a collaboration that never ends indicates a boundary that was never settled. The model is a reference vocabulary and not a mandated structure, so adapt the names and keep the discipline of an explicit owner and an explicit mode.
+**What it includes.** Table 4.10 relates each team type to what the architecture must provide for it. Assign an interaction mode to each significant dependency between teams. Collaboration suits discovery of a new boundary, is expensive and should be time-limited. X-as-a-service suits a stable boundary, and it needs a documented interface, an objective and a support path (12.3.2). Facilitating is a temporary transfer of skill and ends when the receiving team is independent. Review the modes when the boundary matures: a collaboration that never ends indicates a boundary that was never settled. The model is a reference vocabulary and not a mandated structure, so adapt the names and keep the discipline of an explicit owner and an explicit mode.
 
 | Team type | Responsibility | What the architecture must provide | Warning sign |
 | :--- | :--- | :--- | :--- |
@@ -457,7 +457,7 @@ Figure 4.10 shows a typical arrangement of the team types and the interaction mo
 
 **Purpose.** Load is a design constraint because a team has finite capacity. An architecture that exceeds that capacity is delivered slowly and operated poorly, however sound it looks on paper.
 
-**What it includes.** Inventory what each team must know: domains, languages, data stores, runtimes, pipelines and on-call scope. Count each new technology as a recurring cost to the team that runs it, and record that cost with the decision (3.4). Reduce incidental load through platform capabilities and supported default paths (9.4.3), and reduce domain load by narrowing a team's responsibilities. Measure developer experience at the team and system level, using delivery measures such as lead time and change failure rate together with the several dimensions of the SPACE framework (Forsgren et al., 2021): satisfaction and well-being, performance, activity, communication and collaboration, and efficiency and flow. Do not use a single number, and do not rank individuals, because activity counts reward the wrong behavior. Useful signals are the time for a new engineer to reach a first production change, build and test duration, and how often work waits for another team.
+**What it includes.** Inventory what each team must know: domains, languages, data stores, runtimes, pipelines and on-call scope. Count each new technology as a recurring cost to the team that runs it, and record that cost with the decision (3.4). Reduce incidental load through platform capabilities and supported default paths (12.4.3), and reduce domain load by narrowing a team's responsibilities. Measure developer experience at the team and system level, using delivery measures such as lead time and change failure rate together with the several dimensions of the SPACE framework (Forsgren et al., 2021): satisfaction and well-being, performance, activity, communication and collaboration, and efficiency and flow. Do not use a single number, and do not rank individuals, because activity counts reward the wrong behavior. Useful signals are the time for a new engineer to reach a first production change, build and test duration, and how often work waits for another team.
 
 **Why it is needed.** Load accumulates one reasonable decision at a time, and its effect appears as slow delivery, fragile on-call and the loss of the few people who understand the system. The evidence is a load review for each team affected by the design, a trend of delivery and developer-experience measures, and an explicit decision to fund any increase in load.
 

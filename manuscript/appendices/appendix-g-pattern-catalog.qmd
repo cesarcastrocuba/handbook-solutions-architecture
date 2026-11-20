@@ -1,0 +1,139 @@
+# Appendix G — Pattern Catalog
+
+This catalog locates the patterns discussed in the handbook. It is an index and not a recommendation: the section named for each pattern explains when it applies and what it costs.
+
+## G.1 Integration and Messaging
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Request/response | The caller needs the outcome within a bounded time | 9.1.2 |
+| Request-reply over messaging | A sender needs an answer without a synchronous call | 9.1.5 |
+| Point-to-point channel | One owner must act on a message | 9.1.5 |
+| Publish-subscribe | Any number of consumers need the same event | 9.1.5 |
+| Competing consumers | Work must be shared across workers | 9.1.4 |
+| Event notification | Consumers need to know that something happened | 9.1.5 |
+| Event-carried state transfer | Consumers need data without calling the owner | 9.1.5 |
+| Event streaming with replay | Consumers need an ordered and replayable history | 9.1.6 |
+| Batch and file transfer | Volume or partner constraints rule out online calls | 9.1.7 |
+| Webhook | A provider must notify a consumer of a change | 9.1.8 |
+| Transactional outbox | A state change and its event must not diverge | 9.3.1 |
+| Idempotent consumer | Delivery can repeat a message | 9.3.2 |
+| Retry with backoff | Transient failures should not reach the caller | 9.4.1 |
+| Circuit breaker | Persistent failure of a dependency should stop further calls | 9.4.1 |
+| Backpressure | Producers can overwhelm consumers | 9.4.1 |
+| Saga with compensation | A business transaction spans several owners | 9.4.3 |
+| Dead-letter queue | Unprocessable messages must not block the flow | 9.4.4 |
+| Reconciliation | Two systems may disagree after failures | 9.4.4 |
+| Enterprise service bus | Many systems need shared mediation | 9.6.2 |
+| Anti-corruption layer | A legacy model must not leak into a new design | 17.1.2 |
+
+: Patterns for integration and messaging
+
+## G.2 Application Structure and State
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Modular monolith | Modules need boundaries without distribution | 10.1.2 |
+| Microservices | Parts need independent release and scaling | 10.1.2 |
+| Layered architecture | Responsibilities need a simple separation | 10.2.1 |
+| Hexagonal architecture | The domain must not depend on infrastructure | 10.2.1 |
+| Clean architecture | Dependencies must point toward the domain | 10.2.1 |
+| CQRS | Reads and writes have different needs | 10.3.1 |
+| Durable workflow | A process waits or spans long periods | 10.3.2 |
+| Cache-aside | Frequent reads overload the store | 10.3.3 |
+| Read-through cache | Callers should not own loading logic | 10.3.3 |
+| Write-through cache | Reads must stay fresh after writes | 10.3.3 |
+| Write-behind cache | Writes must be acknowledged quickly | 10.3.3 |
+| Write-around cache | Rarely read writes should not occupy the cache | 10.3.3 |
+| Multi-level cache | Hot data needs a fast local tier and a shared tier | 10.3.4 |
+| Event sourcing | The full history of changes is a requirement | 10.3.5 |
+| Bulkhead | One failure must not exhaust shared resources | 10.4.2 |
+| Backend for frontend | Each client needs its own composition | 10.6.2 |
+| Micro-frontends | Teams must release parts of one interface independently | 10.6.3 |
+
+: Patterns for application structure and state
+
+## G.3 Tenancy and Fault Isolation
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Silo tenancy | A tenant needs dedicated resources | 10.7.1 |
+| Pool tenancy | Tenants share resources to lower cost | 10.7.1 |
+| Bridge tenancy | Isolation needs differ by layer | 10.7.1 |
+| Deployment stamp | Groups of tenants need independent copies of the stack | 10.7.1 |
+| Cell-based architecture | Failures must be contained to a subset of customers | 11.4.1 |
+
+: Patterns for tenancy and fault isolation
+
+## G.4 Infrastructure and Runtime
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Backup and restore | Recovery can tolerate hours of interruption | 11.4.2 |
+| Pilot light | Recovery needs a minimal running core | 11.4.2 |
+| Warm standby | Recovery needs a scaled-down running copy | 11.4.2 |
+| Active-active | Several regions must serve traffic together | 11.4.2 |
+| Infrastructure as code | Environments must be reproducible and reviewable | 11.5.1 |
+| Load balancer | Traffic must be spread among healthy instances | 11.2.3 |
+| Reverse proxy | Servers need a controlled entry point | 11.2.3 |
+| API gateway | APIs need policy per consumer | 11.2.3 |
+| Service mesh | Service-to-service controls must be uniform | 11.3.3 |
+| GitOps | Runtime state must follow a reviewed record | 11.3.4 |
+| Store and forward | Devices or sites lose connectivity | 11.6.2 |
+
+: Patterns for infrastructure and runtime
+
+## G.5 Platform
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Golden path | Teams repeat the same setup work and meet standards unevenly | 12.4.3 |
+| Service catalog | Ownership and dependencies of components are unknown during incidents and audits | 12.4.2 |
+| Capability contract | Consumers infer a platform capability's guarantees from experience | 12.5.2 |
+| Escape hatch | An abstraction cannot serve an unusual requirement | 12.5.1 |
+| Policy as code | Rules in documents are applied unevenly and checked late | 12.7.1 |
+| Ring-based platform rollout | A platform change can break every tenant at once | 12.8.2 |
+| Static stability | A control-plane outage must not stop running workloads | 12.8.1 |
+
+: Patterns for platform
+
+## G.6 Delivery and Evolution
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Canary release | A change must reach a small audience first | 15.1.2 |
+| Blue-green deployment | Cut-over must be immediate and reversible | 15.1.2 |
+| Trunk-based development | Long-lived branches delay integration | 15.1.3 |
+| Expand-migrate-contract | A schema must change without downtime | 15.2.2 |
+| Feature flag | Deployment and release need to be separated | 15.2.3 |
+| Strangler Fig | A legacy system must be replaced in slices | 17.1.2 |
+| Consumer-driven contract testing | Providers must not break consumers without a shared environment | 16.1.2 |
+| Architecture fitness function | An architectural property must keep holding on every change | 6.3.1 |
+| Architecture test | The built structure must not drift from the intended dependencies and boundaries | 16.3.5 |
+| Walking skeleton | The end-to-end path must be proven before the parts are built out | 6.3.2 |
+| Docs as code | Documentation must change with the system it describes | 5.3.3 |
+
+: Patterns for delivery and evolution
+
+## G.7 Security and Data
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Crypto-shredding | Data must be made unreadable where it cannot be deleted | 8.2.5 |
+| Data product | Several consumers need governed analytical data | 8.2.6 |
+| Least privilege | Access must be limited to what is needed | 13.3.1 |
+| Zero Trust | Network location must not imply trust | 13.4.1 |
+
+: Patterns for security and data
+
+## G.8 AI Systems
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Retrieval-augmented generation | A model must answer from governed sources | 18.3 |
+| Agent loop | The steps of a task cannot be known in advance | 18.8.1 |
+| Tool gateway | Agent actions need enforcement outside the model | 18.8.2 |
+| Supervisor agent | Several agents need one place for policy and tracing | 18.8.3 |
+| Human approval gate | High-impact actions need accountable authorization | 18.8.4 |
+
+: Patterns for ai systems

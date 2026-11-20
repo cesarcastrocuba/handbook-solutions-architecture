@@ -8,21 +8,21 @@ chapters:
   - chapters/ch02-architecture-principles.qmd
   - chapters/ch03-architecture-decisions.qmd
   - chapters/ch04-architecture-governance.qmd
-  - chapters/ch05-data-architecture.qmd
-  - chapters/ch06-integration-architecture.qmd
-  - chapters/ch07-application-architecture.qmd
-  - chapters/ch08-infrastructure-and-cloud-architecture.qmd
-  - chapters/ch09-platform-architecture.qmd
-  - chapters/ch10-security-architecture.qmd
-  - chapters/ch11-observability-reliability-and-sre.qmd
-  - chapters/ch12-deployment-and-operations.qmd
-  - chapters/ch13-architecture-documentation.qmd
-  - chapters/ch14-architecture-evaluation.qmd
-  - chapters/ch15-testing-and-quality-verification.qmd
-  - chapters/ch16-architecture-evolution-and-economics.qmd
-  - chapters/ch17-software-engineering-and-architecture-artifacts.qmd
-  - chapters/ch18-architecture-frameworks-methods-and-standards.qmd
-  - chapters/ch19-ai-and-machine-learning-architecture.qmd
+  - chapters/ch05-architecture-documentation.qmd
+  - chapters/ch06-architecture-evaluation.qmd
+  - chapters/ch07-architecture-and-engineering-artifacts.qmd
+  - chapters/ch08-data-architecture.qmd
+  - chapters/ch09-integration-architecture.qmd
+  - chapters/ch10-application-architecture.qmd
+  - chapters/ch11-infrastructure-and-cloud-architecture.qmd
+  - chapters/ch12-platform-architecture.qmd
+  - chapters/ch13-security-architecture.qmd
+  - chapters/ch14-observability-reliability-and-sre.qmd
+  - chapters/ch15-deployment-and-operations.qmd
+  - chapters/ch16-testing-and-quality-verification.qmd
+  - chapters/ch17-architecture-evolution-and-economics.qmd
+  - chapters/ch18-ai-and-machine-learning-architecture.qmd
+  - chapters/ch19-architecture-frameworks-methods-and-standards.qmd
 back:
   - back-matter/conclusions.qmd
 appendices:
@@ -32,9 +32,9 @@ appendices:
   - appendices/appendix-d-cross-artifact-consistency-matrix.qmd
   - appendices/appendix-e-security-requirements-baseline.qmd
   - appendices/appendix-f-security-reference.qmd
-  - appendices/appendix-g-glossary-of-terms-and-acronyms.qmd
+  - appendices/appendix-g-pattern-catalog.qmd
   - appendices/appendix-h-anti-pattern-catalog.qmd
   - appendices/appendix-i-decision-catalog.qmd
-  - appendices/appendix-j-pattern-catalog.qmd
+  - appendices/appendix-j-glossary-of-terms-and-acronyms.qmd
 references:
   - back-matter/references.qmd

@@ -1,90 +1,90 @@
-# Source for Appendix J. `section` is the owning section; `match` (default: the
+# Source for Appendix G. `section` is the owning section; `match` (default: the
 # name) must appear there, so scripts/generate_catalogs.py detects a stale entry.
 Integration and Messaging:
-  - {name: Request/response, problem: The caller needs the outcome within a bounded time, section: 6.1.2}
-  - {name: Request-reply over messaging, problem: A sender needs an answer without a synchronous call, section: 6.1.5, match: request-reply}
-  - {name: Point-to-point channel, problem: One owner must act on a message, section: 6.1.5, match: point-to-point}
-  - {name: Publish-subscribe, problem: Any number of consumers need the same event, section: 6.1.5}
-  - {name: Competing consumers, problem: Work must be shared across workers, section: 6.1.4}
-  - {name: Event notification, problem: Consumers need to know that something happened, section: 6.1.5}
-  - {name: Event-carried state transfer, problem: Consumers need data without calling the owner, section: 6.1.5}
-  - {name: Event streaming with replay, problem: Consumers need an ordered and replayable history, section: 6.1.6, match: replay}
-  - {name: Batch and file transfer, problem: Volume or partner constraints rule out online calls, section: 6.1.7, match: batch}
-  - {name: Webhook, problem: A provider must notify a consumer of a change, section: 6.1.8}
-  - {name: Transactional outbox, problem: A state change and its event must not diverge, section: 6.3.1}
-  - {name: Idempotent consumer, problem: Delivery can repeat a message, section: 6.3.2, match: idempoten}
-  - {name: Retry with backoff, problem: Transient failures should not reach the caller, section: 6.4.1, match: retr}
-  - {name: Circuit breaker, problem: Persistent failure of a dependency should stop further calls, section: 6.4.1}
-  - {name: Backpressure, problem: Producers can overwhelm consumers, section: 6.4.1}
-  - {name: Saga with compensation, problem: A business transaction spans several owners, section: 6.4.3, match: saga}
-  - {name: Dead-letter queue, problem: Unprocessable messages must not block the flow, section: 6.4.4, match: dead-letter}
-  - {name: Reconciliation, problem: Two systems may disagree after failures, section: 6.4.4}
-  - {name: Enterprise service bus, problem: Many systems need shared mediation, section: 6.6.2}
-  - {name: Anti-corruption layer, problem: A legacy model must not leak into a new design, section: 16.1.2}
+  - {name: Request/response, problem: The caller needs the outcome within a bounded time, section: 9.1.2}
+  - {name: Request-reply over messaging, problem: A sender needs an answer without a synchronous call, section: 9.1.5, match: request-reply}
+  - {name: Point-to-point channel, problem: One owner must act on a message, section: 9.1.5, match: point-to-point}
+  - {name: Publish-subscribe, problem: Any number of consumers need the same event, section: 9.1.5}
+  - {name: Competing consumers, problem: Work must be shared across workers, section: 9.1.4}
+  - {name: Event notification, problem: Consumers need to know that something happened, section: 9.1.5}
+  - {name: Event-carried state transfer, problem: Consumers need data without calling the owner, section: 9.1.5}
+  - {name: Event streaming with replay, problem: Consumers need an ordered and replayable history, section: 9.1.6, match: replay}
+  - {name: Batch and file transfer, problem: Volume or partner constraints rule out online calls, section: 9.1.7, match: batch}
+  - {name: Webhook, problem: A provider must notify a consumer of a change, section: 9.1.8}
+  - {name: Transactional outbox, problem: A state change and its event must not diverge, section: 9.3.1}
+  - {name: Idempotent consumer, problem: Delivery can repeat a message, section: 9.3.2, match: idempoten}
+  - {name: Retry with backoff, problem: Transient failures should not reach the caller, section: 9.4.1, match: retr}
+  - {name: Circuit breaker, problem: Persistent failure of a dependency should stop further calls, section: 9.4.1}
+  - {name: Backpressure, problem: Producers can overwhelm consumers, section: 9.4.1}
+  - {name: Saga with compensation, problem: A business transaction spans several owners, section: 9.4.3, match: saga}
+  - {name: Dead-letter queue, problem: Unprocessable messages must not block the flow, section: 9.4.4, match: dead-letter}
+  - {name: Reconciliation, problem: Two systems may disagree after failures, section: 9.4.4}
+  - {name: Enterprise service bus, problem: Many systems need shared mediation, section: 9.6.2}
+  - {name: Anti-corruption layer, problem: A legacy model must not leak into a new design, section: 17.1.2}
 Application Structure and State:
-  - {name: Modular monolith, problem: Modules need boundaries without distribution, section: 7.1.2}
-  - {name: Microservices, problem: Parts need independent release and scaling, section: 7.1.2}
-  - {name: Layered architecture, problem: Responsibilities need a simple separation, section: 7.2.1, match: layered}
-  - {name: Hexagonal architecture, problem: The domain must not depend on infrastructure, section: 7.2.1, match: hexagonal}
-  - {name: Clean architecture, problem: Dependencies must point toward the domain, section: 7.2.1, match: clean}
-  - {name: CQRS, problem: Reads and writes have different needs, section: 7.3.1}
-  - {name: Durable workflow, problem: A process waits or spans long periods, section: 7.3.2, match: workflow}
-  - {name: Cache-aside, problem: Frequent reads overload the store, section: 7.3.3}
-  - {name: Read-through cache, problem: Callers should not own loading logic, section: 7.3.3, match: read-through}
-  - {name: Write-through cache, problem: Reads must stay fresh after writes, section: 7.3.3, match: write-through}
-  - {name: Write-behind cache, problem: Writes must be acknowledged quickly, section: 7.3.3, match: write-behind}
-  - {name: Write-around cache, problem: Rarely read writes should not occupy the cache, section: 7.3.3, match: write-around}
-  - {name: Multi-level cache, problem: Hot data needs a fast local tier and a shared tier, section: 7.3.4}
-  - {name: Event sourcing, problem: The full history of changes is a requirement, section: 7.3.5}
-  - {name: Bulkhead, problem: One failure must not exhaust shared resources, section: 7.4.2}
-  - {name: Backend for frontend, problem: Each client needs its own composition, section: 7.6.2, match: BFF}
-  - {name: Micro-frontends, problem: Teams must release parts of one interface independently, section: 7.6.3}
+  - {name: Modular monolith, problem: Modules need boundaries without distribution, section: 10.1.2}
+  - {name: Microservices, problem: Parts need independent release and scaling, section: 10.1.2}
+  - {name: Layered architecture, problem: Responsibilities need a simple separation, section: 10.2.1, match: layered}
+  - {name: Hexagonal architecture, problem: The domain must not depend on infrastructure, section: 10.2.1, match: hexagonal}
+  - {name: Clean architecture, problem: Dependencies must point toward the domain, section: 10.2.1, match: clean}
+  - {name: CQRS, problem: Reads and writes have different needs, section: 10.3.1}
+  - {name: Durable workflow, problem: A process waits or spans long periods, section: 10.3.2, match: workflow}
+  - {name: Cache-aside, problem: Frequent reads overload the store, section: 10.3.3}
+  - {name: Read-through cache, problem: Callers should not own loading logic, section: 10.3.3, match: read-through}
+  - {name: Write-through cache, problem: Reads must stay fresh after writes, section: 10.3.3, match: write-through}
+  - {name: Write-behind cache, problem: Writes must be acknowledged quickly, section: 10.3.3, match: write-behind}
+  - {name: Write-around cache, problem: Rarely read writes should not occupy the cache, section: 10.3.3, match: write-around}
+  - {name: Multi-level cache, problem: Hot data needs a fast local tier and a shared tier, section: 10.3.4}
+  - {name: Event sourcing, problem: The full history of changes is a requirement, section: 10.3.5}
+  - {name: Bulkhead, problem: One failure must not exhaust shared resources, section: 10.4.2}
+  - {name: Backend for frontend, problem: Each client needs its own composition, section: 10.6.2, match: BFF}
+  - {name: Micro-frontends, problem: Teams must release parts of one interface independently, section: 10.6.3}
 Tenancy and Fault Isolation:
-  - {name: Silo tenancy, problem: A tenant needs dedicated resources, section: 7.7.1, match: silo}
-  - {name: Pool tenancy, problem: Tenants share resources to lower cost, section: 7.7.1, match: pool}
-  - {name: Bridge tenancy, problem: Isolation needs differ by layer, section: 7.7.1, match: bridge}
-  - {name: Deployment stamp, problem: Groups of tenants need independent copies of the stack, section: 7.7.1}
-  - {name: Cell-based architecture, problem: Failures must be contained to a subset of customers, section: 8.2.1}
+  - {name: Silo tenancy, problem: A tenant needs dedicated resources, section: 10.7.1, match: silo}
+  - {name: Pool tenancy, problem: Tenants share resources to lower cost, section: 10.7.1, match: pool}
+  - {name: Bridge tenancy, problem: Isolation needs differ by layer, section: 10.7.1, match: bridge}
+  - {name: Deployment stamp, problem: Groups of tenants need independent copies of the stack, section: 10.7.1}
+  - {name: Cell-based architecture, problem: Failures must be contained to a subset of customers, section: 11.4.1}
 Infrastructure and Runtime:
-  - {name: Backup and restore, problem: Recovery can tolerate hours of interruption, section: 8.2.2, match: backup}
-  - {name: Pilot light, problem: Recovery needs a minimal running core, section: 8.2.2}
-  - {name: Warm standby, problem: Recovery needs a scaled-down running copy, section: 8.2.2}
-  - {name: Active-active, problem: Several regions must serve traffic together, section: 8.2.2}
-  - {name: Infrastructure as code, problem: Environments must be reproducible and reviewable, section: 8.3.1}
-  - {name: Load balancer, problem: Traffic must be spread among healthy instances, section: 8.5.3}
-  - {name: Reverse proxy, problem: Servers need a controlled entry point, section: 8.5.3}
-  - {name: API gateway, problem: APIs need policy per consumer, section: 8.5.3}
-  - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 8.6.3}
-  - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 8.6.4}
-  - {name: Store and forward, problem: Devices or sites lose connectivity, section: 8.7.2, match: store-and-forward}
+  - {name: Backup and restore, problem: Recovery can tolerate hours of interruption, section: 11.4.2, match: backup}
+  - {name: Pilot light, problem: Recovery needs a minimal running core, section: 11.4.2}
+  - {name: Warm standby, problem: Recovery needs a scaled-down running copy, section: 11.4.2}
+  - {name: Active-active, problem: Several regions must serve traffic together, section: 11.4.2}
+  - {name: Infrastructure as code, problem: Environments must be reproducible and reviewable, section: 11.5.1}
+  - {name: Load balancer, problem: Traffic must be spread among healthy instances, section: 11.2.3}
+  - {name: Reverse proxy, problem: Servers need a controlled entry point, section: 11.2.3}
+  - {name: API gateway, problem: APIs need policy per consumer, section: 11.2.3}
+  - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 11.3.3}
+  - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 11.3.4}
+  - {name: Store and forward, problem: Devices or sites lose connectivity, section: 11.6.2, match: store-and-forward}
 Platform:
-  - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 9.4.3}
-  - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 9.4.2}
-  - {name: Capability contract, problem: Consumers infer a platform capability's guarantees from experience, section: 9.5.2}
-  - {name: Escape hatch, problem: An abstraction cannot serve an unusual requirement, section: 9.5.1}
-  - {name: Policy as code, problem: Rules in documents are applied unevenly and checked late, section: 9.7.1, match: policy}
-  - {name: Ring-based platform rollout, problem: A platform change can break every tenant at once, section: 9.8.2, match: rings}
-  - {name: Static stability, problem: A control-plane outage must not stop running workloads, section: 9.8.1}
+  - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 12.4.3}
+  - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 12.4.2}
+  - {name: Capability contract, problem: Consumers infer a platform capability's guarantees from experience, section: 12.5.2}
+  - {name: Escape hatch, problem: An abstraction cannot serve an unusual requirement, section: 12.5.1}
+  - {name: Policy as code, problem: Rules in documents are applied unevenly and checked late, section: 12.7.1, match: policy}
+  - {name: Ring-based platform rollout, problem: A platform change can break every tenant at once, section: 12.8.2, match: rings}
+  - {name: Static stability, problem: A control-plane outage must not stop running workloads, section: 12.8.1}
 Delivery and Evolution:
-  - {name: Canary release, problem: A change must reach a small audience first, section: 12.1.2, match: canary}
-  - {name: Blue-green deployment, problem: Cut-over must be immediate and reversible, section: 12.1.2, match: blue}
-  - {name: Trunk-based development, problem: Long-lived branches delay integration, section: 12.1.3}
-  - {name: Expand-migrate-contract, problem: A schema must change without downtime, section: 12.2.2, match: expand}
-  - {name: Feature flag, problem: Deployment and release need to be separated, section: 12.2.3}
-  - {name: Strangler Fig, problem: A legacy system must be replaced in slices, section: 16.1.2}
-  - {name: Consumer-driven contract testing, problem: Providers must not break consumers without a shared environment, section: 15.1.2, match: consumer-driven contract}
-  - {name: Architecture fitness function, problem: An architectural property must keep holding on every change, section: 14.3.1, match: fitness function}
-  - {name: Architecture test, problem: The built structure must not drift from the intended dependencies and boundaries, section: 15.3.5, match: architecture test}
-  - {name: Walking skeleton, problem: The end-to-end path must be proven before the parts are built out, section: 14.3.2}
-  - {name: Docs as code, problem: Documentation must change with the system it describes, section: 13.3.3}
+  - {name: Canary release, problem: A change must reach a small audience first, section: 15.1.2, match: canary}
+  - {name: Blue-green deployment, problem: Cut-over must be immediate and reversible, section: 15.1.2, match: blue}
+  - {name: Trunk-based development, problem: Long-lived branches delay integration, section: 15.1.3}
+  - {name: Expand-migrate-contract, problem: A schema must change without downtime, section: 15.2.2, match: expand}
+  - {name: Feature flag, problem: Deployment and release need to be separated, section: 15.2.3}
+  - {name: Strangler Fig, problem: A legacy system must be replaced in slices, section: 17.1.2}
+  - {name: Consumer-driven contract testing, problem: Providers must not break consumers without a shared environment, section: 16.1.2, match: consumer-driven contract}
+  - {name: Architecture fitness function, problem: An architectural property must keep holding on every change, section: 6.3.1, match: fitness function}
+  - {name: Architecture test, problem: The built structure must not drift from the intended dependencies and boundaries, section: 16.3.5, match: architecture test}
+  - {name: Walking skeleton, problem: The end-to-end path must be proven before the parts are built out, section: 6.3.2}
+  - {name: Docs as code, problem: Documentation must change with the system it describes, section: 5.3.3}
 Security and Data:
-  - {name: Crypto-shredding, problem: Data must be made unreadable where it cannot be deleted, section: 5.2.5}
-  - {name: Data product, problem: Several consumers need governed analytical data, section: 5.2.6}
-  - {name: Least privilege, problem: Access must be limited to what is needed, section: 10.3.1}
-  - {name: Zero Trust, problem: Network location must not imply trust, section: 10.4.1}
+  - {name: Crypto-shredding, problem: Data must be made unreadable where it cannot be deleted, section: 8.2.5}
+  - {name: Data product, problem: Several consumers need governed analytical data, section: 8.2.6}
+  - {name: Least privilege, problem: Access must be limited to what is needed, section: 13.3.1}
+  - {name: Zero Trust, problem: Network location must not imply trust, section: 13.4.1}
 AI Systems:
-  - {name: Retrieval-augmented generation, problem: A model must answer from governed sources, section: 19.3, match: RAG}
-  - {name: Agent loop, problem: The steps of a task cannot be known in advance, section: 19.8.1, match: plans}
-  - {name: Tool gateway, problem: Agent actions need enforcement outside the model, section: 19.8.2, match: gateway}
-  - {name: Supervisor agent, problem: Several agents need one place for policy and tracing, section: 19.8.3, match: supervisor}
-  - {name: Human approval gate, problem: High-impact actions need accountable authorization, section: 19.8.4, match: approval}
+  - {name: Retrieval-augmented generation, problem: A model must answer from governed sources, section: 18.3, match: RAG}
+  - {name: Agent loop, problem: The steps of a task cannot be known in advance, section: 18.8.1, match: plans}
+  - {name: Tool gateway, problem: Agent actions need enforcement outside the model, section: 18.8.2, match: gateway}
+  - {name: Supervisor agent, problem: Several agents need one place for policy and tracing, section: 18.8.3, match: supervisor}
+  - {name: Human approval gate, problem: High-impact actions need accountable authorization, section: 18.8.4, match: approval}

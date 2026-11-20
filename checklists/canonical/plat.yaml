@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-PLAT
 title: Platform
-manuscript: chapters/ch09-platform-architecture.qmd
+manuscript: chapters/ch12-platform-architecture.qmd
 items:
 - id: SA-PLAT-001
   title: Platform scope justified by demand
@@ -9,7 +9,7 @@ items:
   rationale: A platform built without measured demand competes with provider services that are good enough and acquires a permanent operating cost.
   applicability: Organizations building or extending an internal platform.
   expected_evidence: Demand analysis with consuming teams and measured duplicated effort, and a scope statement listing included and excluded capabilities.
-  section: 9.1.3
+  section: 12.1.3
   external_reference: ''
   risk_relevance: Medium
   version: '4.0'
@@ -20,7 +20,7 @@ items:
   rationale: Solutions that depend on a capability without an owner or a contract design against assumptions that change without notice.
   applicability: Every platform capability used by a solution in scope.
   expected_evidence: Capability inventory with owners, current capability contracts and the lifecycle stage of each capability.
-  section: 9.5.2
+  section: 12.5.2
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -31,7 +31,7 @@ items:
   rationale: 'An implicit boundary leaves duties such as restore, patching and alerting to each side''s assumption about the other.'
   applicability: Solutions running on a shared platform.
   expected_evidence: Responsibility matrix per capability confirmed by each consuming team, and a joint restore test.
-  section: 9.3.1
+  section: 12.3.1
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -42,7 +42,7 @@ items:
   rationale: Mandating a convenience turns the platform into a gate, while leaving required controls voluntary makes them uneven.
   applicability: Platforms with several capabilities and consuming teams.
   expected_evidence: Adoption policy per capability, adoption trend of voluntary capabilities and exceptions against mandated outcomes.
-  section: 9.2.2
+  section: 12.2.2
   external_reference: ''
   risk_relevance: Medium
   version: '4.0'
@@ -53,7 +53,7 @@ items:
   rationale: Manual interfaces cannot be reviewed or repeated, and an abstraction without an exit pushes unusual requirements outside the platform.
   applicability: Platform capabilities consumed by several teams.
   expected_evidence: Interface style and abstraction level per capability, with the documented escape hatch and the responsibilities that move with it.
-  section: 9.5.1
+  section: 12.5.1
   external_reference: ''
   risk_relevance: Medium
   version: '4.0'
@@ -64,7 +64,7 @@ items:
   rationale: One isolation model for all workloads is either too weak for regulated scopes or too costly for the rest, and missing quotas let one tenant degrade others.
   applicability: Platforms shared by several teams, environments or risk classes.
   expected_evidence: Isolation decision per risk class, quota definitions per tenant and cross-tenant isolation test results.
-  section: 9.6.1
+  section: 12.6.1
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -75,7 +75,7 @@ items:
   rationale: Untested policies block valid changes or miss violations, and exceptions without expiry become permanent gaps.
   applicability: Platforms that enforce security, compliance or cost policies.
   expected_evidence: Policy inventory with owners, tests and modes, and an exception register with owners, expiry dates and trends per rule.
-  section: 9.7.1
+  section: 12.7.1
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -86,7 +86,7 @@ items:
   rationale: A platform without objectives is a hidden dependency in every solution, and a data plane that depends on the control plane turns provisioning failures into outages.
   applicability: Solutions whose availability depends on a shared platform.
   expected_evidence: Published platform objectives, a dependency map and a test of workload behavior with the control plane unavailable.
-  section: 9.8.1
+  section: 12.8.1
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -97,7 +97,7 @@ items:
   rationale: A platform-wide change makes every defect a shared outage.
   applicability: Platforms serving several tenants.
   expected_evidence: Ring definitions, upgrade calendar and compatibility results before each ring.
-  section: 9.8.2
+  section: 12.8.2
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -108,7 +108,7 @@ items:
   rationale: Activity counts or rankings make the platform look productive while consumer outcomes stay unchanged, and they invite gaming.
   applicability: Platforms whose investment is reviewed or funded.
   expected_evidence: Baselines taken before adoption, paired adoption and outcome measures, and unit cost reports.
-  section: 9.9.2
+  section: 12.9.2
   external_reference: ''
   risk_relevance: Medium
   version: '4.0'
@@ -119,7 +119,7 @@ items:
   rationale: Commodity capabilities built in-house consume the platform team, and products chosen without an exit plan become the costliest dependency to leave.
   applicability: Platform capabilities that are built, bought or composed.
   expected_evidence: Sourcing decision per capability with lifetime cost, a completed platform assessment and an exit plan with a tested step.
-  section: 9.11.2
+  section: 12.11.2
   external_reference: ''
   risk_relevance: Medium
   version: '4.0'

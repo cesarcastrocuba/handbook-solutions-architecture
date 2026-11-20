@@ -1,4 +1,4 @@
-# 12. Deployment and Operations
+# 15. Deployment and Operations
 
 Deployment architecture determines how changes reach production safely and how teams reverse them. Continuous integration validates code and contracts; continuous delivery makes releasable artifacts routine. Progressive strategies reduce blast radius but do not remove the need for compatible schema changes, observability and an explicit rollback decision.
 
@@ -13,29 +13,29 @@ Deployment architecture determines how changes reach production safely and how t
 Safe change comes from small, reversible, well-evidenced releases, not from heavier approval. Promote one signed artifact, keep schemas backward compatible across a release, decide in advance how a change is rolled back or fixed forward, and move control into the pipeline where evidence is produced automatically.
 :::
 
-## 12.1 Delivery Pipelines and Release Strategies
+## 15.1 Delivery Pipelines and Release Strategies
 
 A delivery pipeline is the path a change follows from commit to production, and release strategy is how much of production that path exposes at once. Both are architectural decisions, because they set the batch size, the evidence and the reversibility the team will have when something goes wrong.
 
-### 12.1.1 CI/CD and Release Governance
+### 15.1.1 CI/CD and Release Governance
 
 **Definition.** Continuous integration is the practice of merging every change into a shared mainline and verifying it with automated builds and tests. Continuous delivery keeps the result permanently releasable, and release governance is the set of gates, records and authorities that decide when a verified artifact may move forward.
 
-**Purpose.** The pipeline and its gates decide how much risk a change carries into production and how much of the release evidence is produced automatically rather than assembled by hand. They also fix the boundary between what a team may deploy on its own authority and what needs a further approval, which is the input that 12.4 assumes.
+**Purpose.** The pipeline and its gates decide how much risk a change carries into production and how much of the release evidence is produced automatically rather than assembled by hand. They also fix the boundary between what a team may deploy on its own authority and what needs a further approval, which is the input that 15.4 assumes.
 
-**What it includes.** A pipeline builds the artifact once and promotes that same immutable artifact through environments, because rebuilding per environment breaks provenance. It runs unit and integration tests, contract checks against consumers, static analysis, dependency and image scanning and policy checks, and it records each result against the artifact digest. Figure 12.1 places those gates on the promotion path.
+**What it includes.** A pipeline builds the artifact once and promotes that same immutable artifact through environments, because rebuilding per environment breaks provenance. It runs unit and integration tests, contract checks against consumers, static analysis, dependency and image scanning and policy checks, and it records each result against the artifact digest. Figure 15.1 places those gates on the promotion path.
 
-![Figure 12.1 — A CI/CD pipeline that promotes one artifact digest through gates](../../assets/diagrams/rendered/ch11-pipeline-gates.png){#fig-12-1 width="100%"}
+![Figure 15.1 — A CI/CD pipeline that promotes one artifact digest through gates](../../assets/diagrams/rendered/ch11-pipeline-gates.png){#fig-15-1 width="100%"}
 
-**Why it is needed.** Without a single artifact and a recorded trail, "tested" and "deployed" describe different binaries and the audit trail cannot be reconstructed. Without gates that fail closed, a scan finding or a broken contract reaches production as an exception nobody recorded, and separation of duties proportionate to risk becomes a signature on a change the approver cannot inspect. The evidence is an audit trail from a production artifact digest back to its commit, build and approvals. Chapter 19 (19.6.3) extends release provenance to model, prompt, index, tool-policy and evaluation-set versions.
+**Why it is needed.** Without a single artifact and a recorded trail, "tested" and "deployed" describe different binaries and the audit trail cannot be reconstructed. Without gates that fail closed, a scan finding or a broken contract reaches production as an exception nobody recorded, and separation of duties proportionate to risk becomes a signature on a change the approver cannot inspect. The evidence is an audit trail from a production artifact digest back to its commit, build and approvals. Chapter 18 (18.6.3) extends release provenance to model, prompt, index, tool-policy and evaluation-set versions.
 
-### 12.1.2 Progressive Delivery
+### 15.1.2 Progressive Delivery
 
 **Definition.** Progressive delivery is the practice of exposing a release to a controlled and growing share of traffic while comparing its behavior with the version it replaces.
 
 **Purpose.** It bounds how much of the user base a defect can reach before it is detected, and it shortens the time to return traffic to the previous version. It also turns "this release is safe" from an assertion made before deployment into a measurement made during it.
 
-**What it includes.** The common strategies trade capacity for switch-over speed and control (Table 12.1). Around the strategy itself, specify the cohorts, the health signals including business metrics rather than only error rates, the abort thresholds, who may abort and the rollback authority.
+**What it includes.** The common strategies trade capacity for switch-over speed and control (Table 15.1). Around the strategy itself, specify the cohorts, the health signals including business metrics rather than only error rates, the abort thresholds, who may abort and the rollback authority.
 
 | Strategy | How it works | Best for | Caution |
 | :--- | :--- | :--- | :--- |
@@ -47,13 +47,13 @@ A delivery pipeline is the path a change follows from commit to production, and 
 
 **Why it is needed.** A rolling deployment of incompatible versions replaces a short outage with a longer one; a canary without meaningful metrics is a slow rollout with no decision criterion, and an abort wired only to error rate misses a business metric that falls while errors stay flat. Validate the rollback path, including stateful changes and messages already queued by the new version, and record the cohort, the signal that triggered the decision and the time taken to restore traffic.
 
-### 12.1.3 Source Control and Branching Strategies
+### 15.1.3 Source Control and Branching Strategies
 
 **Definition.** The branching strategy determines how often code is integrated, and therefore how fast and how safely it can be released.
 
 **Purpose.** It sets the size of the batches under review, how long code lives outside the mainline and how much merge risk accumulates before a release. Choosing it deliberately aligns the repository with the release frequency the product needs, rather than the one the team inherited.
 
-**What it includes.** Three models dominate, and release branches remain useful where several versions must be supported (Table 12.2, Figure 12.2).
+**What it includes.** Three models dominate, and release branches remain useful where several versions must be supported (Table 15.2, Figure 15.2).
 
 | Strategy | How it works | Fits | Costs |
 | :--- | :--- | :--- | :--- |
@@ -64,19 +64,19 @@ A delivery pipeline is the path a change follows from commit to production, and 
 
 : Source control and branching models compared
 
-Figure 12.2 shows where a change lives in each model, the practical difference behind the table’s comparison of integration frequency and branch lifetime.
+Figure 15.2 shows where a change lives in each model, the practical difference behind the table’s comparison of integration frequency and branch lifetime.
 
-![Figure 12.2 — Where a change lives in trunk-based development, GitHub flow and Gitflow](../../assets/diagrams/rendered/ch11-branching-models.png){#fig-12-2 width="100%"}
+![Figure 15.2 — Where a change lives in trunk-based development, GitHub flow and Gitflow](../../assets/diagrams/rendered/ch11-branching-models.png){#fig-15-2 width="100%"}
 
-**Why it is needed.** Long-lived branches postpone integration, so conflicts, contract drift and untested version combinations arrive together at the end, when the schedule has no room for them. The research summarized in *Accelerate* associates trunk-based development with higher delivery performance, and the author of GitFlow has himself recommended simpler workflows for continuously delivered software; GitFlow remains reasonable where software is shipped as versioned releases to customers. Common controls apply to every strategy: protected main branches, reviewed pull requests, required pipeline checks, signed commits or verified build provenance (10.5.6), and release tags using semantic versioning (7.5.3). The evidence that the choice works is branch age, integration frequency and pull-request size, not a diagram of the model.
+**Why it is needed.** Long-lived branches postpone integration, so conflicts, contract drift and untested version combinations arrive together at the end, when the schedule has no room for them. The research summarized in *Accelerate* associates trunk-based development with higher delivery performance, and the author of GitFlow has himself recommended simpler workflows for continuously delivered software; GitFlow remains reasonable where software is shipped as versioned releases to customers. Common controls apply to every strategy: protected main branches, reviewed pull requests, required pipeline checks, signed commits or verified build provenance (13.5.6), and release tags using semantic versioning (10.5.3). The evidence that the choice works is branch age, integration frequency and pull-request size, not a diagram of the model.
 
-### 12.1.4 Environments and Promotion
+### 15.1.4 Environments and Promotion
 
 **Definition.** An environment is a configured instance of the system with a stated purpose, its own data and access model, and a defined gate for entering it. Promotion is the act of moving one artifact between environments on evidence.
 
 **Purpose.** Environments separate risk, they make "it works" a testable claim by fixing what each environment represents, and they give each audience — developers, testers, acceptors, operators — a place to work without sharing production access. The promotion path turns those places into a controlled sequence.
 
-**What it includes.** Most solutions need development, test or QA, staging or pre-production and production, plus ephemeral environments for review and demonstration and, where partners or customers must trial the product, an isolated sandbox or partner-preview environment (Table 12.3, Figure 12.3). Parity is held on the dimensions that change behavior — the same artifact digest, the same infrastructure definition, the same configuration schema and the same dependency versions — while scale, data, credentials and network reach differ deliberately and on the record. Test data is synthetic or a masked subset; placing production data in a lower environment is a privacy and legal decision, not a convenience. Access follows least privilege, with production reached through logged, time-bound elevation.
+**What it includes.** Most solutions need development, test or QA, staging or pre-production and production, plus ephemeral environments for review and demonstration and, where partners or customers must trial the product, an isolated sandbox or partner-preview environment (Table 15.3, Figure 15.3). Parity is held on the dimensions that change behavior — the same artifact digest, the same infrastructure definition, the same configuration schema and the same dependency versions — while scale, data, credentials and network reach differ deliberately and on the record. Test data is synthetic or a masked subset; placing production data in a lower environment is a privacy and legal decision, not a convenience. Access follows least privilege, with production reached through logged, time-bound elevation.
 
 | Environment | Purpose | Data | Gate to enter |
 | :--- | :--- | :--- | :--- |
@@ -91,17 +91,17 @@ Figure 12.2 shows where a change lives in each model, the practical difference b
 
 The sandbox is a parallel environment, not a promotion stage: it exists so external users can exercise the product without production data and without depending on the internal staging path.
 
-![Figure 12.3 — Promotion of one artifact from development to production](../../assets/diagrams/rendered/ch11-environment-promotion.png){#fig-12-3 width="100%"}
+![Figure 15.3 — Promotion of one artifact from development to production](../../assets/diagrams/rendered/ch11-environment-promotion.png){#fig-15-3 width="100%"}
 
 **Why it is needed.** Environments configured by hand drift, and the drift surfaces during an incident rather than during the change that caused it. A staging environment patched differently from production invalidates every result it produces, and a staging database that no longer resembles production hides exactly the migration that will fail on the day. Evidence is a parity matrix that states the intended differences, a drift report and promotion records showing the same digest in each environment.
 
-### 12.1.5 Activities by Environment
+### 15.1.5 Activities by Environment
 
 **Definition.** An environment operating model states, for each environment, how changes reach it, which tests run there, which operational practices apply, who owns it and how it is refreshed and retired.
 
-**Purpose.** Table 12.3 says what each environment is for; this unit says what happens in it. Writing the activities down tells delivery teams where a test belongs, tells operations which environments they must monitor and back up, and stops lower environments from silently acquiring production duties or production data.
+**Purpose.** Table 15.3 says what each environment is for; this unit says what happens in it. Writing the activities down tells delivery teams where a test belongs, tells operations which environments they must monitor and back up, and stops lower environments from silently acquiring production duties or production data.
 
-**What it includes.** Table 12.4 sets out deployment, testing and operations for each environment. Deployments everywhere use the same pipeline and the same digest (12.1.1); what changes is who may trigger them and which evidence the gate requires. Testing follows the levels in Chapter 15: fast checks run early, and the tests that need realistic scale, data or dependencies run in staging and, through canaries and synthetic probes, in production (15.2.2). Operational practices scale with the environment's role: production carries SLOs, alerting and on-call (11.2.1, 11.3.1), backups and recovery drills (8.2.2) and change records; staging carries monitoring that mirrors production so that alerts and dashboards are tested before they are needed; lower environments carry cost controls and automatic expiry. Each environment has a named owner, a data-refresh rule, a patching cadence and a retirement rule, and lives in its own account or subscription with the network and identity separation of 10.4.3, established by the landing zone (8.1.1). A disaster-recovery site is part of production, not another stage: it receives the same digest and is exercised on a schedule.
+**What it includes.** Table 15.4 sets out deployment, testing and operations for each environment. Deployments everywhere use the same pipeline and the same digest (15.1.1); what changes is who may trigger them and which evidence the gate requires. Testing follows the levels in Chapter 16: fast checks run early, and the tests that need realistic scale, data or dependencies run in staging and, through canaries and synthetic probes, in production (16.2.2). Operational practices scale with the environment's role: production carries SLOs, alerting and on-call (14.2.1, 14.3.1), backups and recovery drills (11.4.2) and change records; staging carries monitoring that mirrors production so that alerts and dashboards are tested before they are needed; lower environments carry cost controls and automatic expiry. Each environment has a named owner, a data-refresh rule, a patching cadence and a retirement rule, and lives in its own account or subscription with the network and identity separation of 13.4.3, established by the landing zone (11.1.1). A disaster-recovery site is part of production, not another stage: it receives the same digest and is exercised on a schedule.
 
 | Environment | Deployment | Testing | Operations | Owner |
 | :--- | :--- | :--- | :--- | :--- |
@@ -134,48 +134,48 @@ How much environment separation the delivery path needs depends on the risk of t
 | Blue-green production pair | Switch-back time is the dominant risk | Double production capacity and a schema that must suit both versions at once |
 :::
 
-## 12.2 Safe Change and Configuration
+## 15.2 Safe Change and Configuration
 
 Configuration, schema and exposure change independently of code, and each of them can break a release that the pipeline reported as green. This section treats them as deployable artifacts with their own compatibility rules.
 
-### 12.2.1 Configuration Management
+### 15.2.1 Configuration Management
 
 **Definition.** Configuration is every value that varies between deployments: endpoints, resource sizes, timeouts, feature settings, credential references and environment identity.
 
 **Purpose.** Managing configuration as a versioned input keeps environments reproducible and makes the difference between them an explicit decision rather than an accident of who edited what. It also keeps secrets out of the artifact and emergency edits inside the audit trail.
 
-**What it includes.** Separate configuration from code, version non-secret configuration, keep secrets in a managed store, detect drift and define which differences between environments are allowed (Table 12.5). Emergency configuration changes remain auditable: they either travel the normal pipeline or use a break-glass path that writes the same record.
+**What it includes.** Separate configuration from code, version non-secret configuration, keep secrets in a managed store, detect drift and define which differences between environments are allowed (Table 15.5). Emergency configuration changes remain auditable: they either travel the normal pipeline or use a break-glass path that writes the same record.
 
 | Class | Examples | Where it belongs | Change route |
 | :--- | :--- | :--- | :--- |
 | Build-time defaults | Timeouts, retry counts, log levels | Repository, reviewed with the code | Pull request and pipeline |
 | Environment settings | Endpoints, resource sizes, scaling bounds | Versioned configuration repository | Pipeline promotion |
 | Secrets | Keys, passwords, tokens | Managed secret store | Rotation process; never in the repository |
-| Runtime toggles | Feature exposure, kill switches | Flag service with owner and expiry (12.2.3) | Flag change record |
+| Runtime toggles | Feature exposure, kill switches | Flag service with owner and expiry (15.2.3) | Flag change record |
 
 : Configuration classes and where each belongs
 
 **Why it is needed.** Unversioned configuration drifts silently: a value changed by hand during an incident is invisible to the next deployment, which reverts it, and the person who changed it has no record to point at. A secret committed into an image leaks to everyone who can pull that image, and an emergency edit made outside the process makes the next audit unreconcilable. Evidence is a clean drift report, a configuration history that matches the deployments and a rotation record for every secret.
 
-### 12.2.2 Database Schema Evolution
+### 15.2.2 Database Schema Evolution
 
 **Definition.** A schema changes safely when each release is compatible with the version before it and with the one after it; expand–migrate–contract is the pattern that makes that compatibility explicit.
 
 **Purpose.** It lets application releases and data changes proceed independently, so a deployment can be rolled back without restoring a backup, and it removes the most common cause of a rollback that makes an incident worse.
 
-**What it includes.** Expand adds a backward-compatible structure. Migrate deploys code that works with both old and new structures, backfills and moves readers and writers while observing data quality. Contract removes the old structure in a later release (Figure 12.4). Each step names its compatibility window, who still reads the old structure and how the backfill is verified in bounded batches.
+**What it includes.** Expand adds a backward-compatible structure. Migrate deploys code that works with both old and new structures, backfills and moves readers and writers while observing data quality. Contract removes the old structure in a later release (Figure 15.4). Each step names its compatibility window, who still reads the old structure and how the backfill is verified in bounded batches.
 
-![Figure 12.4 — Expand–migrate–contract across three releases](../../assets/diagrams/rendered/ch11-schema-evolution.png){#fig-12-4 width="100%"}
+![Figure 15.4 — Expand–migrate–contract across three releases](../../assets/diagrams/rendered/ch11-schema-evolution.png){#fig-15-4 width="100%"}
 
 **Why it is needed.** Dropping a column, rewriting data or emitting events that consumers have already processed are forward-only steps: once a migration does any of them, redeploying the previous version no longer restores the previous state, so recovery is a fix-forward. Deploying a binary against an incompatible schema can make rollback impossible even when the deployment tool supports instant reversal. Evidence is old and new application versions tested together against production-like data, and migration idempotency verified.
 
-### 12.2.3 Feature Flags
+### 15.2.3 Feature Flags
 
 **Definition.** A feature flag is a runtime switch that decouples deployment from exposure, letting a change reach a chosen set of users, accounts or requests before it reaches everyone.
 
 **Purpose.** Flags let code ship dark, they support progressive delivery without a separate release train, and they give an operator a kill switch during an incident. They turn exposure into a decision that is observable and reversible.
 
-**What it includes.** Each flag has an owner, an expiry date, a safe default and a defined behavior when the flag service is unavailable. Distinguish the categories, because their lifetimes and risks differ (Table 12.6). Flags that gate authorization-sensitive behavior must be enforced server-side and treated as security controls.
+**What it includes.** Each flag has an owner, an expiry date, a safe default and a defined behavior when the flag service is unavailable. Distinguish the categories, because their lifetimes and risks differ (Table 15.6). Flags that gate authorization-sensitive behavior must be enforced server-side and treated as security controls.
 
 | Category | What it controls | Typical lifetime | Risk if left behind |
 | :--- | :--- | :--- | :--- |
@@ -205,21 +205,21 @@ How a change should be exposed depends on whether it needs reversibility, select
 | No switch; deploy off-peak | The change is small, reversible and not user-visible | Lowest overhead; exposure cannot be limited once it starts |
 :::
 
-## 12.3 Production Readiness and Service Management
+## 15.3 Production Readiness and Service Management
 
 A deployed service is not an operable one. Readiness is demonstrated by evidence the team produced before go-live, and service management keeps that evidence current afterwards.
 
-### 12.3.1 Operational Readiness
+### 15.3.1 Operational Readiness
 
 **Definition.** A production-ready service is one that a named team can detect, diagnose, restore and verify without discovering its dependencies during an incident.
 
 **Purpose.** The readiness review decides whether a service may take production traffic and what must be true before it does. It moves the conversation from "the feature works" to "we can operate this at three in the morning", and it gathers the evidence the operations team needs rather than the delivery team.
 
-**What it includes.** A production-ready service has an owner and on-call rotation, SLOs, actionable alerts, dashboards, runbooks with concrete commands and verification steps, verified backups, access procedures, capacity assumptions and a dependency inventory. Figure 12.5 shows how that evidence feeds a go/no-go decision.
+**What it includes.** A production-ready service has an owner and on-call rotation, SLOs, actionable alerts, dashboards, runbooks with concrete commands and verification steps, verified backups, access procedures, capacity assumptions and a dependency inventory. Figure 15.5 shows how that evidence feeds a go/no-go decision.
 
-![Figure 12.5 — Evidence feeding an operational readiness review](../../assets/diagrams/rendered/ch11-readiness-review.png){#fig-12-5 width="100%"}
+![Figure 15.5 — Evidence feeding an operational readiness review](../../assets/diagrams/rendered/ch11-readiness-review.png){#fig-15-5 width="100%"}
 
-Table 12.7 pairs each evidence type with the failure it prevents.
+Table 15.7 pairs each evidence type with the failure it prevents.
 
 | Evidence | What it demonstrates | Failure it prevents |
 | :--- | :--- | :--- |
@@ -233,13 +233,13 @@ Table 12.7 pairs each evidence type with the failure it prevents.
 
 **Why it is needed.** Deployment success does not prove operability. A service without an owner turns every page into a search for someone who remembers it, a backup that was never restored is a hope, and a runbook that says only "restart the service" fails this review. Evidence is an operational readiness review, an on-call handover and a rehearsed failure of the critical path.
 
-### 12.3.2 Incident and Problem Management
+### 15.3.2 Incident and Problem Management
 
 **Definition.** Incident management restores service as quickly as possible; problem management finds and removes the underlying causes of recurring or significant incidents.
 
 **Purpose.** Keeping the two distinct stops the pressure to restore service from ending the investigation, and it gives recurring failure an owner and a budget. It also determines what the organization learns from operations, which is the input to architectural change.
 
-**What it includes.** On the incident side, severity definitions, incident command roles, a communication cadence and the authority to roll back or degrade; the mechanics of response are covered in 11.3. On the problem side, records that link to the architectural changes they trigger (11.5.2), and a review path that feeds the error-budget policy pausing risky releases when burn is high (11.2.2). Change approval is covered in 12.4, because an emergency fix is still a change and needs a record.
+**What it includes.** On the incident side, severity definitions, incident command roles, a communication cadence and the authority to roll back or degrade; the mechanics of response are covered in 14.3. On the problem side, records that link to the architectural changes they trigger (14.5.2), and a review path that feeds the error-budget policy pausing risky releases when burn is high (14.2.2). Change approval is covered in 15.4, because an emergency fix is still a change and needs a record.
 
 **Why it is needed.** Incidents closed without a problem record become normal: the same failure returns, the workaround becomes the design and the error budget pays for it repeatedly. Evidence is time to restore service and recurrence of known problems, not the number of tickets closed.
 
@@ -260,17 +260,17 @@ The strength of the readiness gate should match the cost of being wrong in the f
 | No formal gate; rely on rollback | Throwaway or experimental workloads only | Minimal overhead; the first incident becomes the readiness review |
 :::
 
-## 12.4 Change Enablement and Approval
+## 15.4 Change Enablement and Approval
 
 Every change to production carries risk, and organizations control that risk through change approval. The architect needs to understand the approval models in use, because they constrain release frequency, batch size and pipeline design — and because a poorly chosen model can increase the risk it is meant to reduce.
 
-### 12.4.1 Architecture Review versus Change Approval
+### 15.4.1 Architecture Review versus Change Approval
 
 **Definition.** Architecture review asks whether a design is suitable and its risks are understood; change approval asks whether it is safe to deploy this specific change now.
 
 **Purpose.** Separating the two decisions keeps each authority judging evidence it can actually inspect, and stops a design approval from being read as permission to deploy anything, or a deployment approval from being read as validation of the design.
 
-**What it includes.** The two differ in question, timing, owner and evidence (Table 12.8), and they are complementary rather than substitutable.
+**What it includes.** The two differ in question, timing, owner and evidence (Table 15.8), and they are complementary rather than substitutable.
 
 | Aspect | Architecture review (Chapter 4) | Change approval |
 | :--- | :--- | :--- |
@@ -283,13 +283,13 @@ Every change to production carries risk, and organizations control that risk thr
 
 **Why it is needed.** Conflating them produces one of two failures: a design board that signs off deployments it cannot inspect, or a pipeline that deploys a design nobody reviewed. Evidence is an ADR for the design and a change record for the deployment, each with its named approver and the evidence that approver saw. Keep the two records separate and never substitute one for the other.
 
-### 12.4.2 Change Types
+### 15.4.2 Change Types
 
 **Definition.** Change enablement classifies changes by risk and repeatability so that each one is authorized by the lightest authority that controls it.
 
 **Purpose.** The classification is what lets routine work proceed without individual approval while keeping control of changes that can hurt. It also decides lead time more than tooling does, because the route determines how long a change waits.
 
-**What it includes.** ITIL, a widely used service-management framework, calls the practice **change enablement** in ITIL 4 (2019). ITIL Version 5, released progressively from 2026, retains the term, together with the idea of a **change authority** — the person, group or automated process empowered to authorize a type of change — instead of a single mandatory committee. It distinguishes three types (Table 12.9), and the classification drives a routing decision (Figure 12.6).
+**What it includes.** ITIL, a widely used service-management framework, calls the practice **change enablement** in ITIL 4 (2019). ITIL Version 5, released progressively from 2026, retains the term, together with the idea of a **change authority** — the person, group or automated process empowered to authorize a type of change — instead of a single mandatory committee. It distinguishes three types (Table 15.9), and the classification drives a routing decision (Figure 15.6).
 
 | Type | Definition | Typical approval |
 | :--- | :--- | :--- |
@@ -299,19 +299,19 @@ Every change to production carries risk, and organizations control that risk thr
 
 : Change types and typical approval
 
-Figure 12.6 routes each change type to the lightest authority that still controls its risk, which is how the classification in the table becomes an approval decision.
+Figure 15.6 routes each change type to the lightest authority that still controls its risk, which is how the classification in the table becomes an approval decision.
 
-![Figure 12.6 — Routing a change to the lightest authority that controls its risk](../../assets/diagrams/rendered/ch11-change-routing.png){#fig-12-6 width="100%"}
+![Figure 15.6 — Routing a change to the lightest authority that controls its risk](../../assets/diagrams/rendered/ch11-change-routing.png){#fig-15-6 width="100%"}
 
 **Why it is needed.** Without classification every change takes the heaviest route or the lightest one, and neither is a control. A mature practice moves as many changes as possible into the standard category by making them repeatable, tested and automated; the evidence is the share of changes executed as standard, the number of emergency changes and whether post-implementation reviews were completed.
 
-### 12.4.3 Approval Models
+### 15.4.3 Approval Models
 
 **Definition.** An approval model is the mechanism that decides who authorizes a change and what evidence they see before deciding.
 
 **Purpose.** The model proportions control to risk and change volume. It sets batch size and lead time, and therefore how much automation is possible before an approval becomes the bottleneck.
 
-**What it includes.** The change advisory board is one model among several (Table 12.10). Most organizations combine them: automated or peer-reviewed approval for most changes, delegated authority for high-risk ones, and an emergency route.
+**What it includes.** The change advisory board is one model among several (Table 15.10). Most organizations combine them: automated or peer-reviewed approval for most changes, delegated authority for high-risk ones, and an emergency route.
 
 | Model | How it works | Fits |
 | :--- | :--- | :--- |
@@ -329,7 +329,7 @@ Figure 12.6 routes each change type to the lightest authority that still control
 
 **Why it is needed.** An approval that arrives after the fact is a record, not a control, and a committee reviewing a large batch cannot inspect what it authorizes. A model with no exception route pushes urgent work outside the process. Evidence is lead time by change type, the share approved automatically and change failure rate per route. Publish the model and its exception route so teams can route work without asking.
 
-### 12.4.4 Choosing an Approval Model
+### 15.4.4 Choosing an Approval Model
 
 **Definition.** Choosing an approval model means mapping the assessed risk of a change class onto the lightest authority that can control it.
 
@@ -339,7 +339,7 @@ Figure 12.6 routes each change type to the lightest authority that still control
 
 **Why it is needed.** Over-control spends review capacity on changes that cannot hurt while the risky ones are still batched beyond inspection, and under-control exposes production to changes nobody assessed. The architectural lesson is not to remove control but to move it into the pipeline: small changes, automated evidence, progressive delivery and fast rollback reduce risk more than a meeting that reviews a large batch it cannot inspect in depth.
 
-### 12.4.5 Regulated Environments
+### 15.4.5 Regulated Environments
 
 **Definition.** In a regulated environment the control must be demonstrable: the organization can show who approved a change, on what evidence, and when.
 
@@ -373,17 +373,17 @@ The right approval model is the lightest one whose evidence an auditor or an inc
 | Change advisory board | High-risk, cross-team changes, or low automation | Broad visibility; batching delays and shallow review of large changes |
 :::
 
-## 12.5 Operational Security
+## 15.5 Operational Security
 
 **Definition.** Operational security is the recurring work that keeps a running estate as hardened as its design intended: patching, vulnerability response, privileged access, audit retention and access revocation.
 
 **Purpose.** It closes the gap between the architecture that was approved and the system that is running months later, after staff have changed and exceptions have accumulated. It informs patch intervals, credential lifetimes and the design of break-glass access, and it produces the evidence auditors ask for after the fact.
 
-**What it includes.** Patching and vulnerability response follow the risk-based prioritization in 10.6, with a maintenance window for normal patches and a smaller authority for emergency ones; privileged access uses least-privilege deployment identities, short-lived credentials and controlled break-glass access that is logged and reviewed (10.3.2). Artifacts are signed and verified before deployment (10.5.6), audit records are retained for the period the obligations require (10.7.2), and access is revoked when a person leaves a role, not when someone notices. Figure 12.7 shows the loop.
+**What it includes.** Patching and vulnerability response follow the risk-based prioritization in 13.6, with a maintenance window for normal patches and a smaller authority for emergency ones; privileged access uses least-privilege deployment identities, short-lived credentials and controlled break-glass access that is logged and reviewed (13.3.2). Artifacts are signed and verified before deployment (13.5.6), audit records are retained for the period the obligations require (13.7.2), and access is revoked when a person leaves a role, not when someone notices. Figure 15.7 shows the loop.
 
-![Figure 12.7 — The operational security control loop](../../assets/diagrams/rendered/ch11-operational-security.png){#fig-12-7 width="100%"}
+![Figure 15.7 — The operational security control loop](../../assets/diagrams/rendered/ch11-operational-security.png){#fig-15-7 width="100%"}
 
-Table 12.11 gives each control a cadence and an evidence artifact.
+Table 15.11 gives each control a cadence and an evidence artifact.
 
 | Control | Cadence | Evidence |
 | :--- | :--- | :--- |
@@ -414,7 +414,7 @@ The production access model trades speed during an incident against the standing
 | Two-person break-glass | The system is regulated or high-impact | Strong segregation; slower, and needs rehearsal to be usable under pressure |
 :::
 
-## 12.6 Worked Example: A Breaking Schema Change without Downtime
+## 15.6 Worked Example: A Breaking Schema Change without Downtime
 
 *In practice:* This example applies the expand-and-contract pattern to a breaking column change, with the point of no return made explicit.
 
@@ -445,7 +445,7 @@ Assuming every release can be rolled back. Once a migration drops a column, rewr
 ☐  Is each environment's deployment, testing, operational coverage, owner and data-refresh rule written down, with production data kept out of lower environments?
 :::
 
-## 12.7 Further Reading
+## 15.7 Further Reading
 
 - Humble and Farley (2010), *Continuous Delivery* — deployment pipelines and release strategies.
 - Forsgren, Humble and Kim (2018), *Accelerate* — delivery performance research.
