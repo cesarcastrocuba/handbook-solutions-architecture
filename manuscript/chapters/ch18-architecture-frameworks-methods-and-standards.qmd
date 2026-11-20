@@ -1,4 +1,4 @@
-# 17. Architecture Frameworks, Methods and Standards
+# 18. Architecture Frameworks, Methods and Standards
 
 Frameworks, methods, templates, notations and standards operate at different levels and are complementary, not interchangeable. Their value lies in improving decisions, shared understanding and assurance with proportionate effort. Applying every element of every framework mechanically produces redundant artifacts.
 
@@ -13,17 +13,17 @@ Frameworks, methods, templates, notations and standards operate at different lev
 Frameworks are tools for specific concerns, not a production checklist. Choose each one for a concern no other artifact covers, keep one authoritative source per concern, and treat regulatory instruments as applicability questions to be confirmed — never assume that every regulation applies to every solution.
 :::
 
-## 17.1 Positioning the Main Frameworks
+## 18.1 Positioning the Main Frameworks
 
 **Definition.** Frameworks, methods, notations and standards are tools that answer different questions at different levels of an organization, and positioning them means deciding which question each one answers for this program or solution.
 
 **Purpose.** Positioning prevents the two common failures: adopting an enterprise framework to solve a documentation problem, and using a diagramming notation to make a governance decision. It informs the framework selection record, the tailoring rationale and the artifact set — because a framework that produces an artifact nobody consumes is cost without assurance.
 
-**What it includes.** Four layers that constrain each other (Figure 17.1): enterprise direction, which sets scope, capability and guardrails; solution description, which addresses stakeholder concerns for one system; decision and evidence practice, which records what was chosen and demonstrates that it works; and standards and assurance, which impose obligations and define acceptable proof. The selection test is simple: for each framework activity, identify its consumer, the decision it supports, the artifact it produces and who maintains that artifact. Remove the activity if it adds no unique evidence.
+**What it includes.** Four layers that constrain each other (Figure 18.1): enterprise direction, which sets scope, capability and guardrails; solution description, which addresses stakeholder concerns for one system; decision and evidence practice, which records what was chosen and demonstrates that it works; and standards and assurance, which impose obligations and define acceptable proof. The selection test is simple: for each framework activity, identify its consumer, the decision it supports, the artifact it produces and who maintains that artifact. Remove the activity if it adds no unique evidence.
 
-![Figure 17.1 — Framework layers and the obligations between them](../../assets/diagrams/rendered/ch15-positioning.png){#fig-17-1 width="100%"}
+![Figure 18.1 — Framework layers and the obligations between them](../../assets/diagrams/rendered/ch15-positioning.png){#fig-18-1 width="100%"}
 
-Table 17.1 places each framework at one of these layers and states its primary scope, so that overlapping names can be assigned to a single layer before adoption is discussed.
+Table 18.1 places each framework at one of these layers and states its primary scope, so that overlapping names can be assigned to a single layer before adoption is discussed.
 
 | Framework or practice | Type and layer | Primary scope | Use it for |
 | :--- | :--- | :--- | :--- |
@@ -60,23 +60,23 @@ How much framework should a program adopt?
 | Enterprise framework (TOGAF ADM, ArchiMate) on top | Portfolio transformation, many dependent programs | Shared capability and transition planning; significant modeling effort and tooling, which pays back only at enterprise scale |
 :::
 
-## 17.2 Enterprise and Description Frameworks
+## 18.2 Enterprise and Description Frameworks
 
 Enterprise frameworks set direction and guardrails; description frameworks make one system understandable to its stakeholders. This section positions the main ones and shows how they hand work to each other.
 
-![Figure 17.2 — From enterprise direction to solution evidence](../../assets/diagrams/rendered/ch15-frameworks.png){#fig-17-2 width="100%"}
+![Figure 18.2 — From enterprise direction to solution evidence](../../assets/diagrams/rendered/ch15-frameworks.png){#fig-18-2 width="100%"}
 
-### 17.2.1 TOGAF Standard and the ADM
+### 18.2.1 TOGAF Standard and the ADM
 
 **Definition.** The TOGAF Standard, published by The Open Group, provides enterprise architecture concepts, governance guidance and the Architecture Development Method (ADM), an iterative cycle that runs from an architecture vision through business, information systems and technology architectures to migration planning and implementation governance, with requirements management at its center.
 
 **Purpose.** The ADM informs enterprise-level capability planning, target states, transition architectures and the governance checkpoints between them. It gives a large organization a shared sequence for deciding what to change, in what order, and who approves the transition, and it provides the vocabulary in which solution work is scoped.
 
-**What it includes.** The cycle (Preliminary; Architecture Vision; Business, Information Systems and Technology Architectures; Opportunities and Solutions; Migration Planning; Implementation Governance; Architecture Change Management) and the artifacts each phase produces, tailored to the organization’s scale. It does not prescribe service decomposition and does not replace system-specific engineering detail such as interface contracts or failure sequences (Figure 17.2).
+**What it includes.** The cycle (Preliminary; Architecture Vision; Business, Information Systems and Technology Architectures; Opportunities and Solutions; Migration Planning; Implementation Governance; Architecture Change Management) and the artifacts each phase produces, tailored to the organization’s scale. It does not prescribe service decomposition and does not replace system-specific engineering detail such as interface contracts or failure sequences (Figure 18.2).
 
 **Why it is needed.** Without a shared enterprise cycle, programs optimize locally and produce transition plans that conflict over funding, dependencies and sequencing. The consequence is duplicated investment and migrations that block each other. The evidence is a tailored ADM with named phase outputs, gate criteria and a requirements-management log — not a certificate or a full set of templates.
 
-### 17.2.2 ISO/IEC/IEEE 42010
+### 18.2.2 ISO/IEC/IEEE 42010
 
 **Definition.** ISO/IEC/IEEE 42010 defines what an architecture description should contain: identified stakeholders and their concerns, viewpoints that frame those concerns, views that apply the viewpoints, and correspondences that keep views consistent.
 
@@ -86,27 +86,27 @@ Enterprise frameworks set direction and guardrails; description frameworks make 
 
 **Why it is needed.** Descriptions grow by accretion: a context diagram here, a deployment diagram there, each with different names for the same service. The practical lesson is to choose views by concern — operations needs deployment, security needs trust boundaries, product needs capability context — and to record correspondences. The evidence is a description whose views name their audience and concern and whose element names agree across views.
 
-### 17.2.3 arc42
+### 18.2.3 arc42
 
 **Definition.** arc42 is a pragmatic, freely available template for documenting a software architecture, structured in twelve sections from introduction and goals through building blocks, runtime and deployment views to risks, technical debt and glossary.
 
 **Purpose.** arc42 informs the structure of a solution architecture description. It gives a team a shared table of contents so that a reader knows where to find goals, constraints, building blocks, decisions and quality requirements, and it makes gaps visible: an empty section is a question, not a blank page.
 
-**What it includes.** Introduction and goals, constraints, context and scope, solution strategy, building-block view, runtime view, deployment view, cross-cutting concepts, architecture decisions, quality requirements, risks and technical debt, and glossary. Fill sections selectively according to risk. Section 12.3.2 shows what each section holds and what it references instead of restating.
+**What it includes.** Introduction and goals, constraints, context and scope, solution strategy, building-block view, runtime view, deployment view, cross-cutting concepts, architecture decisions, quality requirements, risks and technical debt, and glossary. Fill sections selectively according to risk. Section 13.3.2 shows what each section holds and what it references instead of restating.
 
 **Why it is needed.** Completing every section without purpose produces a large but unhelpful document, and skipping the ones that matter leaves reviewers without the context to judge the design. The evidence is a description that uses the template as a checklist of concerns, states which sections are intentionally light, and links decisions and quality requirements to their own artifacts rather than restating them.
 
-### 17.2.4 C4 Model
+### 18.2.4 C4 Model
 
-**Definition.** The C4 model is a four-level diagramming approach for software structure, defined in 12.1.2.
+**Definition.** The C4 model is a four-level diagramming approach for software structure, defined in 13.1.2.
 
 **Purpose.** Among the frameworks in this chapter, C4 answers one narrow question: which structural views to draw, at which level of detail and for whom. It is positioned here so it is not mistaken for a method that covers decisions or evaluation.
 
-**What it includes.** Only diagram levels and their vocabulary. It pairs naturally with arc42 (17.2.3), which supplies the document structure C4 lacks, and with an ADR log and an evaluation method from 17.3 for what diagrams cannot record.
+**What it includes.** Only diagram levels and their vocabulary. It pairs naturally with arc42 (18.2.3), which supplies the document structure C4 lacks, and with an ADR log and an evaluation method from 18.3 for what diagrams cannot record.
 
-**Why it is needed.** Adopting C4 as if it were the whole documentation approach leaves decisions, quality scenarios and evidence unrecorded even though the diagrams look complete. The evidence is a documentation set in which C4 views sit alongside decision records and quality scenarios. Section 12.1.2 gives the levels and their review evidence.
+**Why it is needed.** Adopting C4 as if it were the whole documentation approach leaves decisions, quality scenarios and evidence unrecorded even though the diagrams look complete. The evidence is a documentation set in which C4 views sit alongside decision records and quality scenarios. Section 13.1.2 gives the levels and their review evidence.
 
-### 17.2.5 Zachman Framework and SAFe
+### 18.2.5 Zachman Framework and SAFe
 
 **Definition.** The Zachman Framework is an ontology for classifying enterprise architecture descriptions, and the Scaled Agile Framework (SAFe) defines roles and practices for agile delivery across many teams.
 
@@ -116,13 +116,13 @@ Enterprise frameworks set direction and guardrails; description frameworks make 
 
 **Why it is needed.** Zachman used as a production template generates cells nobody reads; used as a completeness check it exposes missing perspectives cheaply. SAFe adopted without an architecture practice produces enablers that are not tied to decisions. The evidence is a completeness review that names the cells deliberately left empty, and a program plan in which enablers trace to recorded architecture decisions.
 
-### 17.2.6 Industry Reference Models
+### 18.2.6 Industry Reference Models
 
 **Definition.** Industry reference models are published vocabularies, capability maps and interface standards that a sector shares, such as BIAN for banking or HL7 FHIR for healthcare.
 
 **Purpose.** Reference models inform design reuse and partner integration. Adopting a common vocabulary reduces mapping effort, shortens integration projects and makes a capability map comparable with peers and products. They are a starting point, not a mandate.
 
-**What it includes.** A reference model with a versioned release: BIAN’s service landscape for banking; TM Forum Open Digital Architecture and Open APIs for telecommunications; HL7 FHIR for health data; ACORD for insurance; ISA-95 for manufacturing integration (Table 17.2).
+**What it includes.** A reference model with a versioned release: BIAN’s service landscape for banking; TM Forum Open Digital Architecture and Open APIs for telecommunications; HL7 FHIR for health data; ACORD for insurance; ISA-95 for manufacturing integration (Table 18.2).
 
 | Industry | Reference model | Provides |
 | :--- | :--- | :--- |
@@ -152,25 +152,25 @@ Which description framework should a solution use?
 | ISO/IEC/IEEE 42010 viewpoints on top of arc42 | Formal review, safety or regulated contexts | Explicit stakeholders, concerns and correspondences; additional modeling effort that pays back only where assurance is required |
 :::
 
-## 17.3 Modeling, Design and Evaluation Methods
+## 18.3 Modeling, Design and Evaluation Methods
 
 Methods answer different questions: elicitation, design, decision, evaluation, economic comparison and assurance. Naming the purpose first is what prevents using an evaluation method to design or a documentation template to decide.
 
-![Figure 17.3 — Methods in sequence, with evaluation feeding design](../../assets/diagrams/rendered/ch15-methods.png){#fig-17-3 width="100%"}
+![Figure 18.3 — Methods in sequence, with evaluation feeding design](../../assets/diagrams/rendered/ch15-methods.png){#fig-18-3 width="100%"}
 
-### 17.3.1 ATAM
+### 18.3.1 ATAM
 
 **Definition.** The Architecture Tradeoff Analysis Method (ATAM), developed at the Software Engineering Institute, evaluates an architecture against prioritized quality attribute scenarios.
 
 **Purpose.** ATAM informs a consequential design decision by exposing where the architecture is sensitive and where attributes trade against each other. It gives stakeholders a structured way to challenge the design against their own scenarios, and it produces a risk list that governance can act on rather than a pass-or-fail verdict.
 
-**What it includes.** Its outputs distinguish risks, non-risks, sensitivity points (where a property depends strongly on one decision) and trade-off points (where one decision affects several attributes in opposite directions). Chapter 13 applies the method step by step (13.2.1) and decides when its weight is justified (13.1.3).
+**What it includes.** Its outputs distinguish risks, non-risks, sensitivity points (where a property depends strongly on one decision) and trade-off points (where one decision affects several attributes in opposite directions). Chapter 14 applies the method step by step (14.2.1) and decides when its weight is justified (14.1.3).
 
 **Why it is needed.** ATAM reveals architectural uncertainty; it does not certify that a system meets its production SLOs. A design reviewed only by its authors tends to confirm its own assumptions, and the trade-off points surface later as incidents. The evidence is a documented scenario set, a ranked risk list with owners, and the sensitivity and trade-off points recorded in the review.
 
 **Example.** Comparing synchronous with asynchronous payment authorization exposes sensitivity points such as provider latency, duplicate-charge risk, recovery complexity and business tolerance for pending orders.
 
-### 17.3.2 ArchiMate
+### 18.3.2 ArchiMate
 
 **Definition.** ArchiMate, also from The Open Group, is a modeling language for relationships among business, application and technology elements.
 
@@ -180,7 +180,7 @@ Methods answer different questions: elicitation, design, decision, evaluation, e
 
 **Why it is needed.** Using enterprise notation for every small design can overwhelm engineering teams, and an unmaintained model becomes confidently wrong. A practical test is whether a concrete question — “which applications serve this capability, and which are being retired?” — can be answered from the model without interviews; if it cannot, the model is either incomplete or drawn at the wrong level. The evidence is a model scoped to the questions it must answer, with an owner, a review cadence and a stated level of abstraction.
 
-### 17.3.3 Domain-Driven Design and Event Storming
+### 18.3.3 Domain-Driven Design and Event Storming
 
 **Definition.** Domain-Driven Design (DDD) provides strategic patterns such as bounded contexts, ubiquitous language and context maps, and Event Storming is a collaborative workshop for discovering domain events, commands, policies and boundaries.
 
@@ -190,7 +190,7 @@ Methods answer different questions: elicitation, design, decision, evaluation, e
 
 **Why it is needed.** Decomposing by technical layer or by team structure produces services that share a database and a vocabulary, and every change then requires coordination. Not every discovered domain event should become a published integration event, however: the evidence is a context map with owners and a small set of published events justified by a consumer need (6.1).
 
-### 17.3.4 Well-Architected Frameworks
+### 18.3.4 Well-Architected Frameworks
 
 **Definition.** Cloud providers publish well-architected frameworks that structure workload reviews around pillars such as security, reliability, performance, cost, operations and sustainability.
 
@@ -200,23 +200,23 @@ Methods answer different questions: elicitation, design, decision, evaluation, e
 
 **Why it is needed.** They complement, rather than replace, the evaluation methods above: a framework review checks a workload against provider best practice, while ATAM-style evaluation tests a design against the solution’s own quality scenarios. A review that only applies the provider checklist can pass while the business scenario is unmet. The evidence is the review output mapped to the scenarios it did and did not cover.
 
-### 17.3.5 Choosing Methods by Purpose
+### 18.3.5 Choosing Methods by Purpose
 
 **Definition.** Choosing methods by purpose is the practice of naming the question first — elicit, design, decide, evaluate, compare economics, assure or describe — and then selecting the method whose output answers it.
 
 **Purpose.** It informs the method selection for each stage of the work and prevents method theater: a workshop that produces no decision, an evaluation that recommends a design, a template that is asked to justify a trade-off. It also makes the cost of each method visible, because every method consumes stakeholder time.
 
-**What it includes.** A mapping from purpose to method to output (Table 17.3), with the section that owns each method. Naming the purpose first avoids using an evaluation method to design, or a documentation template to decide.
+**What it includes.** A mapping from purpose to method to output (Table 18.3), with the section that owns each method. Naming the purpose first avoids using an evaluation method to design, or a documentation template to decide.
 
 | Purpose | Methods | Output | See |
 | :--- | :--- | :--- | :--- |
 | Elicit and prioritize quality requirements | Quality Attribute Workshop (QAW) | Prioritized quality attribute scenarios | 1.4 |
-| Design | Attribute-Driven Design (ADD), Domain-Driven Design | Design decisions tied to drivers | Chapter 3, 17.3.3 |
+| Design | Attribute-Driven Design (ADD), Domain-Driven Design | Design decisions tied to drivers | Chapter 3, 18.3.3 |
 | Record decisions | Architecture Decision Records | ADRs with context, options and consequences | 3.4 |
-| Evaluate | ATAM, scenario-based workshop, lightweight review | Risks, sensitivity and trade-off points | 13.2, 17.3.1 |
-| Compare economics | CBAM, multi-year TCO | Benefit-per-cost ranking of options | 15.2 |
-| Assure continuously | Review checklists, fitness functions, audits | Evidence that decisions hold | 4.4, 13.3.1 |
-| Describe | ISO/IEC/IEEE 42010, arc42, C4, ArchiMate | Views addressing stakeholder concerns | 12.1, 12.3, 17.2 |
+| Evaluate | ATAM, scenario-based workshop, lightweight review | Risks, sensitivity and trade-off points | 14.2, 18.3.1 |
+| Compare economics | CBAM, multi-year TCO | Benefit-per-cost ranking of options | 16.2 |
+| Assure continuously | Review checklists, fitness functions, audits | Evidence that decisions hold | 4.4, 14.3.1 |
+| Describe | ISO/IEC/IEEE 42010, arc42, C4, ArchiMate | Views addressing stakeholder concerns | 13.1, 13.3, 18.2 |
 
 : Methods by purpose and their outputs
 
@@ -238,56 +238,56 @@ How much evaluation does a design need?
 | Full ATAM, with CBAM where options differ in cost | Hard-to-reverse, cross-organizational or high-impact architecture | Systematic risks, sensitivity and trade-off points with stakeholder buy-in; days of stakeholder time and trained facilitation |
 :::
 
-## 17.4 Regulatory and Compliance Landscape
+## 18.4 Regulatory and Compliance Landscape
 
 Laws, regulations, contractual standards and assurance schemes differ in legal force and scope, and none applies to every solution: legal, privacy and compliance owners decide applicability, while the architect translates applicable obligations into requirements, decisions, controls and evidence (4.1.1).
 
-![Figure 17.4 — Determining whether an instrument applies and what it requires](../../assets/diagrams/rendered/ch15-regulatory.png){#fig-17-4 width="100%"}
+![Figure 18.4 — Determining whether an instrument applies and what it requires](../../assets/diagrams/rendered/ch15-regulatory.png){#fig-18-4 width="100%"}
 
-### 17.4.1 Laws and Regulations
+### 18.4.1 Laws and Regulations
 
 **Definition.** Laws and regulations are instruments with legal force that create obligations on organizations meeting their scope conditions, enforced by a regulator or court.
 
 **Purpose.** They inform which obligations become requirements, which evidence an auditor or regulator will expect, and which architectural choices are constrained — data location, retention, logging, accessibility, incident notification. They also inform the record of what does not apply, which is as important as the list of what does.
 
-**What it includes.** The instruments in Table 17.4, each with its nature and scope, architectural implications, and the evidence and handbook section that elaborates it. The matrix is a starting point for the applicability conversation, not legal advice; confirm the current version of each instrument before relying on it.
+**What it includes.** The instruments in Table 18.4, each with its nature and scope, architectural implications, and the evidence and handbook section that elaborates it. The matrix is a starting point for the applicability conversation, not legal advice; confirm the current version of each instrument before relying on it.
 
 | Instrument | Nature and scope | Architectural implications | Evidence and see |
 | :--- | :--- | :--- | :--- |
-| GDPR (Regulation (EU) 2016/679) | EU law; processing of personal data of people in the EU | Privacy by design, minimization, data-subject rights, transfers, breach notification | Record of processing, DPIA; 9.9, 5.2.4 |
-| ePrivacy Directive (2002/58/EC) | EU law, transposed nationally; electronic communications, cookies and device storage | Consent before non-essential tracking; confidentiality of communications | Consent records; 9.9 |
-| NIS2 (Directive (EU) 2022/2555) | EU law; essential and important entities in listed sectors | Cyber risk management, supply-chain security, incident reporting within tight deadlines | Risk assessments, incident reports; 9.7.1, 9.8 |
-| DORA (Regulation (EU) 2022/2554) | EU law, applicable from January 2025; financial entities and critical ICT providers | ICT risk management, resilience testing, incident reporting, third-party risk and exit strategies | Test results, register of ICT contracts; 8.2, 15.2.4 |
-| EU AI Act (Regulation (EU) 2024/1689) | EU law, phased application; obligations scale with an AI system’s risk class | Risk management, data governance, logging, transparency and human oversight for high-risk systems | Technical documentation, logs; Chapter 18 |
+| GDPR (Regulation (EU) 2016/679) | EU law; processing of personal data of people in the EU | Privacy by design, minimization, data-subject rights, transfers, breach notification | Record of processing, DPIA; 10.9, 5.2.4 |
+| ePrivacy Directive (2002/58/EC) | EU law, transposed nationally; electronic communications, cookies and device storage | Consent before non-essential tracking; confidentiality of communications | Consent records; 10.9 |
+| NIS2 (Directive (EU) 2022/2555) | EU law; essential and important entities in listed sectors | Cyber risk management, supply-chain security, incident reporting within tight deadlines | Risk assessments, incident reports; 10.7.1, 10.8 |
+| DORA (Regulation (EU) 2022/2554) | EU law, applicable from January 2025; financial entities and critical ICT providers | ICT risk management, resilience testing, incident reporting, third-party risk and exit strategies | Test results, register of ICT contracts; 8.2, 16.2.4 |
+| EU AI Act (Regulation (EU) 2024/1689) | EU law, phased application; obligations scale with an AI system’s risk class | Risk management, data governance, logging, transparency and human oversight for high-risk systems | Technical documentation, logs; Chapter 19 |
 | European Accessibility Act (Directive (EU) 2019/882) | EU law, applicable from June 2025; listed products and services such as e-commerce and banking | Accessible user interfaces and documents, usually demonstrated against EN 301 549 | Accessibility conformance reports; 1.2.11 |
-| HIPAA | US federal law; covered entities and business associates handling protected health information | Administrative, physical and technical safeguards; business associate agreements | Risk analysis, audit logs; 9.7.2 |
-| CCPA as amended by CPRA | California law; businesses meeting statutory thresholds | Consumer rights to know, delete, correct and opt out of sale or sharing | Request handling records; 9.9.3 |
-| LGPD (Law 13,709/2018) | Brazilian law; processing of personal data in Brazil | Legal bases, data-subject rights, transfers, incident reporting | Processing records; 9.9 |
+| HIPAA | US federal law; covered entities and business associates handling protected health information | Administrative, physical and technical safeguards; business associate agreements | Risk analysis, audit logs; 10.7.2 |
+| CCPA as amended by CPRA | California law; businesses meeting statutory thresholds | Consumer rights to know, delete, correct and opt out of sale or sharing | Request handling records; 10.9.3 |
+| LGPD (Law 13,709/2018) | Brazilian law; processing of personal data in Brazil | Legal bases, data-subject rights, transfers, incident reporting | Processing records; 10.9 |
 
 : Laws and regulations with typical architectural implications
 
-**Why it is needed.** Assuming that every regulation applies, or that none does, misdirects effort in both directions: unnecessary controls consume budget, while an unaddressed obligation becomes a finding, a fine or a blocked release. Applicability depends on role, sector, jurisdiction and data, and it changes when any of them changes. The evidence is an applicability assessment with a legal or compliance owner, an exclusion record with reasons, and obligations traced to requirements, controls and evidence (Figure 17.4).
+**Why it is needed.** Assuming that every regulation applies, or that none does, misdirects effort in both directions: unnecessary controls consume budget, while an unaddressed obligation becomes a finding, a fine or a blocked release. Applicability depends on role, sector, jurisdiction and data, and it changes when any of them changes. The evidence is an applicability assessment with a legal or compliance owner, an exclusion record with reasons, and obligations traced to requirements, controls and evidence (Figure 18.4).
 
-### 17.4.2 Standards, Frameworks and Assurance Schemes
+### 18.4.2 Standards, Frameworks and Assurance Schemes
 
 **Definition.** Standards, frameworks and assurance schemes are instruments without direct legal force that define controls, good practice or a way to demonstrate conformity; they become binding through contract, regulation or organizational policy.
 
 **Purpose.** They inform control selection, supplier assessment and the evidence a customer or auditor will accept. They also inform the difference between a certification of a management system and an attestation that controls operated over a period — a distinction customers frequently blur and contracts sometimes require precisely.
 
-**What it includes.** The instruments in Table 17.5, each with its nature, architectural implications and evidence. Chapter 18 (18.5.6) applies the AI governance frameworks in this matrix to model lifecycle, human oversight and evidence.
+**What it includes.** The instruments in Table 18.5, each with its nature, architectural implications and evidence. Chapter 19 (19.5.6) applies the AI governance frameworks in this matrix to model lifecycle, human oversight and evidence.
 
 | Instrument | Nature and scope | Architectural implications | Evidence and see |
 | :--- | :--- | :--- | :--- |
-| PCI DSS v4.0.1 | Contractual industry standard; entities storing, processing or transmitting card data | Minimize scope through segmentation and tokenization; strong access control and logging | Report on Compliance or SAQ, AoC; 9.8 |
-| ISO/IEC 27001:2022 and 27002:2022 | Certifiable information security management system; control guidance | Risk-based control selection and Statement of Applicability | Certificate scope, SoA; 4.9, 9.8 |
-| ISO/IEC 27017:2026 and 27018:2025 | Cloud security controls; protection of personal data in public-cloud processing | Shared-responsibility mapping; processor controls for personal data | Certification or attestation scope; 9.8 |
+| PCI DSS v4.0.1 | Contractual industry standard; entities storing, processing or transmitting card data | Minimize scope through segmentation and tokenization; strong access control and logging | Report on Compliance or SAQ, AoC; 10.8 |
+| ISO/IEC 27001:2022 and 27002:2022 | Certifiable information security management system; control guidance | Risk-based control selection and Statement of Applicability | Certificate scope, SoA; 4.9, 10.8 |
+| ISO/IEC 27017:2026 and 27018:2025 | Cloud security controls; protection of personal data in public-cloud processing | Shared-responsibility mapping; processor controls for personal data | Certification or attestation scope; 10.8 |
 | ISO 22301:2019 | Certifiable business continuity management system | Business impact analysis, recovery objectives and exercises | BIA, exercise reports; 8.2 |
-| ISO/IEC 42001:2023 | Certifiable AI management system | Governance, risk and lifecycle controls for AI systems | AI policy, impact assessments; Chapter 18 |
-| NIST CSF 2.0 (2024) and SP 800 series | Voluntary framework (Govern, Identify, Protect, Detect, Respond, Recover); SP 800-53 controls, SP 800-207 Zero Trust, SP 800-218 secure development | Common vocabulary for security outcomes; detailed control and engineering guidance | Profiles and gap analyses; 9.1.2, 9.4.1, 9.5.1 |
-| SOC 1 and SOC 2 (AICPA) | Independent attestation reports; financial-reporting controls and Trust Services Criteria | Type II reports evidence controls operating over a period | Reports with bridge letters; 9.8 |
-| CSA Cloud Controls Matrix | Cloud control framework with the CAIQ questionnaire | Cloud control mapping for providers and customers | CAIQ responses; 9.8 |
-| CIS Benchmarks | Consensus hardening configurations | Baseline configurations enforced as code | Compliance scans; 8.3, 11.3 |
-| OWASP ASVS 5.0.0 (2025) | Application security verification standard | Selected level becomes verifiable requirements and tests | Requirement-to-test mapping; 9.5.2 |
+| ISO/IEC 42001:2023 | Certifiable AI management system | Governance, risk and lifecycle controls for AI systems | AI policy, impact assessments; Chapter 19 |
+| NIST CSF 2.0 (2024) and SP 800 series | Voluntary framework (Govern, Identify, Protect, Detect, Respond, Recover); SP 800-53 controls, SP 800-207 Zero Trust, SP 800-218 secure development | Common vocabulary for security outcomes; detailed control and engineering guidance | Profiles and gap analyses; 10.1.2, 10.4.1, 10.5.1 |
+| SOC 1 and SOC 2 (AICPA) | Independent attestation reports; financial-reporting controls and Trust Services Criteria | Type II reports evidence controls operating over a period | Reports with bridge letters; 10.8 |
+| CSA Cloud Controls Matrix | Cloud control framework with the CAIQ questionnaire | Cloud control mapping for providers and customers | CAIQ responses; 10.8 |
+| CIS Benchmarks | Consensus hardening configurations | Baseline configurations enforced as code | Compliance scans; 8.3, 12.3 |
+| OWASP ASVS 5.0.0 (2025) | Application security verification standard | Selected level becomes verifiable requirements and tests | Requirement-to-test mapping; 10.5.2 |
 | WCAG 2.2 and EN 301 549 | W3C accessibility guidelines; European harmonized accessibility standard | Accessible interaction design, verified by automated and manual testing | Conformance reports; 1.2.11 |
 
 : Standards, frameworks and assurance schemes
@@ -310,13 +310,13 @@ How should regulatory obligations be tracked?
 | Enterprise compliance platform with solution mappings | Many solutions, shared controls and an audit function | Reuse and consistent reporting; integration cost and a risk that solution specifics are flattened |
 :::
 
-## 17.5 Worked Example: Combining Frameworks in Practice
+## 18.5 Worked Example: Combining Frameworks in Practice
 
 *In practice:* This example shows an enterprise modernization program that uses the TOGAF ADM for direction, then documents each solution with arc42, C4 views and ADRs.
 
 For a typical solution, a proportionate combination is: PRD and quality scenarios for intent; an arc42-structured HLD with C4 views for description; ADRs for decisions; ICDs and API/event specifications for interfaces; tests and fitness functions for evidence; runbooks for operations. Enterprise programs add TOGAF-based capability and transition planning, and ArchiMate where enterprise modeling governance warrants it.
 
-Designate one authoritative source per concern so that overlapping artifacts do not drift (Table 17.6).
+Designate one authoritative source per concern so that overlapping artifacts do not drift (Table 18.6).
 
 | Concern | Authoritative source | Frameworks and templates that feed it |
 | :--- | :--- | :--- |
@@ -347,7 +347,7 @@ Designate one authoritative source per concern so that overlapping artifacts do 
 ☐  Have legal and compliance owners confirmed which regulatory instruments apply, and are their obligations traced to requirements and evidence?
 :::
 
-## 17.6 Further Reading
+## 18.6 Further Reading
 
 - The Open Group (2022), *The TOGAF Standard*, 10th Edition, and *ArchiMate 3.2 Specification*.
 - ISO/IEC/IEEE 42010:2022 — architecture description.

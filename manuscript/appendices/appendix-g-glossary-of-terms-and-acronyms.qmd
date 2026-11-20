@@ -4,87 +4,87 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 
 | Term | Meaning | Defined in |
 | :--- | :--- | :--- |
-| 4+1 view model | Kruchten’s view model: logical, development, process and physical views, exercised by scenarios that expose where they disagree. | 12.1.3 |
-| ABAC | Attribute-based access control: authorization decided from attributes of the principal, resource and context. | 9.3.1 |
-| Access-controlled retrieval | Retrieval that applies the requesting user’s permissions at query time, so the model only receives content the user is entitled to see. | 18.3.5 |
+| 4+1 view model | Kruchten’s view model: logical, development, process and physical views, exercised by scenarios that expose where they disagree. | 13.1.3 |
+| ABAC | Attribute-based access control: authorization decided from attributes of the principal, resource and context. | 10.3.1 |
+| Access-controlled retrieval | Retrieval that applies the requesting user’s permissions at query time, so the model only receives content the user is entitled to see. | 19.3.5 |
 | Accessibility | The degree to which people with different abilities can use the experience. | 1.2.11 |
 | Accountability | A named person or role answerable for a principle, decision or control. | 2.15 |
 | ACL | Access control list: the set of permissions attached to a resource or a network path. | 8.6.2 |
-| Activity diagram | A UML behavioral diagram showing the flow of actions and control or data through an activity; optional partitions group actions by responsibility. The handbook discusses it alongside swimlane process views. | 12.2.3 |
+| Activity diagram | A UML behavioral diagram showing the flow of actions and control or data through an activity; optional partitions group actions by responsibility. The handbook discusses it alongside swimlane process views. | 13.2.3 |
 | ADD | Attribute-driven design: an iterative method that selects the quality attribute which most constrains the design, chooses a structure for it and verifies the result. | 3.3.4 |
-| ADM | Architecture Development Method: the TOGAF Standard’s iterative cycle from architecture vision to migration planning and implementation governance. | 17.2.1 |
+| ADM | Architecture Development Method: the TOGAF Standard’s iterative cycle from architecture vision to migration planning and implementation governance. | 18.2.1 |
 | ADR | Architecture decision record: a short record of one significant decision with its context, alternatives, consequences and review trigger. | 3.4 |
 | ADR lifecycle | The set of explicit states a record moves through, each with a named owner and a visible reason for the transition. | 3.4.1 |
-| Agentic system | An AI system in which a model plans, invokes tools and observes results in a loop until a goal or limit is reached. | 18.8.1 |
-| AI | Artificial intelligence: the broad field of systems that perform tasks associated with human intelligence. | 18.1.1 |
-| AI architecture | The design of the system around a model: the data it may use, the context it receives, the authority it exercises and the evidence that its behavior is acceptable. | 18.1.1; 18.1.3 |
-| AI data lifecycle | The retention, deletion and retirement rules that apply to sources, indexes, embeddings, caches, prompts, outputs, traces and evaluation sets. | 18.3.7 |
-| AI data protection | The allocation of privacy obligations and operational duties between the organization and the model or platform provider. | 18.4.4 |
-| AI economics | The analysis of what a successful AI outcome costs and which design levers change that cost without degrading quality beyond its acceptance threshold. | 18.7 |
-| AI observability | The tracing and measurement of a request across authorization, retrieval, reranking, model, tools and output. | 18.6.4 |
-| AI quality attribute | AI-specific quality attributes are the measurable properties that decide whether an AI capability is acceptable: task quality and groundedness, latency, cost, safety, privacy, reproducibility and freshness. | 18.1.4 |
-| AI solution | The arrangement of data sources, ingestion, retrieval, a model, orchestration, tools, guardrails, evaluation, identity, observability, cost control and human oversight around a user journey. | 18.1.2 |
-| AI solution architecture pattern | A reusable composition of model, knowledge, tools and human oversight that fits a class of problem. | 18.2 |
-| AI threat model | The structured analysis of how an AI system can be made to misbehave, leak data, take unauthorized actions or consume resources, mapped to the controls that reduce each risk. | 18.5.1 |
-| AICPA | American Institute of Certified Public Accountants, the body that publishes the Trust Services Criteria behind SOC 2 reports. | 9.8.2 |
-| Anonymization | Processing that aims to make re-identification impossible. | 9.9.4 |
-| AoC | Attestation of Compliance: the PCI DSS document in which a provider attests to its cardholder-data controls and scope. | 9.8.2 |
+| Agentic system | An AI system in which a model plans, invokes tools and observes results in a loop until a goal or limit is reached. | 19.8.1 |
+| AI | Artificial intelligence: the broad field of systems that perform tasks associated with human intelligence. | 19.1.1 |
+| AI architecture | The design of the system around a model: the data it may use, the context it receives, the authority it exercises and the evidence that its behavior is acceptable. | 19.1.1; 19.1.3 |
+| AI data lifecycle | The retention, deletion and retirement rules that apply to sources, indexes, embeddings, caches, prompts, outputs, traces and evaluation sets. | 19.3.7 |
+| AI data protection | The allocation of privacy obligations and operational duties between the organization and the model or platform provider. | 19.4.4 |
+| AI economics | The analysis of what a successful AI outcome costs and which design levers change that cost without degrading quality beyond its acceptance threshold. | 19.7 |
+| AI observability | The tracing and measurement of a request across authorization, retrieval, reranking, model, tools and output. | 19.6.4 |
+| AI quality attribute | AI-specific quality attributes are the measurable properties that decide whether an AI capability is acceptable: task quality and groundedness, latency, cost, safety, privacy, reproducibility and freshness. | 19.1.4 |
+| AI solution | The arrangement of data sources, ingestion, retrieval, a model, orchestration, tools, guardrails, evaluation, identity, observability, cost control and human oversight around a user journey. | 19.1.2 |
+| AI solution architecture pattern | A reusable composition of model, knowledge, tools and human oversight that fits a class of problem. | 19.2 |
+| AI threat model | The structured analysis of how an AI system can be made to misbehave, leak data, take unauthorized actions or consume resources, mapped to the controls that reduce each risk. | 19.5.1 |
+| AICPA | American Institute of Certified Public Accountants, the body that publishes the Trust Services Criteria behind SOC 2 reports. | 10.8.2 |
+| Anonymization | Processing that aims to make re-identification impossible. | 10.9.4 |
+| AoC | Attestation of Compliance: the PCI DSS document in which a provider attests to its cardholder-data controls and scope. | 10.8.2 |
 | API | Application programming interface: the contract through which one component calls another. | 6.2.1 |
 | API contract | The machine-readable and human-readable description of what an interface accepts, returns and guarantees. | 6.2.1 |
 | API conventions | Error, pagination and filtering conventions that decide how a consumer distinguishes retryable failures and walks a large result set safely. | 6.2.7 |
 | API gateway | A reverse proxy specialized in managing APIs per consumer, including identity, quotas and versions. | 8.6.3 |
 | API lifecycle | The practices that keep interfaces discoverable, consistent and retirable over their whole life. | 6.2.8 |
-| API specification | The machine-readable expression of an interface in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers. | 16.4.1 |
+| API specification | The machine-readable expression of an interface in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers. | 17.4.1 |
 | API style | The protocol and interaction convention used to expose an interface: REST over HTTP, gRPC, GraphQL, asynchronous events or webhooks. | 6.2.5 |
 | Application security | The set of controls that authenticate callers, authorize each requested resource, validate input and protect secrets inside the application. | 7.5.1 |
-| Approval model | The mechanism that decides who authorizes a change and what evidence they see before deciding. | 11.4.3; 11.4.4 |
-| arc42 | A pragmatic, freely available template for documenting software architecture in twelve sections. | 12.3.2; 17.2.3 |
-| ArchiMate | A modeling language for relationships among business, application and technology elements. | 17.3.2 |
+| Approval model | The mechanism that decides who authorizes a change and what evidence they see before deciding. | 12.4.3; 12.4.4 |
+| arc42 | A pragmatic, freely available template for documenting software architecture in twelve sections. | 13.3.2; 18.2.3 |
+| ArchiMate | A modeling language for relationships among business, application and technology elements. | 18.3.2 |
 | Architectural significance | The threshold that decides whether a choice must be explained by the architecture or can be settled inside normal engineering judgment. | 3.1 |
-| Architecture description | The organized set of views, decisions, scenarios and correspondences that explains a system’s architecture to its stakeholders. | 12.3.1 |
-| Architecture evaluation | A comparison of a design, or its alternatives, against prioritized quality scenarios, risks and constraints to expose where the design is sensitive and where quality attributes trade off. | 13.1.1 |
+| Architecture description | The organized set of views, decisions, scenarios and correspondences that explains a system’s architecture to its stakeholders. | 13.3.1 |
+| Architecture evaluation | A comparison of a design, or its alternatives, against prioritized quality scenarios, risks and constraints to expose where the design is sensitive and where quality attributes trade off. | 14.1.1 |
 | Architecture repository | The linked record of why a system exists, who owns it, which interfaces it exposes and which evidence supports its important decisions. | 4.6 |
 | Architecture review | A risk-focused examination of whether a design can satisfy its requirements and whether the evidence supports the claims made for it. | 4.4 |
-| Architecture review record | The artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed. | 16.5.4 |
-| Architecture roadmap | A sequenced plan of target-state capabilities, transition states, dependencies, risk retirement and measurable milestones, including explicit retirement criteria for legacy assets. | 15.3.2 |
-| Architecture test | An automated check that the built system conforms to its intended architecture, such as dependency direction, boundaries, interface compatibility or deployment rules. | 14.3.5 |
-| Architecture view | A representation of the system that answers one set of stakeholder concerns, within the smallest view set that covers the decisions at hand. | 12.1.1 |
-| ARID | Active Reviews for Intermediate Designs: a review in which future users of an incomplete design try to use it for real tasks. | 13.2.2 |
-| Artifact catalog | The complete list of artifacts a solution may produce, each with an owner, a mandatory trigger and a fiche that defines its content and quality criteria. | 16.1.2 |
-| Artifact chain | The ordered set of artifacts that carries intent from a business objective to operational evidence: objective, requirements and quality scenarios, high-level design, detailed design, tests, and runbooks with telemetry. | 16.1.1 |
-| Artifact lifecycle | The set of states an artifact passes through — draft, reviewed, approved where required, in use, superseded and retired — together with the owner, location and review trigger that keep it trustworthy. | 16.5.3 |
+| Architecture review record | The artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed. | 17.5.4 |
+| Architecture roadmap | A sequenced plan of target-state capabilities, transition states, dependencies, risk retirement and measurable milestones, including explicit retirement criteria for legacy assets. | 16.3.2 |
+| Architecture test | An automated check that the built system conforms to its intended architecture, such as dependency direction, boundaries, interface compatibility or deployment rules. | 15.3.5 |
+| Architecture view | A representation of the system that answers one set of stakeholder concerns, within the smallest view set that covers the decisions at hand. | 13.1.1 |
+| ARID | Active Reviews for Intermediate Designs: a review in which future users of an incomplete design try to use it for real tasks. | 14.2.2 |
+| Artifact catalog | The complete list of artifacts a solution may produce, each with an owner, a mandatory trigger and a fiche that defines its content and quality criteria. | 17.1.2 |
+| Artifact chain | The ordered set of artifacts that carries intent from a business objective to operational evidence: objective, requirements and quality scenarios, high-level design, detailed design, tests, and runbooks with telemetry. | 17.1.1 |
+| Artifact lifecycle | The set of states an artifact passes through — draft, reviewed, approved where required, in use, superseded and retired — together with the owner, location and review trigger that keep it trustworthy. | 17.5.3 |
 | AS2 | Applicability Statement 2: a protocol for exchanging signed and encrypted business documents over HTTP, with receipts. | 6.6.5 |
 | ASR | Architecturally significant requirement: a requirement whose satisfaction or failure materially shapes the architecture. | 3.1 |
-| Assurance evidence | The independent report or certificate that shows a supplier’s controls were designed and operated for a defined scope and period. | 9.8.2 |
-| ASVS | OWASP Application Security Verification Standard: a catalog of verifiable security requirements for web applications and APIs. | 9.5.2 |
+| Assurance evidence | The independent report or certificate that shows a supplier’s controls were designed and operated for a defined scope and period. | 10.8.2 |
+| ASVS | OWASP Application Security Verification Standard: a catalog of verifiable security requirements for web applications and APIs. | 10.5.2 |
 | AsyncAPI | A machine-readable specification format for asynchronous interfaces and event-driven APIs. | 6.2.2 |
 | Asynchronous messaging | An integration style that places a broker between producer and consumer, so work can be accepted now and completed later by one or many competing consumers. | 6.1.4 |
-| ATAM | Architecture Tradeoff Analysis Method: an SEI method that evaluates an architecture against prioritized quality scenarios and exposes risks, sensitivity and trade-off points. | 13.2.1; 17.3.1 |
+| ATAM | Architecture Tradeoff Analysis Method: an SEI method that evaluates an architecture against prioritized quality scenarios and exposes risks, sensitivity and trade-off points. | 14.2.1; 18.3.1 |
 | Audit readiness | The ability to evidence, on request, that controls were designed adequately and operated effectively over a stated period. | 4.9 |
-| Audit trail | The protected record that establishes who did what, to which resource, when, from where and with what result. | 9.7.2 |
+| Audit trail | The protected record that establishes who did what, to which resource, when, from where and with what result. | 10.7.2 |
 | Auditability | The quality attribute that lets a reviewer reconstruct who did what, when and under which authority, from records the system keeps. | 1.2.13; 2.15 |
-| Authenticated dynamic testing | Dynamic testing that exercises the running application with real roles and sessions rather than only its public pages. | 9.5.4 |
-| Authentication | Proof that a claimed identity controls a credential. | 9.2.2 |
-| Authorization | The decision that a principal may perform a specific action on a specific resource in a specific context. | 9.3.1 |
+| Authenticated dynamic testing | Dynamic testing that exercises the running application with real roles and sessions rather than only its public pages. | 10.5.4 |
+| Authentication | Proof that a claimed identity controls a credential. | 10.2.2 |
+| Authorization | The decision that a principal may perform a specific action on a specific resource in a specific context. | 10.3.1 |
 | Availability | The proportion of a defined observation window during which a service can fulfill its promised function. | 1.2.1 |
 | Batch integration | Integration that exchanges data as scheduled, bounded files or extracts rather than as individual requests. | 6.1.7 |
 | BCP | Business continuity plan: the documented plan for continuing critical business services during a disruption and returning to normal. | 8.2.3 |
-| BDD | Behavior-driven development: expressing requirements as executable examples of expected behavior. | 14.2.2 |
+| BDD | Behavior-driven development: expressing requirements as executable examples of expected behavior. | 15.2.2 |
 | BFF | Backend for frontend: a service that adapts internal APIs to the needs of one client experience. | 7.6.2 |
 | BIA | Business impact analysis: the analysis that derives recovery objectives and maximum tolerable disruption from business consequence. | 8.2.3 |
-| BPMN | Business Process Model and Notation: the standard notation for process and activity diagrams. | 12.2.3 |
-| Branching strategy | The model that determines how often code is integrated and therefore how fast and safely it can be released. | 11.1.3 |
-| BRD | Business Requirements Document: the artifact that captures business outcomes, scope, stakeholders, benefits and constraints. | 16.2.1 |
+| BPMN | Business Process Model and Notation: the standard notation for process and activity diagrams. | 13.2.3 |
+| Branching strategy | The model that determines how often code is integrated and therefore how fast and safely it can be released. | 12.1.3 |
+| BRD | Business Requirements Document: the artifact that captures business outcomes, scope, stakeholders, benefits and constraints. | 17.2.1 |
 | Bridge model | A tenancy model that dedicates some layers or tiers to tenants and shares others. | 7.7.1 |
-| Build, buy or managed service | The choice of who designs, operates and evolves a capability over its life, weighing differentiation, control, integration cost, lifecycle support, security responsibilities and exit cost. | 15.2.3 |
-| Burn rate | How fast the error budget is consumed relative to the SLO window. | 10.2.2 |
+| Build, buy or managed service | The choice of who designs, operates and evolves a capability over its life, weighing differentiation, control, integration cost, lifecycle support, security responsibilities and exit cost. | 16.2.3 |
+| Burn rate | How fast the error budget is consumed relative to the SLO window. | 11.2.2 |
 | Business capability | A stable statement of what the organization must be able to do, expressed independently of the applications, teams or technologies that currently deliver it. | 1.1.1 |
-| Business case | A comparison of expected value, cost, alternatives and risk over a stated time horizon, used to justify an investment. | 16.2.1 |
+| Business case | A comparison of expected value, cost, alternatives and risk over a stated time horizon, used to justify an investment. | 17.2.1 |
 | Business continuity planning | The activity that produces and maintains the business continuity plan and keeps it aligned with the business impact analysis. | 8.2.3 |
-| Business observability | Telemetry applied to the outcome the business sells — an order accepted, a payment settled, a refund paid — rather than only to the components that produce it. | 10.5.1 |
+| Business observability | Telemetry applied to the outcome the business sells — an order accepted, a payment settled, a refund paid — rather than only to the components that produce it. | 11.5.1 |
 | Business rule | A policy, condition, calculation or invariant that governs how the business operates and must hold wherever breaking it would have a material consequence. | 1.1.3 |
-| C4 | Context, Containers, Components and Code: a hierarchical model for describing software structure at four levels of detail. | 12.1.2; 12.3.2; 17.2.4 |
-| CAB | Change advisory board: a group that reviews and authorizes higher-risk changes. | 11.4.3 |
+| C4 | Context, Containers, Components and Code: a hierarchical model for describing software structure at four levels of detail. | 13.1.2; 13.3.2; 18.2.4 |
+| CAB | Change advisory board: a group that reviews and authorizes higher-risk changes. | 12.4.3 |
 | Cache | A disposable copy of state kept for latency or cost, and it is only safe when its invalidation and staleness are designed. | 7.3.3 |
 | Cache eviction | Removing cache entries to free capacity, whether or not the entries are still valid. | 7.3.4 |
 | Cache hit ratio | The share of lookups found in a cache; a miss goes to the next tier or the store. | 7.3.4 |
@@ -92,17 +92,19 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Cache-aside | A pattern in which the application reads the cache, loads from the store on a miss and fills the cache. | 7.3.3 |
 | Canonical model | The agreed definition of what a field means — units, identifier, time basis, nullability, allowed values and lifecycle — shared across systems. | 5.3.2 |
 | CAP theorem | A theorem stating that when a network partition occurs a distributed data store must choose between consistency and availability. | 5.4.2 |
-| Capacity planning | Sizing a system for its busiest and most degraded hours. | 10.4.2 |
-| CBAM | Cost Benefit Analysis Method: an SEI method that ranks architectural strategies by benefit per unit of cost. | 15.2.5 |
-| CD | Continuous delivery: keeping a verified mainline permanently releasable so any verified change can be deployed on demand. | 11.1.1 |
+| Capability contract | The published agreement for one platform capability: what it provides, its objectives, limits, responsibilities, support and change policy. | 9.5.2 |
+| Capacity planning | Sizing a system for its busiest and most degraded hours. | 11.4.2 |
+| CBAM | Cost Benefit Analysis Method: an SEI method that ranks architectural strategies by benefit per unit of cost. | 16.2.5 |
+| CD | Continuous delivery: keeping a verified mainline permanently releasable so any verified change can be deployed on demand. | 12.1.1 |
 | CDC | Change data capture: publishing row-level changes from a database as a stream that downstream consumers can follow. | 5.3.9 |
 | Cell-based architecture | A workload divided into complete, independent instances, each serving a subset of customers or keys, to contain failures. | 8.2.1 |
-| Chaos engineering | Testing a system’s reliability promises by injecting realistic failures on purpose. | 10.4.1 |
-| Chunking | The division of source content into retrievable units for indexing and retrieval. | 18.3.2 |
-| CI | Continuous integration: merging every change into a shared mainline and verifying it with automated builds and tests. | 11.1.1 |
-| CIAM | Customer identity and access management: identity for external customers rather than employees. | 9.2.1 |
+| Chaos engineering | Testing a system’s reliability promises by injecting realistic failures on purpose. | 11.4.1 |
+| Chargeback | Charging each consuming team’s budget for the platform or cloud resources it consumes. | 9.10.1 |
+| Chunking | The division of source content into retrievable units for indexing and retrieval. | 19.3.2 |
+| CI | Continuous integration: merging every change into a shared mainline and verifying it with automated builds and tests. | 12.1.1 |
+| CIAM | Customer identity and access management: identity for external customers rather than employees. | 10.2.1 |
 | Circuit breaker | A runtime control that stops calls to a failing dependency for a period, so callers fail fast instead of exhausting their own capacity. | 6.4.1 |
-| CIS | Center for Internet Security: the body that publishes the consensus hardening benchmarks used as configuration baselines. | 9.5.7 |
+| CIS | Center for Internet Security: the body that publishes the consensus hardening benchmarks used as configuration baselines. | 10.5.7 |
 | Clean architecture | A style that keeps business rules independent of frameworks, databases and delivery mechanisms, with dependencies pointing inward. | 7.2.1 |
 | CloudEvents | An interoperable envelope specification for describing event data across services and platforms. | 6.2.2 |
 | Cognitive load | The amount of domain, technology and operational knowledge a team must hold to work effectively. | 4.10.3 |
@@ -110,25 +112,25 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Compatibility | The property that an existing consumer continues to work unchanged after a producer changes the interface. | 6.2.4 |
 | Competing consumers | A messaging arrangement in which several consumer instances read from one queue or subscription so work is processed in parallel. | 6.1.4 |
 | Concurrency control | The mechanism that protects an invariant when concurrent updates are not ordered. | 6.4.2 |
-| Configuration | Every value that varies between deployments: endpoints, resource sizes, timeouts, feature settings, credential references and environment identity. | 11.2.1 |
+| Configuration | Every value that varies between deployments: endpoints, resource sizes, timeouts, feature settings, credential references and environment identity. | 12.2.1 |
 | Consensus | Agreement among distributed nodes on a single order of operations, reached through an agreement protocol. | 5.4.6 |
 | Consistency | The guarantee a consumer can rely on about how current and how ordered the data it reads is. | 5.3.6 |
 | Consistency model | The contract between a data store and its clients describing which values a read may return. | 5.4.3 |
 | Container orchestrator | A system that schedules containers across machines and continually reconciles them with a declared state. | 8.7.2 |
 | Control plane | The services that manage tenants, such as onboarding, configuration, tier changes and offboarding, as distinct from those serving tenant workloads. | 7.7.4 |
 | Conway’s law | The observation that a system’s structure tends to mirror the communication structure of the organization that designs it. | 4.10.1 |
-| Cost per outcome | The total expense of producing a successful outcome, not the price of one model call. | 18.4.3 |
-| CPU | Central processing unit: the compute resource whose saturation is one capacity signal. | 10.4.2 |
+| Cost per outcome | The total expense of producing a successful outcome, not the price of one model call. | 19.4.3 |
+| CPU | Central processing unit: the compute resource whose saturation is one capacity signal. | 11.4.2 |
 | CQRS | Command Query Responsibility Segregation: separating operations that change state from those that read it. | 7.3.1 |
 | Crypto-shredding | Making data unreadable by destroying the encryption key used only for that data, so deletion reaches every copy. | 5.2.5 |
-| Cryptography | The protection of confidentiality, integrity and authenticity by transforming data with keys that only authorized parties hold. | 9.4.2 |
-| CSA | Cloud Security Alliance: the body that publishes the Cloud Controls Matrix. | 9.1.2 |
-| CSF | Cybersecurity Framework: the NIST framework organized around govern, identify, protect, detect, respond and recover. | 9.1.2 |
+| Cryptography | The protection of confidentiality, integrity and authenticity by transforming data with keys that only authorized parties hold. | 10.4.2 |
+| CSA | Cloud Security Alliance: the body that publishes the Cloud Controls Matrix. | 10.1.2 |
+| CSF | Cybersecurity Framework: the NIST framework organized around govern, identify, protect, detect, respond and recover. | 10.1.2 |
 | CSRF | Cross-site request forgery: a browser is induced to send an authenticated request that the user did not intend. | F.7 |
 | Current-state baseline | The documented current state — capabilities, applications, interfaces, data, volumes, constraints and incidents — from which requirements are derived. | 1.5.1 |
-| CVSS | Common Vulnerability Scoring System: a 0.0–10.0 rating of the technical severity of a vulnerability. | 9.6.1 |
-| DAST | Dynamic application security testing: testing a running application from the outside. | 9.5.3 |
-| Data artifact | The models, dictionaries, data contracts, lineage maps, classification matrices and retention schedules that make the meaning, ownership and obligations of data explicit. | 16.4.2 |
+| CVSS | Common Vulnerability Scoring System: a 0.0–10.0 rating of the technical severity of a vulnerability. | 10.6.1 |
+| DAST | Dynamic application security testing: testing a running application from the outside. | 10.5.3 |
+| Data artifact | The models, dictionaries, data contracts, lineage maps, classification matrices and retention schedules that make the meaning, ownership and obligations of data explicit. | 17.4.2 |
 | Data auditing | The record of who read or changed sensitive data, kept as evidence for access review and investigation. | 5.3.9 |
 | Data contract | The versioned agreement between a data owner and its consumers covering schema, meaning, quality, freshness, permitted use and compatibility. | 5.3.3 |
 | Data domain | A data domain groups facts that share business meaning, rules and accountability — for example Customer, Order, Payment, Shipment and Billing. | 5.2.1 |
@@ -136,339 +138,350 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Data governance | The allocation of decision rights and policies for quality, classification, access, contracts and lifecycle. | 5.3.8 |
 | Data lifecycle | The lifecycle of data from collection through use, sharing and archival to deletion. | 5.2.4 |
 | Data lineage | Lineage records how data moves and transforms from source to consumer, including jobs, versions and owners. | 5.3.5 |
-| Data migration | The planned movement and transformation of persistent data from a source system to a target system while both must remain correct. | 15.1.3 |
+| Data migration | The planned movement and transformation of persistent data from a source system to a target system while both must remain correct. | 16.1.3 |
 | Data ownership | The assignment of one accountable authority for the meaning and mutation of each business fact. | 2.5 |
 | Data platform | The governed set of stores, catalogues and pipelines that serves analytical work, reporting and model training alongside the operational systems that serve transactions. | 5.2.6 |
 | Data principle | The small set of enforceable rules that decide who may create a fact, who may read it, how long it is kept and what evidence proves the rule is followed. | 5.1 |
 | Data quality | The degree to which data is fit for the decisions and processes that consume it, measured against stated dimensions rather than asserted. | 5.3.4 |
-| Data residency | The location where data is stored and processed. | 9.9.5 |
+| Data residency | The location where data is stored and processed. | 10.9.5 |
 | Data store | The persistence technology chosen for a defined set of access patterns, consistency requirements and lifecycle rules. | 5.2.2 |
-| Data-flow diagram | A data-flow diagram shows where data moves, is transformed and crosses a trust boundary. | 12.2.1 |
-| Data-subject rights | The access, correction, deletion, restriction and portability rights that a privacy regime grants to individuals. | 9.9.3 |
-| DDD | Domain-driven design: strategic patterns such as bounded contexts, ubiquitous language and context maps. | 17.3.3 |
+| Data-flow diagram | A data-flow diagram shows where data moves, is transformed and crosses a trust boundary. | 13.2.1 |
+| Data-subject rights | The access, correction, deletion, restriction and portability rights that a privacy regime grants to individuals. | 10.9.3 |
+| DDD | Domain-driven design: strategic patterns such as bounded contexts, ubiquitous language and context maps. | 18.3.3 |
 | Dead-letter queue | A queue that holds messages which repeatedly failed so they can be inspected and replayed instead of lost. | 6.4.4 |
 | Decision rights | The allocation of who may decide a class of architecture question, who must be consulted and who is accountable for the outcome. | 4.2 |
-| Deep learning | Machine learning that uses multi-layer neural networks. | 18.1.1 |
+| Deep learning | Machine learning that uses multi-layer neural networks. | 19.1.1 |
 | Deletion | The removal of every copy of a fact — files, object versions, archives, indexes and backups — not only the primary row. | 5.2.5 |
 | Delivery semantics | What the transport guarantees about message delivery. | 6.3.2 |
 | Deployment stamp | An independent copy of a whole stack that hosts a group of tenants, limiting blast radius and providing a unit of scale and regional placement. | 7.7.1 |
 | Developer experience | The ease with which engineers can understand, change, release and operate a system. | 4.10.3 |
-| Diagrams as code | Generating diagrams from text or from a model instead of drawing them by hand. | 12.3.3 |
+| Developer portal | The interface through which engineers discover and request platform capabilities, read their documentation and browse the service catalog. | 9.4.1 |
+| Diagrams as code | Generating diagrams from text or from a model instead of drawing them by hand. | 13.3.3 |
 | Disaster recovery | The capability to restore service and data after a loss that exceeds the fault domains of normal operation. | 8.2.2 |
-| Docs as code | Keeping documentation as plain-text sources in version control, changed through the same review and automation as code. | 12.3.3 |
-| Documentation debt | The gap between an architecture description and the system or decisions in force. | 12.3.5 |
+| Docs as code | Keeping documentation as plain-text sources in version control, changed through the same review and automation as code. | 13.3.3 |
+| Documentation debt | The gap between an architecture description and the system or decisions in force. | 13.3.5 |
 | Domain model | A domain model expresses business concepts and invariants, not database rows. | 7.2.2 |
-| DORA | Digital Operational Resilience Act (EU Regulation 2022/2554): ICT risk and resilience obligations for financial entities. | 17.4.1 |
-| DPIA | Data protection impact assessment: the assessment required before high-risk processing of personal data. | 9.9.2 |
-| Drift | A change in the distribution of inputs, sources, index freshness or model behavior that degrades outcomes without any code change. | 18.6.5 |
+| DORA | Digital Operational Resilience Act (EU Regulation 2022/2554): ICT risk and resilience obligations for financial entities. | 18.4.1 |
+| DPIA | Data protection impact assessment: the assessment required before high-risk processing of personal data. | 10.9.2 |
+| Drift | A change in the distribution of inputs, sources, index freshness or model behavior that degrades outcomes without any code change. | 19.6.5 |
 | DRP | Disaster recovery plan: the plan that restores the technology supporting critical services. | 8.2.3 |
-| ECAB | Emergency change authority: the smaller authority that approves emergency changes. | 11.4.3 |
+| ECAB | Emergency change authority: the smaller authority that approves emergency changes. | 12.4.3 |
 | Edge computing | Processing placed near the source of data or the user instead of only in a central region. | 8.8.1 |
 | EDI | Electronic data interchange: structured exchange of business documents between organizations, commonly in ANSI X12 or UN/EDIFACT format. | 6.6.5 |
-| Efficiency | Efficient architecture aligns resource consumption with useful work. | 15.3.1 |
-| Embedding | The vector representation of content that makes semantic search possible. | 18.3.2 |
-| EPSS | Exploit Prediction Scoring System: the estimated probability that a vulnerability is exploited in the next 30 days. | 9.6.2 |
-| Error budget | The unreliability a service-level objective permits over its window, whether that objective is availability, latency or quality. | 1.4.2; 10.2.2 |
+| Efficiency | Efficient architecture aligns resource consumption with useful work. | 16.3.1 |
+| Embedding | The vector representation of content that makes semantic search possible. | 19.3.2 |
+| EPSS | Exploit Prediction Scoring System: the estimated probability that a vulnerability is exploited in the next 30 days. | 10.6.2 |
+| Error budget | The unreliability a service-level objective permits over its window, whether that objective is availability, latency or quality. | 1.4.2; 11.2.2 |
 | ESB | Enterprise service bus: shared middleware that provides routing, transformation, protocol mediation and policy enforcement between applications. | 6.6.2 |
-| Escaped defect | A defect found after the stage that should have caught it. | 14.4.2 |
-| EU | The European Union: the jurisdiction whose regulations, such as the GDPR and DORA, create obligations the book treats as constraints. | 17.4.1 |
-| Evaluation data | The curated set of questions, expected sources, acceptable answers and hard negatives used to measure whether the AI capability works. | 18.3.6 |
-| Evaluation weight | The effort and stakeholder time a change receives, from a peer review to a full ATAM with CBAM. | 13.1.3 |
+| Escape hatch | A documented way to use the layer below a platform abstraction, with the responsibilities that move to the consuming team when it is used. | 9.5.1 |
+| Escaped defect | A defect found after the stage that should have caught it. | 15.4.2 |
+| EU | The European Union: the jurisdiction whose regulations, such as the GDPR and DORA, create obligations the book treats as constraints. | 18.4.1 |
+| Evaluation data | The curated set of questions, expected sources, acceptable answers and hard negatives used to measure whether the AI capability works. | 19.3.6 |
+| Evaluation weight | The effort and stakeholder time a change receives, from a peer review to a full ATAM with CBAM. | 14.1.3 |
 | Event | A fact that has occurred. | 6.1.5 |
 | Event notification | An event that tells consumers something happened and carries little data, so they call back for detail. | 6.1.5 |
 | Event sourcing | Storing each change as an immutable, ordered event and deriving current state by replay. | 7.3.5 |
-| Event Storming | A collaborative workshop for discovering domain events, commands, policies and boundaries. | 17.3.3 |
+| Event Storming | A collaborative workshop for discovering domain events, commands, policies and boundaries. | 18.3.3 |
 | Event streaming | The durable, ordered-by-partition log of facts that consumers read at their own offsets and can re-read within retention. | 6.1.6 |
 | Event-carried state transfer | An event that includes the data consumers need, so that they hold a copy and need not call the owner. | 6.1.5 |
 | Event-driven architecture | A design that reacts to asynchronous facts or commands rather than only to direct requests. | 7.1.3 |
 | Evolution | The practice of changing an application and its contracts without breaking the consumers that depend on them. | 7.5.2 |
 | Evolvability | The ability to change a system’s structure and suppliers without a rewrite. | 2.11 |
 | Exception | An authorized deviation from a control for a bounded scope and period, accepted by the role that policy names. | 4.5 |
-| Expand-migrate-contract | A schema change pattern that expands the schema so old and new versions coexist, migrates data and consumers, then contracts by removing the old shape. | 11.2.2 |
-| Failure testing | Testing that measures how a system behaves when a dependency or component fails. | 14.3.1 |
+| Expand-migrate-contract | A schema change pattern that expands the schema so old and new versions coexist, migrates data and consumers, then contracts by removing the old shape. | 12.2.2 |
+| Failure testing | Testing that measures how a system behaves when a dependency or component fails. | 15.3.1 |
 | Fallacies of distributed computing | Assumptions that hold inside one process but not across a network: that the network is reliable, latency is zero, bandwidth is infinite, the network is secure, topology never changes, there is one administrator, transport cost is zero and the network is homogeneous. | 5.4.1 |
-| Fallback | The designed degraded behavior when a model, index, provider or tool fails or returns something unacceptable. | 18.6.6 |
+| Fallback | The designed degraded behavior when a model, index, provider or tool fails or returns something unacceptable. | 19.6.6 |
 | False precision | The appearance of rigor produced by scores whose weights cannot be defended. | 3.3.3 |
 | Fault domain | A set of components that can fail together; high availability requires a path outside each fault domain. | 8.2.1 |
 | Fault tolerance | The ability of a defined function to keep operating despite a specific component failure. | 1.2.4 |
-| Feature flag | A runtime switch that decouples deployment from exposure, letting a change reach a chosen set of users, accounts or requests before it reaches everyone. | 11.2.3 |
-| Federation | The delegation of authentication to an identity provider, so users can reach several applications with one trusted login. | 9.2.3 |
-| FinOps | The practice that links cloud consumption to accountable teams and business value through cost allocation, optimization and forecasting. | 15.2.2 |
-| Fitness function | A repeatable, preferably automated, check of an architectural characteristic. | 4.7; 13.3.1 |
-| Flaky test | A test that passes and fails on the same code and configuration. | 14.2.3 |
-| Framework | A structured body of guidance — framework, method, notation or standard — that answers a specific question at a specific level of the organization. | 17.1 |
+| Feature flag | A runtime switch that decouples deployment from exposure, letting a change reach a chosen set of users, accounts or requests before it reaches everyone. | 12.2.3 |
+| Federation | The delegation of authentication to an identity provider, so users can reach several applications with one trusted login. | 10.2.3 |
+| FinOps | The practice that links cloud consumption to accountable teams and business value through cost allocation, optimization and forecasting. | 16.2.2 |
+| Fitness function | A repeatable, preferably automated, check of an architectural characteristic. | 4.7; 14.3.1 |
+| Flaky test | A test that passes and fails on the same code and configuration. | 15.2.3 |
+| Framework | A structured body of guidance — framework, method, notation or standard — that answers a specific question at a specific level of the organization. | 18.1 |
 | Framework review | A facilitated assessment of one workload against a framework’s questions, producing findings tracked as risks. | 8.5.3 |
-| GDPR | General Data Protection Regulation (EU Regulation 2016/679): the EU law governing processing of personal data. | 9.9.5 |
-| Generative AI | AI that produces text, images, code or other content. | 18.1.1 |
+| GDPR | General Data Protection Regulation (EU Regulation 2016/679): the EU law governing processing of personal data. | 10.9.5 |
+| Generative AI | AI that produces text, images, code or other content. | 19.1.1 |
 | GitOps | Managing a runtime from declarative desired state in version control, pulled and continuously reconciled by software agents. | 8.7.4 |
+| Golden path | A supported, opinionated route for a common task that produces a result conforming to the organization’s standards by default. | 9.4.3 |
 | Governance taxonomy | The classification of obligations, rules and evidence that gives each class an authority and a path into architecture. | 4.1.1 |
 | Graceful degradation | A designed reduced mode that keeps the critical part of a journey working during a failure. | 7.4.2 |
 | gRPC | A remote procedure call framework that uses HTTP/2 and Protocol Buffers. | 6.2.5 |
 | Guardrail | The repeatable, usually automated, control that makes the standard observable in everyday delivery. | 4.3 |
-| Hardening baseline | A versioned decision about the configuration of an asset class. | 9.5.7 |
+| Hardening baseline | A versioned decision about the configuration of an asset class. | 10.5.7 |
 | Hexagonal architecture | A style that isolates business rules behind ports and adapters so they do not depend on frameworks, databases or providers. | 7.2.1 |
 | High availability | The property that a service continues to meet its objective when an individual component fails, because every component and dependency has a redundant path. | 8.2.1 |
-| HLD | High-level design: the artifact that communicates context, containers, stores, integration paths, trust boundaries, deployment topology and quality trade-offs. | 16.3.1 |
+| HLD | High-level design: the artifact that communicates context, containers, stores, integration paths, trust boundaries, deployment topology and quality trade-offs. | 17.3.1 |
 | HTTP | Hypertext Transfer Protocol: the application protocol most synchronous APIs use. | 6.2.5 |
 | Hub and spoke | A mediation topology in which systems connect to a central hub that holds routing and mappings. | 6.6.1 |
-| Human oversight | The allocation of decision authority: which decisions may be automated, which need review, who is accountable and how a person can contest an outcome. | 18.5.6 |
+| Human oversight | The allocation of decision authority: which decisions may be automated, which need review, who is accountable and how a person can contest an outcome. | 19.5.6 |
 | IaC | Infrastructure as code: provisioning and configuration defined in reviewed, versioned files applied by a pipeline. | 8.3.1 |
-| IAST | Interactive application security testing: instrumentation inside a running application during testing. | 9.5.3 |
-| ICD | Interface control document: the cross-team operational agreement for an interface, covering ownership, semantics, timeouts, errors and versioning. | 6.2.3; 16.4.1 |
-| ICT | Information and communications technology: the technology estate and services that DORA regulates. | 17.4.1 |
+| IAST | Interactive application security testing: instrumentation inside a running application during testing. | 10.5.3 |
+| ICD | Interface control document: the cross-team operational agreement for an interface, covering ownership, semantics, timeouts, errors and versioning. | 6.2.3; 17.4.1 |
+| ICT | Information and communications technology: the technology estate and services that DORA regulates. | 18.4.1 |
 | Idempotency | The property that repeating an operation has the same business effect as performing it once. | 6.3.2 |
-| Identity | A durable representation of a person, workload or external party that a system can authenticate and authorize. | 9.2.1 |
-| IdP | Identity provider: the service that authenticates an identity and issues assertions or tokens about it. | 9.2.3 |
-| IEC | International Electrotechnical Commission: the body that publishes electrotechnical standards jointly with ISO. | 17.4.2 |
-| IEEE | Institute of Electrical and Electronics Engineers: the professional body that publishes software and systems engineering standards such as 42010. | 17.2.2 |
-| Incident communication | The rehearsed flow of accurate, consistent updates to stakeholders and customers while the incident is still unfolding. | 10.3.3 |
-| Incident management | The practice that restores service as quickly as possible after an incident. | 11.3.2 |
-| Incident response | The practice of containing a security incident and recovering from it with defined roles and evidence. | 9.7.1 |
-| Incident severity | Severity is the business-impact classification that decides who is engaged, how fast and with what authority. | 10.3.2 |
-| Industry reference model | A published vocabulary, capability map or interface standard that a sector shares, such as BIAN for banking or HL7 FHIR for healthcare. | 17.2.6 |
-| Ingestion | The process that inventories sources, establishes their rights and quality, and produces normalized content for indexing. | 18.3.1 |
-| Instrumentation standard | The set of conventions every service follows so that telemetry from different teams can be joined into one query and one trace. | 10.1.2 |
+| Identity | A durable representation of a person, workload or external party that a system can authenticate and authorize. | 10.2.1 |
+| IdP | Identity provider: the service that authenticates an identity and issues assertions or tokens about it. | 10.2.3 |
+| IEC | International Electrotechnical Commission: the body that publishes electrotechnical standards jointly with ISO. | 18.4.2 |
+| IEEE | Institute of Electrical and Electronics Engineers: the professional body that publishes software and systems engineering standards such as 42010. | 18.2.2 |
+| Incident communication | The rehearsed flow of accurate, consistent updates to stakeholders and customers while the incident is still unfolding. | 11.3.3 |
+| Incident management | The practice that restores service as quickly as possible after an incident. | 12.3.2 |
+| Incident response | The practice of containing a security incident and recovering from it with defined roles and evidence. | 10.7.1 |
+| Incident severity | Severity is the business-impact classification that decides who is engaged, how fast and with what authority. | 11.3.2 |
+| Industry reference model | A published vocabulary, capability map or interface standard that a sector shares, such as BIAN for banking or HL7 FHIR for healthcare. | 18.2.6 |
+| Ingestion | The process that inventories sources, establishes their rights and quality, and produces normalized content for indexing. | 19.3.1 |
+| Instrumentation standard | The set of conventions every service follows so that telemetry from different teams can be joined into one query and one trace. | 11.1.2 |
 | Integration by contract | Two components interact only through an interface whose behavior, failure modes and compatibility rules are stated and tested. | 2.6 |
 | Integration security | The controls that protect each crossing of a trust boundary. | 6.5 |
 | Integration style | The interaction pattern chosen for an interface — request/response, durable messaging, event streaming, batch exchange or notification — together with the delivery and failure semantics that come with it. | 6.1.2 |
-| International transfer | An international transfer moves data or access across a jurisdiction. | 9.9.5 |
+| Internal platform | A curated set of capabilities offered to the teams that build and run solutions through self-service interfaces, with an owner, a contract and a support path. | 9.1.1 |
+| International transfer | An international transfer moves data or access across a jurisdiction. | 10.9.5 |
 | Internationalization | Preparing a solution to support several languages, regions and formats without code changes. | 7.6.6 |
 | IoT | Internet of Things: networks of physical devices that sense, act and exchange data. | 8.8 |
 | iPaaS | Integration platform as a service: a provider-managed platform for building, running and monitoring integration flows with prebuilt connectors. | 6.6.3 |
-| ISO | International Organization for Standardization: the body that publishes the ISO and ISO/IEC standards the book cites. | 17.4.2 |
-| ISO/IEC/IEEE 42010 | What an architecture description should contain: identified stakeholders and their concerns, viewpoints that frame those concerns, views that apply the viewpoints, and correspondences that keep views consistent. | 17.2.2 |
-| ITIL | A framework of IT and digital service-management practices, including change enablement. | 11.4.2 |
+| ISO | International Organization for Standardization: the body that publishes the ISO and ISO/IEC standards the book cites. | 18.4.2 |
+| ISO/IEC/IEEE 42010 | What an architecture description should contain: identified stakeholders and their concerns, viewpoints that frame those concerns, views that apply the viewpoints, and correspondences that keep views consistent. | 18.2.2 |
+| ITIL | A framework of IT and digital service-management practices, including change enablement. | 12.4.2 |
 | JSON | JavaScript Object Notation: a text format for structured data used by APIs and schemas. | 6.2.7 |
-| KEV | Known Exploited Vulnerabilities: the CISA catalog of vulnerabilities exploited in the wild. | 9.6.2 |
-| Key management | The set of controls that govern how cryptographic keys are generated, stored, used, rotated, recovered and destroyed. | 9.4.5 |
-| Knowledge authority | The rule that decides which source wins when sources disagree. | 18.3.4 |
+| KEV | Known Exploited Vulnerabilities: the CISA catalog of vulnerabilities exploited in the wild. | 10.6.2 |
+| Key management | The set of controls that govern how cryptographic keys are generated, stored, used, rotated, recovered and destroyed. | 10.4.5 |
+| Knowledge authority | The rule that decides which source wins when sources disagree. | 19.3.4 |
 | Landing zone | The governed foundation for workloads: account or subscription hierarchy, identity, network, policy, logging, budgets and deployment baselines, established before workloads proliferate. | 8.1.1 |
-| Latency | The time a request takes to reach a useful response. | 18.4.2 |
+| Latency | The time a request takes to reach a useful response. | 19.4.2 |
 | Latency budget | The allocation of an end-to-end response objective across the segments a request traverses. | 1.4.2 |
 | Legacy connectivity | The techniques that let modern components exchange data with systems that cannot be changed economically or whose interfaces predate modern contracts. | 6.6.5 |
 | LFU | Least frequently used: an eviction policy that removes the entries used least often. | 7.3.4 |
-| LLD | Low-level design: the artifact that details modules, interfaces, schemas, algorithms, state transitions, errors, concurrency and rollout. | 16.3.2 |
-| LLMOps | The practices that automate evaluation, release, registry and monitoring for large language model applications. | 18.6.7 |
+| LLD | Low-level design: the artifact that details modules, interfaces, schemas, algorithms, state transitions, errors, concurrency and rollout. | 17.3.2 |
+| LLMOps | The practices that automate evaluation, release, registry and monitoring for large language model applications. | 19.6.7 |
 | Load balancer | A component that distributes traffic among healthy instances, at the connection or the request level. | 8.6.3 |
-| Load shedding | Rejecting lower-priority work early when demand exceeds capacity, so essential work still completes. | 10.4.2 |
+| Load shedding | Rejecting lower-priority work early when demand exceeds capacity, so essential work still completes. | 11.4.2 |
 | Localization | Supplying the content and conventions for one specific locale. | 7.6.6 |
-| Log | A timestamped record of a discrete event, structured so it can be queried and correlated. | 10.1.1 |
+| Log | A timestamped record of a discrete event, structured so it can be queried and correlated. | 11.1.1 |
 | Long-running workflow | A business process whose steps span several local transactions, may wait on external parties and may need compensation. | 7.3.2 |
 | Low-code automation | Integration or workflow capability exposed through visual tools to a wider group of authors. | 6.6.3 |
 | LRU | Least recently used: an eviction policy that removes the entries unused for the longest time. | 7.3.4 |
 | Maintainability | The cost, risk and lead time of making a correct change. | 1.2.8; 2.11 |
-| MCP | Model Context Protocol: an open protocol connecting AI host applications to servers that expose tools, resources and prompts. | 18.8.2 |
+| MCP | Model Context Protocol: an open protocol connecting AI host applications to servers that expose tools, resources and prompts. | 19.8.2 |
 | MDM | Master data management: governance of shared reference entities and identity resolution across systems. | 5.3.7 |
-| Media handling | Controls on data through storage, transport and destruction of physical and removable media. | 9.4.6 |
+| Media handling | Controls on data through storage, transport and destruction of physical and removable media. | 10.4.6 |
 | Mediation topology | The arrangement of connections and intermediaries through which systems exchange data. | 6.6.1 |
 | Message-oriented middleware | Infrastructure that provides reliable asynchronous transport between applications. | 6.6.2 |
-| Metric | A numeric measurement recorded over time and identified by a name and a set of labels. | 10.1.1 |
-| MFA | Multi-factor authentication: authentication that requires more than one independent factor. | 9.2.2 |
+| Metric | A numeric measurement recorded over time and identified by a name and a set of labels. | 11.1.1 |
+| MFA | Multi-factor authentication: authentication that requires more than one independent factor. | 10.2.2 |
 | Micro-frontend | A part of a user interface that an independent team builds and deploys separately and that is composed into one experience. | 7.6.3 |
 | Microservice | An independently deployable service with its own data and release cadence, extracted when a boundary justifies the distributed cost. | 7.1.2 |
-| ML | Machine learning: systems that learn patterns from data rather than following explicit rules. | 18.1.1 |
-| MLOps | The practices that automate evaluation, release, registry and monitoring for model-based systems. | 18.6.7 |
-| Model capability | The degree to which a model meets a task’s acceptance criteria on representative, failure and adversarial inputs. | 18.4.1 |
-| Model portability | The ability to change model or provider without redesigning the solution. | 18.4.5 |
-| Model provenance | The record of where the model and its artifacts came from, which version is deployed, and what evidence supports its use. | 18.5.5 |
-| Model selection criteria | The weighted criteria, evidence and uncertainty used to choose a model and platform, captured as an architecture decision record. | 18.4.6 |
+| ML | Machine learning: systems that learn patterns from data rather than following explicit rules. | 19.1.1 |
+| MLOps | The practices that automate evaluation, release, registry and monitoring for model-based systems. | 19.6.7 |
+| Model capability | The degree to which a model meets a task’s acceptance criteria on representative, failure and adversarial inputs. | 19.4.1 |
+| Model portability | The ability to change model or provider without redesigning the solution. | 19.4.5 |
+| Model provenance | The record of where the model and its artifacts came from, which version is deployed, and what evidence supports its use. | 19.5.5 |
+| Model selection criteria | The weighted criteria, evidence and uncertainty used to choose a model and platform, captured as an architecture decision record. | 19.4.6 |
 | Modular monolith | A deployment style in which several modules with explicit boundaries ship as one deployable unit. | 7.1.2 |
 | Modularity | The property that lets one part of a system change without forcing a change in the parts that depend on it. | 2.4 |
 | MQTT | A lightweight publish-subscribe messaging protocol designed for constrained devices and unreliable networks. | 8.8.2 |
-| mTLS | Mutual Transport Layer Security: TLS in which both client and server present certificates. | 9.2.5 |
+| mTLS | Mutual Transport Layer Security: TLS in which both client and server present certificates. | 10.2.5 |
 | MTPD | Maximum tolerable period of disruption: the longest interruption a business process can absorb before its impact becomes unacceptable. | 8.2.3 |
 | Multi-level cache | Cache tiers checked in order, typically a local tier (L1), then a shared or larger tier (L2). | 7.3.4 |
 | Multi-tenancy | Serving several customer organizations from one solution while keeping each one’s data, performance and lifecycle separate. | 7.7 |
-| Mutation testing | A technique that injects small faults into code or configuration and checks whether the test suite fails, measuring whether assertions would notice a wrong result. | 14.4.1 |
+| Mutation testing | A technique that injects small faults into code or configuration and checks whether the test suite fails, measuring whether assertions would notice a wrong result. | 15.4.1 |
 | Network architecture | The design of address planning, segmentation, routing, DNS, ingress, egress, private connectivity and hybrid links. | 8.1.3 |
-| NIS2 | Directive (EU) 2022/2555: the EU directive on a high common level of cybersecurity across the Union. | 17.4.1 |
-| NIST | National Institute of Standards and Technology: the US body whose frameworks and special publications the book cites. | 9.1.2 |
+| NIS2 | Directive (EU) 2022/2555: the EU directive on a high common level of cybersecurity across the Union. | 18.4.1 |
+| NIST | National Institute of Standards and Technology: the US body whose frameworks and special publications the book cites. | 10.1.2 |
 | Noisy neighbor | A tenant whose workload degrades the service other tenants receive from shared resources. | 7.7.3 |
-| Non-risk | An architectural decision judged sound for a scenario, recorded with the assumption it relies on. | 13.1.1 |
-| Notification obligation | The incident notices a customer or regulator requires, with their own deadlines, recipients and content. | 9.7.3 |
-| OAuth 2.0 | An authorization framework that delegates access to a token, with a flow that decides which client can obtain one and under what constraints. | 9.2.4 |
+| Non-risk | An architectural decision judged sound for a scenario, recorded with the assumption it relies on. | 14.1.1 |
+| Notification obligation | The incident notices a customer or regulator requires, with their own deadlines, recipients and content. | 10.7.3 |
+| OAuth 2.0 | An authorization framework that delegates access to a token, with a flow that decides which client can obtain one and under what constraints. | 10.2.4 |
 | Observability | The ability to infer a system’s internal behavior from the signals it emits. | 1.2.9; 2.10 |
-| Offline evaluation | The measurement of a candidate release against a versioned golden set before it reaches users. | 18.6.1 |
-| OIDC | OpenID Connect: an identity layer on OAuth 2.0 that authenticates users and issues identity tokens. | 9.2.3 |
-| On-call | The rotation of engineers who are paged and able to act on alerts. | 10.3.1 |
-| Online evaluation | The measurement of behavior in production, using canaries, sampled review, user feedback, groundedness checks and safety events. | 18.6.2 |
-| Operational artifact | The runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and handover material that define how a service is operated. | 16.5.2 |
-| Operational readiness | The state in which a named team can detect, diagnose, restore and verify a service without discovering its dependencies during an incident. | 11.3.1 |
-| Operational security | The recurring work that keeps a running estate as hardened as its design intended: patching, vulnerability response, privileged access, audit retention and access revocation. | 11.5 |
+| Offline evaluation | The measurement of a candidate release against a versioned golden set before it reaches users. | 19.6.1 |
+| OIDC | OpenID Connect: an identity layer on OAuth 2.0 that authenticates users and issues identity tokens. | 10.2.3 |
+| On-call | The rotation of engineers who are paged and able to act on alerts. | 11.3.1 |
+| Online evaluation | The measurement of behavior in production, using canaries, sampled review, user feedback, groundedness checks and safety events. | 19.6.2 |
+| Operational artifact | The runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and handover material that define how a service is operated. | 17.5.2 |
+| Operational readiness | The state in which a named team can detect, diagnose, restore and verify a service without discovering its dependencies during an incident. | 12.3.1 |
+| Operational security | The recurring work that keeps a running estate as hardened as its design intended: patching, vulnerability response, privileged access, audit retention and access revocation. | 12.5 |
 | Ordering | The guarantee that updates are applied in an order consistent with causality. | 5.4.6; 6.4.2 |
-| OWASP | Open Worldwide Application Security Project: the community that publishes the Top 10, ASVS, WSTG and related guidance. | 9.5.1 |
+| OWASP | Open Worldwide Application Security Project: the community that publishes the Top 10, ASVS, WSTG and related guidance. | 10.5.1 |
 | PACELC | A model extending CAP with the latency–consistency trade-off during normal operation, when there is no partition. | 5.4.2 |
 | Partitioning | The splitting of data across nodes to spread volume and load. | 5.4.5 |
-| Patch management | The controlled application of firmware, operating-system, middleware, runtime and application updates. | 9.6.4 |
-| PCI DSS | Payment Card Industry Data Security Standard: the standard for organizations that store, process or transmit cardholder data. | 9.8.2; 17.4.2 |
-| Penetration test | A scoped, time-boxed exploitation attempt by skilled testers that looks for logic flaws and chained attacks. | 9.5.5 |
+| Patch management | The controlled application of firmware, operating-system, middleware, runtime and application updates. | 10.6.4 |
+| PCI DSS | Payment Card Industry Data Security Standard: the standard for organizations that store, process or transmit cardholder data. | 10.8.2; 18.4.2 |
+| Penetration test | A scoped, time-boxed exploitation attempt by skilled testers that looks for logic flaws and chained attacks. | 10.5.5 |
 | Performance | Observable behavior — latency and throughput — under a specified workload. | 1.2.5; 2.9 |
-| Performance testing | Testing that measures how a system behaves at and beyond its expected load. | 14.3.1 |
-| Physical security | Protection of facilities, hardware and media from unauthorized access. | 9.4.6 |
+| Performance testing | Testing that measures how a system behaves at and beyond its expected load. | 15.3.1 |
+| Physical security | Protection of facilities, hardware and media from unauthorized access. | 10.4.6 |
 | Pipeline | A governed sequence of jobs that moves and transforms data from sources to consumers. | 5.2.6 |
-| PKCE | Proof Key for Code Exchange: an OAuth 2.0 extension that protects authorization-code flows for public clients. | 9.2.4 |
+| PKCE | Proof Key for Code Exchange: an OAuth 2.0 extension that protects authorization-code flows for public clients. | 10.2.4 |
+| Platform as a product | Running a platform with identified users, a value proposition, a needs-based roadmap and measures of adoption and benefit. | 9.2.1 |
 | Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 8.4 |
+| Platform responsibility model | The division of duties, per platform capability, between the platform team and the teams whose workloads use it. | 9.3.1 |
+| Policy as code | Organizational rules expressed as versioned, tested code that the platform evaluates automatically. | 9.7.1 |
 | Polling | Periodically querying a system for changes rather than receiving a push. | 6.1.8 |
 | Pool model | A tenancy model in which tenants share resources and isolation is enforced in software. | 7.7.1 |
-| Portability | The degree to which a solution can move between providers or platforms without redesign. | 15.2.4 |
-| Postmortem | A blameless written account of an incident that ends in owned, dated changes to the system. | 10.5.2 |
-| PRD | Product Requirements Document: the artifact that specifies the product problem, users, journeys, requirements, success metrics and priorities. | 16.2.2 |
+| Portability | The degree to which a solution can move between providers or platforms without redesign. | 16.2.4 |
+| Postmortem | A blameless written account of an incident that ends in owned, dated changes to the system. | 11.5.2 |
+| PRD | Product Requirements Document: the artifact that specifies the product problem, users, journeys, requirements, success metrics and priorities. | 17.2.2 |
 | Principle | A durable preference for making decisions that applies across many cases without prescribing a single implementation. | 2.1 |
 | Principle conflict | A principle conflict exists when two principles that are both accepted point to different designs for the same decision. | 2.16 |
-| Privacy | The quality attribute that keeps personal data limited to the purpose for which it was collected and removes it when that purpose ends. | 1.2.12; 9.9.6; 9.9; 18.5.4 |
-| Privacy by default | Starting with the least-revealing setting, so optional data is off unless the user turns it on. | 9.9.1 |
+| Privacy | The quality attribute that keeps personal data limited to the purpose for which it was collected and removes it when that purpose ends. | 1.2.12; 10.9.6; 10.9; 19.5.4 |
+| Privacy by default | Starting with the least-revealing setting, so optional data is off unless the user turns it on. | 10.9.1 |
 | Privacy by design | Treating protection of personal data as a design constraint across its lifecycle, not a compliance check before launch. | 2.14 |
-| Privacy evidence | The set of records that shows the processing was designed, approved and operated within its stated purpose and retention. | 9.9.6 |
-| Privacy risk assessment | An analysis of how a processing activity could harm individuals and which controls reduce that harm. | 9.9.2 |
-| Privileged access | Authority that can change security controls, infrastructure, data or other users’ permissions. | 9.3.2 |
-| Problem management | Finding and removing the underlying causes of recurring or significant incidents. | 11.3.2 |
-| Progressive delivery | The practice of exposing a release to a controlled and growing share of traffic while comparing its behavior with the version it replaces. | 11.1.2 |
-| Prompt and content controls | The handling rules that keep instructions separate from data and constrain what the system accepts and returns. | 18.5.3 |
-| Proof of concept | A time-boxed test of a specific technical claim against exit criteria agreed in advance. | 15.2.6 |
-| Provenance | The record of where a piece of content came from, who owns it, which version it is and what access label it carries. | 18.3.4 |
-| Pseudonymization | The replacement of identifiers with tokens so records can be linked without exposing identity. | 9.9.4 |
-| QA | Quality assurance: the testing and verification work that establishes whether a change meets its acceptance criteria. | 11.1.4 |
+| Privacy evidence | The set of records that shows the processing was designed, approved and operated within its stated purpose and retention. | 10.9.6 |
+| Privacy risk assessment | An analysis of how a processing activity could harm individuals and which controls reduce that harm. | 10.9.2 |
+| Privileged access | Authority that can change security controls, infrastructure, data or other users’ permissions. | 10.3.2 |
+| Problem management | Finding and removing the underlying causes of recurring or significant incidents. | 12.3.2 |
+| Progressive delivery | The practice of exposing a release to a controlled and growing share of traffic while comparing its behavior with the version it replaces. | 12.1.2 |
+| Prompt and content controls | The handling rules that keep instructions separate from data and constrain what the system accepts and returns. | 19.5.3 |
+| Proof of concept | A time-boxed test of a specific technical claim against exit criteria agreed in advance. | 16.2.6 |
+| Provenance | The record of where a piece of content came from, who owns it, which version it is and what access label it carries. | 19.3.4 |
+| Pseudonymization | The replacement of identifiers with tokens so records can be linked without exposing identity. | 10.9.4 |
+| QA | Quality assurance: the testing and verification work that establishes whether a change meets its acceptance criteria. | 12.1.4 |
 | QAW | Quality Attribute Workshop: a structured elicitation and prioritization method in which business owners agree the scenarios that drive the architecture. | 1.4.1 |
-| Quality gate | An automated decision point that blocks promotion when defined evidence is missing or failing. | 14.2.2 |
-| RBAC | Role-based access control: authorization decided from the roles assigned to a principal. | 9.3.1 |
+| Quality gate | An automated decision point that blocks promotion when defined evidence is missing or failing. | 15.2.2 |
+| RBAC | Role-based access control: authorization decided from the roles assigned to a principal. | 10.3.1 |
 | Read model | A projection built for one read pattern, separate from the write model. | 7.3.1 |
 | Read-through cache | A cache layer that loads an entry from the store itself on a miss. | 7.3.3 |
-| ReBAC | Relationship-based access control: authorization decided from relationships between principals and resources. | 9.3.1 |
+| ReBAC | Relationship-based access control: authorization decided from relationships between principals and resources. | 10.3.1 |
 | Reconciliation | The process that detects and closes divergence between an authority and its copies. | 5.3.6; 6.4.4 |
 | Recoverability | How service and data are restored after a disruptive event. | 1.2.10 |
-| Regulated environment | An environment in which a control must be demonstrable: who approved a change, on what evidence and when. | 11.4.5 |
-| Regulation | An instrument with legal force that creates obligations on organizations meeting its scope conditions, enforced by a regulator or court. | 17.4.1 |
+| Regulated environment | An environment in which a control must be demonstrable: who approved a change, on what evidence and when. | 12.4.5 |
+| Regulation | An instrument with legal force that creates obligations on organizations meeting its scope conditions, enforced by a regulator or court. | 18.4.1 |
 | Regulatory constraint | A legal, regulatory or contractual obligation translated into an obligation the system must satisfy. | 1.3.3 |
-| Release manifest | The record that binds the model, prompt, index, tool policy, evaluation set and configuration that together produce a release. | 18.6.3 |
+| Release manifest | The record that binds the model, prompt, index, tool policy, evaluation set and configuration that together produce a release. | 19.6.3 |
 | Reliability | The ability to perform intended functions correctly and consistently over time, including data integrity and the completion of accepted work. | 1.2.2; 2.8 |
-| Reliability engineering | The practice of designing a system to keep its promises while components fail. | 10.4.1 |
-| Remediation | The action that removes or reduces a vulnerability. | 9.6.3 |
-| Remote access | Access that extends the trust boundary to devices and networks the organization may not control. | 9.4.4 |
+| Reliability engineering | The practice of designing a system to keep its promises while components fail. | 11.4.1 |
+| Remediation | The action that removes or reduces a vulnerability. | 10.6.3 |
+| Remote access | Access that extends the trust boundary to devices and networks the organization may not control. | 10.4.4 |
 | Rendering strategy | The decision about where and when a user interface is produced: ahead of time, on the server, in the browser or on the device. | 7.6.1 |
 | Replication | The keeping of copies of data on several nodes for availability, locality and read scale. | 5.4.5 |
 | Resilience | The ability to absorb disruption — network failures, unavailable dependencies, timeouts, instance loss, poison messages and traffic spikes — while preserving essential functions and recovering predictably. | 1.2.3; 2.8 |
 | REST | Representational State Transfer: an architectural style for APIs built on resources, HTTP methods and representations. | 6.2.5 |
-| Retrieval | The selection of content for the model’s context. | 18.3.3 |
+| Retrieval | The selection of content for the model’s context. | 19.3.3 |
 | Reuse | The use of an existing asset instead of building a new one. | 2.12 |
 | Reverse proxy | A server that receives client requests on behalf of other servers and forwards them. | 8.6.3 |
-| RFC | Request for Comments: a structured proposal that solicits feedback before a decision; in standards citations, an IETF specification. | 16.3.3 |
-| RFP | Request for proposal: a formal invitation for suppliers to submit comparable bids against stated requirements. | 15.2.6 |
-| Risk theme | A group of related evaluation risks stated against the business driver they endanger. | 13.2.1 |
-| Risk-based prioritization | Prioritizing vulnerabilities by combining technical severity with exploitation likelihood, exposure and business context. | 9.6.2 |
+| RFC | Request for Comments: a structured proposal that solicits feedback before a decision; in standards citations, an IETF specification. | 17.3.3 |
+| RFP | Request for proposal: a formal invitation for suppliers to submit comparable bids against stated requirements. | 16.2.6 |
+| Risk theme | A group of related evaluation risks stated against the business driver they endanger. | 14.2.1 |
+| Risk-based prioritization | Prioritizing vulnerabilities by combining technical severity with exploitation likelihood, exposure and business context. | 10.6.2 |
 | Routing and segmentation | The decisions about which networks and services may reach each other. | 8.6.2 |
 | RPA | Robotic process automation: software that operates an application through its user interface in place of a person. | 6.6.5 |
 | RPO | Recovery point objective: the maximum acceptable data loss, expressed as time. | 8.2.2 |
 | RTO | Recovery time objective: the maximum acceptable time to restore service. | 8.2.2 |
-| SAAM | Software Architecture Analysis Method: a scenario-based method focused on scenario coverage and the impact of change. | 13.2.2 |
+| SAAM | Software Architecture Analysis Method: a scenario-based method focused on scenario coverage and the impact of change. | 14.2.2 |
 | SaaS | Software as a service: a delivery model in which a provider operates the application for its customers. | 8.1.4 |
-| SAFe | Scaled Agile Framework: defines roles and practices for agile delivery across many teams. | 17.2.5 |
+| SAFe | Scaled Agile Framework: defines roles and practices for agile delivery across many teams. | 18.2.5 |
 | Saga | A saga coordinates a business workflow across independently committed local transactions, using compensating actions instead of distributed transactions. | 6.4.3 |
-| SAML | Security Assertion Markup Language: an XML-based standard for exchanging authentication and authorization assertions. | 9.2.3 |
-| SAST | Static application security testing: analyzing source code or binaries without running the application. | 9.5.3 |
-| SBOM | Software bill of materials: the inventory of components and dependencies in a build. | 9.5.6 |
-| SCA | Software composition analysis: identifying known vulnerabilities and licence obligations in third-party dependencies. | 9.5.3 |
+| SAML | Security Assertion Markup Language: an XML-based standard for exchanging authentication and authorization assertions. | 10.2.3 |
+| SAST | Static application security testing: analyzing source code or binaries without running the application. | 10.5.3 |
+| SBOM | Software bill of materials: the inventory of components and dependencies in a build. | 10.5.6 |
+| SCA | Software composition analysis: identifying known vulnerabilities and licence obligations in third-party dependencies. | 10.5.3 |
 | Scalability | The ability to sustain a higher workload by adding resources or by changing how work and data are partitioned. | 1.2.6; 2.9 |
-| Scenario-based testing | Testing that derives cases from prioritized quality scenarios, each with a measurable pass criterion. | 14.1.4 |
-| Schema evolution | Changing a database schema so each release stays compatible with the version before and after it. | 11.2.2 |
-| SCIM | System for Cross-domain Identity Management: the standard protocol for provisioning users and groups between systems. | 9.2.1 |
+| Scenario-based testing | Testing that derives cases from prioritized quality scenarios, each with a measurable pass criterion. | 15.1.4 |
+| Schema evolution | Changing a database schema so each release stays compatible with the version before and after it. | 12.2.2 |
+| SCIM | System for Cross-domain Identity Management: the standard protocol for provisioning users and groups between systems. | 10.2.1 |
 | SDK | Software development kit: the vendor-supplied library and tools that a client uses to call a service. | 7.2.1 |
-| SDLC | Secure development lifecycle: building security into requirements, design, coding, testing, release and operations rather than adding it after a penetration test. | 9.5.1 |
+| SDLC | Secure development lifecycle: building security into requirements, design, coding, testing, release and operations rather than adding it after a penetration test. | 10.5.1 |
 | Security | The quality attribute that protects specific assets against defined threats. | 1.2.7 |
-| Security artifact | The threat models, trust-boundary diagrams, impact assessments, risk registers and control mappings that record security reasoning, with owners and verification evidence. | 16.4.3 |
+| Security artifact | The threat models, trust-boundary diagrams, impact assessments, risk registers and control mappings that record security reasoning, with owners and verification evidence. | 17.4.3 |
 | Security by design | Trust boundaries, identities and authorization are part of the architecture, decided with the same rigor as any other quality attribute. | 2.7 |
-| Security monitoring | The detection and explanation of security events. | 9.7.1 |
+| Security monitoring | The detection and explanation of security events. | 10.7.1 |
 | Security program governance | The security policy hierarchy, risk appetite and named authority within which architecture governance operates. | 4.1.2 |
-| Security requirement | A verifiable statement of what the solution must protect, detect or recover, derived from threats, policy and external obligations. | 9.1.2 |
-| Security testing | A portfolio of techniques, each of which sees a different part of the attack surface. | 9.5.3 |
-| SEI | Software Engineering Institute at Carnegie Mellon University: the body that developed ATAM, QAW, ADD and related methods. | 17.3.1 |
+| Security requirement | A verifiable statement of what the solution must protect, detect or recover, derived from threats, policy and external obligations. | 10.1.2 |
+| Security testing | A portfolio of techniques, each of which sees a different part of the attack surface. | 10.5.3 |
+| SEI | Software Engineering Institute at Carnegie Mellon University: the body that developed ATAM, QAW, ADD and related methods. | 18.3.1 |
 | SemVer | Semantic versioning: a MAJOR.MINOR.PATCH scheme in which the numbers communicate compatibility. | 7.5.3 |
-| Sensitivity point | A property of a design that depends strongly on one architectural decision. | 13.1.1 |
-| Sequence diagram | A sequence diagram shows interactions between participants in time order. | 12.2.1 |
+| Sensitivity point | A property of a design that depends strongly on one architectural decision. | 14.1.1 |
+| Sequence diagram | A sequence diagram shows interactions between participants in time order. | 13.2.1 |
 | Serverless | An execution model in which the platform manages capacity, so the solution pays for use rather than for provisioned servers. | 7.1.3 |
 | Server-sent events | A standard for streaming one-way updates from a server to a client over HTTP. | 6.1.9 |
+| Service catalog | The inventory of software components with their owners, lifecycle state, dependencies and operational metadata. | 9.4.2 |
 | Service discovery | A mechanism through which clients find healthy service instances without fixed addresses. | 8.7.3 |
 | Service mesh | An infrastructure layer of proxies and a control plane applying identity, encryption, traffic policy and telemetry between services. | 8.7.3 |
 | Shared responsibility model | The per-service split of security and operational duties between the provider and the customer. | 8.1.4 |
-| Signal | A metric, log, trace, event or profile that a system emits about its own behavior. | 10.1.1 |
+| Showback | Reporting each consuming team’s share of platform or cloud cost without charging it to the team’s budget. | 9.10.1 |
+| Signal | A metric, log, trace, event or profile that a system emits about its own behavior. | 11.1.1 |
 | Silo model | A tenancy model that gives each tenant dedicated resources. | 7.7.1 |
 | Simplicity | The property of a design whose structure is no more complex than the quality attributes it must satisfy require. | 2.3 |
 | Single-page application | A web client that loads once and renders subsequent views in the browser. | 7.6.1 |
-| SLA | Service level agreement: the contractual commitment behind a service level objective. | 10.2.1 |
-| SLI | Service level indicator: the ratio of good events to valid events that measures user-visible behavior. | 10.2.1 |
-| SLO | Service level objective: the target for a service level indicator over a stated window. | 10.2.1 |
+| SLA | Service level agreement: the contractual commitment behind a service level objective. | 11.2.1 |
+| SLI | Service level indicator: the ratio of good events to valid events that measures user-visible behavior. | 11.2.1 |
+| SLO | Service level objective: the target for a service level indicator over a stated window. | 11.2.1 |
 | SoA | Statement of Applicability: the ISO/IEC 27001 document that states which Annex A controls apply and why. | 4.9 |
-| SOC 2 | Service Organization Control 2: an assurance report on a provider’s controls against the AICPA Trust Services Criteria. | 9.8.2 |
-| SoD | Segregation of duties: separating the roles that request, approve and verify an action so no single person controls it end to end. | 11.4.5 |
-| Span | One unit of work within a distributed trace, with start time, duration, attributes and status. | 10.1.1 |
-| Spike | A short, time-boxed experiment that answers whether a technique or library can do what is needed. | 13.3.2 |
-| SRE | Site reliability engineering: the discipline that applies software engineering to operations, SLOs, error budgets and incident response. | 10.2.1; 10.3.1 |
-| SRS | Software Requirements Specification: the artifact that states externally observable functional and quality requirements. | 16.2.3 |
-| SSO | Single sign-on: one authenticated session that grants access to several applications. | 9.2.3 |
+| SOC 2 | Service Organization Control 2: an assurance report on a provider’s controls against the AICPA Trust Services Criteria. | 10.8.2 |
+| SoD | Segregation of duties: separating the roles that request, approve and verify an action so no single person controls it end to end. | 12.4.5 |
+| Span | One unit of work within a distributed trace, with start time, duration, attributes and status. | 11.1.1 |
+| Spike | A short, time-boxed experiment that answers whether a technique or library can do what is needed. | 14.3.2 |
+| SRE | Site reliability engineering: the discipline that applies software engineering to operations, SLOs, error budgets and incident response. | 11.2.1; 11.3.1 |
+| SRS | Software Requirements Specification: the artifact that states externally observable functional and quality requirements. | 17.2.3 |
+| SSO | Single sign-on: one authenticated session that grants access to several applications. | 10.2.3 |
 | SSRF | Server-side request forgery: the server is induced to fetch a location chosen by the attacker. | F.7 |
-| Standard | Required or preferred technical behavior; a standard becomes binding through contract, regulation or organizational policy. | 4.3; 17.4.2 |
+| Standard | Required or preferred technical behavior; a standard becomes binding through contract, regulation or organizational policy. | 4.3; 18.4.2 |
 | Standardization | The adoption of one approved way to satisfy a recurring concern. | 2.12 |
 | State machine | The definition of which transitions between states are legal and which must be refused. | 7.2.2 |
-| Strangler Fig | The Strangler Fig pattern places a routing façade in front of the legacy system and moves capabilities to a new implementation one slice at a time while both coexist, with an anti-corruption layer translating between the legacy model and the new domain model. | 15.1.2 |
+| Static stability | The property of a system whose running workloads keep serving when the control plane that changes them is unavailable. | 9.8.1 |
+| Strangler Fig | The Strangler Fig pattern places a routing façade in front of the legacy system and moves capabilities to a new implementation one slice at a time while both coexist, with an anti-corruption layer translating between the legacy model and the new domain model. | 16.1.2 |
 | Stream-aligned team | A team that owns the end-to-end flow of change for a product, journey or capability. | 4.10.2 |
-| Supply-chain security | Protecting the interfaces and build inputs that an application depends on, not only its own code. | 9.5.6 |
-| Sustainability | The environmental cost of running the solution, reasoned about alongside efficiency. | 2.3; 15.3.1 |
-| Swimlane diagram | An activity diagram partitioned into lanes by role or system, with events, gateways, hand-offs and exception paths. | 12.2.3 |
+| Supply-chain security | Protecting the interfaces and build inputs that an application depends on, not only its own code. | 10.5.6 |
+| Sustainability | The environmental cost of running the solution, reasoned about alongside efficiency. | 2.3; 16.3.1 |
+| Swimlane diagram | An activity diagram partitioned into lanes by role or system, with events, gateways, hand-offs and exception paths. | 13.2.3 |
 | Synchronous call | An integration in which the caller blocks until the callee responds, so the caller's availability and latency include the callee's. | 6.1.3 |
 | System of record | The system authorized to change a defined set of facts, and its owner is the person accountable for their meaning, quality and lifecycle. | 5.3.1 |
-| Tail latency | The slowest part of the response-time distribution, such as the 99th percentile. | 10.4.3 |
-| TCO | Total cost of ownership: the multi-year cost of a capability, including operation, support and exit. | 15.2.3 |
-| TDD | Technical Design Document: the detailed design artifact; in testing contexts, test-driven development. | 16.3.2 |
-| Technical debt | The future cost or constraint created by a design choice. | 15.2.1 |
+| Tail latency | The slowest part of the response-time distribution, such as the 99th percentile. | 11.4.3 |
+| TCO | Total cost of ownership: the multi-year cost of a capability, including operation, support and exit. | 16.2.3 |
+| TDD | Technical Design Document: the detailed design artifact; in testing contexts, test-driven development. | 17.3.2 |
+| Technical debt | The future cost or constraint created by a design choice. | 16.2.1 |
 | Tenant context | The verified identity of the tenant on whose behalf work runs, carried with that work and enforced at data access. | 7.7.2 |
-| Tenant segregation | Segregation separates customers, tenants and environments so that data and privileges cannot leak across a boundary. | 9.4.3 |
-| Test artifact | The test strategy, plans, acceptance criteria, performance baselines, resilience reports and fitness functions that provide evidence that the design meets its requirements. | 16.5.1 |
-| Test data | The state a test starts from, synthetic or masked. | 14.2.1 |
-| Test environment | The deployed configuration in which a test runs. | 14.2.1 |
-| Test evidence | The recorded result of a test run, tied to version, environment and outcome, kept for release decisions and audit. | 14.4.3 |
-| Test level | A scope at which verification runs. | 14.1.2 |
-| Test portfolio | The distribution of tests across levels and the feedback each level gives. | 14.1.3 |
-| Test strategy | A short living document that fixes what is verified, at which level, with which environments and data, and against which gate — proportionate to risk, and far shorter than a catalog of test cases. | 14.1.1 |
-| Threat modeling | A structured examination of how a design can be abused, who could do it and which controls reduce the risk. | 9.1.1; 18.5.1 |
+| Tenant segregation | Segregation separates customers, tenants and environments so that data and privileges cannot leak across a boundary. | 10.4.3 |
+| Test artifact | The test strategy, plans, acceptance criteria, performance baselines, resilience reports and fitness functions that provide evidence that the design meets its requirements. | 17.5.1 |
+| Test data | The state a test starts from, synthetic or masked. | 15.2.1 |
+| Test environment | The deployed configuration in which a test runs. | 15.2.1 |
+| Test evidence | The recorded result of a test run, tied to version, environment and outcome, kept for release decisions and audit. | 15.4.3 |
+| Test level | A scope at which verification runs. | 15.1.2 |
+| Test portfolio | The distribution of tests across levels and the feedback each level gives. | 15.1.3 |
+| Test strategy | A short living document that fixes what is verified, at which level, with which environments and data, and against which gate — proportionate to risk, and far shorter than a catalog of test cases. | 15.1.1 |
+| Thinnest viable platform | The smallest set of conventions, templates and services that meets the current demand of consuming teams. | 9.1.2 |
+| Threat modeling | A structured examination of how a design can be abused, who could do it and which controls reduce the risk. | 10.1.1; 19.5.1 |
 | Three Lines Model | A model that separates control owners in delivery, oversight functions and independent internal audit. | 4.9 |
-| Throughput | The volume of work the system sustains over time. | 18.4.2 |
-| TLS | Transport Layer Security: the protocol that encrypts and authenticates network connections. | 9.4.2 |
-| TOGAF | The Open Group Architecture Framework: an enterprise architecture standard with concepts, governance guidance and the ADM. | 17.2.1 |
-| Tool permission | The scope of actions a model or agent may take on whose behalf, and the credentials each action uses. | 18.5.2 |
-| Trace | The journey of one request through the system, recorded as a tree of spans. | 10.1.1 |
+| Throughput | The volume of work the system sustains over time. | 19.4.2 |
+| TLS | Transport Layer Security: the protocol that encrypts and authenticates network connections. | 10.4.2 |
+| TOGAF | The Open Group Architecture Framework: an enterprise architecture standard with concepts, governance guidance and the ADM. | 18.2.1 |
+| Tool permission | The scope of actions a model or agent may take on whose behalf, and the credentials each action uses. | 19.5.2 |
+| Trace | The journey of one request through the system, recorded as a tree of spans. | 11.1.1 |
 | Traceability | The set of links a decision process leaves behind, from requirement to evidence. | 3.5 |
 | Traceability matrix | The cross-reference of requirements, decisions, views, tests and operational signals, from which change impact is derived by walking the links. | 1.5.2 |
 | Trade-off | The cost accepted in one characteristic in order to improve another. | 3.3.2 |
-| Trade-off point | An architectural decision that moves several quality attributes in opposite directions. | 13.1.1 |
+| Trade-off point | An architectural decision that moves several quality attributes in opposite directions. | 14.1.1 |
 | Traffic entry | The point and the controls through which a request reaches a workload. | 8.6.1 |
 | Transaction isolation | Isolation levels define which anomalies concurrent transactions can observe within a single database. | 5.4.4 |
 | Transactional outbox | A pattern that makes publishing a fact atomic with the local transaction that created it. | 6.3.1 |
-| UAT | User acceptance testing: business users confirming that a change meets their acceptance criteria. | 11.1.4 |
-| Unit economics | Cost expressed per unit of business output rather than per invoice line. | 15.2.2 |
+| UAT | User acceptance testing: business users confirming that a change meets their acceptance criteria. | 12.1.4 |
+| Unit economics | Cost expressed per unit of business output rather than per invoice line. | 16.2.2 |
 | Usability | How effectively a target user completes a defined task. | 1.2.11 |
 | Use case | How an actor — a person, another system or an external party — interacts with the solution to reach a goal, including the paths where that goal is not reached. | 1.1.2 |
-| Utility tree | A hierarchy of quality attributes refined into scenarios, each rated by business importance and difficulty. | 13.1.2 |
-| Vector search | Retrieval that uses embeddings to find semantically similar content. | 18.3.3 |
-| Vendor lock-in | The degree to which a solution depends on one provider’s specific services, making a move costly. | 15.2.4 |
-| VEX | Vulnerability Exploitability eXchange: a machine-readable statement about whether a product is affected by a vulnerability. | 9.6.3 |
-| VPN | Virtual private network: an encrypted tunnel that extends a private network across an untrusted one. | 9.4.4 |
-| Vulnerability disclosure | Communicating a vulnerability so affected parties can respond. | 9.6.3 |
-| W3C | World Wide Web Consortium: the standards body that publishes WCAG and Trace Context. | 10.1.2 |
+| Utility tree | A hierarchy of quality attributes refined into scenarios, each rated by business importance and difficulty. | 14.1.2 |
+| Vector search | Retrieval that uses embeddings to find semantically similar content. | 19.3.3 |
+| Vendor lock-in | The degree to which a solution depends on one provider’s specific services, making a move costly. | 16.2.4 |
+| VEX | Vulnerability Exploitability eXchange: a machine-readable statement about whether a product is affected by a vulnerability. | 10.6.3 |
+| VPN | Virtual private network: an encrypted tunnel that extends a private network across an untrusted one. | 10.4.4 |
+| Vulnerability disclosure | Communicating a vulnerability so affected parties can respond. | 10.6.3 |
+| W3C | World Wide Web Consortium: the standards body that publishes WCAG and Trace Context. | 11.1.2 |
 | WAF | Web application firewall: an inline control that filters HTTP traffic before it reaches an application. | 8.6.2 |
-| Walking skeleton | A thin, deployable end-to-end slice that exercises every layer and becomes the base for further work. | 13.3.2 |
+| Walking skeleton | A thin, deployable end-to-end slice that exercises every layer and becomes the base for further work. | 14.3.2 |
 | WCAG | Web Content Accessibility Guidelines: the W3C criteria for accessible web content and interfaces. | 1.2.11 |
 | Webhook | An HTTP callback that pushes a notification to a subscriber when an event occurs. | 6.1.8 |
 | WebSocket | A protocol that provides a two-way communication channel over a single connection. | 6.1.9 |
-| Well-architected framework | Cloud providers publish well-architected frameworks that structure workload reviews around pillars such as security, reliability, performance, cost, operations and sustainability. | 17.3.4 |
+| Well-architected framework | Cloud providers publish well-architected frameworks that structure workload reviews around pillars such as security, reliability, performance, cost, operations and sustainability. | 18.3.4 |
 | Well-architected pillar | One of the concern areas — security, reliability, performance, cost, operations, sustainability — around which provider frameworks structure workload reviews. | 8.5.1; 8.5.2 |
 | Workflow orchestrator | A service that persists the state of a multi-step process and drives its steps, waits, retries and compensations. | 6.6.4 |
-| Workforce security lifecycle | The workforce security lifecycle covers the controls applied to people before, during and after their access to systems and data. | 9.2.6 |
-| Workload identity | The identity of a service, job or agent, authenticated without a human. | 9.2.5 |
-| WORM | Write once, read many: storage that prevents modification or deletion for a retention period. | 9.7.2 |
+| Workforce security lifecycle | The workforce security lifecycle covers the controls applied to people before, during and after their access to systems and data. | 10.2.6 |
+| Workload identity | The identity of a service, job or agent, authenticated without a human. | 10.2.5 |
+| WORM | Write once, read many: storage that prevents modification or deletion for a retention period. | 10.7.2 |
 | Write-around cache | A strategy in which writes go only to the store and the cache is filled by later reads. | 7.3.3 |
 | Write-behind cache | A cache that acknowledges a write before the store is updated, so a cache failure can lose acknowledged data. | 7.3.3 |
 | Write-through cache | A cache updated together with the store on each write. | 7.3.3 |
 | XSS | Cross-site scripting: untrusted data is rendered as active content in a user’s browser. | F.7 |
-| Zachman Framework | An ontology for classifying enterprise architecture descriptions by perspective and question. | 17.2.5 |
-| Zero Trust | An access model that verifies every request explicitly and grants the least privilege needed, without trusting network location. | 9.4.1 |
+| Zachman Framework | An ontology for classifying enterprise architecture descriptions by perspective and question. | 18.2.5 |
+| Zero Trust | An access model that verifies every request explicitly and grants the least privilege needed, without trusting network location. | 10.4.1 |
 
 : Glossary of terms and acronyms

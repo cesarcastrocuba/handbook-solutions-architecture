@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=TB;
+ app [label="Application-level abstraction:\n\"a web service with a database\""];
+ blk [label="Composed building blocks:\n\"a database with backups,\nencryption and monitoring\""];
+ res [label="Provider resources with guardrails:\ninstances, volumes, network rules"];
+ app->blk [label=" built from"];
+ blk->res [label=" built from"];
+ hatch [label="Escape hatch: use the layer below;\nthe stated responsibilities\nmove to the consuming team", shape=note];
+ app->hatch [style=dashed, dir=none];
+ hatch->res [style=dashed];
+ more [label="Less to know, less freedom"];
+ less [label="More to know, more freedom"];
+ more->app [style=dotted, dir=none];
+ res->less [style=dotted, dir=none];
+}

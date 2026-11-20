@@ -17,7 +17,7 @@ class ChecklistTests(unittest.TestCase):
         original = checklists.manuscript_items
         def altered(rel):
             items = original(rel)
-            return [('Changed question?', g) if n == 0 else (q, g) for n, (q, g) in enumerate(items)] if rel.startswith('chapters/ch09') else items
+            return [('Changed question?', g) if n == 0 else (q, g) for n, (q, g) in enumerate(items)] if rel.startswith('chapters/ch10') else items
         with mock.patch.object(checklists, 'manuscript_items', altered):
             self.assertTrue(any('SA-SEC' in e for e in checklists.check(require_enriched=False)))
 
@@ -68,7 +68,7 @@ class ImportedChecklistTests(unittest.TestCase):
             with mock.patch.object(checklists, 'EXPORTS', Path(tmp)):
                 changed, count = checklists.export()
                 self.assertEqual(changed, 4)
-                self.assertEqual(count, 145)
+                self.assertEqual(count, 157)
                 self.assertEqual(json.loads((Path(tmp)/'architecture-review-checklist.json').read_text()),
                                  list(checklists.rows()))
                 self.assertEqual(checklists.export(), (0, count))

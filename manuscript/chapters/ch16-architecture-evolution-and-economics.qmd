@@ -1,4 +1,4 @@
-# 15. Architecture Evolution and Economics
+# 16. Architecture Evolution and Economics
 
 Evolutionary architecture makes the cost of change visible and manageable. A modernization plan identifies which capability changes, which interfaces remain stable and which risks can be reduced incrementally. Economic reasoning — lifecycle cost, risk exposure, organizational capacity and the value of reversibility — is part of every significant architecture decision, not a separate finance exercise.
 
@@ -15,17 +15,17 @@ Evolutionary architecture makes the cost of change visible and manageable. A mod
 Change is cheapest when it is incremental, reversible and measured. Modernize in slices that each have one authoritative writer, reconciliation and a rollback path, and compare options on multi-year cost and benefit — including operations, risk and exit — rather than on license or build price.
 :::
 
-## 15.1 Modernization and Migration
+## 16.1 Modernization and Migration
 
 Modernization is a portfolio of small, reversible moves rather than a single replacement program. The section covers the options available per capability, the pattern that lets old and new implementations coexist safely, and the data work that usually decides whether a migration succeeds.
 
-### 15.1.1 Modernization Options
+### 16.1.1 Modernization Options
 
 **Definition.** Modernization options are the standard ways of changing how a capability is delivered and operated, usually summarized as the “Rs” of migration; naming varies between sources, and the set below follows a widely used seven-option version that originated in cloud migration guidance.
 
 **Purpose.** The options give a shared vocabulary for the first architectural decision of any modernization: what kind of change is this capability worth? They inform the investment case, the sequencing of a roadmap and the boundary between architectural work and pure infrastructure work, and they prevent a single preferred answer — usually “rebuild” or “lift and shift” — from being applied to an entire estate.
 
-**What it includes.** Each option describes a different depth of change and a different expected benefit (Table 15.1). Applying them requires a capability-level assessment of business value, technical condition, change drivers, dependencies and risk, plus an explicit statement of the benefit the chosen option is expected to deliver.
+**What it includes.** Each option describes a different depth of change and a different expected benefit (Table 16.1). Applying them requires a capability-level assessment of business value, technical condition, change drivers, dependencies and risk, plus an explicit statement of the benefit the chosen option is expected to deliver.
 
 | Option | What it means | Fits when |
 | :--- | :--- | :--- |
@@ -41,25 +41,25 @@ Modernization is a portfolio of small, reversible moves rather than a single rep
 
 **Why it is needed.** A migration that reproduces the old system in the new environment without changing its constraints may raise cost without delivering the intended benefit, and big-bang replacement concentrates integration and cut-over risk in one window. The evidence that the choice was sound is a capability-level options analysis naming the value, the change drivers, the selected option and the rejected alternatives with the reason each was rejected.
 
-### 15.1.2 Strangler Fig Migration
+### 16.1.2 Strangler Fig Migration
 
 **Definition.** The Strangler Fig pattern places a routing façade in front of the legacy system and moves capabilities to a new implementation one slice at a time while both coexist, with an anti-corruption layer translating between the legacy model and the new domain model.
 
 **Purpose.** The pattern converts a high-risk replacement into a sequence of bounded, reversible releases. It lets the organization learn from production behavior, retire legacy functions only when evidence supports it, and keep serving customers throughout — which is why it is the default choice for capabilities whose business rules are poorly documented or whose replacement cannot be paused.
 
-**What it includes.** A routing façade that decides which implementation serves each request; an anti-corruption layer that isolates the legacy model; one authoritative writer for each data domain during coexistence; and a defined cut-over point, rollback boundary and migration gate per slice (Figure 15.1). Each gate routes a bounded cohort to the replacement, compares outputs with the legacy path through a shadow or parallel run, confirms rollback ownership and stop conditions, and retires the legacy path only when correctness and operational readiness are demonstrated.
+**What it includes.** A routing façade that decides which implementation serves each request; an anti-corruption layer that isolates the legacy model; one authoritative writer for each data domain during coexistence; and a defined cut-over point, rollback boundary and migration gate per slice (Figure 16.1). Each gate routes a bounded cohort to the replacement, compares outputs with the legacy path through a shadow or parallel run, confirms rollback ownership and stop conditions, and retires the legacy path only when correctness and operational readiness are demonstrated.
 
-![Figure 15.1 — Strangler Fig migration with anti-corruption layer](../../assets/diagrams/rendered/strangler.png){#fig-15-1 width="100%"}
+![Figure 16.1 — Strangler Fig migration with anti-corruption layer](../../assets/diagrams/rendered/strangler.png){#fig-16-1 width="100%"}
 
 **Why it is needed.** Dual writes without reconciliation create divergent records that nobody can safely merge, and a façade without a single authoritative writer simply moves the ambiguity. Without slice gates, coexistence becomes permanent and the organization pays for two systems indefinitely. The evidence is a per-slice record of authoritative writer, reconciliation frequency and thresholds, cohort size, rollback window and legacy endpoints retired.
 
-### 15.1.3 Data Migration Strategies
+### 16.1.3 Data Migration Strategies
 
 **Definition.** A data migration strategy is the planned movement and transformation of persistent data from a source system to a target system while both must remain correct; data is usually the hardest part of a migration because it must stay correct while the systems around it change.
 
 **Purpose.** The strategy determines downtime, risk exposure and the evidence available before cut-over. Choosing it early lets the architect size the coexistence period, the reconciliation effort and the rollback plan, and it exposes data-quality problems while there is still time to fix them.
 
-**What it includes.** The main approaches differ in how much downtime and coexistence they require (Table 15.2). Whatever the approach, the plan covers early profiling and cleansing of source data, transformation rules agreed with business owners, validation by record counts, checksums, business totals and sampled field comparison, a rehearsal with production-like volumes and measured duration, and an explicit rollback point including how data written after cut-over would be carried back.
+**What it includes.** The main approaches differ in how much downtime and coexistence they require (Table 16.2). Whatever the approach, the plan covers early profiling and cleansing of source data, transformation rules agreed with business owners, validation by record counts, checksums, business totals and sampled field comparison, a rehearsal with production-like volumes and measured duration, and an explicit rollback point including how data written after cut-over would be carried back.
 
 | Strategy | How it works | Trade-offs |
 | :--- | :--- | :--- |
@@ -72,13 +72,13 @@ Modernization is a portfolio of small, reversible moves rather than a single rep
 
 **Why it is needed.** Unvalidated transformation silently corrupts records, and the failure usually surfaces weeks later as a reconciliation break or a regulatory report that does not add up. A migration without a rehearsal cannot state how long cut-over takes or whether the rollback actually works. The evidence is a data migration plan with profiling results, business-owned transformation rules, validation criteria, a measured rehearsal and a tested rollback point.
 
-### 15.1.4 Cloud Migration Assessment
+### 16.1.4 Cloud Migration Assessment
 
 **Definition.** A cloud migration assessment establishes what a portfolio contains, how its parts depend on each other and which modernization option suits each, before any workload moves.
 
 **Purpose.** It replaces a single migration decision with an evidence-based plan per workload, and it reveals the dependencies that decide which systems must move together.
 
-**What it includes.** Discover applications, data, infrastructure, licenses, owners and support dates, using automated discovery as well as interviews, because undocumented dependencies are the main source of surprises. Map dependencies to form migration groups, and pay special attention to latency-sensitive paths and to large data sets that are slow and costly to move. Classify each workload against the options in 15.1.1 using its business value, technical condition, compliance limits and remaining life, and name those to retire or retain. Check licensing terms in the target environment. Confirm that the landing zone (8.1.1), identity, connectivity (8.6.2) and operating model are ready. Build the business case on multi-year cost (15.2.3), including the period of running both estates. Sequence the work in waves, beginning with a low-risk workload that exercises the whole path, and define the rollback point and acceptance criteria for each wave.
+**What it includes.** Discover applications, data, infrastructure, licenses, owners and support dates, using automated discovery as well as interviews, because undocumented dependencies are the main source of surprises. Map dependencies to form migration groups, and pay special attention to latency-sensitive paths and to large data sets that are slow and costly to move. Classify each workload against the options in 16.1.1 using its business value, technical condition, compliance limits and remaining life, and name those to retire or retain. Check licensing terms in the target environment. Confirm that the landing zone (8.1.1), identity, connectivity (8.6.2) and operating model are ready. Build the business case on multi-year cost (16.2.3), including the period of running both estates. Sequence the work in waves, beginning with a low-risk workload that exercises the whole path, and define the rollback point and acceptance criteria for each wave.
 
 **Why it is needed.** Migrations planned from an inventory spreadsheet tend to split systems that depend on each other, and they discover the licensing or latency constraint during cut-over. The evidence is a discovery record with named owners, a dependency map, a recorded option per workload, a readiness review of the landing zone and a completed pilot wave with measured results.
 
@@ -98,13 +98,13 @@ How should a legacy capability be modernized?
 | Rebuild and replace in one release | The capability is small, well understood, and a short outage is acceptable | Clean target design and no coexistence cost; concentrated risk and a long feedback gap before the first real evidence |
 :::
 
-## 15.2 Architecture Economics and Sourcing
+## 16.2 Architecture Economics and Sourcing
 
 Economic reasoning turns architecture options into comparable propositions: what the organization pays over the life of the solution, what risk it carries, what it can reverse, and what each unit of delivered value costs.
 
-![Figure 15.2 — Sourcing economics: options, total cost, exit and unit cost](../../assets/diagrams/rendered/ch13-economics.png){#fig-15-2 width="100%"}
+![Figure 16.2 — Sourcing economics: options, total cost, exit and unit cost](../../assets/diagrams/rendered/ch13-economics.png){#fig-16-2 width="100%"}
 
-### 15.2.1 Technical Debt
+### 16.2.1 Technical Debt
 
 **Definition.** Technical debt is the future cost or constraint created by a design choice; it is not the same as old technology.
 
@@ -114,7 +114,7 @@ Economic reasoning turns architecture options into comparable propositions: what
 
 **Why it is needed.** Debt without a recorded consequence, owner or repayment trigger accumulates silently until it blocks delivery, and blanket rewrites often create more risk than they remove. Prioritizing by interest paid — using incident contribution, change lead time and the number of teams affected — keeps remediation proportional. The evidence is a register entry with interest, supporting evidence, remediation cost, owner and trigger, reviewed in the same cycle as feature work.
 
-### 15.2.2 FinOps and Unit Economics
+### 16.2.2 FinOps and Unit Economics
 
 **Definition.** FinOps links cloud consumption to accountable teams and business value through cost allocation, optimization and forecasting; unit economics expresses that cost per unit of business output rather than per invoice line.
 
@@ -124,15 +124,15 @@ Economic reasoning turns architecture options into comparable propositions: what
 
 **Why it is needed.** Cost reduction without service-level context can degrade customer outcomes, and aggressive right-sizing can remove the capacity that absorbs a failure. Without unit measures, a cheaper platform can look better while quietly increasing retries, support load or incident cost. The evidence is a unit-cost trend at normalized demand, with the drivers of change explained rather than merely plotted.
 
-Chapter 18 (18.7) applies unit economics to token, retrieval, evaluation and human-review costs for AI workloads.
+Chapter 19 (19.7) applies unit economics to token, retrieval, evaluation and human-review costs for AI workloads.
 
-### 15.2.3 Build, Buy and Managed Services
+### 16.2.3 Build, Buy and Managed Services
 
 **Definition.** A build, buy or managed-service decision is the choice of who designs, operates and evolves a capability over its life; it weighs differentiation, control, integration cost, lifecycle support, security responsibilities and exit cost, not license price alone.
 
 **Purpose.** The decision determines where the organization spends scarce engineering capacity and which risks it retains. It informs the sourcing strategy, the contract terms and the operating model, and it sets expectations about how quickly the capability can change when the business does.
 
-**What it includes.** A multi-year total cost of ownership (TCO), commonly over three to five years, using the same categories for every option (Table 15.3). The comparison also states the differentiation argument, the integration and data-egress effort, the security responsibilities that stay with the organization, and the exit cost that would be incurred if the choice were reversed.
+**What it includes.** A multi-year total cost of ownership (TCO), commonly over three to five years, using the same categories for every option (Table 16.3). The comparison also states the differentiation argument, the integration and data-egress effort, the security responsibilities that stay with the organization, and the exit cost that would be incurred if the choice were reversed.
 
 | Cost category | Examples |
 | :--- | :--- |
@@ -147,7 +147,7 @@ Chapter 18 (18.7) applies unit economics to token, retrieval, evaluation and hum
 
 Buy what is not differentiating; build what creates competitive advantage or where no product fits the constraints.
 
-### 15.2.4 Portability and Vendor Lock-in
+### 16.2.4 Portability and Vendor Lock-in
 
 **Definition.** Portability is the degree to which a solution can move between providers or platforms without redesign; it has degrees across data, APIs, runtime and operations.
 
@@ -157,13 +157,13 @@ Buy what is not differentiating; build what creates competitive advantage or whe
 
 **Why it is needed.** Avoiding all provider-specific features can sacrifice significant value and produce a costly lowest-common-denominator platform, while assuming portability without testing the export produces a plan that fails at the moment it is needed. The evidence is an exercised export and a named alternative, not a design principle.
 
-### 15.2.5 Comparing Options by Cost and Benefit
+### 16.2.5 Comparing Options by Cost and Benefit
 
 **Definition.** Comparing options by cost and benefit is the practice of ranking alternatives on the utility they deliver per unit of cost, so that a difference in quality is weighed explicitly rather than treated as an unarguable preference.
 
 **Purpose.** Many architecture decisions trade cost against quality: a more expensive design may meet a latency target, reduce incidents or shorten recovery. This comparison makes that exchange visible and gives decision owners a defensible basis for choosing, and it exposes options that cost more without improving any prioritized scenario.
 
-**What it includes.** The Cost Benefit Analysis Method (CBAM), from the Software Engineering Institute, builds on ATAM results (13.1.1, 13.2.1): stakeholders assign utility to the response levels of the priority quality scenarios, estimate how much each architectural strategy improves those responses, and rank strategies by benefit divided by cost. A lightweight version is often enough — a table of options, scenarios improved, estimated utility gain, multi-year cost and the resulting ratio (Table 15.4 illustrates the shape).
+**What it includes.** The Cost Benefit Analysis Method (CBAM), from the Software Engineering Institute, builds on ATAM results (14.1.1, 14.2.1): stakeholders assign utility to the response levels of the priority quality scenarios, estimate how much each architectural strategy improves those responses, and rank strategies by benefit divided by cost. A lightweight version is often enough — a table of options, scenarios improved, estimated utility gain, multi-year cost and the resulting ratio (Table 16.4 illustrates the shape).
 
 | Option | Priority scenarios improved | Estimated utility gain | Three-year cost | Benefit per cost |
 | :--- | :--- | :--- | :--- | :--- |
@@ -175,13 +175,13 @@ Buy what is not differentiating; build what creates competitive advantage or whe
 
 **Why it is needed.** Comparing cost and quality without explicit utility assumptions turns a trade-off into an opinion, and the option with the loudest advocate usually wins. The value of the method is that assumptions become visible and can be challenged, not that the numbers are precise. The evidence is a comparison stating scenarios improved, utility gain, multi-year cost and ratio, with assumptions recorded and the chosen option captured in an ADR.
 
-### 15.2.6 Vendor and Product Evaluation
+### 16.2.6 Vendor and Product Evaluation
 
 **Definition.** Vendor and product evaluation is a structured comparison of candidate products or suppliers against weighted requirements, ending in a recorded recommendation backed by evidence.
 
 **Purpose.** It separates a product's fit from its marketing and from the preferences of those involved, and gives procurement and the decision makers a defensible basis for commitments that last for years.
 
-**What it includes.** Begin with requirements and decision drivers (3.2) and not with a product list. Use a request for information to learn the market, and a request for proposal (RFP) when formal, comparable bids are needed or procurement rules require them. Apply mandatory criteria first as gates, such as security, data location and regulatory fit (9.8.1), and agree weighted criteria before any bid is opened. Score independently, then moderate the differences, and keep technical scoring separate from price so that price does not color the assessment. Normalize bids to multi-year total cost (15.2.3), including integration, migration, operations and exit. Treat vendor demonstrations and answers as claims to verify. Run a time-boxed proof of concept on the riskiest claims with exit criteria agreed in advance, using production-shaped data and your own team at the controls; a proof of concept does not validate operability, which needs a pilot. Check references chosen for similarity to your case, and record conflicts of interest. Appendix B.13 provides a scoring template.
+**What it includes.** Begin with requirements and decision drivers (3.2) and not with a product list. Use a request for information to learn the market, and a request for proposal (RFP) when formal, comparable bids are needed or procurement rules require them. Apply mandatory criteria first as gates, such as security, data location and regulatory fit (10.8.1), and agree weighted criteria before any bid is opened. Score independently, then moderate the differences, and keep technical scoring separate from price so that price does not color the assessment. Normalize bids to multi-year total cost (16.2.3), including integration, migration, operations and exit. Treat vendor demonstrations and answers as claims to verify. Run a time-boxed proof of concept on the riskiest claims with exit criteria agreed in advance, using production-shaped data and your own team at the controls; a proof of concept does not validate operability, which needs a pilot. Check references chosen for similarity to your case, and record conflicts of interest. Appendix B.13 provides a scoring template.
 
 **Why it is needed.** Criteria written after a preferred product has emerged only justify a decision already made, and a proof of concept without exit criteria always succeeds. The evidence is criteria and weights dated before the bids were opened, individual and moderated scores, proof-of-concept results against exit criteria and an architecture decision record of the outcome (3.4).
 
@@ -198,16 +198,16 @@ How should a capability be sourced?
 | :--- | :--- | :--- |
 | Build | The capability differentiates the business or no product fits its constraints | Full control and fit; the organization owns delivery, security fixes, operations and lifecycle cost |
 | Buy a product (licensed or SaaS) | The capability is common and a product covers most requirements | Faster delivery and vendor-maintained features; customization limits and exposure to the vendor roadmap and pricing |
-| Managed platform service | The capability is undifferentiated infrastructure, such as a database or queue, with demanding operations | Less operational toil and built-in resilience; provider dependency, quotas and an exit plan to maintain (15.2.4) |
+| Managed platform service | The capability is undifferentiated infrastructure, such as a database or queue, with demanding operations | Less operational toil and built-in resilience; provider dependency, quotas and an exit plan to maintain (16.2.4) |
 :::
 
-## 15.3 Sustainable Evolution and Roadmaps
+## 16.3 Sustainable Evolution and Roadmaps
 
 Evolution is sustainable when each change leaves the estate easier to change than before, and when the sequence of changes is planned rather than discovered.
 
-![Figure 15.3 — Roadmap waves, retirement gates and debt repayment](../../assets/diagrams/rendered/ch13-roadmap.png){#fig-15-3 width="100%"}
+![Figure 16.3 — Roadmap waves, retirement gates and debt repayment](../../assets/diagrams/rendered/ch13-roadmap.png){#fig-16-3 width="100%"}
 
-### 15.3.1 Efficiency and Sustainability
+### 16.3.1 Efficiency and Sustainability
 
 **Definition.** Efficient architecture aligns resource consumption with useful work; sustainability extends the same reasoning to energy, hardware and the environmental cost of running the solution.
 
@@ -217,13 +217,13 @@ Evolution is sustainable when each change leaves the estate easier to change tha
 
 **Why it is needed.** Efficiency work that ignores reliability trades a visible saving for an invisible risk, and sustainability claims without measurement are marketing. The evidence is consumption at normalized demand, with the headroom retained for failure and peak stated explicitly, and with each saving linked to a scenario that still passes.
 
-### 15.3.2 Architecture Roadmaps
+### 16.3.2 Architecture Roadmaps
 
 **Definition.** An architecture roadmap is a sequenced plan of target-state capabilities, transition states, dependencies, risk retirement and measurable milestones, including explicit retirement criteria for legacy assets.
 
 **Purpose.** The roadmap turns a target-state diagram into an executable plan. It informs investment timing, staffing and dependency management, and it lets governance check progress against outcomes rather than activity. It is also the place where the organization decides what it will stop doing, which is usually the harder decision.
 
-**What it includes.** Transition states with the capabilities delivered in each, migration dependencies between them, the risk retired at each step, measurable milestones, retirement criteria and dates for legacy assets, and capacity reserved for technical debt repayment (Figure 15.3). Progress is reviewed against capability outcomes and decommissioned assets, not against documents produced or meetings held. The table below states the question each roadmap element answers and the evidence of progress.
+**What it includes.** Transition states with the capabilities delivered in each, migration dependencies between them, the risk retired at each step, measurable milestones, retirement criteria and dates for legacy assets, and capacity reserved for technical debt repayment (Figure 16.3). Progress is reviewed against capability outcomes and decommissioned assets, not against documents produced or meetings held. The table below states the question each roadmap element answers and the evidence of progress.
 
 | Roadmap element | Question it answers | Evidence of progress |
 | :--- | :--- | :--- |
@@ -238,7 +238,7 @@ Evolution is sustainable when each change leaves the estate easier to change tha
 
 **Why it is needed.** A target-state diagram without migration sequencing is not an executable plan, and a roadmap without retirement criteria produces permanent coexistence and rising operating cost. The evidence is a roadmap with transition states, dependencies, milestones and explicit retirement criteria, tracked by legacy endpoints retired.
 
-**Example.** The ERP order capability from 15.4 is planned in three waves. Each wave names the slices it moves, the dependency it clears, the legacy functions it retires and the milestone evidence; the debt lane reserves capacity in every wave so that the anti-corruption layer does not become permanent.
+**Example.** The ERP order capability from 16.4 is planned in three waves. Each wave names the slices it moves, the dependency it clears, the legacy functions it retires and the milestone evidence; the debt lane reserves capacity in every wave so that the anti-corruption layer does not become permanent.
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 A migration that never retires old paths is accumulation, not modernization. Both systems keep running, reconciliation becomes permanent and operating cost rises instead of falling. Give every slice retirement criteria and a date, and track legacy endpoints retired as a primary progress measure.
@@ -254,7 +254,7 @@ How should the roadmap be sequenced?
 | Risk-first, fragile assets early | Regulatory, security or resilience exposure is concentrated in a few assets | Reduces the largest exposure quickly; may spend capacity on low-value assets and delay differentiating work |
 :::
 
-## 15.4 Worked Example: Modernizing a Legacy ERP Order Capability
+## 16.4 Worked Example: Modernizing a Legacy ERP Order Capability
 
 *In practice:* This example applies a strangler-fig migration that keeps one authoritative writer per slice and measures progress by legacy paths retired.
 
@@ -285,7 +285,7 @@ One slice moves at a time. Each slice has entry criteria, a data-ownership decis
 ☐  Are products selected using mandatory criteria and weights agreed before bids are opened, with the riskiest claims proven against exit criteria?
 :::
 
-## 15.5 Further Reading
+## 16.5 Further Reading
 
 - Fowler (2004), “Strangler Fig Application” and Newman (2019), *Monolith to Microservices* — incremental migration.
 - Cunningham (1992), “The WyCash Portfolio Management System” — origin of the technical debt metaphor.

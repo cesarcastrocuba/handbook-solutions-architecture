@@ -1,0 +1,21 @@
+digraph G {
+ rankdir=TB;
+ subgraph cluster_build {
+  label="Built in-house: what only the organization can supply";
+  b1 [label="Golden-path\ntemplates"];
+  b2 [label="Policy set"];
+  b3 [label="Portal and orchestration\nintegration"];
+ }
+ subgraph cluster_compose {
+  label="Composed from open-source components";
+  c1 [label="Developer portal\nand catalog"];
+  c2 [label="Policy engine"];
+ }
+ subgraph cluster_buy {
+  label="Bought or used as provider services";
+  p1 [label="Pipeline\nservice"];
+  p2 [label="Managed runtime\nand databases"];
+  p3 [label="Identity and\nsecrets"];
+ }
+ b2->c2 [style=invis]; c2->p2 [style=invis];
+}

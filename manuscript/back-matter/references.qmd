@@ -104,10 +104,14 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Amazon Web Services. *Reducing the Scope of Impact with Cell-Based Architecture*. AWS Well-Architected whitepaper, 2023.
 - Amazon Web Services. *SaaS Lens: AWS Well-Architected Framework*. docs.aws.amazon.com/wellarchitected.
 - Amazon Web Services. *SaaS Tenant Isolation Strategies* (whitepaper).
+- CNCF TAG App Delivery. *CNCF Platforms White Paper*. Cloud Native Computing Foundation, 2023.
+- CNCF TAG App Delivery. *Platform Engineering Maturity Model*. Cloud Native Computing Foundation, 2023.
 - ETSI. EN 303 645, *Cyber Security for Consumer Internet of Things: Baseline Requirements*.
+- Fournier, C. and Nowland, I. *Platform Engineering: A Guide for Technical, Product, and People Leaders*. O’Reilly, 2024.
 - Google Cloud. *Google Cloud Well-Architected Framework*. docs.cloud.google.com/architecture/framework.
 - IETF. RFC 7239, *Forwarded HTTP Extension*, 2014.
 - ISO 22301:2019. *Security and resilience — Business continuity management systems — Requirements*.
+- Kubernetes Documentation. *Multi-tenancy*. kubernetes.io/docs/concepts/security/multi-tenancy.
 - Microsoft. *Architect multitenant solutions on Azure*. learn.microsoft.com/azure/architecture/guide/multitenant/overview.
 - Microsoft. *Azure Well-Architected Framework*. learn.microsoft.com/azure/well-architected.
 - Microsoft. *Noisy Neighbor antipattern*. learn.microsoft.com/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor.
@@ -177,6 +181,7 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Dean, J. and Barroso, L. A. “The Tail at Scale.” *Communications of the ACM* 56(2), 2013.
 - Driessen, V. “A successful Git branching model.” nvie.com, 2010 (with a note of reflection added in 2020).
 - Forsgren, N., Humble, J. and Kim, G. *Accelerate: The Science of Lean Software and DevOps*. IT Revolution, 2018.
+- Google Cloud. *Accelerate State of DevOps Report 2024*. DevOps Research and Assessment, 2024.
 - Gregg, B. *Systems Performance: Enterprise and the Cloud*, 2nd ed. Addison-Wesley, 2020.
 - Hammant, P. *Trunk Based Development*. trunkbaseddevelopment.com.
 - Hodgson, P. “Feature Toggles (aka Feature Flags).” martinfowler.com, 2017.

@@ -1,0 +1,21 @@
+digraph G {
+ rankdir=TB;
+ subgraph cluster_adoption {
+  label="Adoption and experience";
+  a1 [label="Adoption per capability,\nself-service share"];
+  a2 [label="Time to production,\nsatisfaction"];
+ }
+ subgraph cluster_delivery {
+  label="Delivery outcomes";
+  d1 [label="Change lead time,\ndeployment frequency"];
+  d2 [label="Change failure rate,\nrecovery time"];
+ }
+ subgraph cluster_risk {
+  label="Risk and cost";
+  r1 [label="Vulnerability age,\nrecurring findings"];
+  r2 [label="Unit cost per\nenvironment or deployment"];
+ }
+ dec [label="Roadmap and funding decisions,\nagainst each team's baseline"];
+ a2->dec; d2->dec; r2->dec;
+ a1->a2 [style=invis]; d1->d2 [style=invis]; r1->r2 [style=invis];
+}

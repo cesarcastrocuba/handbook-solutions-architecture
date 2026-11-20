@@ -9,12 +9,12 @@ The Solutions Architect is accountable for the design integrity of a solution ac
 | Business understanding | Understand outcomes, value, constraints and the capabilities affected; challenge requests that do not serve a stated outcome |
 | Security and privacy | Ensure security and privacy requirements are designed into the solution, threat-modeled, traced to controls and evidence. The security architect is accountable for security controls; the privacy officer or DPO is accountable for privacy advice, monitoring and the record of processing, while the business owner remains accountable for the processing itself. |
 | Requirements | Identify architecturally significant requirements and make quality attributes measurable (Chapter 1) |
-| Solution design | Define the structure across data, integration, application, infrastructure and security; keep views consistent (Chapters 5–9, 12) |
+| Solution design | Define the structure across data, integration, application, infrastructure, platform and security; keep views consistent (Chapters 5–10, 13) |
 | Decisions | Frame options and trade-offs, recommend, and record decisions with owners (Chapter 3) |
 | Risk and governance | Surface risks, route decisions to the right authority, follow approval conditions to closure (Chapter 4) |
 | Delivery support | Guide teams through detailed design and implementation, resolve cross-team design issues, protect key decisions from erosion |
-| Operational readiness | Ensure the solution is observable, recoverable and supportable before release (Chapters 10, 11) |
-| Evolution | Maintain the roadmap, manage technical debt and plan migrations (Chapter 15) |
+| Operational readiness | Ensure the solution is observable, recoverable and supportable before release (Chapters 11, 12) |
+| Evolution | Maintain the roadmap, manage technical debt and plan migrations (Chapter 16) |
 
 : Responsibilities
 
@@ -105,10 +105,10 @@ Many solutions architects also support bids and proposals, either for a company 
 - **Shape the solution.** Present a small number of options and a recommendation, and map the proposal to each stated requirement with an honest compliance position.
 - **State assumptions.** Record assumptions, exclusions, dependencies on the customer and open risks in the proposal itself, because these define the commitment as much as the design does.
 - **Estimate.** Give ranges with their assumptions and name the uncertainties, then have the people who will deliver review the figures.
-- **Prove.** Use a time-boxed proof of concept to reduce the largest risks, as described in 15.2.6.
+- **Prove.** Use a time-boxed proof of concept to reduce the largest risks, as described in 16.2.6.
 - **Hand over.** Transfer the decisions, assumptions, customer commitments and open risks to the delivery team, and keep the architect available through mobilization.
 
-Do not promise a capability that does not exist, and do not leave delivery to discover what the proposal implied. On the buying side, the same preparation allows a customer to compare bids fairly (15.2.6).
+Do not promise a capability that does not exist, and do not leave delivery to discover what the proposal implied. On the buying side, the same preparation allows a customer to compare bids fairly (16.2.6).
 
 ### Negotiation, Facilitation and Mentoring
 
@@ -126,7 +126,7 @@ Scale involvement with risk: a high-risk integration may need the architect in d
 
 Agree the support model at the start of delivery: who answers design questions, where decisions and assumptions are recorded, which increments need architecture review, and what constitutes done for the architecture. Keep a small design-intent and decision log so teams can act without waiting for the architect, and review at risk-based checkpoints rather than every task.
 
-In agile delivery, provide just-enough architecture ahead of the next increment, maintain an architecture runway for known enablers, and make decision latency visible; a weekly design forum that cannot decide is a bottleneck, not governance. At handover, provide the architecture package, open assumptions, contracts, risks, runbooks and readiness evidence defined in the lifecycle above. After deployment, review outcomes and quality against the original scenarios (13.3.4, 14.1.4) and record which assumptions or decisions need revisiting.
+In agile delivery, provide just-enough architecture ahead of the next increment, maintain an architecture runway for known enablers, and make decision latency visible; a weekly design forum that cannot decide is a bottleneck, not governance. At handover, provide the architecture package, open assumptions, contracts, risks, runbooks and readiness evidence defined in the lifecycle above. After deployment, review outcomes and quality against the original scenarios (14.3.4, 15.1.4) and record which assumptions or decisions need revisiting.
 
 ### Architecture in Agile Delivery
 
