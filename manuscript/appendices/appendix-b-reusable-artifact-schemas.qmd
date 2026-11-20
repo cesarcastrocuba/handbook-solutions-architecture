@@ -173,7 +173,7 @@ The retention schedule schema states how long each data category is kept, where 
 
 ## B.12 Platform Assessment
 
-The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (6.6.6, 8.7.1).
+The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (6.6.6, 8.6.1).
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |

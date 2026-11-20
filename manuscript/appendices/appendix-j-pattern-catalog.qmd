@@ -74,12 +74,12 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 | Warm standby | Recovery needs a scaled-down running copy | 8.2.2 |
 | Active-active | Several regions must serve traffic together | 8.2.2 |
 | Infrastructure as code | Environments must be reproducible and reviewable | 8.3.1 |
-| Load balancer | Traffic must be spread among healthy instances | 8.6.3 |
-| Reverse proxy | Servers need a controlled entry point | 8.6.3 |
-| API gateway | APIs need policy per consumer | 8.6.3 |
-| Service mesh | Service-to-service controls must be uniform | 8.7.3 |
-| GitOps | Runtime state must follow a reviewed record | 8.7.4 |
-| Store and forward | Devices or sites lose connectivity | 8.8.2 |
+| Load balancer | Traffic must be spread among healthy instances | 8.5.3 |
+| Reverse proxy | Servers need a controlled entry point | 8.5.3 |
+| API gateway | APIs need policy per consumer | 8.5.3 |
+| Service mesh | Service-to-service controls must be uniform | 8.6.3 |
+| GitOps | Runtime state must follow a reviewed record | 8.6.4 |
+| Store and forward | Devices or sites lose connectivity | 8.7.2 |
 
 : Patterns for infrastructure and runtime
 

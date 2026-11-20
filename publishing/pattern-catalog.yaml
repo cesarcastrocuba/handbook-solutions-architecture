@@ -51,12 +51,12 @@ Infrastructure and Runtime:
   - {name: Warm standby, problem: Recovery needs a scaled-down running copy, section: 8.2.2}
   - {name: Active-active, problem: Several regions must serve traffic together, section: 8.2.2}
   - {name: Infrastructure as code, problem: Environments must be reproducible and reviewable, section: 8.3.1}
-  - {name: Load balancer, problem: Traffic must be spread among healthy instances, section: 8.6.3}
-  - {name: Reverse proxy, problem: Servers need a controlled entry point, section: 8.6.3}
-  - {name: API gateway, problem: APIs need policy per consumer, section: 8.6.3}
-  - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 8.7.3}
-  - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 8.7.4}
-  - {name: Store and forward, problem: Devices or sites lose connectivity, section: 8.8.2, match: store-and-forward}
+  - {name: Load balancer, problem: Traffic must be spread among healthy instances, section: 8.5.3}
+  - {name: Reverse proxy, problem: Servers need a controlled entry point, section: 8.5.3}
+  - {name: API gateway, problem: APIs need policy per consumer, section: 8.5.3}
+  - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 8.6.3}
+  - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 8.6.4}
+  - {name: Store and forward, problem: Devices or sites lose connectivity, section: 8.7.2, match: store-and-forward}
 Platform:
   - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 9.4.3}
   - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 9.4.2}

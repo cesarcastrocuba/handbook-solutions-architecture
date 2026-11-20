@@ -498,7 +498,7 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 
 **Purpose.** Together they close the loop that the other principles open. Accountable decision-making locates decisions where knowledge exists and keeps them reviewable; an owner with retrievable evidence turns a guardrail, a decision or an exception into something that can be reviewed, defended and learned from. They inform who may approve a design, when consultation is required, the register design, the retention of decision records and the review cadence. They are the principle that keeps the other principles from being applied by default or by seniority.
 
-**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3), and escalation reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Table 2.13 sets out the classes and their records. A named accountable owner — a role, not a team — for each principle, exception, significant decision and control; a control that is enforced somewhere observable; evidence that survives staff changes and is retrievable in a review; and a periodic audit or sample that tests the evidence rather than the intention. Approved exceptions carry an owner and an expiry, recurring exceptions are reviewed as evidence about the principle itself, findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.15 lists the objects and their review cadence.
+**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3), and escalation reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Table 2.13 sets out the classes and their records. A named accountable owner — a role, not a team — for each principle, exception, significant decision and control; a control that is enforced somewhere observable; evidence that survives staff changes and is retrievable in a review; and a periodic audit or sample that tests the evidence rather than the intention. Approved exceptions carry an owner and an expiry, recurring exceptions are reviewed as evidence about the principle itself, findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.14 lists the objects and their review cadence.
 
 **Why it is needed.** Decisions made by nobody in particular cannot be revisited, defended or reversed, and the same debate returns with every new team. Without an owner and retrievable evidence, an organization can hold every principle and still be unable to show that any was applied; the first external audit or serious incident exposes the gap. The cost is invisible until an audit or an incident asks who accepted the risk. Recurring findings point at a poorly scoped principle rather than at individual teams. **Evidence.** A sample of decisions, principles and exceptions shows a named owner, an accessible ADR where the decision is significant, a proportionate review route, retrievable evidence and a closed review, and expired exceptions are actually removed.
 
@@ -514,7 +514,7 @@ Chapter 19 (19.5.6) applies accountable decision-making to AI systems, where mod
 
 ![Figure 2.13 — Decision routing by reversibility and impact](../../assets/diagrams/rendered/ch02-decision-tiers.png){#fig-2-13 width="100%"}
 
-The same owners keep the evidence current. Table 2.15 lists each accountability object with the evidence it leaves and the review that tests it.
+The same owners keep the evidence current. Table 2.14 lists each accountability object with the evidence it leaves and the review that tests it.
 
 | Object | Accountable owner | Evidence retained | Review cadence |
 | :--- | :--- | :--- | :--- |
@@ -526,9 +526,9 @@ The same owners keep the evidence current. Table 2.15 lists each accountability 
 
 : Accountability objects, evidence and review cadence
 
-Figure 2.15 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
+Figure 2.14 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
 
-![Figure 2.15 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-15 width="100%"}
+![Figure 2.14 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-14 width="100%"}
 
 **Example.** The checkout team chooses its own caching strategy and records it in the pull request. The decision to call the fraud provider synchronously crosses a domain boundary and carries financial risk, so it becomes an ADR with a named risk owner. The payments exception for the legacy billing writer names an approver, a compensating reconciliation and a fixed expiry date; when the date passes, the register marks it expired and the next review must either close it or renew it with fresh evidence.
 
@@ -552,7 +552,7 @@ Evidence costs effort to produce and keep; decide what must be retained.
 
 **Purpose.** It shapes the data model, the flows, the retention schedule and the access model while those are still cheap to change. It informs whether a field is collected at all, where it may be stored, who may read it, how long it exists and how a deletion request can be honored. It is distinct from security: a system can be secure and still collect more personal data than any purpose requires.
 
-**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 10.9; retention and deletion mechanics are in 5.2.4). Table 2.14 states the question each lifecycle stage must answer.
+**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 10.9; retention and deletion mechanics are in 5.2.4). Table 2.15 states the question each lifecycle stage must answer.
 
 **Why it is needed.** Personal data that is never collected cannot leak, be subpoenaed or be retained by mistake. The consequence of skipping the design step is a breach with an unnecessarily large blast radius and a deletion request that cannot be satisfied because copies exist in logs, backups and analytics extracts. **Evidence.** Each data set has a purpose, a retention period, a deletion test and a named privacy owner.
 
@@ -567,9 +567,9 @@ Evidence costs effort to produce and keep; decide what must be retained.
 
 : Privacy questions at each lifecycle stage
 
-Figure 2.14 follows personal data through the lifecycle stages in the table, marking the control that applies at collection, use, retention and deletion.
+Figure 2.15 follows personal data through the lifecycle stages in the table, marking the control that applies at collection, use, retention and deletion.
 
-![Figure 2.14 — Privacy controls across the data lifecycle](../../assets/diagrams/rendered/ch02-privacy-lifecycle.png){#fig-2-14 width="100%"}
+![Figure 2.15 — Privacy controls across the data lifecycle](../../assets/diagrams/rendered/ch02-privacy-lifecycle.png){#fig-2-15 width="100%"}
 
 **Example.** Checkout collects the delivery address and contact details because the order cannot be fulfilled without them, and never stores the card number: the payment provider returns a token. Support staff see a masked address until a case is opened, and the access is logged.
 
@@ -587,7 +587,7 @@ Privacy controls restrict what the system can do; choose the strength deliberate
 | Retain full data under strict access control | A legal or safety obligation requires it | Largest blast radius; needs the strongest audit and retention evidence |
 :::
 
-## 2.16 Managing Principle Conflicts
+## 2.15 Managing Principle Conflicts
 
 **Definition.** A principle conflict exists when two principles that are both accepted point to different designs for the same decision.
 
@@ -626,7 +626,7 @@ When principles conflict, decide how the conflict will be resolved and recorded.
 | Bounded design compromise | Both outcomes are mandatory and can be satisfied within limits | More design and test effort; requires measurable guardrails |
 :::
 
-## 2.17 Worked Example: Principles for a Payments Platform
+## 2.16 Worked Example: Principles for a Payments Platform
 
 *In practice:* This example shows how principles are applied, tested and reconciled with time-limited exceptions in a payments platform.
 
@@ -655,7 +655,7 @@ During a migration, the legacy billing system must keep writing to a shared tabl
 ☐  Have recurring exceptions prompted a revision of the principle?
 :::
 
-## 2.18 Further Reading
+## 2.17 Further Reading
 
 - The Open Group (2022), *The TOGAF Standard* — structure of architecture principles (statement, rationale, implications).
 - Hohpe (2020), *The Software Architect Elevator* — principles, decisions and organizational context.

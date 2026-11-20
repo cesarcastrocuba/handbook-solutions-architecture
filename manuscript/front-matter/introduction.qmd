@@ -86,7 +86,7 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Plan high availability or disaster recovery | 1.2.10; 8.2 |
 | Design privacy and auditability into a solution | 1.2.12–1.2.13; 2.13–2.14; 10.9 |
 | Turn a stakeholder request into testable requirements | 1.4 Quality Attribute Scenarios; Appendix B.1 |
-| Choose, revise or reconcile architecture principles | Chapter 2; 2.16 |
+| Choose, revise or reconcile architecture principles | Chapter 2; 2.15 |
 | Choose between design options and record the choice | Chapter 3; Appendix B.6 |
 | Decide how much review a change needs | Chapter 4 |
 | Prepare audit evidence | 4.9; 10.7.2 |
@@ -102,10 +102,10 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Support several languages and regions | 7.6.6 |
 | Design a multi-tenant application | 7.7; 10.4.3 |
 | Select block, file, object or archive storage | 8.1.5 |
-| Run a cloud well-architected review | 8.5 |
-| Choose between a load balancer, reverse proxy and API gateway | 8.6.3 |
-| Choose a container or runtime platform | 8.1.2; 8.7 |
-| Design edge or IoT solutions | 8.8 |
+| Run a cloud well-architected review | 8.4 |
+| Choose between a load balancer, reverse proxy and API gateway | 8.5.3 |
+| Choose a container or runtime platform | 8.1.2; 8.6 |
+| Design edge or IoT solutions | 8.7 |
 | Define a security test strategy | 10.5; Appendix F |
 | Set application security requirements | 10.5.2 (OWASP ASVS) |
 | Assess a supplier or answer a customer security questionnaire | 10.8; Appendix E |

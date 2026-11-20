@@ -32,7 +32,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 | Reuse enforced through a shared release train: every team adopts the shared component, and every team now releases together. | 2.12 |
 | Recording only the outcome of a decision, not the alternatives or the assumption that made it correct. | 2.13 |
 | Logging full request payloads for debugging convenience. | 2.14 |
-| Publishing “prefer asynchronous integration” without an exception route. | 2.16 |
+| Publishing “prefer asynchronous integration” without an exception route. | 2.15 |
 
 : Anti-patterns from Chapter 2
 
@@ -110,10 +110,10 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 | Treating "managed" as "secured". | 8.1 |
 | A second region is provisioned, but DNS, identity, secrets and operational access are not replicated, so the first failover test fails at the first step and the region turns out to be a diagram rather than a recovery capability. | 8.2 |
 | Optimizing the invoice line that looks largest instead of the unit economics. | 8.3 |
-| Closing framework findings by editing the questionnaire answer. | 8.5 |
-| Testing connectivity from an administrator workstation or a jump host and concluding the workload can reach the dependency. | 8.6 |
-| Adopting a container orchestrator as a default for a small number of services. | 8.7 |
-| Designing the fleet as if devices were always connected and always current. | 8.8 |
+| Closing framework findings by editing the questionnaire answer. | 8.4 |
+| Testing connectivity from an administrator workstation or a jump host and concluding the workload can reach the dependency. | 8.5 |
+| Adopting a container orchestrator as a default for a small number of services. | 8.6 |
+| Designing the fleet as if devices were always connected and always current. | 8.7 |
 
 : Anti-patterns from Chapter 8
 

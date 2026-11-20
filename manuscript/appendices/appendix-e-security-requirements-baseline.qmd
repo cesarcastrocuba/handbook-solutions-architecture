@@ -1,25 +1,25 @@
 # Appendix E — Security Requirements Baseline
 
-This baseline consolidates security requirements that enterprise customers commonly place on suppliers and that organizations apply to their own solutions. Use it in two directions: to assess a supplier or SaaS product, and to check that a solution offered to customers can meet typical contractual expectations. Requirements are generalized; actual contracts may be stricter. Each row names the architecture evidence that demonstrates the requirement and the main reference. Frequencies such as “annually” are common contractual defaults, not universal requirements: apply the interval the contract, regulation or risk assessment sets. The coverage map in E.0 links each baseline table to the handbook sections, and the editions cited are listed at the end (E.9). Table numbers count from Table E.1 across the appendix and run independently of the section numbers: the access-control section (E.3), for example, contains Table E.4.
+This baseline consolidates security requirements that enterprise customers commonly place on suppliers and that organizations apply to their own solutions. Use it in two directions: to assess a supplier or SaaS product, and to check that a solution offered to customers can meet typical contractual expectations. Requirements are generalized; actual contracts may be stricter. Each row names the architecture evidence that demonstrates the requirement and the main reference. Frequencies such as “annually” are common contractual defaults, not universal requirements: apply the interval the contract, regulation or risk assessment sets. The coverage map in E.1 links each baseline table to the handbook sections, and the editions cited are listed at the end (E.10). Table numbers count from Table E.1 across the appendix and run independently of the section numbers: the access-control section (E.4), for example, contains Table E.4.
 
-## E.0 Coverage Map
+## E.1 Coverage Map
 
 This map links each baseline table to the handbook sections that explain it. Individual rows inherit the pointers for their table; the Reference column takes precedence when it names a more specific section or standard. The pointers are navigation aids, not evidence that a requirement is satisfied.
 
 | Table | Scope | Where covered |
 | :--- | :--- | :--- |
-| E.2 | Governance, assurance and audit | 4.1.2, 4.9, 10.1.2, 10.7.2, 10.8.2 |
-| E.3 | Third parties and personnel | 10.2.6, 10.8 |
-| E.4 | Access control and identity | 10.2.1–10.2.6, 10.3, 10.4.4 |
-| E.5 | System security | 10.4.4, 10.5.3, 10.5.7, 10.6, 10.6.4 |
-| E.6 | Data protection | 5.2.4, 10.4.2, 10.4.3, 10.4.5, 10.9 |
-| E.7 | Application security | 10.1.1, 10.5.1–10.5.6 |
-| E.8 | Cloud services | 8.1.1, 8.1.4, 8.5, 10.2.1, 10.2.3, 10.4.6, 10.7.2, 10.8 |
-| E.9 | Business continuity and incident management | 8.2.2, 8.2.3, 10.4.6, 10.7.1, 10.7.3, 11.3 |
+| E.3 | Governance, assurance and audit | 4.1.2, 4.9, 10.1.2, 10.7.2, 10.8.2 |
+| E.4 | Third parties and personnel | 10.2.6, 10.8 |
+| E.5 | Access control and identity | 10.2.1–10.2.6, 10.3, 10.4.4 |
+| E.6 | System security | 10.4.4, 10.5.3, 10.5.7, 10.6, 10.6.4 |
+| E.7 | Data protection | 5.2.4, 10.4.2, 10.4.3, 10.4.5, 10.9 |
+| E.8 | Application security | 10.1.1, 10.5.1–10.5.6 |
+| E.9 | Cloud services | 8.1.1, 8.1.4, 8.4, 10.2.1, 10.2.3, 10.4.6, 10.7.2, 10.8 |
+| E.10 | Business continuity and incident management | 8.2.2, 8.2.3, 10.4.6, 10.7.1, 10.7.3, 11.3 |
 
 : Coverage map: baseline tables and handbook sections
 
-## E.1 Governance, Assurance and Audit
+## E.2 Governance, Assurance and Audit
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -32,7 +32,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Governance, assurance and audit requirements
 
-## E.2 Third Parties and Personnel
+## E.3 Third Parties and Personnel
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -42,7 +42,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Third-party and personnel requirements
 
-## E.3 Access Control and Identity
+## E.4 Access Control and Identity
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -55,7 +55,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Access control and identity requirements
 
-## E.4 System Security
+## E.5 System Security
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -69,7 +69,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : System security requirements
 
-## E.5 Data Protection
+## E.6 Data Protection
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -87,7 +87,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Data protection requirements
 
-## E.6 Application Security
+## E.7 Application Security
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -102,7 +102,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Application security requirements
 
-## E.7 Cloud Services
+## E.8 Cloud Services
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -114,7 +114,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Cloud service requirements
 
-## E.8 Business Continuity and Incident Management
+## E.9 Business Continuity and Incident Management
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
@@ -126,30 +126,30 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 : Business continuity and incident management requirements
 
-## E.9 Standards Editions
+## E.10 Standards Editions
 
 Editions cited in this handbook, checked at the review date. Confirm the edition required by the contract, regulation or certification scheme before relying on a clause; a newer edition is not automatically the contractual one.
 
 | Standard | Edition cited | Where used |
 | :--- | :--- | :--- |
-| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 10.1.2, 10.8.2, E.1, 18.4.2 |
+| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 10.1.2, 10.8.2, E.2, 18.4.2 |
 | ISO/IEC 27002 | 2022 | 10.1.2, 18.4.2 |
 | ISO/IEC 27017 | 2026 | 18.4.2 |
 | ISO/IEC 27018 | 2025 | 18.4.2 |
-| ISO 22301 | 2019 | 8.2.3, E.8, 18.4.2 |
-| NIST Cybersecurity Framework | 2.0 (2024) | 10.1.2, E.1, 18.4.2 |
-| NIST SP 800-53 | Rev. 5 (2020) | 10.1.2, E.4, 18.4.2 |
-| NIST SP 800-63-4 | 2025 | 10.2.2, E.3 |
-| NIST SP 800-88 | Rev. 2 (2025) | 10.4.6, E.5 |
-| NIST SP 800-207 | 2020 | 10.4.1, E.3 |
+| ISO 22301 | 2019 | 8.2.3, E.9, 18.4.2 |
+| NIST Cybersecurity Framework | 2.0 (2024) | 10.1.2, E.2, 18.4.2 |
+| NIST SP 800-53 | Rev. 5 (2020) | 10.1.2, E.5, 18.4.2 |
+| NIST SP 800-63-4 | 2025 | 10.2.2, E.4 |
+| NIST SP 800-88 | Rev. 2 (2025) | 10.4.6, E.6 |
+| NIST SP 800-207 | 2020 | 10.4.1, E.4 |
 | NIST SP 800-218 | 2022 | 10.5.1, 18.4.2 |
-| OWASP ASVS | 5.0.0 (2025) | 10.5.2, E.6, F.3 |
+| OWASP ASVS | 5.0.0 (2025) | 10.5.2, E.7, F.3 |
 | OWASP Top 10 | 2025 | 10.5.1, F.3 |
 | OWASP API Security Top 10 | 2023 | 10.5.1, F.3 |
-| PCI DSS | v4.0.1 | 10.8.2, E.1, 18.4.2 |
+| PCI DSS | v4.0.1 | 10.8.2, E.2, 18.4.2 |
 | CVSS | v4.0 (2023) | 10.6.1, F.5 |
-| AICPA Trust Services Criteria | 2017, with revised points of focus 2022 | 10.8.2, E.1 |
-| CIS Benchmarks | Living document; record the benchmark name and version used | 10.5.3, 10.5.7, E.4 |
+| AICPA Trust Services Criteria | 2017, with revised points of focus 2022 | 10.8.2, E.2 |
+| CIS Benchmarks | Living document; record the benchmark name and version used | 10.5.3, 10.5.7, E.5 |
 | GDPR | Regulation (EU) 2016/679 | 10.7.1, 10.7.3, 10.9, 18.4.1 |
 | NIS2 | Directive (EU) 2022/2555 | 10.7.1, 10.7.3, 18.4.1 |
 | DORA | Regulation (EU) 2022/2554 | 10.7.3, 16.2.4, 18.4.1 |

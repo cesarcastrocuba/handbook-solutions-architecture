@@ -2,7 +2,7 @@
 
 An internal platform is architecture that other solutions stand on. A solution architect meets it in three ways: as a consumer, who must know what the platform provides, what it limits and what remains the solution's responsibility; as a decision maker, who decides whether a capability belongs in the solution, in a shared platform or with a provider; and sometimes as its designer, because a platform is itself a solution with requirements, decisions, governance, evaluation and cost.
 
-This chapter treats the platform in all three roles. Section 8.7 introduces platform engineering as a shared infrastructure capability, Section 2.12 sets the principle of standardization and reuse, and Section 4.10 describes the team types and interaction modes around it. Here the platform is designed as an architecture of its own: its product model, responsibilities, reference structure, interfaces, tenancy, guardrails, reliability, measures, economics and sourcing.
+This chapter treats the platform in all three roles. Section 8.6 introduces platform engineering as a shared infrastructure capability, Section 2.12 sets the principle of standardization and reuse, and Section 4.10 describes the team types and interaction modes around it. Here the platform is designed as an architecture of its own: its product model, responsibilities, reference structure, interfaces, tenancy, guardrails, reliability, measures, economics and sourcing.
 
 ::: {.callout-note appearance="simple" icon=false title="When to Use This Chapter"}
 - Deciding whether a capability belongs in a solution, in a shared platform or with a provider.
@@ -51,7 +51,7 @@ Before a platform is designed, it needs a definition that separates it from othe
 | Type | Typical capabilities | Where the specific design is covered |
 | :--- | :--- | :--- |
 | Delivery | Source control, pipelines, artifact registry, environments, release controls | Chapter 12 |
-| Runtime | Container or function platforms, service networking, configuration | 8.7 |
+| Runtime | Container or function platforms, service networking, configuration | 8.6 |
 | Data | Ingestion, storage, processing, governed data products | 5.2.6 |
 | Integration | Messaging, API management, managed integration flows | 6.6 |
 | AI | Model access, retrieval, evaluation, guardrails, cost controls | 19.4 |
@@ -274,7 +274,7 @@ The interface is what consumers depend on. Like any interface between teams (17.
 
 **Purpose.** The style decides how platform requests fit into delivery: whether they are reviewed and versioned like code, or performed by hand. The abstraction level decides how much each consumer must know and how much freedom it keeps.
 
-**What it includes.** Table 9.6 compares the styles. Declarative specifications kept in the component's repository suit most capabilities, because they are reviewed, versioned and reconciled like the rest of the system (8.7.4); a portal and a command line are convenient entry points onto the same API. On abstraction, choose between provider resources exposed with guardrails, composed building blocks such as "a database with backups and monitoring", and application-level abstractions such as "a web service with a database". Higher abstractions reduce cognitive load (4.10.3) but leak when a requirement falls outside them, so provide an escape hatch: a documented way to use the layer below, with the responsibilities that move to the consumer when it is used.
+**What it includes.** Table 9.6 compares the styles. Declarative specifications kept in the component's repository suit most capabilities, because they are reviewed, versioned and reconciled like the rest of the system (8.6.4); a portal and a command line are convenient entry points onto the same API. On abstraction, choose between provider resources exposed with guardrails, composed building blocks such as "a database with backups and monitoring", and application-level abstractions such as "a web service with a database". Higher abstractions reduce cognitive load (4.10.3) but leak when a requirement falls outside them, so provide an escape hatch: a documented way to use the layer below, with the responsibilities that move to the consumer when it is used.
 
 | Style | Suits | Strength | Limitation |
 | :--- | :--- | :--- | :--- |
@@ -337,7 +337,7 @@ The teams and workloads that share a platform are its tenants. Their isolation i
 
 **Purpose.** The model decides the blast radius of a failure, a compromise or a mistake, and whether a regulated workload can share infrastructure with others at all. It also drives a large part of the platform's cost.
 
-**What it includes.** Table 9.7 compares the models across the dimensions that matter: compute, network, identity, data, the control plane and cost visibility. Separate production from non-production environments in every model (10.4.3). Choose the model per risk class rather than once for the whole platform: most workloads can share a runtime with namespace isolation and network policy, while a workload with a regulatory scope, such as card data, or with a materially different trust level gets a dedicated runtime or account. Account and subscription boundaries come from the landing zone design (8.1.1), and the runtime limits from 8.7.1.
+**What it includes.** Table 9.7 compares the models across the dimensions that matter: compute, network, identity, data, the control plane and cost visibility. Separate production from non-production environments in every model (10.4.3). Choose the model per risk class rather than once for the whole platform: most workloads can share a runtime with namespace isolation and network policy, while a workload with a regulatory scope, such as card data, or with a materially different trust level gets a dedicated runtime or account. Account and subscription boundaries come from the landing zone design (8.1.1), and the runtime limits from 8.6.1.
 
 | Model | Isolation provided | Shared with other tenants | Typical use |
 | :--- | :--- | :--- | :--- |
@@ -477,7 +477,7 @@ Figure 9.8 shows the separation: when the control plane is unavailable, no new c
 
 **Purpose.** Platform changes reach every tenant. Planning them as progressive, tested and reversible releases keeps one defect from becoming an incident for every solution at once.
 
-**What it includes.** Release platform changes progressively, using the techniques of 12.1.2: first to the platform's own test tenants, then to rings of consumers ordered by risk, with production and regulated tenants last. Before each ring, run consumer workloads or their contract tests against the new version, and stop the rollout on a regression. Publish an upgrade calendar, announce changes that need consumer action with the notice of the deprecation policy (9.5.3), and keep a rollback path for every change. Keep runtime versions within the provider's support window (8.7.2), because an unsupported version is a security risk that the platform transfers to every tenant.
+**What it includes.** Release platform changes progressively, using the techniques of 12.1.2: first to the platform's own test tenants, then to rings of consumers ordered by risk, with production and regulated tenants last. Before each ring, run consumer workloads or their contract tests against the new version, and stop the rollout on a regression. Publish an upgrade calendar, announce changes that need consumer action with the notice of the deprecation policy (9.5.3), and keep a rollback path for every change. Keep runtime versions within the provider's support window (8.6.2), because an unsupported version is a security risk that the platform transfers to every tenant.
 
 **Why it is needed.** Platform-wide changes applied at once make every defect a shared outage, and changes that are postponed until versions fall out of support become emergency migrations. The evidence is an upgrade calendar, ring definitions, compatibility results before each ring and the version currency of each runtime.
 

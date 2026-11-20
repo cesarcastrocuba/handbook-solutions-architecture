@@ -39,7 +39,7 @@ Foundations are the decisions made before the first workload lands: where it liv
 
 **Purpose.** The model determines who patches the runtime, how the workload scales, how it fails and how portable it is. Choosing from the workload's behavior rather than from team preference keeps the operational burden where it can be carried.
 
-**What it includes.** Virtual machines, containers, managed application platforms and functions trade operational control against abstraction and runtime constraints (Table 8.1). Choose from workload duration, statefulness, scaling behavior, portability, patching ownership, compliance and team skills. Section 8.7 covers the limits, orchestration and delivery of the chosen runtime.
+**What it includes.** Virtual machines, containers, managed application platforms and functions trade operational control against abstraction and runtime constraints (Table 8.1). Choose from workload duration, statefulness, scaling behavior, portability, patching ownership, compliance and team skills. Section 8.6 covers the limits, orchestration and delivery of the chosen runtime.
 
 | Model | Control you keep | What you give up | Fits |
 | :--- | :--- | :--- | :--- |
@@ -58,15 +58,15 @@ Foundations are the decisions made before the first workload lands: where it liv
 
 **Purpose.** The network is where trust boundaries become enforceable and where most "cloud" outages actually happen. Treating it as a set of owned decisions rather than a product diagram keeps exposure, reachability and failure domains visible.
 
-**What it includes.** At foundation level the questions are which zones exist, what may cross them, how names resolve and how administrative access is separated from workload traffic. The table is a scope map: it names what the network view covers, who owns each area and where the decision is made. The options, the decision detail and the test that proves each one are in Section 8.6, which takes the exposure and routing halves in turn.
+**What it includes.** At foundation level the questions are which zones exist, what may cross them, how names resolve and how administrative access is separated from workload traffic. The table is a scope map: it names what the network view covers, who owns each area and where the decision is made. The options, the decision detail and the test that proves each one are in Section 8.5, which takes the exposure and routing halves in turn.
 
 | Area | What it covers | Owner | See |
 | :--- | :--- | :--- | :--- |
-| Addressing and routing | Address plan, CIDRs, route tables, NAT and return paths | Platform network owner | 8.6.2 |
-| Segmentation and identity | Trust zones, east-west policy and workload identity | Security architect with the platform owner | 8.6.2 |
-| Naming and certificates | Private DNS, split-horizon behavior, TTLs and renewal | Platform owner | 8.6.1 |
-| Ingress and egress | Public entry, load balancing, outbound paths and their cost | Security and platform owners | 8.6.1 |
-| Private and hybrid connectivity | Private endpoints, peering, VPN or dedicated interconnect | Network owner with the on-premises counterpart | 8.6.2 |
+| Addressing and routing | Address plan, CIDRs, route tables, NAT and return paths | Platform network owner | 8.5.2 |
+| Segmentation and identity | Trust zones, east-west policy and workload identity | Security architect with the platform owner | 8.5.2 |
+| Naming and certificates | Private DNS, split-horizon behavior, TTLs and renewal | Platform owner | 8.5.1 |
+| Ingress and egress | Public entry, load balancing, outbound paths and their cost | Security and platform owners | 8.5.1 |
+| Private and hybrid connectivity | Private endpoints, peering, VPN or dedicated interconnect | Network owner with the on-premises counterpart | 8.5.2 |
 
 : Networking scope map
 
@@ -260,7 +260,7 @@ Figure 8.3 follows an infrastructure change from definition through apply to dri
 | Data transfer and egress | Chatty cross-zone or cross-region traffic | Locality, private endpoints, payload design |
 | Storage tiers and retention | Copies kept beyond their purpose | Lifecycle rules tied to the retention schedule (5.2.4) |
 | Managed service tiers | Premium features used by default | Feature-by-feature justification |
-| Operational labor | Manual toil and incident load | Automation and platform paths (8.3.1, 8.7) |
+| Operational labor | Manual toil and incident load | Automation and platform paths (8.3.1, 8.6) |
 
 : Cost drivers and levers
 
@@ -282,17 +282,17 @@ Choose how capacity is bought before comparing unit prices.
 | Provision for the peak and shed or queue the excess | The peak is short and the work can be deferred | Lowest capacity cost; explicit degradation, queue limits and an owner |
 :::
 
-## 8.5 Cloud Well-Architected Frameworks
+## 8.4 Cloud Well-Architected Frameworks
 
 A well-architected framework is a provider's structured set of design principles, best practices and review questions for workloads on its platform. The major cloud providers publish them, and they are useful as review checklists and as a shared vocabulary with provider teams. They are provider guidance, not standards, and passing a review does not prove that a solution meets its business SLOs. Using one deliberately — a primary framework, findings recorded as risks — turns a vendor questionnaire into an architecture review with evidence.
 
-### 8.5.1 Pillars by Provider
+### 8.4.1 Pillars by Provider
 
 **Definition.** Each provider groups its guidance into pillars, and the grouping differs enough that a mapping is needed before comparing them.
 
 **Purpose.** Knowing the pillars prevents two errors: treating one provider's grouping as universal, and running several overlapping reviews of the same workload.
 
-**What it includes.** Table 8.10 summarizes the frameworks and their pillars.
+**What it includes.** Table 8.9 summarizes the frameworks and their pillars.
 
 | Provider | Framework | Pillars |
 | :--- | :--- | :--- |
@@ -309,13 +309,13 @@ Each framework is extended for specific workloads or industries: AWS publishes *
 
 **Why it is needed.** A review that mixes pillars from three frameworks produces findings that cannot be compared or closed, and a lens chosen without a workload fit adds questions that do not apply. The evidence is a recorded choice of framework and lens per workload, with the reason and the provider matrix version.
 
-### 8.5.2 Mapping Pillars to This Handbook
+### 8.4.2 Mapping Pillars to This Handbook
 
 **Definition.** The mapping connects provider vocabulary to the sections of this handbook where each concern is actually decided.
 
 **Purpose.** It lets a team answer a framework question by pointing at a design decision and its evidence, instead of producing a narrative that satisfies the questionnaire.
 
-**What it includes.** Table 8.11 maps each pillar theme to the owning sections.
+**What it includes.** Table 8.10 maps each pillar theme to the owning sections.
 
 | Pillar theme | Where it is covered in this handbook |
 | :--- | :--- |
@@ -325,7 +325,7 @@ Each framework is extended for specific workloads or industries: AWS publishes *
 | Cost optimization | 1.3.5; 8.3.2; 16.2 |
 | Operational excellence | Chapters 11 and 12; 8.3.1 |
 | Sustainability | 16.3.1 |
-| Distributed and hybrid cloud | 8.1.2–8.1.3; 8.5.3; 8.6 |
+| Distributed and hybrid cloud | 8.1.2–8.1.3; 8.4.3; 8.5 |
 
 : Pillar themes and where they are covered
 
@@ -333,17 +333,17 @@ Each framework is extended for specific workloads or industries: AWS publishes *
 
 A worked mapping shows what the answer looks like. Asked "How does the workload behave when a zone fails?", the architect does not write a paragraph about resilience: the question maps to 8.2.1 for the fault-domain matrix, to 1.2.10 for the RTO and RPO that bound the answer, and to the recovery topology ADR for the chosen warm standby, and it is settled by the dated zone-failure exercise rather than by the design diagram. The evidence is a review record where each finding cites a section, an ADR or a measurement in that form.
 
-### 8.5.3 Using a Framework Review
+### 8.4.3 Using a Framework Review
 
 **Definition.** A framework review is a facilitated assessment of one workload against a framework's questions, producing findings that are tracked as risks.
 
 **Purpose.** Run well, the review surfaces design gaps before they become incidents and gives the operating team a voice in the design. Run badly, it becomes a documentation exercise that closes findings by changing answers.
 
-**What it includes.** Run a well-architected review at design time for a new workload and periodically for running workloads, using the framework of the hosting provider. Scope it to one workload, involve the operating team, and record findings as risks with owners and due dates, linked to ADRs where they change a decision (Figure 8.5). For multicloud solutions, use one framework as the primary checklist and map the others to it rather than running several overlapping reviews.
+**What it includes.** Run a well-architected review at design time for a new workload and periodically for running workloads, using the framework of the hosting provider. Scope it to one workload, involve the operating team, and record findings as risks with owners and due dates, linked to ADRs where they change a decision (Figure 8.4). For multicloud solutions, use one framework as the primary checklist and map the others to it rather than running several overlapping reviews.
 
 Treat high-risk findings like any other governance condition (4.4): they are closed with evidence, not with a changed answer in the questionnaire. Pair the review with the measurements it cannot provide — load and failure tests, restore exercises and SLO data.
 
-![Figure 8.5 — Running a framework review to closure](../../assets/diagrams/rendered/ch08-waf-review.png){#fig-8-5 width="100%"}
+![Figure 8.4 — Running a framework review to closure](../../assets/diagrams/rendered/ch08-waf-review.png){#fig-8-4 width="100%"}
 
 **Why it is needed.** A review without owners and dates produces a list nobody closes, and one closed by editing answers produces false assurance. The evidence is a dated review report per workload, a findings register with owners, and evidence of closure — a test result, a configuration change or a measurement.
 
@@ -363,15 +363,15 @@ Choose how many frameworks to apply.
 | Several frameworks in parallel | A contractual obligation names each provider's review | Maximum coverage; duplicated findings and conflicting vocabulary |
 :::
 
-## 8.6 Network and Connectivity Decisions
+## 8.5 Network and Connectivity Decisions
 
 Network architecture is a set of decisions about exposure, segmentation, naming, identity and failure domains, not a product diagram. The workload's trust boundaries and data flows determine the design; the hosting model only constrains how it is implemented. Documenting the decisions as an owned network view is what makes exposure reviewable and failures diagnosable, because many outages attributed to “the cloud” are actually DNS, routing, identity, certificate or egress failures.
 
-Figure 8.6 shows a typical zoning: traffic enters only through the public ingress zone, services reach data through least-privilege policy, and administration uses a separate, audited path.
+Figure 8.5 shows a typical zoning: traffic enters only through the public ingress zone, services reach data through least-privilege policy, and administration uses a separate, audited path.
 
-![Figure 8.6 — Network trust zones and connectivity paths](../../assets/diagrams/rendered/network-zones.png){#fig-8-6 width="100%"}
+![Figure 8.5 — Network trust zones and connectivity paths](../../assets/diagrams/rendered/network-zones.png){#fig-8-5 width="100%"}
 
-The zoning is only half the design; the other half is the decisions it encodes. The table lists each decision area, what must be decided and the test that proves it, and sections 8.6.1 and 8.6.2 take the exposure and routing halves in turn.
+The zoning is only half the design; the other half is the decisions it encodes. The table lists each decision area, what must be decided and the test that proves it, and sections 8.5.1 and 8.5.2 take the exposure and routing halves in turn.
 
 | Decision area | What must be decided | Evidence |
 | :--- | :--- | :--- |
@@ -386,7 +386,7 @@ The zoning is only half the design; the other half is the decisions it encodes. 
 
 : Network decision areas and their evidence
 
-### 8.6.1 Naming, Exposure and Traffic Entry
+### 8.5.1 Naming, Exposure and Traffic Entry
 
 **Definition.** Naming, exposure and traffic entry decide how a request finds the workload and which controls it passes before it reaches an application.
 
@@ -398,11 +398,11 @@ The zoning is only half the design; the other half is the decisions it encodes. 
 
 *Edge protection.* A content delivery network reduces latency and origin load for cacheable content; define cache keys and invalidation, and do not shared-cache personalized responses by default. An exception requires explicit permission, identity-scoped keys and isolation tests, and `private` or `no-store` directives still apply (7.3.3, 7.3.4). Distributed denial-of-service protection absorbs volumetric attacks at the network edge, while application-layer attacks also need rate limits and a web application firewall. Keep the origin reachable only through the edge, otherwise the protection can be bypassed.
 
-*Load balancing and health checks.* Choose L4 or L7 by protocol and routing need (8.6.3); define health checks that test the real dependency path, not just process liveness; configure connection draining, cross-zone behavior and limits.
+*Load balancing and health checks.* Choose L4 or L7 by protocol and routing need (8.5.3); define health checks that test the real dependency path, not just process liveness; configure connection draining, cross-zone behavior and limits.
 
 **Why it is needed.** A health check that tests only process liveness keeps a broken instance in rotation, and an unowned certificate expires on a date everyone knew in advance. The evidence is DNS and certificate failover and expiry tests, a health-check and draining test against a real dependency failure, and a policy test that shows a non-compliant workload being refused.
 
-### 8.6.2 Routing, Segmentation and Capacity
+### 8.5.2 Routing, Segmentation and Capacity
 
 **Definition.** Routing and segmentation decide which networks and services may reach each other; capacity decides whether the path can carry the traffic that arrives.
 
@@ -416,13 +416,13 @@ The zoning is only half the design; the other half is the decisions it encodes. 
 
 **Why it is needed.** Overlapping address ranges discovered during a cut-over stop a migration, shared hybrid credentials defeat audit, and NAT port exhaustion looks like an application outage until someone measures the network. The evidence is a route and ACL review, cross-zone access attempts that are refused, hybrid-connectivity failover results, and measured latency and bandwidth against per-journey budgets.
 
-### 8.6.3 Load Balancers, Reverse Proxies and API Gateways
+### 8.5.3 Load Balancers, Reverse Proxies and API Gateways
 
 **Definition.** A load balancer distributes traffic among healthy instances; a reverse proxy receives client requests on behalf of servers and forwards them; an API gateway is a reverse proxy specialized in managing APIs per consumer.
 
 **Purpose.** The names overlap and one product often fills several roles. Deciding by responsibility places each control once and avoids stacked layers that repeat the same work.
 
-**What it includes.** Table 8.13 compares the components. A layer 4 balancer distributes TCP connections or UDP flows, according to the transports it supports, without interpreting application messages; an HTTP-aware layer 7 balancer can route by host or path, and so also acts as a reverse proxy. A reverse proxy terminates client connections and can route, compress, cache and hide the servers behind it. An API gateway adds consumer identity, quotas, plans, versions and transformations. Business decisions and object-level authorization stay in the services (10.5.6). An ingress controller, in Kubernetes or a platform with an equivalent ingress API, turns declared routes into configuration for the proxy, load balancer or API gateway that forwards the traffic; a service mesh governs east-west traffic (8.7.3), and a BFF is application code for one client (7.6.2). Keep a layer only if it has a distinct responsibility, since each hop adds latency, a failure domain and configuration. Timeouts should shorten at each inner hop, and only one layer should retry (7.4.2). State where TLS terminates and whether traffic is re-encrypted (10.4.2). Accept client-address headers such as `Forwarded` only from known proxies. Confirm that each hop supports long-lived connections where needed (6.1.9).
+**What it includes.** Table 8.12 compares the components. A layer 4 balancer distributes TCP connections or UDP flows, according to the transports it supports, without interpreting application messages; an HTTP-aware layer 7 balancer can route by host or path, and so also acts as a reverse proxy. A reverse proxy terminates client connections and can route, compress, cache and hide the servers behind it. An API gateway adds consumer identity, quotas, plans, versions and transformations. Business decisions and object-level authorization stay in the services (10.5.6). An ingress controller, in Kubernetes or a platform with an equivalent ingress API, turns declared routes into configuration for the proxy, load balancer or API gateway that forwards the traffic; a service mesh governs east-west traffic (8.6.3), and a BFF is application code for one client (7.6.2). Keep a layer only if it has a distinct responsibility, since each hop adds latency, a failure domain and configuration. Timeouts should shorten at each inner hop, and only one layer should retry (7.4.2). State where TLS terminates and whether traffic is re-encrypted (10.4.2). Accept client-address headers such as `Forwarded` only from known proxies. Confirm that each hop supports long-lived connections where needed (6.1.9).
 
 | Role | Main responsibility | Typical controls | Should not own | Choose when |
 | :--- | :--- | :--- | :--- | :--- |
@@ -434,9 +434,9 @@ The zoning is only half the design; the other half is the decisions it encodes. 
 
 : Load balancer, reverse proxy and API gateway compared
 
-Figure 8.7 shows a common request path; many solutions need only some of these hops.
+Figure 8.6 shows a common request path; many solutions need only some of these hops.
 
-![Figure 8.7 — Common request path and the responsibility of each hop](../../assets/diagrams/rendered/ch08-request-path.png){#fig-8-7 width="100%"}
+![Figure 8.6 — Common request path and the responsibility of each hop](../../assets/diagrams/rendered/ch08-request-path.png){#fig-8-6 width="100%"}
 
 **Why it is needed.** Without clear responsibilities, retries and timeouts stack across layers, a gateway accumulates business rules that no team owns, and a forged client-address header can defeat a rate limit or an audit record. The evidence is a request-path view stating each hop's responsibility, a timeout budget per hop, a test that removes each hop's instance and a test that shows forged forwarding headers being ignored.
 
@@ -457,19 +457,19 @@ Choose the connectivity and exposure model before selecting network products.
 | Internal segmentation with service identity | Many services need east-west control and least-privilege access | Operational maturity, mTLS/policy management and observability |
 :::
 
-## 8.7 Container and Runtime Platforms
+## 8.6 Container and Runtime Platforms
 
 The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; release mechanics are covered in 12.1.
 
 A platform is the set of reusable capabilities — delivery pipelines, workload identity and secrets, observability, service templates and a support model — that a workload team consumes as an internal product, so that each team does not rebuild them and a control is implemented once. Infrastructure must provide what the platform composes: capacity and placement, network segmentation and traffic entry, storage, runtime isolation, workload identity and the landing-zone controls that make shared tenancy safe. Chapter 9 designs the platform itself: its product model, interfaces, tenancy, guardrails, reliability, measures and economics.
 
-### 8.7.1 Runtime Limits and Isolation
+### 8.6.1 Runtime Limits and Isolation
 
 **Definition.** Runtime limits are the constraints an execution model places on a workload, such as duration, memory, connections and concurrency; runtime isolation is the strength of the boundary between workloads that share hosts.
 
 **Purpose.** Section 8.1.2 compares the execution models. Once a candidate is chosen, its limits and its isolation boundary decide whether the workload really fits, and they are what most often invalidates a choice late in delivery.
 
-**What it includes.** Figure 8.8 gives a selection path based on the criteria of Section 8.1.2, and Table 8.14 lists the limits to validate before committing. Treat each limit as a design input and find out whether it is fixed or can be raised. Standardize on a small number of models so that security baselines, observability and deployment paths stay shared. Workflows that need durable waits belong in an orchestrator and not in a long-running function (6.6.4). Containers on a shared kernel isolate less than virtual machines do, so add sandboxed runtimes or dedicated nodes where workloads are mutually untrusted, as in multi-tenant code execution (7.7).
+**What it includes.** Figure 8.7 gives a selection path based on the criteria of Section 8.1.2, and Table 8.13 lists the limits to validate before committing. Treat each limit as a design input and find out whether it is fixed or can be raised. Standardize on a small number of models so that security baselines, observability and deployment paths stay shared. Workflows that need durable waits belong in an orchestrator and not in a long-running function (6.6.4). Containers on a shared kernel isolate less than virtual machines do, so add sandboxed runtimes or dedicated nodes where workloads are mutually untrusted, as in multi-tenant code execution (7.7).
 
 | Limit | Typical failure | How to validate |
 | :--- | :--- | :--- |
@@ -482,13 +482,13 @@ A platform is the set of reusable capabilities — delivery pipelines, workload 
 
 : Runtime limits to validate before committing
 
-Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at the first constraint that decides the model.
+Figure 8.7 applies the selection criteria of Section 8.1.2 in order, stopping at the first constraint that decides the model.
 
-![Figure 8.8 — Selecting a compute runtime model](../../assets/diagrams/rendered/ch08-runtime-selection.png){#fig-8-8 width="100%"}
+![Figure 8.7 — Selecting a compute runtime model](../../assets/diagrams/rendered/ch08-runtime-selection.png){#fig-8-7 width="100%"}
 
 **Why it is needed.** Runtime choices are often inherited from the previous project or adopted for their popularity, and the cost appears later as unfunded platform work or a workload that hits a provider limit in production. The evidence is a recorded selection (8.1.2), a named operating owner, and a load test that reaches the model's relevant limits.
 
-### 8.7.2 Container Orchestration
+### 8.6.2 Container Orchestration
 
 **Definition.** A container orchestrator schedules containers across a pool of machines and continuously replaces, reschedules and scales them to match a declared state.
 
@@ -498,7 +498,7 @@ Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at
 
 **Why it is needed.** An orchestrator restarts a failing container, but it cannot compensate for missing health checks, unbounded resources or a workload that loses data when terminated. The evidence is declared resources and probes for each workload, a node-drain test without user impact, a tested version upgrade and a recorded rationale for the cluster topology.
 
-### 8.7.3 Service Mesh and Workload Networking
+### 8.6.3 Service Mesh and Workload Networking
 
 **Definition.** A service mesh is an infrastructure layer of proxies and a control plane that applies identity, encryption, traffic policy and telemetry to service-to-service communication without changing application code.
 
@@ -508,7 +508,7 @@ Figure 8.8 applies the selection criteria of Section 8.1.2 in order, stopping at
 
 **Why it is needed.** A mesh adopted for a single feature leaves a team operating a critical data-path component without the capacity to debug it, while its absence on a large polyglot estate leaves encryption and policy inconsistent. The evidence is a list of the controls the mesh is expected to deliver, measured latency overhead, a control-plane failure test and an upgrade owner.
 
-### 8.7.4 GitOps and Runtime Configuration
+### 8.6.4 GitOps and Runtime Configuration
 
 **Definition.** GitOps manages a runtime from desired state held in version control, where software agents pull that state and continuously reconcile the running system toward it; the OpenGitOps principles describe this state as declarative, versioned and immutable, pulled automatically and continuously reconciled.
 
@@ -534,17 +534,17 @@ Where should service-to-service traffic policy be enforced?
 | Service mesh | Many services or languages need uniform identity, encryption and traffic control | Consistent policy without code changes; additional latency, cost and a critical component to run |
 :::
 
-## 8.8 Edge and IoT Architecture
+## 8.7 Edge and IoT Architecture
 
 Some workloads must run close to where data is produced because of latency, bandwidth, autonomy or data location. Edge and Internet of Things (IoT) architectures extend the solution into locations that the team does not physically control, which are often disconnected. This section covers placement, device connectivity and fleet security.
 
-### 8.8.1 Edge Placement
+### 8.7.1 Edge Placement
 
 **Definition.** Edge computing places processing near the source of data or the user, for example on a device, a site gateway, a local server or a provider's metropolitan location, instead of only in a central region.
 
 **Purpose.** Placement responds to constraints a central design cannot meet, and it should be justified by those constraints because every additional location increases the operational surface.
 
-**What it includes.** Table 8.15 compares the tiers. Identify the driving constraint for each function: control-loop latency, the cost of moving raw data, continued operation during disconnection, or a requirement to keep data on site (10.9.5). Split responsibilities so that the edge handles local decisions and buffering, and the central platform handles fleet management, cross-site analysis and model training. State what the site can do while disconnected, how long it can stay disconnected, and how conflicting changes are reconciled when connectivity returns (7.6.4). Design for constrained and heterogeneous hardware, unattended sites and physical access by others. Treat each location as a fault domain (8.2.1). Deploy to sites with staged rollouts, and manage software and models from a central control plane with a declared state, as in 8.7.4.
+**What it includes.** Table 8.14 compares the tiers. Identify the driving constraint for each function: control-loop latency, the cost of moving raw data, continued operation during disconnection, or a requirement to keep data on site (10.9.5). Split responsibilities so that the edge handles local decisions and buffering, and the central platform handles fleet management, cross-site analysis and model training. State what the site can do while disconnected, how long it can stay disconnected, and how conflicting changes are reconciled when connectivity returns (7.6.4). Design for constrained and heterogeneous hardware, unattended sites and physical access by others. Treat each location as a fault domain (8.2.1). Deploy to sites with staged rollouts, and manage software and models from a central control plane with a declared state, as in 8.6.4.
 
 | Tier | Typical processing | Choose when | Limits |
 | :--- | :--- | :--- | :--- |
@@ -555,13 +555,13 @@ Some workloads must run close to where data is produced because of latency, band
 
 : Processing tiers from device to central region
 
-Figure 8.9 shows the flow between tiers, including the update path back to devices.
+Figure 8.8 shows the flow between tiers, including the update path back to devices.
 
-![Figure 8.9 — Device, site and central tiers with telemetry and update paths](../../assets/diagrams/rendered/ch08-edge-iot-tiers.png){#fig-8-9 width="100%"}
+![Figure 8.8 — Device, site and central tiers with telemetry and update paths](../../assets/diagrams/rendered/ch08-edge-iot-tiers.png){#fig-8-8 width="100%"}
 
 **Why it is needed.** Treating an edge site as a remote part of the central platform produces systems that stop at the first network loss, and moving all raw data centrally can make the solution uneconomic. The evidence is a placement record per function, a disconnection exercise measured against the stated autonomy period and a data-transfer cost estimate.
 
-### 8.8.2 Device Connectivity and Telemetry Ingestion
+### 8.7.2 Device Connectivity and Telemetry Ingestion
 
 **Definition.** Device connectivity is the set of protocols and services that carry telemetry and commands between devices and the platform over constrained or intermittent networks.
 
@@ -571,7 +571,7 @@ Figure 8.9 shows the flow between tiers, including the update path back to devic
 
 **Why it is needed.** Laboratory tests with a few connected devices reveal little about what happens when thousands reconnect, or when a day of buffered data arrives out of order. The evidence is a fleet-scale reconnection test, a late-data test showing correct results, a measured buffer duration and a command-expiry test.
 
-### 8.8.3 Device Identity, Security and Lifecycle
+### 8.7.3 Device Identity, Security and Lifecycle
 
 **Definition.** Device lifecycle management covers a device from manufacture or enrollment through provisioning, operation, update and decommissioning, with a verifiable identity for each device.
 
@@ -597,7 +597,7 @@ How much intelligence should run at the site?
 | Full local application and inference | Latency, data location or long disconnection rules out a central path | Strong autonomy; highest hardware, deployment and version-management burden |
 :::
 
-## 8.9 Worked Example: Selecting a Recovery Topology
+## 8.8 Worked Example: Selecting a Recovery Topology
 
 *In practice:* This example compares recovery topologies against explicit RTO/RPO, operational cost and tested evidence.
 
@@ -632,7 +632,7 @@ Infrastructure is defined as code, replication lag is monitored against the RPO,
 ☐  Does each hop in the request path have one stated responsibility, a timeout budget and trusted handling of forwarded headers?
 :::
 
-## 8.10 Further Reading
+## 8.9 Further Reading
 
 - Amazon Web Services, *Disaster Recovery of Workloads on AWS* — backup and restore, pilot light, warm standby and multi-site strategies.
 - Morris (2020), *Infrastructure as Code* — practices for defining and evolving infrastructure.
