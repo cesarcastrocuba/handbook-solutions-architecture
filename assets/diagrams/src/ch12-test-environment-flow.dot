@@ -10,7 +10,7 @@ digraph G {
  ok [label="Promote the artifact"];
  no [label="Block, publish the\nevidence and open the\nfinding"];
  prod [label="Production-like\nenvironment for\nperformance, failure and\nrecovery tests"];
- guard [label="No production personal\ndata in test\nenvironments (10.4.3)", shape=note, style="filled"];
+ guard [label="No production personal\ndata in test\nenvironments (13.4.3)", shape=note, style="filled"];
  iac->eph->data->suites->gate;
  virt->suites;
  iac->prod;

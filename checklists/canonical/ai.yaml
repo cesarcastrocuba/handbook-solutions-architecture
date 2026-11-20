@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-AI
 title: AI and machine learning
-manuscript: chapters/ch19-ai-and-machine-learning-architecture.qmd
+manuscript: chapters/ch18-ai-and-machine-learning-architecture.qmd
 items:
 - id: SA-AI-001
   title: Measurable AI quality scenarios
@@ -9,7 +9,7 @@ items:
   rationale: A demo is not evidence. Without measurable task quality, latency, cost and risk tolerance, model and platform choices cannot be compared or verified.
   applicability: All solutions introducing a model, generative capability or AI-assisted decision.
   expected_evidence: Quality scenarios naming workload, measure, boundary and owner; risk tolerance; links to evaluation and operational evidence.
-  section: 19.1.4
+  section: 18.1.4
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: High
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: AI output is bounded by its data. Unclear rights, stale content or missing provenance makes the answer unsafe and unauditable.
   applicability: All solutions using enterprise, third-party or user-provided data or knowledge.
   expected_evidence: Source inventory with owners, rights, classification, refresh cadence and quality tests; source identifiers and lineage preserved in the index.
-  section: 19.3.1
+  section: 18.3.1
   external_reference: ISO/IEC 42001:2023
   risk_relevance: High
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Ingest-time permissions do not prevent a valid user receiving another tenant's content through retrieval, summaries or citations.
   applicability: All retrieval-augmented or enterprise-search AI solutions.
   expected_evidence: Authorization design applying user, group, tenant and purpose filters in retrieval and output assembly; cross-tenant and restricted-document negative tests; retrieval audit records.
-  section: 19.3.5
+  section: 18.3.5
   external_reference: OWASP Top 10 for LLM Applications 2025
   risk_relevance: High
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Model selection is a trade-off, not a product preference. A recorded decision preserves the criteria, rejected options and reassessment triggers.
   applicability: All solutions selecting a managed, self-hosted, hybrid or adapted model.
   expected_evidence: ADR with criteria, weights, evaluation evidence, uncertainty, rejected options and exit or fallback conditions.
-  section: 19.4.6
+  section: 18.4.6
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: A prompt or index change can alter behavior without a code deployment; without a manifest a release cannot be reproduced or rolled back.
   applicability: All AI solutions with prompts, retrieval indexes, tools or scheduled model updates.
   expected_evidence: Versioned release manifest binding model, prompt, index, tool policy, evaluation set and configuration; known-good rollback bundle.
-  section: 19.6.3
+  section: 18.6.3
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: Medium
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: Retrieved documents, pages and tool responses can carry instructions. A system prompt is not a security boundary.
   applicability: All generative AI solutions consuming external or user-controlled content.
   expected_evidence: Instruction/data separation, input and output validation, redaction, allowlists, citation and safety checks; direct and indirect injection test results.
-  section: 19.5.3
+  section: 18.5.3
   external_reference: OWASP Top 10 for LLM Applications 2025
   risk_relevance: High
   version: '2.1'
@@ -75,7 +75,7 @@ items:
   rationale: An agent with broad credentials converts a prompt error into an unauthorized business action.
   applicability: All tool-using agents and AI workflows that can change state or call external services.
   expected_evidence: Workload identity, scoped tool credentials, policy decision and enforcement, approval for consequential actions, and an audit record for each tool call.
-  section: 19.5.2
+  section: 18.5.2
   external_reference: OWASP Top 10 for LLM Applications 2025; MITRE ATLAS
   risk_relevance: High
   version: '2.1'
@@ -86,7 +86,7 @@ items:
   rationale: Prompts, retrieved context, logs and evaluation sets can become uncontrolled copies of personal data.
   applicability: All AI solutions processing personal data or operating across jurisdictions.
   expected_evidence: Data inventory and flow map; minimization and purpose records; retention and deletion tests across indexes and caches; transfer assessment; DPIA where triggered.
-  section: 19.5.4
+  section: 18.5.4
   external_reference: GDPR Articles 25 and 35
   risk_relevance: High
   version: '2.1'
@@ -97,7 +97,7 @@ items:
   rationale: Automation without an accountable human decision is unsafe for consequential or regulated outcomes.
   applicability: AI systems that make or materially influence decisions affecting people, money, access or safety.
   expected_evidence: Decision-rights matrix, approval thresholds, reviewer context, escalation and contestability process, and audit evidence of human decisions.
-  section: 19.5.6
+  section: 18.5.6
   external_reference: NIST AI RMF 1.0 (2023); Regulation (EU) 2024/1689
   risk_relevance: High
   version: '2.1'
@@ -108,7 +108,7 @@ items:
   rationale: A model change can improve an aggregate while degrading a critical slice; only a versioned evaluation set and gates make the claim testable.
   applicability: All AI solutions with a release or model/prompt change process.
   expected_evidence: Versioned golden set with expected sources and acceptable answers; task metrics and thresholds; human adjudication; regression gate results.
-  section: 19.6.1
+  section: 18.6.1
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: High
   version: '2.1'
@@ -119,7 +119,7 @@ items:
   rationale: Offline evidence does not prove production behavior; queries, sources, indexes and providers change continuously.
   applicability: All AI solutions operating in production.
   expected_evidence: Quality, groundedness, refusal, safety, drift and cost signals with thresholds, owners, sampling method and response actions.
-  section: 19.6.2
+  section: 18.6.2
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: High
   version: '2.1'
@@ -130,7 +130,7 @@ items:
   rationale: Model, index and provider dependencies fail; without a tested degraded mode the user receives a false answer or no service.
   applicability: All AI solutions with interactive or automated decisions.
   expected_evidence: Documented and exercised fallback states, timeout and cost circuit breakers, tool/agent kill switch, incident playbook and post-incident evaluation update.
-  section: 19.6.6
+  section: 18.6.6
   external_reference: NIST AI RMF 1.0 (2023)
   risk_relevance: High
   version: '2.1'
@@ -141,7 +141,7 @@ items:
   rationale: A model can be available but inaccurate or unaffordable; availability alone is not a sufficient AI service objective.
   applicability: All production AI services with user-visible or automated outcomes.
   expected_evidence: SLIs and SLOs for latency, availability, quality and cost; traces and metrics; alert ownership and error-budget policy.
-  section: 19.6.7
+  section: 18.6.7
   external_reference: ISO/IEC 42001:2023
   risk_relevance: Medium
   version: '2.1'
@@ -152,7 +152,7 @@ items:
   rationale: Per-call pricing hides retrieval, evaluation, retries, human review and idle capacity; cost must be measured against a successful outcome.
   applicability: All AI solutions with material inference, retrieval or human-review cost.
   expected_evidence: Cost model per successful outcome and tenant or journey; assumptions; caching, batching and model-sizing sensitivity; budget and anomaly alerts.
-  section: '19.7'
+  section: '18.7'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -163,7 +163,7 @@ items:
   rationale: AI obligations depend on role, jurisdiction and risk class; a universal compliance claim is misleading.
   applicability: AI solutions in jurisdictions or sectors with AI-specific or data-protection obligations.
   expected_evidence: Regulatory applicability assessment with legal/compliance owner; obligations traced to requirements, controls and evidence; caveats and review date.
-  section: 19.5.6
+  section: 18.5.6
   external_reference: Regulation (EU) 2024/1689; ISO/IEC 42001:2023
   risk_relevance: High
   version: '2.1'
@@ -174,7 +174,7 @@ items:
   rationale: Models, indexes and providers are not permanent; unplanned retirement leaves stale answers, retained data and an unowned dependency.
   applicability: All AI solutions with an external model, index or provider dependency.
   expected_evidence: Lifecycle and retirement plan; data export and deletion procedure; vendor exit criteria; post-deployment quality review with owner.
-  section: 19.3.7
+  section: 18.3.7
   external_reference: ISO/IEC 42001:2023
   risk_relevance: Medium
   version: '2.1'
@@ -185,7 +185,7 @@ items:
   rationale: An agent turns model output into real effects, so authority must be decided per action and enforced outside the model.
   applicability: Solutions in which a model selects or invokes tools.
   expected_evidence: Action inventory with autonomy levels, tool catalog with effect classes, and gateway authorization tests.
-  section: '19.8'
+  section: '18.8'
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -196,7 +196,7 @@ items:
   rationale: Unsafe or wasteful paths can still end in a plausible answer, and unbounded loops create unbounded cost.
   applicability: Solutions in which a model selects or invokes tools.
   expected_evidence: Versioned task suite with trajectory checks, an enforced limit test and cost per successful task.
-  section: '19.8'
+  section: '18.8'
   external_reference: ''
   risk_relevance: High
   version: '2.2'

@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-APP
 title: Application
-manuscript: chapters/ch07-application-architecture.qmd
+manuscript: chapters/ch10-application-architecture.qmd
 items:
 - id: SA-APP-001
   title: Boundaries follow ownership and invariants
@@ -9,7 +9,7 @@ items:
   rationale: Decomposing by entity or fashion creates distributed transactions and chatty dependencies without protecting a business invariant.
   applicability: All solutions with more than one deployable unit or module.
   expected_evidence: Decomposition rationale tracing workflows to owners and invariants, with a service-per-entity alternative explicitly rejected.
-  section: 7.1.1
+  section: 10.1.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Dependency rules that live only in documentation erode with the first urgent change, collapsing the domain boundary.
   applicability: Solutions using layered, hexagonal or clean architecture.
   expected_evidence: Static dependency check in CI that rejects infrastructure imports in domain modules, plus its current passing result.
-  section: 7.2.1
+  section: 10.2.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Implicit transitions let a provider timeout become a false rejection or a duplicate charge.
   applicability: Solutions with long-running or externally confirmed state changes.
   expected_evidence: State-transition model covering accepted, pending, confirmed, rejected and unknown states, with illegal-transition tests and concurrent-update version checks.
-  section: 7.2.2
+  section: 10.2.2
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Individually reasonable timeouts, retries and circuit breakers can multiply load and exceed the end-to-end budget when combined.
   applicability: Solutions with synchronous dependencies on critical paths.
   expected_evidence: Deadline and retry-budget design, combined fault-injection results under provider outage, and measured p99 latency, request amplification and backlog.
-  section: 7.4.2
+  section: 10.4.2
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: Repository layout shapes build independence, access control and review ownership; an unsuitable model recreates coupling.
   applicability: Solutions with multiple components, teams or release cadences.
   expected_evidence: Documented monorepo or polyrepo decision with a code-owners file, independent pipeline evidence and shared-library versioning rules.
-  section: 7.5.3
+  section: 10.5.3
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: Client code runs at versions and on devices the team does not control, so unmade decisions surface as duplicated rules, lost submissions and users who cannot be updated.
   applicability: Solutions with web, mobile or other user-facing clients.
   expected_evidence: Rendering decision per experience, named BFF owner with a rule against domain decisions, client threat model, supported-version matrix, and offline or lost-response replay tests.
-  section: 7.6.1
+  section: 10.6.1
   external_reference: RFC 8252 (2017) for native applications
   risk_relevance: Medium
   version: '2.2'
@@ -75,7 +75,7 @@ items:
   rationale: In shared systems one unscoped query, cache key or background job can expose another customer, and an unmanaged workload can degrade every tenant.
   applicability: Solutions serving more than one customer organization from shared components.
   expected_evidence: ADR with the model per layer and unit cost, automated cross-tenant tests on synchronous and asynchronous paths, per-tenant limits and SLIs, and a single-tenant restore exercise.
-  section: 7.7.1
+  section: 10.7.1
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -86,7 +86,7 @@ items:
   rationale: Tiers added one at a time multiply staleness and can add a dependency with little benefit.
   applicability: Solutions that cache data at any layer.
   expected_evidence: Strategy and invalidation rule per item, worst-case staleness, hit-ratio measurements and a cold-start test.
-  section: 7.3.4
+  section: 10.3.4
   external_reference: ''
   risk_relevance: High
   version: '2.2'

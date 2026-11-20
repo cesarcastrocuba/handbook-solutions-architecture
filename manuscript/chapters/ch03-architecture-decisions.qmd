@@ -162,7 +162,7 @@ The subsections move from criteria, through trade-offs and the limits of scoring
 
 ![Figure 3.3 — The Attribute-Driven Design iteration](../../assets/diagrams/rendered/ch03-add-loop.png){#fig-3-3 width="100%"}
 
-**Why it is needed.** Without a driver-driven loop, structure follows the first diagram drawn or the pattern the team already knows, and the quality attribute arrives as a test failure late in delivery. Record the choices it produces as ADRs, and test the resulting architecture with a scenario-based evaluation (14.2.1). Evidence that the loop ran is a design record in which each structural element traces to a named driver and a scenario it was verified against.
+**Why it is needed.** Without a driver-driven loop, structure follows the first diagram drawn or the pattern the team already knows, and the quality attribute arrives as a test failure late in delivery. Record the choices it produces as ADRs, and test the resulting architecture with a scenario-based evaluation (6.2.1). Evidence that the loop ran is a design record in which each structural element traces to a named driver and a scenario it was verified against.
 
 **Example.** In the reference checkout the first driver is that order acceptance must survive a payment-provider outage. The iteration adds a pending order state, an outbox and a reconciliation job; a failure-injection test that stops the provider shows orders accepted, queued and later resolved. The next driver, auditability of settlement, splits the reconciliation job into a matcher and an exception queue. Each iteration produces one ADR, not one per diagram.
 
@@ -180,14 +180,14 @@ Match the depth of the evaluation to the cost of being wrong.
 | Whiteboard comparison against named criteria | One delivery team, reversible choice, consensus already close | Fast and cheap; weak evidence, easy to rationalize a preferred option |
 | Qualitative matrix with a sensitivity check | Cross-team choice with material cost or quality impact | Exposes assumptions and weights; still depends on judgment |
 | Time-boxed spike or benchmark | One assumption — latency, throughput, provider behavior — decides the outcome | Real evidence; takes effort and the environment may drift from production |
-| Formal scenario-based evaluation (ATAM, 18.3.1) | Long-lived, high-cost architecture with many stakeholders | Broad validation and documented risks; weeks of stakeholder time |
+| Formal scenario-based evaluation (ATAM, 19.3.1) | Long-lived, high-cost architecture with many stakeholders | Broad validation and documented risks; weeks of stakeholder time |
 :::
 
 ## 3.4 Architecture Decision Records
 
 An Architecture Decision Record (ADR) is a short record of one significant decision that states its context, the alternatives considered, the choice, its consequences and the conditions under which it should be revisited.
 
-An ADR is not meeting minutes and not a statement of product preference. It must explain why an option was chosen and what was intentionally traded away. Appendix A.5 contains a complete example; Appendix B contains a template. Chapter 19 (19.4.6) shows how to record model and platform selection, including evaluation evidence and reassessment triggers, as an ADR.
+An ADR is not meeting minutes and not a statement of product preference. It must explain why an option was chosen and what was intentionally traded away. Appendix A.5 contains a complete example; Appendix B contains a template. Chapter 18 (18.4.6) shows how to record model and platform selection, including evaluation evidence and reassessment triggers, as an ADR.
 
 ### 3.4.1 ADR Lifecycle
 

@@ -181,7 +181,7 @@ Boundaries decay unless something enforces them; choose the enforcement that mat
 
 **Purpose.** Ownership answers two questions that otherwise surface during an incident: who may change this value, and who decides what it means. It informs the data model, the integration style and the access model, and it sets the boundary within which autonomy is real rather than nominal.
 
-**What it includes.** An owning domain that is the only writer of its authoritative state, consumers that use published APIs, events or governed data products, and copies whose freshness, reconciliation and permitted uses are documented (see 5.3). Ownership covers the interpretation as well as the storage: two services that disagree about what “settled” means have a semantics problem even if only one writes the column. Table 2.5 shows the ownership pattern for four data sets in the checkout scenario.
+**What it includes.** An owning domain that is the only writer of its authoritative state, consumers that use published APIs, events or governed data products, and copies whose freshness, reconciliation and permitted uses are documented (see 8.3). Ownership covers the interpretation as well as the storage: two services that disagree about what “settled” means have a semantics problem even if only one writes the column. Table 2.5 shows the ownership pattern for four data sets in the checkout scenario.
 
 **Why it is needed.** Shared write access produces conflicting updates, unclear accountability and reconciliation work that nobody owns. The failure is quiet until an audit or a customer dispute asks which value is correct. **Evidence.** Mutation paths and access grants show that only the owning domain changes its authoritative data, and every copy has a stated freshness expectation.
 
@@ -220,7 +220,7 @@ Ownership can be enforced at different strengths; choose one deliberately.
 
 **Purpose.** A contract lets two teams change independently. It defines what the caller may rely on, what the provider promises under failure, and how a change is introduced without a coordinated release. It informs the choice between synchronous and asynchronous interaction and between commands and events.
 
-**What it includes.** Use synchronous calls when the caller needs an immediate answer and asynchronous messaging when buffering or temporal decoupling is valuable. Distinguish commands, which request work, from events, which report facts. The contract covers version compatibility, authentication, failure semantics, idempotency and consumer migration; choosing a protocol alone does not make an integration reliable (see Chapter 6). Table 2.6 lists the facets a review must find.
+**What it includes.** Use synchronous calls when the caller needs an immediate answer and asynchronous messaging when buffering or temporal decoupling is valuable. Distinguish commands, which request work, from events, which report facts. The contract covers version compatibility, authentication, failure semantics, idempotency and consumer migration; choosing a protocol alone does not make an integration reliable (see Chapter 9). Table 2.6 lists the facets a review must find.
 
 **Why it is needed.** Unstated assumptions are the usual cause of integration incidents: the caller assumed an ordered stream, the provider assumed one consumer, nobody agreed what happens on redelivery. The consequence appears as duplicate payments or lost notifications after a routine deploy. **Evidence.** Contracts, retry boundaries and consumer idempotency are specified, and duplicate-delivery and dependency-outage tests pass.
 
@@ -260,7 +260,7 @@ The interaction style drives most of the operational cost; decide it explicitly.
 
 **Purpose.** Security by design puts the control where the asset is, so a compromise of one layer does not expose the next. It informs where authentication terminates, where authorization is evaluated, which identity a service uses to reach a data store, and how secrets are delivered. It also sets the threat model that later testing verifies.
 
-**What it includes.** Least privilege and explicit trust boundaries at every externally reachable interface and sensitive data store, authentication of each identity and authorization of each operation in the service that owns the resource. Secrets are held in a managed store and rotated, and privileged access is separated from ordinary traffic (see Chapter 10). Table 2.7 states where each control is enforced.
+**What it includes.** Least privilege and explicit trust boundaries at every externally reachable interface and sensitive data store, authentication of each identity and authorization of each operation in the service that owns the resource. Secrets are held in a managed store and rotated, and privileged access is separated from ordinary traffic (see Chapter 13). Table 2.7 states where each control is enforced.
 
 **Why it is needed.** Controls added after the design are usually applied at the wrong layer: a gateway that authenticates but does not authorize, or a service account that can write every table. The consequence is a single forgotten endpoint that bypasses the model. **Evidence.** Authorization at the owning service, least-privilege identities, protected secrets, and a threat-model test across each critical trust boundary.
 
@@ -294,13 +294,54 @@ Where authorization lives determines how much duplication the team carries.
 | Authorize at the gateway only | A single public entry point and coarse rules | Cheap; internal callers bypass it, so it is rarely sufficient |
 :::
 
-## 2.8 Resilience and Reliability
+## 2.8 Privacy by Design
+
+**Definition.** Privacy by design treats the protection of personal data as a design constraint applied at every stage of the data lifecycle, not as a compliance check before launch.
+
+**Purpose.** It shapes the data model, the flows, the retention schedule and the access model while those are still cheap to change. It informs whether a field is collected at all, where it may be stored, who may read it, how long it exists and how a deletion request can be honored. It is distinct from security: a system can be secure and still collect more personal data than any purpose requires.
+
+**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 13.9; retention and deletion mechanics are in 8.2.4). Table 2.8 states the question each lifecycle stage must answer.
+
+**Why it is needed.** Personal data that is never collected cannot leak, be subpoenaed or be retained by mistake. The consequence of skipping the design step is a breach with an unnecessarily large blast radius and a deletion request that cannot be satisfied because copies exist in logs, backups and analytics extracts. **Evidence.** Each data set has a purpose, a retention period, a deletion test and a named privacy owner.
+
+| Stage | Question it must answer | Evidence |
+| :--- | :--- | :--- |
+| Collect | Which purpose justifies each field, and on what basis? | Data inventory with purpose and lawful basis |
+| Use | Is the data used only for the stated purpose? | Access model and purpose tags |
+| Share | Which processors and regions are involved, under what terms? | Transfer register and contract clauses |
+| Retain | How long, and why that long? | Retention schedule with justification |
+| Delete | Is deletion verifiable across replicas and backups? | Deletion test and log |
+| Request | Can access, correction and erasure be served? | Request log and measured response time |
+
+: Privacy questions at each lifecycle stage
+
+Figure 2.8 follows personal data through the lifecycle stages in the table, marking the control that applies at collection, use, retention and deletion.
+
+![Figure 2.8 — Privacy controls across the data lifecycle](../../assets/diagrams/rendered/ch02-privacy-lifecycle.png){#fig-2-8 width="100%"}
+
+**Example.** Checkout collects the delivery address and contact details because the order cannot be fulfilled without them, and never stores the card number: the payment provider returns a token. Support staff see a masked address until a case is opened, and the access is logged.
+
+::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
+Logging full request payloads for debugging convenience. Personal data then spreads into logs, traces and a third-party observability platform, outside the retention and deletion controls of the system that owns it. Redact at the source and record identifiers instead of content.
+:::
+
+::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
+Privacy controls restrict what the system can do; choose the strength deliberately.
+
+| Option | Choose when | Consequences |
+| :--- | :--- | :--- |
+| Collect only the fields the journey needs | Almost always; this is the default | Some personalization and analytics are lost |
+| Pseudonymize and separate identifiers | Analysis or support needs records without identity | Extra mapping store to protect and govern |
+| Retain full data under strict access control | A legal or safety obligation requires it | Largest blast radius; needs the strongest audit and retention evidence |
+:::
+
+## 2.9 Resilience and Reliability
 
 **Definition.** Resilience is the ability to absorb dependency failures and recover predictably, while reliability is the ability to produce correct business outcomes over time.
 
 **Purpose.** Resilience keeps a partial failure from becoming a full outage, and reliability keeps the business result correct while that happens. Together they inform timeout budgets, retry policy, isolation, queue design and the degradation a customer actually sees.
 
-**What it includes.** Deadlines derived from the caller’s budget, bounded retries with backoff, isolation between workloads, and safe degradation with a defined fallback. Reliability adds idempotency, duplicate handling, poison-message handling and reconciliation, because a consumer must survive delays and redelivery. Reliability means correct business outcomes, not just successful HTTP responses. Table 2.8 states the expected behavior for the common failure modes.
+**What it includes.** Deadlines derived from the caller’s budget, bounded retries with backoff, isolation between workloads, and safe degradation with a defined fallback. Reliability adds idempotency, duplicate handling, poison-message handling and reconciliation, because a consumer must survive delays and redelivery. Reliability means correct business outcomes, not just successful HTTP responses. Table 2.9 states the expected behavior for the common failure modes.
 
 **Why it is needed.** Retry without idempotency creates duplicate financial effects, and unbounded retries turn a slow dependency into an outage. A service that returns 200 while losing an accepted order is unreliable in the way that matters most. **Evidence.** Injected timeouts and duplicate messages produce bounded retries, safe degradation, correct business state and actionable alerts.
 
@@ -314,9 +355,9 @@ Where authorization lives determines how much duplication the team carries.
 
 : Failure modes and expected behavior
 
-Figure 2.8 follows each failure mode to its recovery path, showing where a bounded retry, a pending state or a compensating action ends the branch.
+Figure 2.9 follows each failure mode to its recovery path, showing where a bounded retry, a pending state or a compensating action ends the branch.
 
-![Figure 2.8 — Failure paths and bounded recovery](../../assets/diagrams/rendered/ch02-failure-path.png){#fig-2-8 width="100%"}
+![Figure 2.9 — Failure paths and bounded recovery](../../assets/diagrams/rendered/ch02-failure-path.png){#fig-2-9 width="100%"}
 
 **Example.** When the payment provider times out during checkout, the order is recorded as pending with an idempotency key, the customer sees a status page rather than an error, and the eventual provider callback completes or reverses the payment exactly once.
 
@@ -334,13 +375,13 @@ How a system fails is a design decision with a customer-visible consequence.
 | Queue the work and replay | The action must eventually happen | Requires idempotency, ordering rules and monitoring of queue age |
 :::
 
-## 2.9 Scalability and Performance
+## 2.10 Scalability and Performance
 
 **Definition.** Scalability is the ability to sustain growth in demand by adding resources or changing partitioning; performance is the latency and throughput observed under a stated workload.
 
 **Purpose.** These attributes decide when a system needs a different mechanism rather than more of the same one. They inform capacity planning, the choice between vertical and horizontal scaling, and whether caching, asynchronous work or partitioning is justified.
 
-**What it includes.** A demand model and explicit latency objectives defined before any scaling mechanism is selected, then measurement of throughput, p95/p99 latency and saturation under realistic traffic rather than extrapolation from instance counts. Caching and horizontal scaling add invalidation, shared-state or cost trade-offs that require explicit acceptance. Table 2.9 states what each mechanism buys and what it costs.
+**What it includes.** A demand model and explicit latency objectives defined before any scaling mechanism is selected, then measurement of throughput, p95/p99 latency and saturation under realistic traffic rather than extrapolation from instance counts. Caching and horizontal scaling add invalidation, shared-state or cost trade-offs that require explicit acceptance. Table 2.10 states what each mechanism buys and what it costs.
 
 **Why it is needed.** Averages hide the tail, and tail latency is what customers and timeouts experience. Without a stated objective, capacity is argued from impressions and the first real spike settles the question. **Evidence.** Realistic concurrency and growth tests report percentiles, throughput, queue age and saturation, together with the headroom the design assumes.
 
@@ -354,9 +395,9 @@ How a system fails is a design decision with a customer-visible consequence.
 
 : What each scaling mechanism buys and costs
 
-Figure 2.9 connects the demand model to the mechanism that answers it, so a scaling choice can be traced to the measurement that justified it.
+Figure 2.10 connects the demand model to the mechanism that answers it, so a scaling choice can be traced to the measurement that justified it.
 
-![Figure 2.9 — From demand model to scaling mechanism](../../assets/diagrams/rendered/ch02-performance-loop.png){#fig-2-9 width="100%"}
+![Figure 2.10 — From demand model to scaling mechanism](../../assets/diagrams/rendered/ch02-performance-loop.png){#fig-2-10 width="100%"}
 
 **Example.** Checkout targets 99% of order submissions acknowledged within two seconds at 500 submissions per second. A load test at that rate shows the database write as the saturation point, so the first change is query and index work, not more application instances.
 
@@ -374,13 +415,13 @@ Scaling options differ in cost and reversibility; decide with measurement, not p
 | Reduce work: cache or defer | The bottleneck is repeated or non-urgent work | Adds invalidation or lag; correctness must tolerate it |
 :::
 
-## 2.10 Observability
+## 2.11 Observability
 
 **Definition.** Observability is the property that lets an operator answer, without shipping code, why a specific request or business transaction behaved as it did.
 
 **Purpose.** Observability shortens diagnosis and turns an incident into evidence. It informs instrumentation scope, what context crosses an asynchronous boundary, which alerts exist and who acts on them. It also bounds what may be recorded, because telemetry is a copy of production data.
 
-**What it includes.** Correlated logs, metrics and traces, with context propagated through queues and scheduled jobs, so one business transaction can be followed across synchronous and asynchronous boundaries. Alerts correspond to actionable symptoms, each with an owner and a runbook. Redaction is applied at export, and sensitive fields are excluded rather than filtered downstream (see Chapter 11). Table 2.10 states the minimum for a critical journey.
+**What it includes.** Correlated logs, metrics and traces, with context propagated through queues and scheduled jobs, so one business transaction can be followed across synchronous and asynchronous boundaries. Alerts correspond to actionable symptoms, each with an owner and a runbook. Redaction is applied at export, and sensitive fields are excluded rather than filtered downstream (see Chapter 14). Table 2.11 states the minimum for a critical journey.
 
 **Why it is needed.** Without correlated context, an incident is reconstructed by guessing and by reading code at the worst possible time. The consequence is long diagnosis, repeated incidents and alerts nobody trusts. **Evidence.** One business transaction can be traced across synchronous and asynchronous boundaries, with redaction applied and diagnosis time measured.
 
@@ -394,9 +435,9 @@ Scaling options differ in cost and reversibility; decide with measurement, not p
 
 : Signals for one critical journey
 
-Figure 2.10 shows why the journey signals need trace context: the same request crosses synchronous and asynchronous boundaries, and a broken propagation leaves the signal stranded on one side.
+Figure 2.11 shows why the journey signals need trace context: the same request crosses synchronous and asynchronous boundaries, and a broken propagation leaves the signal stranded on one side.
 
-![Figure 2.10 — Trace context across synchronous and asynchronous boundaries](../../assets/diagrams/rendered/ch02-trace-propagation.png){#fig-2-10 width="100%"}
+![Figure 2.11 — Trace context across synchronous and asynchronous boundaries](../../assets/diagrams/rendered/ch02-trace-propagation.png){#fig-2-11 width="100%"}
 
 **Example.** A customer reports a missing confirmation. The support engineer follows one trace from the API through the queue to the notification consumer, sees the poison message in the dead-letter queue and links it to the runbook, without reading application code.
 
@@ -414,13 +455,13 @@ Instrumentation scope is a cost and privacy decision as well as a technical one.
 | Vendor agent with automatic tracing | Speed matters more than control | Fast to adopt; data residency and cost need review |
 :::
 
-## 2.11 Evolvability and Maintainability
+## 2.12 Evolvability and Maintainability
 
 **Definition.** Evolvability is the ability to change a system’s structure and suppliers without a rewrite; maintainability is the ability to make ordinary changes safely and at predictable cost.
 
 **Purpose.** These attributes determine whether the architecture can absorb a new provider, a schema change or a team split without a coordinated release across the estate. They inform where boundaries are drawn, how contracts evolve and which tests must exist before change is allowed.
 
-**What it includes.** Replaceable boundaries, backward-compatible contracts and automated tests that allow change without coordinated releases. Domain policies stay independent of infrastructure frameworks, and supplier-specific code sits behind an adapter (Figure 2.11). Table 2.11 lists the change scenarios a design should rehearse, because each one exposes a different coupling.
+**What it includes.** Replaceable boundaries, backward-compatible contracts and automated tests that allow change without coordinated releases. Domain policies stay independent of infrastructure frameworks, and supplier-specific code sits behind an adapter (Figure 2.12). Table 2.12 lists the change scenarios a design should rehearse, because each one exposes a different coupling.
 
 **Why it is needed.** A system that cannot replace a supplier is negotiating from weakness at renewal, and a framework upgrade that reaches into domain code becomes a project rather than a task. The cost appears years after the decision that created it. **Evidence.** A simulated provider replacement or schema evolution shows how many components and coordinated deployments are required.
 
@@ -433,9 +474,9 @@ Instrumentation scope is a cost and privacy decision as well as a technical one.
 
 : Change scenarios and the evidence they should produce
 
-Figure 2.11 narrows the change scenarios to the provider boundary, where a port and an adapter make a replacement testable before the contract is signed.
+Figure 2.12 narrows the change scenarios to the provider boundary, where a port and an adapter make a replacement testable before the contract is signed.
 
-![Figure 2.11 — Replaceable provider boundary](../../assets/diagrams/rendered/ch02-provider-replacement.png){#fig-2-11 width="100%"}
+![Figure 2.12 — Replaceable provider boundary](../../assets/diagrams/rendered/ch02-provider-replacement.png){#fig-2-12 width="100%"}
 
 **Example.** The checkout calls a payment port rather than a provider SDK. A contract test runs against both the current adapter and a candidate replacement, so the replacement estimate is measured rather than assumed.
 
@@ -453,13 +494,13 @@ Isolation costs code now and saves migration later; pick the level the risk just
 | Call the SDK directly from domain code | The dependency is trivial and permanent | Least code now; the highest future migration cost |
 :::
 
-## 2.12 Standardization and Reuse
+## 2.13 Standardization and Reuse
 
 **Definition.** Standardization is the adoption of one approved way to satisfy a recurring concern; reuse is the use of an existing asset instead of building a new one.
 
 **Purpose.** Standardization reduces repeated security and operational work, and it makes review predictable because the approved path is known. Reuse lowers cost when the reused asset genuinely fits. Both inform platform investment and the default choices a team makes without escalation.
 
-**What it includes.** Standardized cross-cutting concerns — identity, telemetry, deployment, contract conventions — where shared tooling reduces risk, and reuse that does not force unrelated domains into a shared release cycle. A paved road makes the secure path the easiest one while preserving an evidence-based route for unusual requirements (Figure 2.12). Table 2.12 pairs each default with its exception route.
+**What it includes.** Standardized cross-cutting concerns — identity, telemetry, deployment, contract conventions — where shared tooling reduces risk, and reuse that does not force unrelated domains into a shared release cycle. A paved road makes the secure path the easiest one while preserving an evidence-based route for unusual requirements (Figure 2.13). Table 2.13 pairs each default with its exception route.
 
 **Why it is needed.** Without defaults, every team solves identity and telemetry again, each with its own gaps, and reviewers cannot tell a deliberate deviation from an omission. With defaults that cannot be questioned, unusual requirements are forced into a bad fit and worked around silently. **Evidence.** Platform defaults remove repeated security and operations work without coupling release cadences, and exceptions have owners and expiry dates.
 
@@ -472,9 +513,9 @@ Isolation costs code now and saves migration later; pick the level the risk just
 
 : Paved-road defaults and their exception routes
 
-Figure 2.12 shows the paved road as a default with an evidence-based exit: teams follow the template until a named exception is approved, and the exception route is part of the path rather than an afterthought.
+Figure 2.13 shows the paved road as a default with an evidence-based exit: teams follow the template until a named exception is approved, and the exception route is part of the path rather than an afterthought.
 
-![Figure 2.12 — Paved road with an evidence-based exception route](../../assets/diagrams/rendered/ch02-paved-road.png){#fig-2-12 width="100%"}
+![Figure 2.13 — Paved road with an evidence-based exception route](../../assets/diagrams/rendered/ch02-paved-road.png){#fig-2-13 width="100%"}
 
 **Example.** A new checkout service takes the platform template for identity, telemetry and deployment and needs no security review for those concerns. Its non-standard use of a second message broker goes through exception review, and the gap becomes a roadmap item.
 
@@ -492,13 +533,13 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 | Team autonomy with published guidance | Domains are genuinely different | Fast locally; duplication and uneven control coverage |
 :::
 
-## 2.13 Accountability and Auditability
+## 2.14 Accountability and Auditability
 
 **Definition.** Accountability names the person or role answerable for a principle, decision or control and assigns each significant decision to a role with the context to make it; auditability makes the evidence of that responsibility retrievable after the fact.
 
 **Purpose.** Together they close the loop that the other principles open. Accountable decision-making locates decisions where knowledge exists and keeps them reviewable; an owner with retrievable evidence turns a guardrail, a decision or an exception into something that can be reviewed, defended and learned from. They inform who may approve a design, when consultation is required, the register design, the retention of decision records and the review cadence. They are the principle that keeps the other principles from being applied by default or by seniority.
 
-**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3), and escalation reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Table 2.13 sets out the classes and their records. A named accountable owner — a role, not a team — for each principle, exception, significant decision and control; a control that is enforced somewhere observable; evidence that survives staff changes and is retrievable in a review; and a periodic audit or sample that tests the evidence rather than the intention. Approved exceptions carry an owner and an expiry, recurring exceptions are reviewed as evidence about the principle itself, findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.14 lists the objects and their review cadence.
+**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3), and escalation reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Table 2.14 sets out the classes and their records. A named accountable owner — a role, not a team — for each principle, exception, significant decision and control; a control that is enforced somewhere observable; evidence that survives staff changes and is retrievable in a review; and a periodic audit or sample that tests the evidence rather than the intention. Approved exceptions carry an owner and an expiry, recurring exceptions are reviewed as evidence about the principle itself, findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.15 lists the objects and their review cadence.
 
 **Why it is needed.** Decisions made by nobody in particular cannot be revisited, defended or reversed, and the same debate returns with every new team. Without an owner and retrievable evidence, an organization can hold every principle and still be unable to show that any was applied; the first external audit or serious incident exposes the gap. The cost is invisible until an audit or an incident asks who accepted the risk. Recurring findings point at a poorly scoped principle rather than at individual teams. **Evidence.** A sample of decisions, principles and exceptions shows a named owner, an accessible ADR where the decision is significant, a proportionate review route, retrievable evidence and a closed review, and expired exceptions are actually removed.
 
@@ -510,11 +551,11 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 
 : Decision classes, deciders and records
 
-Chapter 19 (19.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners. Figure 2.13 routes a decision by its reversibility and impact, so the class in the table also sets how much review the choice needs.
+Chapter 18 (18.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners. Figure 2.14 routes a decision by its reversibility and impact, so the class in the table also sets how much review the choice needs.
 
-![Figure 2.13 — Decision routing by reversibility and impact](../../assets/diagrams/rendered/ch02-decision-tiers.png){#fig-2-13 width="100%"}
+![Figure 2.14 — Decision routing by reversibility and impact](../../assets/diagrams/rendered/ch02-decision-tiers.png){#fig-2-14 width="100%"}
 
-The same owners keep the evidence current. Table 2.14 lists each accountability object with the evidence it leaves and the review that tests it.
+The same owners keep the evidence current. Table 2.15 lists each accountability object with the evidence it leaves and the review that tests it.
 
 | Object | Accountable owner | Evidence retained | Review cadence |
 | :--- | :--- | :--- | :--- |
@@ -526,9 +567,9 @@ The same owners keep the evidence current. Table 2.14 lists each accountability 
 
 : Accountability objects, evidence and review cadence
 
-Figure 2.14 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
+Figure 2.15 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
 
-![Figure 2.14 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-14 width="100%"}
+![Figure 2.15 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-15 width="100%"}
 
 **Example.** The checkout team chooses its own caching strategy and records it in the pull request. The decision to call the fraud provider synchronously crosses a domain boundary and carries financial risk, so it becomes an ADR with a named risk owner. The payments exception for the legacy billing writer names an approver, a compensating reconciliation and a fixed expiry date; when the date passes, the register marks it expired and the next review must either close it or renew it with fresh evidence.
 
@@ -544,47 +585,6 @@ Evidence costs effort to produce and keep; decide what must be retained.
 | Record every decision with full evidence | The domain is regulated or safety-relevant | Highest assurance; heavy process and storage cost |
 | Record significant decisions, sample the rest | Most organizations with several teams | Reasonable cost; needs a defined sampling rule |
 | Rely on tickets and chat history | One team, short-lived systems | Cheapest; evidence is usually unrecoverable when needed |
-:::
-
-## 2.14 Privacy by Design
-
-**Definition.** Privacy by design treats the protection of personal data as a design constraint applied at every stage of the data lifecycle, not as a compliance check before launch.
-
-**Purpose.** It shapes the data model, the flows, the retention schedule and the access model while those are still cheap to change. It informs whether a field is collected at all, where it may be stored, who may read it, how long it exists and how a deletion request can be honored. It is distinct from security: a system can be secure and still collect more personal data than any purpose requires.
-
-**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 10.9; retention and deletion mechanics are in 5.2.4). Table 2.15 states the question each lifecycle stage must answer.
-
-**Why it is needed.** Personal data that is never collected cannot leak, be subpoenaed or be retained by mistake. The consequence of skipping the design step is a breach with an unnecessarily large blast radius and a deletion request that cannot be satisfied because copies exist in logs, backups and analytics extracts. **Evidence.** Each data set has a purpose, a retention period, a deletion test and a named privacy owner.
-
-| Stage | Question it must answer | Evidence |
-| :--- | :--- | :--- |
-| Collect | Which purpose justifies each field, and on what basis? | Data inventory with purpose and lawful basis |
-| Use | Is the data used only for the stated purpose? | Access model and purpose tags |
-| Share | Which processors and regions are involved, under what terms? | Transfer register and contract clauses |
-| Retain | How long, and why that long? | Retention schedule with justification |
-| Delete | Is deletion verifiable across replicas and backups? | Deletion test and log |
-| Request | Can access, correction and erasure be served? | Request log and measured response time |
-
-: Privacy questions at each lifecycle stage
-
-Figure 2.15 follows personal data through the lifecycle stages in the table, marking the control that applies at collection, use, retention and deletion.
-
-![Figure 2.15 — Privacy controls across the data lifecycle](../../assets/diagrams/rendered/ch02-privacy-lifecycle.png){#fig-2-15 width="100%"}
-
-**Example.** Checkout collects the delivery address and contact details because the order cannot be fulfilled without them, and never stores the card number: the payment provider returns a token. Support staff see a masked address until a case is opened, and the access is logged.
-
-::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Logging full request payloads for debugging convenience. Personal data then spreads into logs, traces and a third-party observability platform, outside the retention and deletion controls of the system that owns it. Redact at the source and record identifiers instead of content.
-:::
-
-::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
-Privacy controls restrict what the system can do; choose the strength deliberately.
-
-| Option | Choose when | Consequences |
-| :--- | :--- | :--- |
-| Collect only the fields the journey needs | Almost always; this is the default | Some personalization and analytics are lost |
-| Pseudonymize and separate identifiers | Analysis or support needs records without identity | Extra mapping store to protect and govern |
-| Retain full data under strict access control | A legal or safety obligation requires it | Largest blast radius; needs the strongest audit and retention evidence |
 :::
 
 ## 2.15 Managing Principle Conflicts

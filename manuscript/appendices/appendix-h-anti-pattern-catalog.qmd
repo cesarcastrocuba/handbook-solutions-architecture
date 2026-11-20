@@ -8,8 +8,8 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 | :--- | :--- |
 | Writing functional requirements as interface descriptions — “the system shall display an order summary page.” | 1.1 |
 | Optimizing one attribute locally and declaring victory. | 1.2 |
-| Recording a team preference as a constraint. | 1.3 |
-| Accepting “highly available” as a requirement. | 1.4 |
+| Accepting “highly available” as a requirement. | 1.3 |
+| Recording a team preference as a constraint. | 1.4 |
 | Building the traceability matrix once, at design time, and then treating it as complete. | 1.5 |
 
 : Anti-patterns from Chapter 1
@@ -25,13 +25,13 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 | Declaring “the data warehouse is read-only” while analysts correct records there and the corrections are loaded back into production. | 2.5 |
 | Calling a protocol choice a contract: “we use REST, so it is decoupled”. | 2.6 |
 | Authorizing only in the user interface or the gateway. | 2.7 |
-| Adding retries to fix a flaky dependency without a deadline or an idempotency key. | 2.8 |
-| Extrapolating capacity from instance count or from average latency. | 2.9 |
-| Instrumenting infrastructure and calling it observability: CPU dashboards for every host, no business transaction that can be followed end to end. | 2.10 |
-| Letting a vendor SDK shape the domain model because it was quickest at the start. | 2.11 |
-| Reuse enforced through a shared release train: every team adopts the shared component, and every team now releases together. | 2.12 |
-| Recording only the outcome of a decision, not the alternatives or the assumption that made it correct. | 2.13 |
-| Logging full request payloads for debugging convenience. | 2.14 |
+| Logging full request payloads for debugging convenience. | 2.8 |
+| Adding retries to fix a flaky dependency without a deadline or an idempotency key. | 2.9 |
+| Extrapolating capacity from instance count or from average latency. | 2.10 |
+| Instrumenting infrastructure and calling it observability: CPU dashboards for every host, no business transaction that can be followed end to end. | 2.11 |
+| Letting a vendor SDK shape the domain model because it was quickest at the start. | 2.12 |
+| Reuse enforced through a shared release train: every team adopts the shared component, and every team now releases together. | 2.13 |
+| Recording only the outcome of a decision, not the alternatives or the assumption that made it correct. | 2.14 |
 | Publishing “prefer asynchronous integration” without an exception route. | 2.15 |
 
 : Anti-patterns from Chapter 2
@@ -65,194 +65,194 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 4
 
-## H.5 Chapter 5: Data Architecture
+## H.5 Chapter 5: Architecture Documentation
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Publishing principles as aspirations — "data is an asset", "we are data-driven" — with no owner, control or exception process. | 5.1 |
-| Treating the analytical copy as the convenient source of truth: a dashboard queries the warehouse because it is faster, then a business decision depends on data that is hours old, lacks a correction path and never receives deletions. | 5.2 |
-| Confusing schema validity with trust: a contract test passes, so the data is assumed correct, while units, nullability or survivorship silently changed. | 5.3 |
-| Applying one consistency level to the whole estate — usually the strongest available — because "correctness matters". | 5.4 |
+| Documenting every view the notation allows. | 5.1 |
+| Drawing the success path and calling the dynamic view done. | 5.2 |
+| Treating documentation as a phase deliverable. | 5.3 |
 
 : Anti-patterns from Chapter 5
 
-## H.6 Chapter 6: Integration Architecture
+## H.6 Chapter 6: Architecture Evaluation
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Choosing asynchronous messaging to "decouple" without designing the pending state the user will see. | 6.1 |
-| Treating the OpenAPI document as the whole contract. | 6.2 |
-| Treating a broker’s at-least-once delivery as end-to-end exactly-once. | 6.3 |
-| Converting every timeout into a failure. | 6.4 |
-| Monitoring the broker and calling it integration reliability. | 6.5 |
-| Letting the integration layer become the application. | 6.6 |
+| Treating a reviewed diagram or an approval meeting as validation. | 6.1 |
+| Turning the evaluation into design by committee. | 6.2 |
+| Treating the evaluation report as the end of the work. | 6.3 |
 
 : Anti-patterns from Chapter 6
 
-## H.7 Chapter 7: Application Architecture
+## H.7 Chapter 7: Architecture and Engineering Artifacts
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Choosing microservices before the boundaries and ownership are understood. | 7.1 |
-| Letting adapters decide business outcomes: a provider client that maps a timeout to "declined", or a controller that sets an order to REJECTED when validation fails. | 7.2 |
-| Adding a projection or a cache to solve a performance problem that is actually a query or index problem. | 7.3 |
-| Adding retries and instances to a system whose bottleneck is a shared resource. | 7.4 |
-| Publishing a shared library that contains domain logic — an `order-utils` package with pricing rules and state transitions — because it avoids duplicating a few functions. | 7.5 |
-| Letting a BFF become a second domain layer. | 7.6 |
-| Relying on an application-level tenant filter as the only isolation control. | 7.7 |
+| Producing every artifact for every change. | 7.1 |
+| Treating the PRD as the requirements baseline and leaving quality attributes to the architect. | 7.2 |
+| Writing the ADR after the work is done, as a summary that justifies what was built. | 7.3 |
+| Maintaining the ICD as prose while the OpenAPI file evolves independently. | 7.4 |
+| Treating approval as the end of an artifact’s life. | 7.5 |
 
 : Anti-patterns from Chapter 7
 
-## H.8 Chapter 8: Infrastructure and Cloud Architecture
+## H.8 Chapter 8: Data Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Treating "managed" as "secured". | 8.1 |
-| A second region is provisioned, but DNS, identity, secrets and operational access are not replicated, so the first failover test fails at the first step and the region turns out to be a diagram rather than a recovery capability. | 8.2 |
-| Optimizing the invoice line that looks largest instead of the unit economics. | 8.3 |
-| Closing framework findings by editing the questionnaire answer. | 8.4 |
-| Testing connectivity from an administrator workstation or a jump host and concluding the workload can reach the dependency. | 8.5 |
-| Adopting a container orchestrator as a default for a small number of services. | 8.6 |
-| Designing the fleet as if devices were always connected and always current. | 8.7 |
+| Publishing principles as aspirations — "data is an asset", "we are data-driven" — with no owner, control or exception process. | 8.1 |
+| Treating the analytical copy as the convenient source of truth: a dashboard queries the warehouse because it is faster, then a business decision depends on data that is hours old, lacks a correction path and never receives deletions. | 8.2 |
+| Confusing schema validity with trust: a contract test passes, so the data is assumed correct, while units, nullability or survivorship silently changed. | 8.3 |
+| Applying one consistency level to the whole estate — usually the strongest available — because "correctness matters". | 8.4 |
 
 : Anti-patterns from Chapter 8
 
-## H.9 Chapter 9: Platform Architecture
+## H.9 Chapter 9: Integration Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Calling every shared asset a platform. | 9.1 |
-| Mandating a platform before it is better than the alternative. | 9.2 |
-| Leaving the responsibility boundary implicit. | 9.3 |
-| Building the portal first. | 9.4 |
-| Offering an abstraction without an escape hatch. | 9.5 |
-| Sharing one control plane across risk classes and environments. | 9.6 |
-| Enforcing policy only at the last gate. | 9.7 |
-| Coupling running workloads to the platform's control plane. | 9.8 |
-| Measuring the platform team's activity instead of its consumers' outcomes. | 9.9 |
-| Charging back before the platform is cheaper than the alternative. | 9.10 |
-| Building a commodity capability because it seems simple. | 9.11 |
-| Treating the platform review as a one-off launch gate. | 9.12 |
+| Choosing asynchronous messaging to "decouple" without designing the pending state the user will see. | 9.1 |
+| Treating the OpenAPI document as the whole contract. | 9.2 |
+| Treating a broker’s at-least-once delivery as end-to-end exactly-once. | 9.3 |
+| Converting every timeout into a failure. | 9.4 |
+| Monitoring the broker and calling it integration reliability. | 9.5 |
+| Letting the integration layer become the application. | 9.6 |
 
 : Anti-patterns from Chapter 9
 
-## H.10 Chapter 10: Security Architecture
+## H.10 Chapter 10: Application Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Running threat modeling once at design time and filing the result. | 10.1 |
-| Treating a valid OAuth access token as proof of user identity. | 10.2 |
-| Relying on a role check at the API gateway. | 10.3 |
-| Encrypting data and treating key custody as an implementation detail. | 10.4 |
-| Relying on an unauthenticated DAST scan as the security test. | 10.5 |
-| Prioritizing only by CVSS base score. | 10.6 |
-| Treating operational logs as an audit trail. | 10.7 |
-| Accepting a certification logo without reading its scope and period. | 10.8 |
-| Treating pseudonymized data as anonymous. | 10.9 |
-| Assuming TLS and an API gateway are sufficient. | 10.10 |
+| Choosing microservices before the boundaries and ownership are understood. | 10.1 |
+| Letting adapters decide business outcomes: a provider client that maps a timeout to "declined", or a controller that sets an order to REJECTED when validation fails. | 10.2 |
+| Adding a projection or a cache to solve a performance problem that is actually a query or index problem. | 10.3 |
+| Adding retries and instances to a system whose bottleneck is a shared resource. | 10.4 |
+| Publishing a shared library that contains domain logic — an `order-utils` package with pricing rules and state transitions — because it avoids duplicating a few functions. | 10.5 |
+| Letting a BFF become a second domain layer. | 10.6 |
+| Relying on an application-level tenant filter as the only isolation control. | 10.7 |
 
 : Anti-patterns from Chapter 10
 
-## H.11 Chapter 11: Observability, Reliability and SRE
+## H.11 Chapter 11: Infrastructure and Cloud Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Collecting everything and controlling nothing. | 11.1 |
-| Setting the SLO equal to the SLA, or at 100%. | 11.2 |
-| Setting severity from the technical cause instead of customer impact. | 11.3 |
-| Sizing for the average and trusting autoscaling to cover the peak. | 11.4 |
-| Treating the postmortem as the end of the incident: the document is filed, the actions have no owner or date, and the team moves to the next release. | 11.5 |
+| Treating "managed" as "secured". | 11.1 |
+| Testing connectivity from an administrator workstation or a jump host and concluding the workload can reach the dependency. | 11.2 |
+| Adopting a container orchestrator as a default for a small number of services. | 11.3 |
+| A second region is provisioned, but DNS, identity, secrets and operational access are not replicated, so the first failover test fails at the first step and the region turns out to be a diagram rather than a recovery capability. | 11.4 |
+| Optimizing the invoice line that looks largest instead of the unit economics. | 11.5 |
+| Designing the fleet as if devices were always connected and always current. | 11.6 |
+| Closing framework findings by editing the questionnaire answer. | 11.7 |
 
 : Anti-patterns from Chapter 11
 
-## H.12 Chapter 12: Deployment and Operations
+## H.12 Chapter 12: Platform Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Building a different artifact for each environment. | 12.1 |
-| Keeping every flag forever. | 12.2 |
-| Treating go-live as a deployment milestone. | 12.3 |
-| Using the emergency route to hit a deadline. | 12.4 |
-| Standing break-glass access. | 12.5 |
-| Assuming every release can be rolled back. | 12.6 |
+| Calling every shared asset a platform. | 12.1 |
+| Mandating a platform before it is better than the alternative. | 12.2 |
+| Leaving the responsibility boundary implicit. | 12.3 |
+| Building the portal first. | 12.4 |
+| Offering an abstraction without an escape hatch. | 12.5 |
+| Sharing one control plane across risk classes and environments. | 12.6 |
+| Enforcing policy only at the last gate. | 12.7 |
+| Coupling running workloads to the platform's control plane. | 12.8 |
+| Measuring the platform team's activity instead of its consumers' outcomes. | 12.9 |
+| Charging back before the platform is cheaper than the alternative. | 12.10 |
+| Building a commodity capability because it seems simple. | 12.11 |
+| Treating the platform review as a one-off launch gate. | 12.12 |
 
 : Anti-patterns from Chapter 12
 
-## H.13 Chapter 13: Architecture Documentation
+## H.13 Chapter 13: Security Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Documenting every view the notation allows. | 13.1 |
-| Drawing the success path and calling the dynamic view done. | 13.2 |
-| Treating documentation as a phase deliverable. | 13.3 |
+| Running threat modeling once at design time and filing the result. | 13.1 |
+| Treating a valid OAuth access token as proof of user identity. | 13.2 |
+| Relying on a role check at the API gateway. | 13.3 |
+| Encrypting data and treating key custody as an implementation detail. | 13.4 |
+| Relying on an unauthenticated DAST scan as the security test. | 13.5 |
+| Prioritizing only by CVSS base score. | 13.6 |
+| Treating operational logs as an audit trail. | 13.7 |
+| Accepting a certification logo without reading its scope and period. | 13.8 |
+| Treating pseudonymized data as anonymous. | 13.9 |
+| Assuming TLS and an API gateway are sufficient. | 13.10 |
 
 : Anti-patterns from Chapter 13
 
-## H.14 Chapter 14: Architecture Evaluation
+## H.14 Chapter 14: Observability, Reliability and SRE
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Treating a reviewed diagram or an approval meeting as validation. | 14.1 |
-| Turning the evaluation into design by committee. | 14.2 |
-| Treating the evaluation report as the end of the work. | 14.3 |
+| Collecting everything and controlling nothing. | 14.1 |
+| Setting the SLO equal to the SLA, or at 100%. | 14.2 |
+| Setting severity from the technical cause instead of customer impact. | 14.3 |
+| Sizing for the average and trusting autoscaling to cover the peak. | 14.4 |
+| Treating the postmortem as the end of the incident: the document is filed, the actions have no owner or date, and the team moves to the next release. | 14.5 |
 
 : Anti-patterns from Chapter 14
 
-## H.15 Chapter 15: Testing and Quality Verification
+## H.15 Chapter 15: Deployment and Operations
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Optimizing for a coverage number instead of for evidence. | 15.1 |
-| Re-running the pipeline until it turns green. | 15.2 |
-| Testing quality attributes once, before the first launch. | 15.3 |
-| Turning test metrics into targets for teams. | 15.4 |
+| Building a different artifact for each environment. | 15.1 |
+| Keeping every flag forever. | 15.2 |
+| Treating go-live as a deployment milestone. | 15.3 |
+| Using the emergency route to hit a deadline. | 15.4 |
+| Standing break-glass access. | 15.5 |
+| Assuming every release can be rolled back. | 15.6 |
 
 : Anti-patterns from Chapter 15
 
-## H.16 Chapter 16: Architecture Evolution and Economics
+## H.16 Chapter 16: Testing and Quality Verification
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Treating a migration plan as a schedule rather than a risk-reduction sequence. | 16.1 |
-| Comparing options on the number that is easiest to obtain. | 16.2 |
-| A migration that never retires old paths is accumulation, not modernization. | 16.3 |
+| Optimizing for a coverage number instead of for evidence. | 16.1 |
+| Re-running the pipeline until it turns green. | 16.2 |
+| Testing quality attributes once, before the first launch. | 16.3 |
+| Turning test metrics into targets for teams. | 16.4 |
 
 : Anti-patterns from Chapter 16
 
-## H.17 Chapter 17: Architecture and Engineering Artifacts
+## H.17 Chapter 17: Architecture Evolution and Economics
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Producing every artifact for every change. | 17.1 |
-| Treating the PRD as the requirements baseline and leaving quality attributes to the architect. | 17.2 |
-| Writing the ADR after the work is done, as a summary that justifies what was built. | 17.3 |
-| Maintaining the ICD as prose while the OpenAPI file evolves independently. | 17.4 |
-| Treating approval as the end of an artifact’s life. | 17.5 |
+| Treating a migration plan as a schedule rather than a risk-reduction sequence. | 17.1 |
+| Comparing options on the number that is easiest to obtain. | 17.2 |
+| A migration that never retires old paths is accumulation, not modernization. | 17.3 |
 
 : Anti-patterns from Chapter 17
 
-## H.18 Chapter 18: Architecture Frameworks, Methods and Standards
+## H.18 Chapter 18: AI and Machine Learning Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Positioning frameworks by reputation rather than by concern. | 18.1 |
-| Using an enterprise framework to document a single solution. | 18.2 |
-| Running an evaluation method as a ratification ritual. | 18.3 |
-| Citing a regulation by name in a design document without confirming applicability or the current edition. | 18.4 |
+| Reviewing an AI design as if the model were the system. | 18.1 |
+| Starting with the most capable pattern. | 18.2 |
+| Indexing everything and filtering at answer time. | 18.3 |
+| Selecting a model from a public leaderboard or a single impressive demo. | 18.4 |
+| Treating the system prompt as the security boundary. | 18.5 |
+| Shipping prompt and index changes as configuration rather than as releases. | 18.6 |
+| Optimizing the invoice line that is easiest to see. | 18.7 |
+| Giving an agent a service account with the combined permissions of everyone it serves. | 18.8 |
 
 : Anti-patterns from Chapter 18
 
-## H.19 Chapter 19: AI and Machine Learning Architecture
+## H.19 Chapter 19: Architecture Frameworks, Methods and Standards
 
 | Anti-pattern | Section |
 | :--- | :--- |
-| Reviewing an AI design as if the model were the system. | 19.1 |
-| Starting with the most capable pattern. | 19.2 |
-| Indexing everything and filtering at answer time. | 19.3 |
-| Selecting a model from a public leaderboard or a single impressive demo. | 19.4 |
-| Treating the system prompt as the security boundary. | 19.5 |
-| Shipping prompt and index changes as configuration rather than as releases. | 19.6 |
-| Optimizing the invoice line that is easiest to see. | 19.7 |
-| Giving an agent a service account with the combined permissions of everyone it serves. | 19.8 |
+| Positioning frameworks by reputation rather than by concern. | 19.1 |
+| Using an enterprise framework to document a single solution. | 19.2 |
+| Running an evaluation method as a ratification ritual. | 19.3 |
+| Citing a regulation by name in a design document without confirming applicability or the current edition. | 19.4 |
 
 : Anti-patterns from Chapter 19

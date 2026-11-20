@@ -1,10 +1,10 @@
 # Appendix B — Reusable Artifact Schemas
 
-The schemas in this appendix describe what each artifact should contain and what to write in every section. They are checklists of sections, not a mandate to fill all of them: match the depth to the risk of the change (17.1.2), mark a section not applicable with the reason, and delete sections that no reader will use. Each schema states the section, the content expected and the quality check a reviewer applies. Chapter 17 defines the artifacts themselves and their fiches; this appendix is the working outline.
+The schemas in this appendix describe what each artifact should contain and what to write in every section. They are checklists of sections, not a mandate to fill all of them: match the depth to the risk of the change (7.1.2), mark a section not applicable with the reason, and delete sections that no reader will use. Each schema states the section, the content expected and the quality check a reviewer applies. Chapter 7 defines the artifacts themselves and their fiches; this appendix is the working outline.
 
 **Using a schema.** Copy the section names into your template, keep the identifiers stable so that other artifacts can link to them, and record the artifact’s owner and status in its header. A section that is empty and not marked not applicable is a defect, because a reader cannot tell whether the omission was deliberate.
 
-**Scope of this appendix.** The schemas cover the artifacts most often reused across solutions: the quality scenario, PRD, HLD, LLD, ICD, ADR, RFC, review record, audit-event catalog, control-and-evidence matrix and retention schedule. The remaining catalog artifacts in 17.1.2 have a fiche but no full schema here, because their content is specific to one domain or is defined in the chapter that owns it: the BRD and business case (17.2.1), the full SRS (17.2.3; B.1 covers its quality scenarios), the API and event specification (17.4.1), the data model, dictionary and lineage (17.4.2), the threat model and risk register (17.4.3), the test strategy (17.5.1) and the runbook and SLOs (17.5.2). Their fiche is the minimum content to start from; add a schema here when a second team needs the same structure.
+**Scope of this appendix.** The schemas cover the artifacts most often reused across solutions: the quality scenario, PRD, HLD, LLD, ICD, ADR, RFC, review record, audit-event catalog, control-and-evidence matrix and retention schedule. The remaining catalog artifacts in 7.1.2 have a fiche but no full schema here, because their content is specific to one domain or is defined in the chapter that owns it: the BRD and business case (7.2.1), the full SRS (7.2.3; B.1 covers its quality scenarios), the API and event specification (7.4.1), the data model, dictionary and lineage (7.4.2), the threat model and risk register (7.4.3), the test strategy (7.5.1) and the runbook and SLOs (7.5.2). Their fiche is the minimum content to start from; add a schema here when a second team needs the same structure.
 
 ## B.1 Quality Attribute Scenario
 
@@ -68,22 +68,7 @@ The low-level design schema makes implementation and failure behavior reviewable
 
 : Schema for an LLD or technical design document
 
-## B.5 ICD — Interface Control Document
-
-The ICD schema captures everything two parties must agree on for an interface to work and to change safely.
-
-| Section | What to write | Quality check |
-| :--- | :--- | :--- |
-| Parties, owners and versioning | Both parties, their owners and the version of this agreement | Owners named on both sides; version and date recorded |
-| Interface purpose and interaction diagram | What the interface is for and a sequence diagram of the main and failure paths | Business purpose stated, not only the protocol |
-| Protocol, transport, authentication and authorization | Transport, authentication method and authorization scopes | Authorization checked at the resource; credentials rotate |
-| Payload semantics, schema reference and compatibility policy | Field meanings, the machine-readable schema link and compatibility rules | Semantics agreed; schema is the single source for generated code |
-| Error model, timeouts, retry, idempotency and service levels | Error codes, timeout values, retry eligibility, idempotency key and targets | Unknown outcome defined; duplicate handling agreed |
-| Observability, contacts, testing and change control | Correlation identifiers, support window, escalation, contract tests and change process | Escalation tested; breaking changes require a major version |
-
-: Schema for an ICD
-
-## B.6 ADR — Architecture Decision Record
+## B.5 ADR — Architecture Decision Record
 
 The ADR schema preserves the reasoning a later change must either respect or deliberately overturn.
 
@@ -97,6 +82,24 @@ The ADR schema preserves the reasoning a later change must either respect or del
 | Acceptance evidence and review triggers | How the decision will be validated, and the event or date that reopens it | Trigger is a concrete event or date |
 
 : Schema for an ADR
+
+## B.6 Tenancy Decision Record
+
+The tenancy decision record states the isolation model for each layer and how it is proven (10.7).
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Tenant profile | Tenant counts, size distribution, tiers and contractual or regulatory terms | Largest tenant and regulated tenants identified |
+| Model per layer | Silo, pool or bridge for compute, storage, messaging, cache, search and keys | Every layer covered, including derived stores |
+| Tenant context | The source of tenant identity and how it reaches requests, events and jobs | Context verified on asynchronous paths |
+| Fairness | Quotas, rate limits and workload separation per tier | One-tenant overload test recorded |
+| Data location and recovery | Region mapping, per-tenant RTO and RPO, single-tenant restore path | Restore measured; backups and telemetry covered |
+| Lifecycle | Onboarding, tier change, offboarding and data deletion | Each path automated or has an owner; deletion evidenced |
+| Cost | Attribution method and cost per tenant and per tier | Report produced from metered data |
+| Isolation evidence | Cross-tenant tests and their frequency | Tests cover APIs, events, search and exports |
+| Review trigger | The tenant count, regulation or tenant size that reopens the decision | Trigger is measurable |
+
+: Schema for a tenancy decision record
 
 ## B.7 RFC — Request for Comments
 
@@ -112,22 +115,40 @@ The RFC schema supports structured consultation before a contested or cross-team
 
 : Schema for an RFC
 
-## B.8 Architecture Review Record
+## B.8 Vendor Evaluation Matrix
 
-The review record schema captures the findings, conditions and exceptions of an architecture review so that the decision is auditable.
+The vendor evaluation matrix records criteria and scores for each candidate (17.2.6). Agree on the criteria and weights before opening any bid.
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |
-| Scope, risk tier and criticality | What was reviewed, at which risk tier and why | Scope and tier match the review policy |
-| Requirement traceability and decision inventory | The requirements and decisions in scope, with links | Links resolve; no significant decision missing |
-| Security, privacy and data findings | Findings with severity and evidence | Each finding cites evidence |
-| Reliability, SLO and capacity evidence | Evidence for the quality scenarios claimed | Measured, not asserted |
-| Exceptions with owners and expiry | Any accepted exception, its owner and expiry date | Every exception has an owner and a date |
-| Outcome, conditions and follow-up actions | The decision, conditions and actions with owners and dates | Conditions are verifiable; actions tracked |
+| Evaluation scope | The need, decision owner, participants and conflicts of interest declared | Decision owner named; declarations recorded |
+| Mandatory criteria | Pass or fail conditions such as security, data location and regulatory fit | Criteria dated before bids were opened; a failure excludes the candidate |
+| Weighted criteria | Functional, architectural, operational, supplier viability and exit criteria, with weights summing to 100 | Weights dated before bids were opened |
+| Scoring scale | The meaning of each score, with an example of what earns it | Scale applied the same way by all scorers |
+| Scores | Each scorer's individual score and evidence, then the moderated score, per candidate and criterion | Individual scores retained; every score cites evidence |
+| Multi-year cost | Normalized total cost, scored separately from the technical result | Same volumes and term used for each bid |
+| Proof-of-concept results | Claim tested, exit criterion, result and data used | Exit criteria agreed before the test |
+| References | Customers contacted, similarity to this case and findings | At least one reference chosen by the buyer |
+| Recommendation | Ranked result, residual risks, sensitivity to weights and the resulting decision | Sensitivity checked; linked to an ADR |
 
-: Schema for an architecture review record
+: Schema for a vendor evaluation matrix
 
-## B.9 Audit Event Catalog
+## B.9 ICD — Interface Control Document
+
+The ICD schema captures everything two parties must agree on for an interface to work and to change safely.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Parties, owners and versioning | Both parties, their owners and the version of this agreement | Owners named on both sides; version and date recorded |
+| Interface purpose and interaction diagram | What the interface is for and a sequence diagram of the main and failure paths | Business purpose stated, not only the protocol |
+| Protocol, transport, authentication and authorization | Transport, authentication method and authorization scopes | Authorization checked at the resource; credentials rotate |
+| Payload semantics, schema reference and compatibility policy | Field meanings, the machine-readable schema link and compatibility rules | Semantics agreed; schema is the single source for generated code |
+| Error model, timeouts, retry, idempotency and service levels | Error codes, timeout values, retry eligibility, idempotency key and targets | Unknown outcome defined; duplicate handling agreed |
+| Observability, contacts, testing and change control | Correlation identifiers, support window, escalation, contract tests and change process | Escalation tested; breaking changes require a major version |
+
+: Schema for an ICD
+
+## B.10 Audit Event Catalog
 
 The audit event catalog schema defines which events must be recorded, with which fields, so that the audit trail can answer who did what and when.
 
@@ -141,20 +162,6 @@ The audit event catalog schema defines which events must be recorded, with which
 | Emitter and test | The component that emits the event and the test that proves it is recorded | Ownership and a passing test recorded |
 
 : Schema for an audit event catalog
-
-## B.10 Control and Evidence Matrix
-
-The control and evidence matrix schema links each requirement to the control that satisfies it and the evidence that proves the control operates.
-
-| Section | What to write | Quality check |
-| :--- | :--- | :--- |
-| Requirement | The obligation or policy requirement, with its identifier | Requirement traceable to a source |
-| Control | The design or process control that satisfies it, for example a pipeline approval model | Control is specific enough to test |
-| Evidence | The artifact that demonstrates the control, for example change records generated by the pipeline | Evidence exists, is retained and is current |
-| Frequency | How often the evidence is produced or reviewed, for example continuous, monthly or quarterly | Frequency matches the risk and the obligation |
-| Owner | The person or role accountable for the control and its evidence | Named owner, not a team alias |
-
-: Schema for a control and evidence matrix
 
 ## B.11 Retention Schedule
 
@@ -171,62 +178,9 @@ The retention schedule schema states how long each data category is kept, where 
 
 : Schema for a retention schedule
 
-## B.12 Platform Assessment
+## B.12 Platform Capability Contract
 
-The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (6.6.6, 8.6.1).
-
-| Section | What to write | Quality check |
-| :--- | :--- | :--- |
-| Workloads in scope | The interfaces or services, with volumes, latency, state and growth | Figures are measured or marked as estimates |
-| Required capabilities | Connectors, protocols, runtime features, deployment model and data location | Each capability is traced to a workload |
-| Limits | Provider limits, quotas, payload sizes, execution time and concurrency | Limits tested for the largest workload |
-| Security and compliance | Identity, secrets, network path, audit logs and certifications relied on | Evidence is dated and matches the service scope |
-| Operations | Owner, monitoring, upgrade cycle, support path and on-call responsibility | A named team has accepted operation |
-| Cost | Multi-year cost, including licenses, consumption, people and migration | Compared at expected and peak volume |
-| Lock-in and exit | Platform-specific assets, export formats and estimated exit effort | Exit path exercised for a sample flow |
-| Recommendation | Adopt, adopt with conditions, or reject, with conditions and review date | Linked to an ADR |
-
-: Schema for a platform assessment
-
-## B.13 Vendor Evaluation Matrix
-
-The vendor evaluation matrix records criteria and scores for each candidate (16.2.6). Agree on the criteria and weights before opening any bid.
-
-| Section | What to write | Quality check |
-| :--- | :--- | :--- |
-| Evaluation scope | The need, decision owner, participants and conflicts of interest declared | Decision owner named; declarations recorded |
-| Mandatory criteria | Pass or fail conditions such as security, data location and regulatory fit | Criteria dated before bids were opened; a failure excludes the candidate |
-| Weighted criteria | Functional, architectural, operational, supplier viability and exit criteria, with weights summing to 100 | Weights dated before bids were opened |
-| Scoring scale | The meaning of each score, with an example of what earns it | Scale applied the same way by all scorers |
-| Scores | Each scorer's individual score and evidence, then the moderated score, per candidate and criterion | Individual scores retained; every score cites evidence |
-| Multi-year cost | Normalized total cost, scored separately from the technical result | Same volumes and term used for each bid |
-| Proof-of-concept results | Claim tested, exit criterion, result and data used | Exit criteria agreed before the test |
-| References | Customers contacted, similarity to this case and findings | At least one reference chosen by the buyer |
-| Recommendation | Ranked result, residual risks, sensitivity to weights and the resulting decision | Sensitivity checked; linked to an ADR |
-
-: Schema for a vendor evaluation matrix
-
-## B.14 Tenancy Decision Record
-
-The tenancy decision record states the isolation model for each layer and how it is proven (7.7).
-
-| Section | What to write | Quality check |
-| :--- | :--- | :--- |
-| Tenant profile | Tenant counts, size distribution, tiers and contractual or regulatory terms | Largest tenant and regulated tenants identified |
-| Model per layer | Silo, pool or bridge for compute, storage, messaging, cache, search and keys | Every layer covered, including derived stores |
-| Tenant context | The source of tenant identity and how it reaches requests, events and jobs | Context verified on asynchronous paths |
-| Fairness | Quotas, rate limits and workload separation per tier | One-tenant overload test recorded |
-| Data location and recovery | Region mapping, per-tenant RTO and RPO, single-tenant restore path | Restore measured; backups and telemetry covered |
-| Lifecycle | Onboarding, tier change, offboarding and data deletion | Each path automated or has an owner; deletion evidenced |
-| Cost | Attribution method and cost per tenant and per tier | Report produced from metered data |
-| Isolation evidence | Cross-tenant tests and their frequency | Tests cover APIs, events, search and exports |
-| Review trigger | The tenant count, regulation or tenant size that reopens the decision | Trigger is measurable |
-
-: Schema for a tenancy decision record
-
-## B.15 Platform Capability Contract
-
-The platform capability contract states what one platform capability provides to its consumers and what remains theirs (9.5.2).
+The platform capability contract states what one platform capability provides to its consumers and what remains theirs (12.5.2).
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |
@@ -241,3 +195,49 @@ The platform capability contract states what one platform capability provides to
 | Change and deprecation | Notice periods, migration support and the escape hatch | Consumers per version known |
 
 : Schema for a platform capability contract
+
+## B.13 Platform Assessment
+
+The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (9.6.6, 11.3.1).
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Workloads in scope | The interfaces or services, with volumes, latency, state and growth | Figures are measured or marked as estimates |
+| Required capabilities | Connectors, protocols, runtime features, deployment model and data location | Each capability is traced to a workload |
+| Limits | Provider limits, quotas, payload sizes, execution time and concurrency | Limits tested for the largest workload |
+| Security and compliance | Identity, secrets, network path, audit logs and certifications relied on | Evidence is dated and matches the service scope |
+| Operations | Owner, monitoring, upgrade cycle, support path and on-call responsibility | A named team has accepted operation |
+| Cost | Multi-year cost, including licenses, consumption, people and migration | Compared at expected and peak volume |
+| Lock-in and exit | Platform-specific assets, export formats and estimated exit effort | Exit path exercised for a sample flow |
+| Recommendation | Adopt, adopt with conditions, or reject, with conditions and review date | Linked to an ADR |
+
+: Schema for a platform assessment
+
+## B.14 Architecture Review Record
+
+The review record schema captures the findings, conditions and exceptions of an architecture review so that the decision is auditable.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Scope, risk tier and criticality | What was reviewed, at which risk tier and why | Scope and tier match the review policy |
+| Requirement traceability and decision inventory | The requirements and decisions in scope, with links | Links resolve; no significant decision missing |
+| Security, privacy and data findings | Findings with severity and evidence | Each finding cites evidence |
+| Reliability, SLO and capacity evidence | Evidence for the quality scenarios claimed | Measured, not asserted |
+| Exceptions with owners and expiry | Any accepted exception, its owner and expiry date | Every exception has an owner and a date |
+| Outcome, conditions and follow-up actions | The decision, conditions and actions with owners and dates | Conditions are verifiable; actions tracked |
+
+: Schema for an architecture review record
+
+## B.15 Control and Evidence Matrix
+
+The control and evidence matrix schema links each requirement to the control that satisfies it and the evidence that proves the control operates.
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Requirement | The obligation or policy requirement, with its identifier | Requirement traceable to a source |
+| Control | The design or process control that satisfies it, for example a pipeline approval model | Control is specific enough to test |
+| Evidence | The artifact that demonstrates the control, for example change records generated by the pipeline | Evidence exists, is retained and is current |
+| Frequency | How often the evidence is produced or reviewed, for example continuous, monthly or quarterly | Frequency matches the risk and the obligation |
+| Owner | The person or role accountable for the control and its evidence | Named owner, not a team alias |
+
+: Schema for a control and evidence matrix

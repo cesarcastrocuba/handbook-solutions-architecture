@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-INF
 title: Infrastructure
-manuscript: chapters/ch08-infrastructure-and-cloud-architecture.qmd
+manuscript: chapters/ch11-infrastructure-and-cloud-architecture.qmd
 items:
 - id: SA-INF-001
   title: Shared responsibility mapped to owners
@@ -9,7 +9,7 @@ items:
   rationale: A managed service transfers operations, not accountability; unmapped provider and customer duties leave controls unowned.
   applicability: All cloud or managed-service workloads.
   expected_evidence: Responsibility matrix mapping each provider and customer control to a named owner and verification method.
-  section: '8.1'
+  section: '11.1'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: Redundant compute does not survive a single-zone database, DNS or identity dependency.
   applicability: Solutions claiming high availability.
   expected_evidence: Fault-domain matrix covering compute, data, queues, identity, DNS, secrets and third parties, with zone-failure exercise results.
-  section: 8.2.1
+  section: 11.4.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: RTO and RPO invented by engineering either overspend or fail the business; only measured exercises prove them.
   applicability: Solutions with defined recovery obligations.
   expected_evidence: Business-impact-derived RTO and RPO per capability, matched against dated failover and restore exercise results including data integrity.
-  section: 8.2.3
+  section: 11.4.3
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Manual changes create drift and unreproducible environments, making recovery and audit unreliable.
   applicability: All provisioned environments.
   expected_evidence: Infrastructure-as-code definitions with protected state and policy gates, plus an isolated environment rebuilt from source without manual steps.
-  section: 8.3.1
+  section: 11.5.1
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: Plans untested against a business impact analysis give false confidence and fail under real disruption.
   applicability: Solutions supporting critical business services.
   expected_evidence: Current business impact analysis, BCP and DRP with owners, annual tabletop and restore exercise reports, measured results and closed follow-up actions.
-  section: 8.2.3
+  section: 11.4.3
   external_reference: ISO 22301:2019
   risk_relevance: High
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: A questionnaire answer is not a fixed risk; findings need owners, dates and verified closure.
   applicability: All workloads on a cloud provider with a well-architected framework.
   expected_evidence: Dated per-workload review report, findings register with owners and due dates, and closure evidence linked to ADRs where decisions changed.
-  section: 8.4.3
+  section: 11.7.3
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -75,7 +75,7 @@ items:
   rationale: Most cloud outages attributed to the platform are DNS, routing, identity, certificate or egress failures that no product diagram shows.
   applicability: Solutions with private connectivity or multiple trust zones.
   expected_evidence: Network and trust-boundary view with owner, covering DNS, certificates, routing, NAT, proxies, firewalls, load balancing and private connectivity.
-  section: '8.5'
+  section: '11.2'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -86,7 +86,7 @@ items:
   rationale: Hybrid identity, private links and egress paths fail in ways that appear only under load or during cut-over.
   applicability: Solutions using hybrid identity, private connectivity or restricted egress.
   expected_evidence: Hybrid-connectivity failover results, DNS and certificate failover tests, and measured latency and bandwidth against per-journey budgets.
-  section: '8.5'
+  section: '11.2'
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -97,7 +97,7 @@ items:
   rationale: Runtime platforms adopted by default create unfunded platform work and hidden provider limits.
   applicability: Solutions choosing or changing a compute runtime.
   expected_evidence: Selection record against workload characteristics, named operating owner and a tested upgrade.
-  section: '8.6'
+  section: '11.3'
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -108,7 +108,7 @@ items:
   rationale: Edge fleets operate disconnected and unattended, and a defective update or shared key affects the entire fleet.
   applicability: Solutions with edge locations or IoT devices.
   expected_evidence: Disconnection exercise, per-device identity register, individual revocation test and failed-update recovery test.
-  section: '8.7'
+  section: '11.6'
   external_reference: ''
   risk_relevance: High
   version: '2.2'
@@ -119,7 +119,7 @@ items:
   rationale: Overlapping intermediaries stack retries and timeouts, and forged forwarding headers defeat rate limits and audit records.
   applicability: Solutions with more than one network intermediary.
   expected_evidence: Request-path view, timeout budget per hop, hop-removal test and forged-header test.
-  section: 8.5.3
+  section: 11.2.3
   external_reference: ''
   risk_relevance: High
   version: '2.2'

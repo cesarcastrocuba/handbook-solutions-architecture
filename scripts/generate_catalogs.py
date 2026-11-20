@@ -2,7 +2,7 @@
 """Generate Appendices H (anti-patterns), I (decisions) and J (patterns).
 
 Every "Common Pitfall" and "Decision & Trade-off" callout is listed with the
-section that discusses it. Appendix J comes from publishing/pattern-catalog.yaml,
+section that discusses it. Appendix G comes from publishing/pattern-catalog.yaml,
 and each entry must still be discussed in the section it names. The appendices
 are derived data: edit the sources and run this script. With --check, exit 1 if
 a committed appendix is out of date.
@@ -19,7 +19,7 @@ CHAPTERS = ROOT/'manuscript'/'chapters'
 APPENDICES = ROOT/'manuscript'/'appendices'
 ANTI_PATTERNS = APPENDICES/'appendix-h-anti-pattern-catalog.qmd'
 DECISIONS = APPENDICES/'appendix-i-decision-catalog.qmd'
-PATTERNS = APPENDICES/'appendix-j-pattern-catalog.qmd'
+PATTERNS = APPENDICES/'appendix-g-pattern-catalog.qmd'
 PATTERN_SOURCE = ROOT/'publishing'/'pattern-catalog.yaml'
 H1 = re.compile(r'^# (?:Chapter )?(\d+)[.:—\s]+(.+)$')
 H2 = re.compile(r'^## (\d+\.\d+) ')
@@ -122,11 +122,11 @@ def pattern_errors(catalog, bodies):
 
 
 def render_patterns(catalog):
-    out = ['# Appendix J — Pattern Catalog', '',
+    out = ['# Appendix G — Pattern Catalog', '',
            'This catalog locates the patterns discussed in the handbook. It is an index and not a '
            'recommendation: the section named for each pattern explains when it applies and what it costs.', '']
     for index, (category, entries) in enumerate(catalog.items(), 1):
-        out += [f'## J.{index} {category}', '', '| Pattern | Problem it addresses | Section |', '| :--- | :--- | :--- |']
+        out += [f'## G.{index} {category}', '', '| Pattern | Problem it addresses | Section |', '| :--- | :--- | :--- |']
         out += [f'| {cell(e["name"])} | {cell(e["problem"])} | {e["section"]} |' for e in entries]
         out += ['', f': Patterns for {category.lower()}', '']
     return '\n'.join(out).rstrip('\n')+'\n'

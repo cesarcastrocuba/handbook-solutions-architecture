@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-TEST
 title: Testing and quality verification
-manuscript: chapters/ch15-testing-and-quality-verification.qmd
+manuscript: chapters/ch16-testing-and-quality-verification.qmd
 items:
 - id: SA-TEST-001
   title: Quality scenarios linked to test evidence
@@ -9,7 +9,7 @@ items:
   rationale: A reviewed diagram is not validation; unverified latency, availability or recovery claims surface as production incidents.
   applicability: All priority quality scenarios.
   expected_evidence: Scenario-to-test matrix naming the load, fault-injection, recovery or security test and its recorded result for each priority scenario.
-  section: 15.1.4
+  section: 16.1.4
   external_reference: ''
   risk_relevance: High
   version: '3.0'
@@ -20,7 +20,7 @@ items:
   rationale: A test strategy without levels, environments, data rules or gates produces late, unreliable feedback and untested claims.
   applicability: All solutions with quality obligations.
   expected_evidence: Current test strategy covering scope, levels, contract testing, environments, test data, tooling, quality gates and exit criteria, with pipeline gate results.
-  section: 15.1.1
+  section: 16.1.1
   external_reference: ''
   risk_relevance: High
   version: '3.0'
@@ -31,7 +31,7 @@ items:
   rationale: A flaky suite trains teams to ignore red builds, so real failures are merged with the noise.
   applicability: Solutions with automated test pipelines.
   expected_evidence: Flake rate per level; quarantine list with owners and expiry dates; retry counts in pipeline reports.
-  section: 15.2.3
+  section: 16.2.3
   external_reference: ''
   risk_relevance: Medium
   version: '3.0'
@@ -42,7 +42,7 @@ items:
   rationale: Quality tests run once for go-live let later releases regress silently.
   applicability: Solutions with security, data or accessibility obligations.
   expected_evidence: Test schedule tying each quality test to its triggers, with results for the latest release, schema change and new external surface.
-  section: '15.3'
+  section: '16.3'
   external_reference: ''
   risk_relevance: High
   version: '3.0'
@@ -53,7 +53,7 @@ items:
   rationale: Evidence that cannot be tied to a version is a claim, and missing records count as missing tests in an audit.
   applicability: Production systems, especially regulated ones.
   expected_evidence: Release records linking artifact digest, gate results, environment differences and waivers with owners and expiries.
-  section: 15.4.3
+  section: 16.4.3
   external_reference: ''
   risk_relevance: High
   version: '3.0'
@@ -64,7 +64,7 @@ items:
   rationale: Architecture erodes one change at a time; rules that exist only in documents are not enforced.
   applicability: Systems with layered or modular structure, published interfaces or infrastructure as code.
   expected_evidence: Architecture tests linked to ADRs, failures that blocked a merge, and an exception list with owners and expiries.
-  section: 15.3.5
+  section: 16.3.5
   external_reference: ''
   risk_relevance: High
   version: '3.0'

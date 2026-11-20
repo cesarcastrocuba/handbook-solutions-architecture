@@ -7,17 +7,17 @@ Solution architecture is the discipline of making consequential decisions under 
 ::: {.rc2-list-group}
 1. **Measurable requirements drive design.** A quality attribute that cannot be measured cannot justify a decision or be verified (Chapter 1).
 2. **Every significant decision has alternatives and a cost.** Record what was chosen, what was rejected and what was traded away (Chapter 3).
-3. **Evidence over assertion.** Diagrams describe intent; tests, measurements and exercises demonstrate it (Chapters 4, 13–15).
-4. **One accountable owner per fact, interface and decision.** Ambiguous ownership becomes coupling, inconsistency and incident delay (Chapters 4, 5, 6).
-5. **Design for failure and for unknown outcomes.** Timeouts, duplicates and partial failures are normal; idempotency, reconciliation and explicit pending states turn them into recoverable events (Chapters 6, 7, 11).
-6. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 5).
-7. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 7).
-8. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 10).
-9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.13–2.14, 10.9).
-10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 11).
-11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 12, 16).
-12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 9).
-13. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 13, 17).
+3. **Evidence over assertion.** Diagrams describe intent; tests, measurements and exercises demonstrate it (Chapters 4, 5–15).
+4. **One accountable owner per fact, interface and decision.** Ambiguous ownership becomes coupling, inconsistency and incident delay (Chapters 4, 8, 9).
+5. **Design for failure and for unknown outcomes.** Timeouts, duplicates and partial failures are normal; idempotency, reconciliation and explicit pending states turn them into recoverable events (Chapters 9, 10, 14).
+6. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 8).
+7. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 10).
+8. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 13).
+9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.8 and 2.14, 13.9).
+10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 14).
+11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 15, 17).
+12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 12).
+13. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 5, 7).
 :::
 
 ## Applying the Handbook in an Engagement
@@ -27,12 +27,12 @@ A typical solution engagement moves through the following stages; the role secti
 | Stage | Key questions | Chapters | Typical outputs |
 | :--- | :--- | :--- | :--- |
 | Understand | What outcomes, constraints and quality attributes matter? | 1, 2 | Requirements, quality scenarios, constraint and assumption logs |
-| Decide | Which options exist, and which trade-offs are acceptable? | 3, 14, 18 | ADRs, evaluation results, spikes |
-| Design | How are data, integration, application, infrastructure, platform and security structured? | 5–10 | HLD, data and integration contracts, threat model |
-| Validate | Does the design meet its requirements under load and failure? | 11, 14, 15 | Test and exercise reports, SLO definitions |
-| Govern | Is the right level of review applied, and are conditions verified? | 4, 17 | Review records, exception register |
-| Release and operate | Can the solution be deployed, observed and recovered safely? | 11, 12 | Runbooks, release plan, readiness evidence |
-| Evolve | How will the solution change, migrate and remain economical? | 16 | Roadmap, migration gates, cost model |
+| Decide | Which options exist, and which trade-offs are acceptable? | 3, 6, 19 | ADRs, evaluation results, spikes |
+| Design | How are data, integration, application, infrastructure, platform and security structured? | 8–13 | HLD, data and integration contracts, threat model |
+| Validate | Does the design meet its requirements under load and failure? | 6, 14, 16 | Test and exercise reports, SLO definitions |
+| Govern | Is the right level of review applied, and are conditions verified? | 4, 7 | Review records, exception register |
+| Release and operate | Can the solution be deployed, observed and recovered safely? | 14, 15 | Runbooks, release plan, readiness evidence |
+| Evolve | How will the solution change, migrate and remain economical? | 17 | Roadmap, migration gates, cost model |
 
 : Engagement stages, questions and outputs
 
