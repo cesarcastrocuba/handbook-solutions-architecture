@@ -1,6 +1,6 @@
 # Appendix E — Security Requirements Baseline
 
-This baseline consolidates security requirements that enterprise customers commonly place on suppliers and that organizations apply to their own solutions. Use it in two directions: to assess a supplier or SaaS product, and to check that a solution offered to customers can meet typical contractual expectations. Requirements are generalized; actual contracts may be stricter. Each row names the architecture evidence that demonstrates the requirement and the main reference. Frequencies such as “annually” are common contractual defaults, not universal requirements: apply the interval the contract, regulation or risk assessment sets. The coverage map in E.1 links each baseline table to the handbook sections, and the editions cited are listed at the end (E.10). Table numbers count from Table E.1 across the appendix and run independently of the section numbers: the access-control section (E.4), for example, contains Table E.4.
+This baseline consolidates security requirements that enterprise customers commonly place on suppliers and that organizations apply to their own solutions. Use it in two directions: to assess a supplier or SaaS product, and to check that a solution offered to customers can meet typical contractual expectations. Requirements are generalized; actual contracts may be stricter. Each row names the architecture evidence that demonstrates the requirement and the main reference. Frequencies such as “annually” are common contractual defaults, not universal requirements: apply the interval the contract, regulation or risk assessment sets. The coverage map in E.1 links each baseline table to the handbook sections, and the editions cited are listed at the end (E.10). Each section holds one table with the same number: the access-control section (E.4), for example, contains Table E.4.
 
 ## E.1 Coverage Map
 
@@ -8,14 +8,14 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Table | Scope | Where covered |
 | :--- | :--- | :--- |
-| E.3 | Governance, assurance and audit | 4.1.2, 4.9, 10.1.2, 10.7.2, 10.8.2 |
-| E.4 | Third parties and personnel | 10.2.6, 10.8 |
-| E.5 | Access control and identity | 10.2.1–10.2.6, 10.3, 10.4.4 |
-| E.6 | System security | 10.4.4, 10.5.3, 10.5.7, 10.6, 10.6.4 |
-| E.7 | Data protection | 5.2.4, 10.4.2, 10.4.3, 10.4.5, 10.9 |
-| E.8 | Application security | 10.1.1, 10.5.1–10.5.6 |
-| E.9 | Cloud services | 8.1.1, 8.1.4, 8.4, 10.2.1, 10.2.3, 10.4.6, 10.7.2, 10.8 |
-| E.10 | Business continuity and incident management | 8.2.2, 8.2.3, 10.4.6, 10.7.1, 10.7.3, 11.3 |
+| E.2 | Governance, assurance and audit | 4.1.2, 4.9, 10.1.2, 10.7.2, 10.8.2 |
+| E.3 | Third parties and personnel | 10.2.6, 10.8 |
+| E.4 | Access control and identity | 10.2.1–10.2.6, 10.3, 10.4.4 |
+| E.5 | System security | 10.4.4, 10.5.3, 10.5.7, 10.6, 10.6.4 |
+| E.6 | Data protection | 5.2.4, 10.4.2, 10.4.3, 10.4.5, 10.9 |
+| E.7 | Application security | 10.1.1, 10.5.1–10.5.6 |
+| E.8 | Cloud services | 8.1.1, 8.1.4, 9.1, 10.2.1, 10.2.3, 10.4.6, 10.7.2, 10.8 |
+| E.9 | Business continuity and incident management | 8.2.2, 8.2.3, 10.4.6, 10.7.1, 10.7.3, 11.3 |
 
 : Coverage map: baseline tables and handbook sections
 
