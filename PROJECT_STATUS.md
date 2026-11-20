@@ -16,15 +16,15 @@ Appendices A–J, Conclusions and References — plus the new chapter and its 11
 | Generated sections | Cross-reference links, glossary definition pointers and the analytic Index are built by the toolkit (DEC-013); page-sized tables stay with their captions and lead-ins, figures keep their natural size and blend with the page in PDF and Word (DEC-016), and the release PDF is compacted with qpdf (DEC-015); catalog appendices H–J are frozen source snapshots, with regeneration checks passing; checklist exports ship as `book-extras.zip` through `make release-assets` |
 | Book-owned tooling | Catalog regeneration, canonical checklist parity, portable diagram-manifest checks and the float-spacing check (DEC-022) run in `make check`; reference tests and checklist data imported; `release-assets` Makefile target stages checklist exports for release packaging; analytic index vocabulary staged as data for hub change 0053 |
 | Canonical pins | Toolkit `0.14.2` (hub commit `47c37e23819abb801b1c8635401d6b64e7e14fad`), standard profile `1.1.0` (DEC-012, DEC-013, DEC-015, DEC-016, DEC-019, DEC-023); the release workflow accepts `X.Y.Z-rc.N` pre-releases and requires a compacted PDF |
-| Releases | `v3.1.0-rc.1` (pre-release), `v3.1.0` (first complete edition, release run 44323321913 from `b50911e`) and `v3.1.1` (DEC-019, release run 44477761172 from `ed4d86b`) published. The edition with Chapter 9 is prepared as `4.0.0` (DEC-021); its tag and release need the Owner's approval after the desktop Word check (`DEC-005`) |
-| Catalog | `v3.1.1` listed in the hub catalog with its author (hub PR 116, `HUB-DEC-043`) and shown on the portal |
-| Reading site | Live at https://cesarcastrocuba.github.io/handbook-solutions-architecture/, serving `v3.1.1` |
+| Releases | `v3.1.0-rc.1` (pre-release), `v3.1.0` (first complete edition, release run 44323321913 from `b50911e`) `v3.1.1` (DEC-019, release run 44477761172 from `ed4d86b`) and `v4.0.0` (Chapter 9, DEC-020 to DEC-023; release run 44767230955 from `1278780`, after the Owner's desktop Word check and tag approval on 2026-11-20) published; `v4.0.0` is the latest |
+| Catalog | `v4.0.0` listed in the hub catalog with its author (hub PR 125; `v3.1.1` was listed by hub PR 116, `HUB-DEC-043`) and shown on the portal |
+| Reading site | Live at https://cesarcastrocuba.github.io/handbook-solutions-architecture/, serving `v4.0.0` |
 
 ## Next actions
 
 1. Publish checklist exports as release assets; the `release-assets` Makefile target copies generated exports to `$(RELEASE_ASSETS_DIR)`. Gap G6 closes once a template that ships hub change 0057 is released.
 2. Restore the analytic Index, glossary pointers and cross-reference links, and close numbering gaps in the hub.
-3. Desktop Word check of the `4.0.0` DOCX and Owner approval of the tag `v4.0.0` (DEC-021); then the release and the hub catalog move.
+3. None for edition 4.0.0: it is released, listed and served.
 
 ## Book tooling boundaries
 
