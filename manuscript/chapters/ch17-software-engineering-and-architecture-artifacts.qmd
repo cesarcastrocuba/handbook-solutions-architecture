@@ -253,7 +253,6 @@ Design artifacts describe the intended structure; decision artifacts explain why
 
 Table 17.9 gives the matching fiche for the ADR, which records the decision that the RFC consultation informed and keeps its rationale after the comment period closes.
 
-
 | Field | Content |
 | :--- | :--- |
 | Purpose | Preserve the rationale, alternatives and consequences of one significant decision |
@@ -313,7 +312,6 @@ These artifacts describe the boundaries where independent teams, systems and tru
 : Artifact fiche: ICD
 
 Table 17.11 gives the fiche for the machine-readable specification that expresses the ICD, so that tools and pipelines can enforce what the two parties agreed.
-
 
 | Field | Content |
 | :--- | :--- |
