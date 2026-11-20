@@ -532,6 +532,95 @@ class RenumberTest(unittest.TestCase):
         self.assertIn('ambiguous', result.stderr)
         self.assertEqual(self.book.read('manuscript/chapters/ch01-alpha.qmd'), before)
 
+    # -- table columns declare their kind ------------------------------------- #
+
+    def test_table_and_figure_columns_use_their_own_map(self) -> None:
+        first = (
+            '## 1.1 First\n\n'
+            '| A | B |\n| :--- | :--- |\n| a | b |\n\n: First one\n\n'
+            '| A | B |\n| :--- | :--- |\n| c | d |\n\n: First two\n\n'
+            '![Figure 1.1 — Map](../../assets/map.png){#fig-1-1}\n\n'
+        )
+        second = '## 1.2 Second\n\nText.\n'
+        files = {
+            'chapters/ch01-alpha.qmd': '# 1. Alpha\n\n' + first + second,
+            'chapters/ch02-beta.qmd': (
+                '# 2. Beta\n\n| Figure | Table | Where covered |\n'
+                '| :--- | :--- | :--- |\n| 1.1 | 1.1 | 1.1 |\n'
+            ),
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd', 'chapters/ch02-beta.qmd']}
+        self.start(order, files)
+        # Swapping the sections moves section 1.1 to 1.2 but leaves the tables and
+        # the figure at position 1. A bare 1.1 under "Table" or "Figure" is that
+        # table or figure; only "Where covered" is a section.
+        self.book.write('manuscript/chapters/ch01-alpha.qmd',
+                        '# 1. Alpha\n\n' + second + first)
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        coverage = self.book.read('manuscript/chapters/ch02-beta.qmd')
+        self.assertIn('| 1.1 | 1.1 | 1.2 |', coverage)
+        text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertIn('## 1.1 Second', text)
+        self.assertIn('## 1.2 First', text)
+
+    def test_appendix_coverage_map_table_column_is_a_table(self) -> None:
+        appendix = (
+            '# Appendix A — Baseline\n\n'
+            '## A.1 Intro\n\nText.\n\n'
+            '## A.2 Maps\n\n'
+            '| Table | Where covered |\n| :--- | :--- |\n| A.2 | A.2 |\n\n'
+            ': Coverage map\n\n'
+            '## A.3 Body\n\n| A | B |\n| :--- | :--- |\n| a | b |\n\n: Body table\n'
+        )
+        files = {
+            'chapters/ch01-alpha.qmd': chapter(1, 'Alpha', '## 1.1 Body\n\nText.\n'),
+            'appendices/appendix-a-baseline.qmd': appendix,
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd'],
+                 'appendices': ['appendices/appendix-a-baseline.qmd']}
+        self.start(order, files)
+        # Deleting a section without tables shifts sections but not tables: the
+        # "Table" cell keeps A.2 while the section reference becomes A.1.
+        self.book.write('manuscript/appendices/appendix-a-baseline.qmd',
+                        appendix.replace('## A.1 Intro\n\nText.\n\n', ''))
+        result = self.book.run('--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/appendices/appendix-a-baseline.qmd')
+        self.assertIn('| A.2 | A.1 |', text)
+        self.assertIn('## A.1 Maps', text)
+        self.assertIn('## A.2 Body', text)
+
+    # -- aliases and the state guard ------------------------------------------ #
+
+    def test_merged_section_reusing_deleted_title_needs_the_alias(self) -> None:
+        base = (
+            '# 2. Beta\n\n'
+            '## 2.1 Alpha\n\nText.\n\n'
+            '## 2.2 Merged\n\nText.\n\n'
+            '## 2.3 Gamma\n\nText.\n\n'
+            'The merged content is in 2.2.\n'
+        )
+        files = {'chapters/ch02-beta.qmd': base,
+                 'chapters/ch01-stable.qmd': chapter(1, 'Stable', '## 1.1 Body\n\nText.\n')}
+        order = {'chapters': ['chapters/ch01-stable.qmd', 'chapters/ch02-beta.qmd']}
+        self.start(order, files)
+        # 2.2 is merged into 2.1 and disappears; the survivor takes the deleted
+        # title. Comparing it by title with the deleted section must not make the
+        # tool believe the tree is already renumbered.
+        self.book.write('manuscript/chapters/ch02-beta.qmd',
+                        '# 2. Beta\n\n'
+                        '## 2.1 Merged\n\nText.\n\n'
+                        '## 2.3 Gamma\n\nText.\n\n'
+                        'The merged content is in 2.2.\n')
+        result = self.book.run('--alias', '2.2=2.1', '--apply')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = self.book.read('manuscript/chapters/ch02-beta.qmd')
+        self.assertIn('## 2.1 Merged', text)
+        self.assertIn('## 2.2 Gamma', text)
+        self.assertIn('The merged content is in 2.1.', text)
+        self.assertNotIn('already at target', result.stdout)
+
     # -- appendix letters and generated files --------------------------------- #
 
     def test_appendix_table_follows_letter_after_rename(self) -> None:

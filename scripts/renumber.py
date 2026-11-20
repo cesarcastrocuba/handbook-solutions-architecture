@@ -22,6 +22,9 @@ Model:
   measurements are left alone. A worded cue ("Section 4.9") is always a
   reference, so it is rewritten even where the toolkit's version lookback
   suppresses the link.
+* A table column headed ``Table``/``Tables`` holds table numbers and a column
+  headed ``Figure``/``Figures`` holds figure numbers, whatever their shape: a
+  bare ``E.2`` under ``Table`` is table E.2, not section E.2.
 * Nothing is written unless the whole run is clean: a reference to a deleted
   target without --alias, a numbering gap, a figure id that disagrees with its
   alt text or a range whose image leaves a hole aborts the run. A permutation
@@ -62,6 +65,10 @@ the kind for a table, a figure, or a cross-kind redirect::
     --alias table:2.15=table:2.13      deleted table
     --alias figure:8.4=section:9.1     deleted figure, prose points at a section
     --alias appendix:G=appendix:J      appendix letters swapped
+
+A target declared deleted is also excluded from the applied-state title
+comparison, so a merged section may keep the deleted title without the tool
+believing the tree is already renumbered.
 
 Kinds: chapter, section (numeric or appendix section such as B.11), figure,
 table, appendix (letter).
@@ -122,6 +129,20 @@ KIND_TOKEN = {
 RANGE_SEPARATOR = re.compile(r'^\s*[–—-]\s*$')
 BARE_SECTION = re.compile(r'(?<![\w.])(\d{1,2}(?:\.\d{1,2}){1,3})(?![\w.]|\.\d)')
 NUMBER_LIST = re.compile(r'^\s*\d{1,2}(?:\s*(?:,|and|–|-|to)\s*\d{1,2})*\s*$')
+LABEL_LIST = re.compile(
+    r'^\s*[0-9A-Z]{1,2}(?:\.[0-9]{1,2})+(?:\s*(?:,|and|–|-|to)\s*'
+    r'[0-9A-Z]{1,2}(?:\.[0-9]{1,2})+)*\s*$'
+)
+# A column header declares the kind of the labels it holds. A bare E.2 under
+# "Table" is a table, not the section E.2, even though the shapes are identical.
+COLUMN_KIND = {
+    'table': 'table',
+    'tables': 'table',
+    'figure': 'figure',
+    'figures': 'figure',
+    'fig': 'figure',
+    'figs': 'figure',
+}
 BARE_RANGE = re.compile(
     r'(?<![\w.])([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(\s*[–—-]\s*)'
     r'([0-9A-Z]{1,2}(?:\.[0-9]{1,2}){1,3})(?!\w|\.\d)'
@@ -507,10 +528,10 @@ def label_base_tables(documents: list[Document]) -> set[str]:
     return labels
 
 
-def build_plan(root: Path, rev: str) -> Plan:
+def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
     base_groups, base = base_documents(root, rev)
     work_groups, work = manuscript_files(root)
-    applied = applied_numbering(base, work)
+    applied = applied_numbering(base, work, alias_sources(alias_specs))
 
     base_chapters = {document.label: document for document in base
                      if document.group == 'chapters' and document.label}
@@ -651,13 +672,28 @@ def build_plan(root: Path, rev: str) -> Plan:
     )
 
 
-def applied_numbering(base: list[Document], working: list[Document]) -> bool:
+def alias_sources(values: list[str]) -> set[tuple[str, str]]:
+    """The (kind, old label) pairs that --alias declares deleted."""
+    sources = set()
+    for value in values:
+        kind, old = split_kind(value.split('=', 1)[0])
+        kind = kind or shape_kind(old)
+        if kind and old:
+            sources.add((kind, old))
+    return sources
+
+
+def applied_numbering(base: list[Document], working: list[Document],
+                      deleted: set[tuple[str, str]] | None = None) -> bool:
     """True when the literals already carry the positional targets.
 
     Titles (not numbers) match a working document to its --base counterpart, so
     a moved chapter, a renamed file or a reordered section still compares the
-    same physical heading.
+    same physical heading. A target declared deleted with --alias is skipped: a
+    merged section may reuse the deleted title, and comparing the survivor with
+    the section that no longer exists would look like an applied renumbering.
     """
+    deleted = deleted or set()
     lookup = {(document.group, document.title): document
               for document in base if document.numbered}
     for document in working:
@@ -671,6 +707,8 @@ def applied_numbering(base: list[Document], working: list[Document]) -> bool:
         olds: dict[str, list[str]] = {}
         for heading in source.headings:
             if heading.level > 1 and heading.old:
+                if ('section', heading.old) in deleted:
+                    continue
                 olds.setdefault(heading.title, []).append(heading.old)
         for heading in document.headings:
             if heading.level == 1 or not heading.old:
@@ -680,6 +718,8 @@ def applied_numbering(base: list[Document], working: list[Document]) -> bool:
                 return True
         figures: dict[str, list[str]] = {}
         for figure in source.figures:
+            if ('figure', figure.old) in deleted:
+                continue
             figures.setdefault(figure.title, []).append(figure.old)
         for figure in document.figures:
             queue = figures.get(figure.title)
@@ -1080,11 +1120,16 @@ def rewrite_row(document: Document, line_number: int, line: str,
         name = header[index].strip().lower() if index < len(header) else ''
         stripped = cell.strip()
         reference = _reference_header(name)
+        column_kind = COLUMN_KIND.get(name)
         bare_chapters = (name in BARE_CHAPTER_HEADERS and NUMBER_LIST.fullmatch(stripped))
-        if bare_chapters:
+        if column_kind and LABEL_LIST.fullmatch(stripped):
+            # The header wins over the shape: a "Table" column holds table
+            # numbers even when they look like section numbers.
+            rewritten = rewriter.rewrite_list(stripped, column_kind)
+            edits = [] if rewritten is None else [(0, len(cell), rewritten)]
+        elif bare_chapters:
             rewritten = rewriter.rewrite_list(stripped, 'chapter')
-            edits = ([(0, len(cell), rewritten)] if rewritten is not None
-                     else rewriter.inline_edits(cell, reference_cell=True))
+            edits = [] if rewritten is None else [(0, len(cell), rewritten)]
         else:
             edits = rewriter.inline_edits(cell, reference_cell=reference)
             if not reference and BARE_SECTION.fullmatch(stripped):
@@ -1317,7 +1362,7 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(args.root).resolve()
 
     try:
-        plan = build_plan(root, args.base)
+        plan = build_plan(root, args.base, args.alias)
         aliases = build_aliases(plan, args.alias)
         applied = plan.applied
     except RenumberError as exc:
