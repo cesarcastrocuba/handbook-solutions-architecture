@@ -1,0 +1,13 @@
+digraph G {
+ rankdir=TB;
+ use [label="Tenant consumption:\nruntime, data stores, pipelines"];
+ tag [label="Attribution by tags,\nnamespaces and quotas"];
+ unit [label="Unit costs: per environment,\nper instance size, per deployment"];
+ central [label="Central funding:\nplatform budget"];
+ show [label="Showback:\nreported to teams"];
+ charge [label="Chargeback:\nteam budgets"];
+ decide [label="Cost decisions by the team\nthat controls the consumption"];
+ use->tag->unit;
+ unit->central; unit->show; unit->charge;
+ show->decide; charge->decide;
+}

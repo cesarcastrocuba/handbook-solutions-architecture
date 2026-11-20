@@ -1,0 +1,19 @@
+digraph G {
+ rankdir=TB;
+ subgraph cluster_workload {
+  label="Workload team owns";
+  w1 [label="Authorization and\ndata classification"];
+  w2 [label="Application configuration\nand solution SLOs"];
+  w3 [label="Retention and\nrestore exercises"];
+ }
+ c [label="Capability contract:\nresponsibility matrix, objectives,\nlimits and support", shape=note];
+ subgraph cluster_platform {
+  label="Platform team owns";
+  labelloc=b;
+  p1 [label="Runtime availability,\npatching and upgrades"];
+  p2 [label="Baseline controls:\nencryption, network policy, logging"];
+  p3 [label="Identity, policy engine\nand backup mechanism"];
+ }
+ w1->c; w2->c; w3->c;
+ c->p1; c->p2; c->p3;
+}

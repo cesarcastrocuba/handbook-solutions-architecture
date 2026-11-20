@@ -51,6 +51,18 @@ items:
   version: '2.1'
   status: active
   group: Design
+- id: SA-ASR-018
+  title: Platform dependencies recorded
+  question: Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (9.3.1, 9.5.2, 9.6.1).
+  rationale: A solution that runs on a shared platform inherits its guarantees and its gaps; unrecorded dependencies are found during incidents and audits.
+  applicability: Solutions that use an internal platform or shared platform capabilities.
+  expected_evidence: Capability contracts cited by version in the design, the confirmed responsibility matrix and the isolation decision for the solution's risk class.
+  section: C
+  external_reference: ''
+  risk_relevance: High
+  version: '4.0'
+  status: active
+  group: Design
 - id: SA-ASR-005
   title: Data ownership, classification and retention
   question: Data ownership, classification and a retention schedule (including files, logs and backups) are defined.

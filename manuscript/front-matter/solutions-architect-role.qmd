@@ -9,7 +9,7 @@ The Solutions Architect is accountable for the design integrity of a solution ac
 | Business understanding | Understand outcomes, value, constraints and the capabilities affected; challenge requests that do not serve a stated outcome |
 | Security and privacy | Ensure security and privacy requirements are designed into the solution, threat-modeled, traced to controls and evidence. The security architect is accountable for security controls; the privacy officer or DPO is accountable for privacy advice, monitoring and the record of processing, while the business owner remains accountable for the processing itself. |
 | Requirements | Identify architecturally significant requirements and make quality attributes measurable (Chapter 1) |
-| Solution design | Define the structure across data, integration, application, infrastructure and security; keep views consistent (Chapters 5–10, 13) |
+| Solution design | Define the structure across data, integration, application, infrastructure, platform and security; keep views consistent (Chapters 5–10, 13) |
 | Decisions | Frame options and trade-offs, recommend, and record decisions with owners (Chapter 3) |
 | Risk and governance | Surface risks, route decisions to the right authority, follow approval conditions to closure (Chapter 4) |
 | Delivery support | Guide teams through detailed design and implementation, resolve cross-team design issues, protect key decisions from erosion |

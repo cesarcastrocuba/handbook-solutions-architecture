@@ -288,7 +288,7 @@ Choose how capacity is bought before comparing unit prices.
 
 **Purpose.** A platform turns repeated work into a golden path: the secure, observable, deployable default that a team can adopt in minutes. Its purpose is to reduce the number of decisions each team must make and the number of ways the same control can be implemented.
 
-**What it includes.** Platform teams provide reusable, secure capabilities as an internal product with self-service interfaces, golden paths, support expectations and adoption metrics (Figure 8.4). A platform that becomes a ticket queue undermines delivery autonomy. Workload teams remain accountable for application-specific controls.
+**What it includes.** Platform teams provide reusable, secure capabilities as an internal product with self-service interfaces, golden paths, support expectations and adoption metrics (Figure 8.4). A platform that becomes a ticket queue undermines delivery autonomy. Workload teams remain accountable for application-specific controls. Chapter 9 designs the platform itself: its product model, responsibilities, interfaces, tenancy, guardrails, reliability, measures and economics.
 
 | Capability | What the golden path provides | Measure of success |
 | :--- | :--- | :--- |

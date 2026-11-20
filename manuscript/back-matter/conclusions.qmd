@@ -16,7 +16,7 @@ Solution architecture is the discipline of making consequential decisions under 
 9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.14–2.15, 10.9).
 10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 11).
 11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 12, 16).
-12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapter 4).
+12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 9).
 13. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 13, 17).
 :::
 
@@ -28,7 +28,7 @@ A typical solution engagement moves through the following stages; the role secti
 | :--- | :--- | :--- | :--- |
 | Understand | What outcomes, constraints and quality attributes matter? | 1, 2 | Requirements, quality scenarios, constraint and assumption logs |
 | Decide | Which options exist, and which trade-offs are acceptable? | 3, 14, 18 | ADRs, evaluation results, spikes |
-| Design | How are data, integration, application, infrastructure and security structured? | 5–10 | HLD, data and integration contracts, threat model |
+| Design | How are data, integration, application, infrastructure, platform and security structured? | 5–10 | HLD, data and integration contracts, threat model |
 | Validate | Does the design meet its requirements under load and failure? | 11, 14, 15 | Test and exercise reports, SLO definitions |
 | Govern | Is the right level of review applied, and are conditions verified? | 4, 17 | Review records, exception register |
 | Release and operate | Can the solution be deployed, observed and recovered safely? | 11, 12 | Runbooks, release plan, readiness evidence |

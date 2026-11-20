@@ -54,6 +54,9 @@ POST_RC4_SOURCES = {
     'ch12-docs-as-code', 'ch13-utility-tree', 'ch13-atam-phases', 'ch13-continuous-evaluation',
     'ch14-quality-verification-map', 'ch14-test-evidence-flow',
     'ch12-c4-levels',
+    'platform-types', 'platform-product-loop', 'platform-responsibility', 'platform-reference-architecture',
+    'platform-abstraction-levels', 'platform-isolation', 'platform-policy-lifecycle', 'platform-planes-failure',
+    'platform-measures', 'platform-cost-flow', 'platform-sourcing',
 }
 
 

@@ -1,0 +1,14 @@
+digraph G {
+ rankdir=TB;
+ prop [label="Rule proposed with an owner\nand a rationale"];
+ test [label="Policy code tested with compliant\nand non-compliant examples"];
+ warn [label="Warn mode: results reported\nin pipelines and the catalog"];
+ enf [label="Enforce: in the template, the pipeline\nor at admission"];
+ rev [label="Periodic review of results,\nexceptions and rationale"];
+ exc [label="Exception register: one workload,\none rule, an owner and an expiry", shape=note];
+ road [label="Platform roadmap: a capability\nthat removes the need to deviate"];
+ prop->test->warn->enf->rev;
+ rev->prop [label=" revise or retire", style=dashed];
+ enf->exc [label=" legitimate conflict"];
+ exc->road [label=" demand signal"];
+}

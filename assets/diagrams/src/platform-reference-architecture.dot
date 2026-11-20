@@ -1,0 +1,21 @@
+digraph G {
+ rankdir=TB;
+ dev [label="Product engineers and operators"];
+ ui [label="Developer interface plane:\nportal, command line, API,\ndeclarative files in repositories"];
+ orch [label="Orchestration plane:\nprovisioning, reconciliation,\nservice catalog"];
+ subgraph cluster_capabilities {
+  label="Capability planes";
+  del [label="Delivery:\npipelines, artifact\nregistry, releases"];
+  res [label="Resource:\ncompute, data stores,\nmessaging, network"];
+ }
+ sec [label="Security plane: workload identity,\nsecrets, policy, signing, audit log"];
+ obs [label="Observability plane: telemetry,\ndashboards, alerts, cost reports"];
+ dev->ui->orch;
+ orch->del; orch->res;
+ del->res [label=" deploys"];
+ sec->orch [dir=none, style=dashed];
+ sec->del [dir=none, style=dashed];
+ sec->res [dir=none, style=dashed];
+ res->obs [label=" signals"];
+ del->obs;
+}

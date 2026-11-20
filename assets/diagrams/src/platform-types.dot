@@ -1,0 +1,15 @@
+digraph G {
+ rankdir=BT;
+ f [label="Shared foundation:\nlanding zone, identity,\nnetwork and policy (8.1)"];
+ subgraph cluster_platforms {
+  label="";
+  a [label="AI\nplatform"];
+  i [label="Integration\nplatform"];
+  da [label="Data\nplatform"];
+  r [label="Runtime\nplatform"];
+  d [label="Delivery\nplatform"];
+ }
+ s [label="Solutions built and run by\nstream-aligned teams"];
+ f->a; f->i; f->da; f->r; f->d;
+ a->s; i->s; da->s; r->s; d->s;
+}

@@ -14,7 +14,7 @@ class GenerateCatalogsTest(unittest.TestCase):
 
     def test_every_callout_is_listed(self):
         chapters = [gc.chapter_callouts(p) for p in sorted(gc.CHAPTERS.glob('ch*.qmd'))]
-        self.assertEqual(len(chapters), 18)
+        self.assertEqual(len(chapters), 19)
         for number, title, callouts in chapters:
             self.assertIsNotNone(number)
             self.assertTrue(title)

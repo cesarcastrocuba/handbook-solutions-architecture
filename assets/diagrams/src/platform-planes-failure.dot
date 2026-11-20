@@ -1,0 +1,12 @@
+digraph G {
+ rankdir=TB;
+ ctl [label="Control plane: provisioning,\nconfiguration and deployment APIs"];
+ data [label="Data plane: running workloads with\ncached configuration and credentials"];
+ users [label="Users and calling systems"];
+ dep [label="Platform dependencies: identity provider,\nprovider APIs, registries, DNS", shape=note];
+ down [label="Control plane unavailable:\nno new changes, workloads keep serving"];
+ ctl->data [label=" applies changes"];
+ users->data [label=" requests"];
+ dep->ctl [style=dashed];
+ ctl->down [style=dashed, dir=none];
+}

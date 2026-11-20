@@ -1,0 +1,11 @@
+digraph G {
+ rankdir=TB;
+ disc [label="Discover: interviews, journey maps,\nobserved onboarding"];
+ prio [label="Prioritize: demand, risk\nand cost; record declined requests"];
+ build [label="Build the capability\nwith its first users"];
+ rel [label="Release with a contract,\ndocumentation and support"];
+ adopt [label="Teams adopt it\nthrough self-service"];
+ meas [label="Measure adoption, outcomes\nand satisfaction"];
+ disc->prio->build->rel->adopt->meas;
+ meas->disc [label=" feedback into\n the roadmap", style=dashed];
+}

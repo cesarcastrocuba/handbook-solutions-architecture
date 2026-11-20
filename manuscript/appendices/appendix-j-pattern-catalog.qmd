@@ -83,7 +83,21 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for infrastructure and runtime
 
-## J.5 Delivery and Evolution
+## J.5 Platform
+
+| Pattern | Problem it addresses | Section |
+| :--- | :--- | :--- |
+| Golden path | Teams repeat the same setup work and meet standards unevenly | 9.4.3 |
+| Service catalog | Ownership and dependencies of components are unknown during incidents and audits | 9.4.2 |
+| Capability contract | Consumers infer a platform capability's guarantees from experience | 9.5.2 |
+| Escape hatch | An abstraction cannot serve an unusual requirement | 9.5.1 |
+| Policy as code | Rules in documents are applied unevenly and checked late | 9.7.1 |
+| Ring-based platform rollout | A platform change can break every tenant at once | 9.8.2 |
+| Static stability | A control-plane outage must not stop running workloads | 9.8.1 |
+
+: Patterns for platform
+
+## J.6 Delivery and Evolution
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -101,7 +115,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for delivery and evolution
 
-## J.6 Security and Data
+## J.7 Security and Data
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -112,7 +126,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for security and data
 
-## J.7 AI Systems
+## J.8 AI Systems
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |

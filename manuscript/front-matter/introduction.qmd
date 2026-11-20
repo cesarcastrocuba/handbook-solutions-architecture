@@ -48,7 +48,7 @@ Three groups of readers use the handbook, and each needs a different route throu
 | Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 15, 17 |
 | Data architect | Data ownership, flows, retention and quality across the solution | 5 |
 | Integration architect | Interfaces, contracts and messaging between systems and teams | 6 |
-| Cloud or platform architect | Hosting, landing zones and the shared platform the solution runs on | 8 |
+| Cloud or platform architect | Hosting, landing zones and the shared platform the solution runs on | 8, 9 |
 | Security architect | Threats, identity, controls and the evidence that proves them | 10 |
 | Tech lead | Turning a design into delivery: contracts, pipelines, environments and readiness | 6, 12 |
 | Principal or staff engineer | Reviewing and steering designs across teams, and settling trade-offs with evidence | 3, 4, 14 |
@@ -66,7 +66,7 @@ Hands-on readers are assumed to have practical software delivery experience and 
 
 - **The Solutions Architect Role:** responsibilities, boundaries with other roles, engagement lifecycle and stakeholder communication.
 - **Architecture process (Chapters 1–4):** requirements, principles, decisions and governance.
-- **Technical domains (Chapters 5–12):** data, integration, application, infrastructure and cloud, security, observability and reliability, deployment and operations.
+- **Technical domains (Chapters 5–12):** data, integration, application, infrastructure and cloud, platform, security, observability and reliability, deployment and operations.
 - **Documentation, evaluation and testing (Chapters 13–15):** architecture description and communication; architecture evaluation, including ATAM; test strategy and quality verification.
 - **Evolution and artifacts (Chapters 16–17):** evolution and economics; engineering artifacts.
 - **Frameworks (Chapter 18):** how established frameworks, methods and standards support the work.

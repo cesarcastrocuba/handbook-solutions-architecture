@@ -119,7 +119,26 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 8
 
-## H.9 Chapter 10: Security Architecture
+## H.9 Chapter 9: Platform Architecture
+
+| Anti-pattern | Section |
+| :--- | :--- |
+| Calling every shared asset a platform. | 9.1 |
+| Mandating a platform before it is better than the alternative. | 9.2 |
+| Leaving the responsibility boundary implicit. | 9.3 |
+| Building the portal first. | 9.4 |
+| Offering an abstraction without an escape hatch. | 9.5 |
+| Sharing one control plane across risk classes and environments. | 9.6 |
+| Enforcing policy only at the last gate. | 9.7 |
+| Coupling running workloads to the platform's control plane. | 9.8 |
+| Measuring the platform team's activity instead of its consumers' outcomes. | 9.9 |
+| Charging back before the platform is cheaper than the alternative. | 9.10 |
+| Building a commodity capability because it seems simple. | 9.11 |
+| Treating the platform review as a one-off launch gate. | 9.12 |
+
+: Anti-patterns from Chapter 9
+
+## H.10 Chapter 10: Security Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -136,7 +155,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 10
 
-## H.10 Chapter 11: Observability, Reliability and SRE
+## H.11 Chapter 11: Observability, Reliability and SRE
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -148,7 +167,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 11
 
-## H.11 Chapter 12: Deployment and Operations
+## H.12 Chapter 12: Deployment and Operations
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -161,7 +180,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 12
 
-## H.12 Chapter 13: Architecture Documentation
+## H.13 Chapter 13: Architecture Documentation
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -171,7 +190,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 13
 
-## H.13 Chapter 14: Architecture Evaluation
+## H.14 Chapter 14: Architecture Evaluation
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -181,7 +200,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 14
 
-## H.14 Chapter 15: Testing and Quality Verification
+## H.15 Chapter 15: Testing and Quality Verification
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -192,7 +211,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 15
 
-## H.15 Chapter 16: Architecture Evolution and Economics
+## H.16 Chapter 16: Architecture Evolution and Economics
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -202,7 +221,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 16
 
-## H.16 Chapter 17: Software Engineering and Architecture Artifacts
+## H.17 Chapter 17: Software Engineering and Architecture Artifacts
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -214,7 +233,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 17
 
-## H.17 Chapter 18: Architecture Frameworks, Methods and Standards
+## H.18 Chapter 18: Architecture Frameworks, Methods and Standards
 
 | Anti-pattern | Section |
 | :--- | :--- |
@@ -225,7 +244,7 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 
 : Anti-patterns from Chapter 18
 
-## H.18 Chapter 19: AI and Machine Learning Architecture
+## H.19 Chapter 19: AI and Machine Learning Architecture
 
 | Anti-pattern | Section |
 | :--- | :--- |

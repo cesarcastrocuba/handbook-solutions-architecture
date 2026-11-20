@@ -92,12 +92,14 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Cache-aside | A pattern in which the application reads the cache, loads from the store on a miss and fills the cache. | 7.3.3 |
 | Canonical model | The agreed definition of what a field means — units, identifier, time basis, nullability, allowed values and lifecycle — shared across systems. | 5.3.2 |
 | CAP theorem | A theorem stating that when a network partition occurs a distributed data store must choose between consistency and availability. | 5.4.2 |
+| Capability contract | The published agreement for one platform capability: what it provides, its objectives, limits, responsibilities, support and change policy. | 9.5.2 |
 | Capacity planning | Sizing a system for its busiest and most degraded hours. | 11.4.2 |
 | CBAM | Cost Benefit Analysis Method: an SEI method that ranks architectural strategies by benefit per unit of cost. | 16.2.5 |
 | CD | Continuous delivery: keeping a verified mainline permanently releasable so any verified change can be deployed on demand. | 12.1.1 |
 | CDC | Change data capture: publishing row-level changes from a database as a stream that downstream consumers can follow. | 5.3.9 |
 | Cell-based architecture | A workload divided into complete, independent instances, each serving a subset of customers or keys, to contain failures. | 8.2.1 |
 | Chaos engineering | Testing a system’s reliability promises by injecting realistic failures on purpose. | 11.4.1 |
+| Chargeback | Charging each consuming team’s budget for the platform or cloud resources it consumes. | 9.10.1 |
 | Chunking | The division of source content into retrievable units for indexing and retrieval. | 19.3.2 |
 | CI | Continuous integration: merging every change into a shared mainline and verifying it with automated builds and tests. | 12.1.1 |
 | CIAM | Customer identity and access management: identity for external customers rather than employees. | 10.2.1 |
@@ -153,6 +155,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Delivery semantics | What the transport guarantees about message delivery. | 6.3.2 |
 | Deployment stamp | An independent copy of a whole stack that hosts a group of tenants, limiting blast radius and providing a unit of scale and regional placement. | 7.7.1 |
 | Developer experience | The ease with which engineers can understand, change, release and operate a system. | 4.10.3 |
+| Developer portal | The interface through which engineers discover and request platform capabilities, read their documentation and browse the service catalog. | 9.4.1 |
 | Diagrams as code | Generating diagrams from text or from a model instead of drawing them by hand. | 13.3.3 |
 | Disaster recovery | The capability to restore service and data after a loss that exceeds the fault domains of normal operation. | 8.2.2 |
 | Docs as code | Keeping documentation as plain-text sources in version control, changed through the same review and automation as code. | 13.3.3 |
@@ -170,6 +173,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | EPSS | Exploit Prediction Scoring System: the estimated probability that a vulnerability is exploited in the next 30 days. | 10.6.2 |
 | Error budget | The unreliability a service-level objective permits over its window, whether that objective is availability, latency or quality. | 1.4.2; 11.2.2 |
 | ESB | Enterprise service bus: shared middleware that provides routing, transformation, protocol mediation and policy enforcement between applications. | 6.6.2 |
+| Escape hatch | A documented way to use the layer below a platform abstraction, with the responsibilities that move to the consuming team when it is used. | 9.5.1 |
 | Escaped defect | A defect found after the stage that should have caught it. | 15.4.2 |
 | EU | The European Union: the jurisdiction whose regulations, such as the GDPR and DORA, create obligations the book treats as constraints. | 18.4.1 |
 | Evaluation data | The curated set of questions, expected sources, acceptable answers and hard negatives used to measure whether the AI capability works. | 19.3.6 |
@@ -201,6 +205,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | GDPR | General Data Protection Regulation (EU Regulation 2016/679): the EU law governing processing of personal data. | 10.9.5 |
 | Generative AI | AI that produces text, images, code or other content. | 19.1.1 |
 | GitOps | Managing a runtime from declarative desired state in version control, pulled and continuously reconciled by software agents. | 8.7.4 |
+| Golden path | A supported, opinionated route for a common task that produces a result conforming to the organization’s standards by default. | 9.4.3 |
 | Governance taxonomy | The classification of obligations, rules and evidence that gives each class an authority and a path into architecture. | 4.1.1 |
 | Graceful degradation | A designed reduced mode that keeps the critical part of a journey working during a failure. | 7.4.2 |
 | gRPC | A remote procedure call framework that uses HTTP/2 and Protocol Buffers. | 6.2.5 |
@@ -231,6 +236,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Integration by contract | Two components interact only through an interface whose behavior, failure modes and compatibility rules are stated and tested. | 2.6 |
 | Integration security | The controls that protect each crossing of a trust boundary. | 6.5 |
 | Integration style | The interaction pattern chosen for an interface — request/response, durable messaging, event streaming, batch exchange or notification — together with the delivery and failure semantics that come with it. | 6.1.2 |
+| Internal platform | A curated set of capabilities offered to the teams that build and run solutions through self-service interfaces, with an owner, a contract and a support path. | 9.1.1 |
 | International transfer | An international transfer moves data or access across a jurisdiction. | 10.9.5 |
 | Internationalization | Preparing a solution to support several languages, regions and formats without code changes. | 7.6.6 |
 | IoT | Internet of Things: networks of physical devices that sense, act and exchange data. | 8.8 |
@@ -307,7 +313,10 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Physical security | Protection of facilities, hardware and media from unauthorized access. | 10.4.6 |
 | Pipeline | A governed sequence of jobs that moves and transforms data from sources to consumers. | 5.2.6 |
 | PKCE | Proof Key for Code Exchange: an OAuth 2.0 extension that protects authorization-code flows for public clients. | 10.2.4 |
+| Platform as a product | Running a platform with identified users, a value proposition, a needs-based roadmap and measures of adoption and benefit. | 9.2.1 |
 | Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 8.4 |
+| Platform responsibility model | The division of duties, per platform capability, between the platform team and the teams whose workloads use it. | 9.3.1 |
+| Policy as code | Organizational rules expressed as versioned, tested code that the platform evaluates automatically. | 9.7.1 |
 | Polling | Periodically querying a system for changes rather than receiving a push. | 6.1.8 |
 | Pool model | A tenancy model in which tenants share resources and isolation is enforced in software. | 7.7.1 |
 | Portability | The degree to which a solution can move between providers or platforms without redesign. | 16.2.4 |
@@ -386,9 +395,11 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Sequence diagram | A sequence diagram shows interactions between participants in time order. | 13.2.1 |
 | Serverless | An execution model in which the platform manages capacity, so the solution pays for use rather than for provisioned servers. | 7.1.3 |
 | Server-sent events | A standard for streaming one-way updates from a server to a client over HTTP. | 6.1.9 |
+| Service catalog | The inventory of software components with their owners, lifecycle state, dependencies and operational metadata. | 9.4.2 |
 | Service discovery | A mechanism through which clients find healthy service instances without fixed addresses. | 8.7.3 |
 | Service mesh | An infrastructure layer of proxies and a control plane applying identity, encryption, traffic policy and telemetry between services. | 8.7.3 |
 | Shared responsibility model | The per-service split of security and operational duties between the provider and the customer. | 8.1.4 |
+| Showback | Reporting each consuming team’s share of platform or cloud cost without charging it to the team’s budget. | 9.10.1 |
 | Signal | A metric, log, trace, event or profile that a system emits about its own behavior. | 11.1.1 |
 | Silo model | A tenancy model that gives each tenant dedicated resources. | 7.7.1 |
 | Simplicity | The property of a design whose structure is no more complex than the quality attributes it must satisfy require. | 2.3 |
@@ -408,6 +419,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Standard | Required or preferred technical behavior; a standard becomes binding through contract, regulation or organizational policy. | 4.3; 18.4.2 |
 | Standardization | The adoption of one approved way to satisfy a recurring concern. | 2.12 |
 | State machine | The definition of which transitions between states are legal and which must be refused. | 7.2.2 |
+| Static stability | The property of a system whose running workloads keep serving when the control plane that changes them is unavailable. | 9.8.1 |
 | Strangler Fig | The Strangler Fig pattern places a routing façade in front of the legacy system and moves capabilities to a new implementation one slice at a time while both coexist, with an anti-corruption layer translating between the legacy model and the new domain model. | 16.1.2 |
 | Stream-aligned team | A team that owns the end-to-end flow of change for a product, journey or capability. | 4.10.2 |
 | Supply-chain security | Protecting the interfaces and build inputs that an application depends on, not only its own code. | 10.5.6 |
@@ -428,6 +440,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Test level | A scope at which verification runs. | 15.1.2 |
 | Test portfolio | The distribution of tests across levels and the feedback each level gives. | 15.1.3 |
 | Test strategy | A short living document that fixes what is verified, at which level, with which environments and data, and against which gate — proportionate to risk, and far shorter than a catalog of test cases. | 15.1.1 |
+| Thinnest viable platform | The smallest set of conventions, templates and services that meets the current demand of consuming teams. | 9.1.2 |
 | Threat modeling | A structured examination of how a design can be abused, who could do it and which controls reduce the risk. | 10.1.1; 19.5.1 |
 | Three Lines Model | A model that separates control owners in delivery, oversight functions and independent internal audit. | 4.9 |
 | Throughput | The volume of work the system sustains over time. | 19.4.2 |

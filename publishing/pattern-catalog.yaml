@@ -57,6 +57,14 @@ Infrastructure and Runtime:
   - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 8.7.3}
   - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 8.7.4}
   - {name: Store and forward, problem: Devices or sites lose connectivity, section: 8.8.2, match: store-and-forward}
+Platform:
+  - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 9.4.3}
+  - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 9.4.2}
+  - {name: Capability contract, problem: Consumers infer a platform capability's guarantees from experience, section: 9.5.2}
+  - {name: Escape hatch, problem: An abstraction cannot serve an unusual requirement, section: 9.5.1}
+  - {name: Policy as code, problem: Rules in documents are applied unevenly and checked late, section: 9.7.1, match: policy}
+  - {name: Ring-based platform rollout, problem: A platform change can break every tenant at once, section: 9.8.2, match: rings}
+  - {name: Static stability, problem: A control-plane outage must not stop running workloads, section: 9.8.1}
 Delivery and Evolution:
   - {name: Canary release, problem: A change must reach a small audience first, section: 12.1.2, match: canary}
   - {name: Blue-green deployment, problem: Cut-over must be immediate and reversible, section: 12.1.2, match: blue}

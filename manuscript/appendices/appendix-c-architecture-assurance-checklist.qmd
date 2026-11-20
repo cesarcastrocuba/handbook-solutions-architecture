@@ -12,6 +12,8 @@
 
 ☐  Context and container views and interface contracts have owners.
 
+☐  Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (9.3.1, 9.5.2, 9.6.1).
+
 ☐  Data ownership, classification and a retention schedule (including files, logs and backups) are defined.
 
 ☐  Audit trails and data change history meet regulatory and contractual requirements.

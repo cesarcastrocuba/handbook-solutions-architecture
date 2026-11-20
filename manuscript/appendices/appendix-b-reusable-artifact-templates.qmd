@@ -223,3 +223,21 @@ The tenancy decision record states the isolation model for each layer and how it
 | Review trigger | The tenant count, regulation or tenant size that reopens the decision | Trigger is measurable |
 
 : Schema for a tenancy decision record
+
+## B.15 Platform Capability Contract
+
+The platform capability contract states what one platform capability provides to its consumers and what remains theirs (9.5.2).
+
+| Section | What to write | Quality check |
+| :--- | :--- | :--- |
+| Capability and owner | What the capability provides, its lifecycle stage and the owning team | Stage and owner match the service catalog |
+| Interface and versions | Interface styles, supported versions and end-of-support dates | Every supported version has a date |
+| Service levels | Indicators and objectives of the capability, and the behavior when the control plane is unavailable | Objectives measured and reported to consumers |
+| Limits and quotas | Sizes, rates, quotas, regions and data location | Limits tested for the largest consumer |
+| Inherited controls | Security and compliance controls the consumer inherits, with their evidence | Evidence dated and scoped to the capability |
+| Responsibilities | The responsibility matrix between the platform and consuming teams | Confirmed by each consuming team at onboarding |
+| Support | Support tiers, objectives and the incident route | Each tier has an objective |
+| Adoption and cost | Adoption policy and the funding or charging model with unit prices | Policy and prices published |
+| Change and deprecation | Notice periods, migration support and the escape hatch | Consumers per version known |
+
+: Schema for a platform capability contract

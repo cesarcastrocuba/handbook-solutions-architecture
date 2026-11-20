@@ -38,6 +38,7 @@ DOMAINS = {
     'INT': ('Integration', 'chapters/ch06-integration-architecture.qmd'),
     'APP': ('Application', 'chapters/ch07-application-architecture.qmd'),
     'INF': ('Infrastructure', 'chapters/ch08-infrastructure-and-cloud-architecture.qmd'),
+    'PLAT': ('Platform', 'chapters/ch09-platform-architecture.qmd'),
     'SEC': ('Security', 'chapters/ch10-security-architecture.qmd'),
     'REL': ('Observability and reliability', 'chapters/ch11-observability-reliability-and-sre.qmd'),
     'OPS': ('Deployment and operations', 'chapters/ch12-deployment-and-operations.qmd'),
