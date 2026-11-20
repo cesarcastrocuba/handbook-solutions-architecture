@@ -492,15 +492,15 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 | Team autonomy with published guidance | Domains are genuinely different | Fast locally; duplication and uneven control coverage |
 :::
 
-## 2.13 Accountable Decision-Making
+## 2.13 Accountability and Auditability
 
-**Definition.** Accountable decision-making assigns each significant decision to a named person or role with the context to make it, and records the reasoning.
+**Definition.** Accountability names the person or role answerable for a principle, decision or control and assigns each significant decision to a role with the context to make it; auditability makes the evidence of that responsibility retrievable after the fact.
 
-**Purpose.** It locates decisions where knowledge exists and keeps them reviewable afterwards. It informs who may approve a design, when consultation is required and when escalation adds value rather than delay. It is the principle that keeps the other principles from being applied by default or by seniority.
+**Purpose.** Together they close the loop that the other principles open. Accountable decision-making locates decisions where knowledge exists and keeps them reviewable; an owner with retrievable evidence turns a guardrail, a decision or an exception into something that can be reviewed, defended and learned from. They inform who may approve a design, when consultation is required, the register design, the retention of decision records and the review cadence. They are the principle that keeps the other principles from being applied by default or by seniority.
 
-**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3). Escalation is reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Approved exceptions carry an owner and an expiry, and recurring exceptions are reviewed as evidence about the principle itself. Table 2.13 sets out the classes and their records.
+**What it includes.** Decisions made at the lowest level with the necessary context and accountability, with significant decisions recorded together with their rationale (see Chapter 3), and escalation reserved for cross-boundary, irreversible or high-risk choices (see Chapter 4). Table 2.13 sets out the classes and their records. A named accountable owner — a role, not a team — for each principle, exception, significant decision and control; a control that is enforced somewhere observable; evidence that survives staff changes and is retrievable in a review; and a periodic audit or sample that tests the evidence rather than the intention. Approved exceptions carry an owner and an expiry, recurring exceptions are reviewed as evidence about the principle itself, findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.15 lists the objects and their review cadence.
 
-**Why it is needed.** Decisions made by nobody in particular cannot be revisited, defended or reversed, and the same debate returns with every new team. The cost is invisible until an audit or an incident asks who accepted the risk. **Evidence.** Sampled decisions have a named owner, an accessible ADR where significant, a proportionate review route and an expiry for approved exceptions.
+**Why it is needed.** Decisions made by nobody in particular cannot be revisited, defended or reversed, and the same debate returns with every new team. Without an owner and retrievable evidence, an organization can hold every principle and still be unable to show that any was applied; the first external audit or serious incident exposes the gap. The cost is invisible until an audit or an incident asks who accepted the risk. Recurring findings point at a poorly scoped principle rather than at individual teams. **Evidence.** A sample of decisions, principles and exceptions shows a named owner, an accessible ADR where the decision is significant, a proportionate review route, retrievable evidence and a closed review, and expired exceptions are actually removed.
 
 | Decision class | Decider | Record |
 | :--- | :--- | :--- |
@@ -510,24 +510,40 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 
 : Decision classes, deciders and records
 
-Chapter 19 (19.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners.
+Chapter 19 (19.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners. Figure 2.13 routes a decision by its reversibility and impact, so the class in the table also sets how much review the choice needs.
 
 ![Figure 2.13 — Decision routing by reversibility and impact](../../assets/diagrams/rendered/ch02-decision-tiers.png){#fig-2-13 width="100%"}
 
-**Example.** The checkout team chooses its own caching strategy and records it in the pull request. The decision to call the fraud provider synchronously crosses a domain boundary and carries financial risk, so it becomes an ADR with a named risk owner.
+The same owners keep the evidence current. Table 2.15 lists each accountability object with the evidence it leaves and the review that tests it.
+
+| Object | Accountable owner | Evidence retained | Review cadence |
+| :--- | :--- | :--- | :--- |
+| Principle | Named architect role | Published text, guardrail results | Annual, or on recurring exception |
+| Exception | The approver who granted it | Entry with scope, compensating control and expiry | At expiry, mandatory |
+| Significant decision | The decider | ADR with options and consequences | Sampled each quarter |
+| Control | The control owner | Automated check output and its history | Continuous, with periodic sampling |
+| Finding | The remediation owner | Ticket, due date and closure evidence | Until closed |
+
+: Accountability objects, evidence and review cadence
+
+Figure 2.15 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
+
+![Figure 2.15 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-15 width="100%"}
+
+**Example.** The checkout team chooses its own caching strategy and records it in the pull request. The decision to call the fraud provider synchronously crosses a domain boundary and carries financial risk, so it becomes an ADR with a named risk owner. The payments exception for the legacy billing writer names an approver, a compensating reconciliation and a fixed expiry date; when the date passes, the register marks it expired and the next review must either close it or renew it with fresh evidence.
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Recording only the outcome of a decision, not the alternatives or the assumption that made it correct. Six months later nobody can tell whether the assumption still holds, so the decision is either defended blindly or reversed by accident. Record options, the deciding assumption and the signal that would reopen it.
+Recording only the outcome of a decision, not the alternatives or the assumption that made it correct. Six months later nobody can tell whether the assumption still holds, so the decision is either defended blindly or reversed by accident. Naming a team as the owner has the same effect: nobody is accountable when the team reorganizes, and evidence kept only in chat history disappears with the channel. Record options, the deciding assumption and the signal that would reopen the decision; name a role, store the evidence where a reviewer can retrieve it, and test retrieval as part of the audit.
 :::
 
 ::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
-Every decision can be escalated; the choice is where review stops adding value.
+Evidence costs effort to produce and keep; decide what must be retained.
 
 | Option | Choose when | Consequences |
 | :--- | :--- | :--- |
-| Team decides and records briefly | The decision is local and reversible | Fastest; needs a sampling mechanism to catch drift |
-| Consult affected owners, then decide | The decision crosses a domain or a budget | Slower; decisions hold because the affected parties were heard |
-| Focused review with a risk owner | The decision is irreversible or safety-relevant | Highest assurance; reserve it, or review becomes the bottleneck |
+| Record every decision with full evidence | The domain is regulated or safety-relevant | Highest assurance; heavy process and storage cost |
+| Record significant decisions, sample the rest | Most organizations with several teams | Reasonable cost; needs a defined sampling rule |
+| Rely on tickets and chat history | One team, short-lived systems | Cheapest; evidence is usually unrecoverable when needed |
 :::
 
 ## 2.14 Privacy by Design
@@ -569,46 +585,6 @@ Privacy controls restrict what the system can do; choose the strength deliberate
 | Collect only the fields the journey needs | Almost always; this is the default | Some personalization and analytics are lost |
 | Pseudonymize and separate identifiers | Analysis or support needs records without identity | Extra mapping store to protect and govern |
 | Retain full data under strict access control | A legal or safety obligation requires it | Largest blast radius; needs the strongest audit and retention evidence |
-:::
-
-## 2.15 Accountability and Auditability
-
-**Definition.** Accountability names the person or role answerable for a principle, decision or control; auditability makes the evidence of that responsibility retrievable after the fact.
-
-**Purpose.** Together they close the loop that the other principles open. A guardrail without an owner produces alerts nobody acts on, and a decision without evidence cannot be reviewed, defended or learned from. They inform the register design, the retention of decision records and the review cadence.
-
-**What it includes.** A named accountable owner — a role, not a team — for each principle, exception, significant decision and control. A control that is enforced somewhere observable, evidence that survives staff changes and is retrievable in a review, and a periodic audit or sample that tests the evidence rather than the intention. Findings receive a remediation owner and a due date, and an exception expires unless it is renewed with evidence (see 4.9). Table 2.15 lists the objects and their review cadence.
-
-**Why it is needed.** Without it, an organization can hold every principle and still be unable to show that any was applied; the first external audit or serious incident exposes the gap. Recurring findings also point at a poorly scoped principle rather than at individual teams. **Evidence.** A sample of decisions and exceptions shows a named owner, retrievable evidence and a closed review, and expired exceptions are actually removed.
-
-| Object | Accountable owner | Evidence retained | Review cadence |
-| :--- | :--- | :--- | :--- |
-| Principle | Named architect role | Published text, guardrail results | Annual, or on recurring exception |
-| Exception | The approver who granted it | Entry with scope, compensating control and expiry | At expiry, mandatory |
-| Significant decision | The decider | ADR with options and consequences | Sampled each quarter |
-| Control | The control owner | Automated check output and its history | Continuous, with periodic sampling |
-| Finding | The remediation owner | Ticket, due date and closure evidence | Until closed |
-
-: Accountability objects, evidence and review cadence
-
-Figure 2.15 links each accountability object to the evidence it leaves and the review that keeps it current, which is how the cadence in the table becomes an operating loop.
-
-![Figure 2.15 — Accountability and audit evidence chain](../../assets/diagrams/rendered/ch02-accountability-chain.png){#fig-2-15 width="100%"}
-
-**Example.** The payments exception for the legacy billing writer names an approver, a compensating reconciliation and a fixed expiry date. When the date passes, the register marks it expired and the next review must either close it or renew it with fresh evidence.
-
-::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Naming a team as the owner and keeping the evidence only in chat history. Nobody is accountable when the team reorganizes, and the evidence disappears with the channel. Name a role, store the evidence where a reviewer can retrieve it, and test retrieval as part of the audit.
-:::
-
-::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
-Evidence costs effort to produce and keep; decide what must be retained.
-
-| Option | Choose when | Consequences |
-| :--- | :--- | :--- |
-| Record every decision with full evidence | The domain is regulated or safety-relevant | Highest assurance; heavy process and storage cost |
-| Record significant decisions, sample the rest | Most organizations with several teams | Reasonable cost; needs a defined sampling rule |
-| Rely on tickets and chat history | One team, short-lived systems | Cheapest; evidence is usually unrecoverable when needed |
 :::
 
 ## 2.16 Managing Principle Conflicts

@@ -84,7 +84,7 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Clarify responsibilities with other roles | The Solutions Architect Role |
 | Prepare a proposal or respond to a bid | The Solutions Architect Role; 16.2.6 |
 | Plan high availability or disaster recovery | 1.2.10; 8.2 |
-| Design privacy and auditability into a solution | 1.2.12–1.2.13; 2.14; 10.9 |
+| Design privacy and auditability into a solution | 1.2.12–1.2.13; 2.13–2.14; 10.9 |
 | Turn a stakeholder request into testable requirements | 1.4 Quality Attribute Scenarios; Appendix B.1 |
 | Choose, revise or reconcile architecture principles | Chapter 2; 2.16 |
 | Choose between design options and record the choice | Chapter 3; Appendix B.6 |

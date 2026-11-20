@@ -284,43 +284,7 @@ Choose how capacity is bought before comparing unit prices.
 
 ## 8.4 Platform Engineering and Shared Capabilities
 
-**Definition.** A platform is the set of reusable capabilities — pipelines, secrets, observability, service templates — offered to workload teams as an internal product.
-
-**Purpose.** A platform turns repeated work into a golden path: the secure, observable, deployable default that a team can adopt in minutes. Its purpose is to reduce the number of decisions each team must make and the number of ways the same control can be implemented.
-
-**What it includes.** Platform teams provide reusable, secure capabilities as an internal product with self-service interfaces, golden paths, support expectations and adoption metrics (Figure 8.4). A platform that becomes a ticket queue undermines delivery autonomy. Workload teams remain accountable for application-specific controls. Chapter 9 designs the platform itself: its product model, responsibilities, interfaces, tenancy, guardrails, reliability, measures and economics.
-
-| Capability | What the golden path provides | Measure of success |
-| :--- | :--- | :--- |
-| Delivery pipeline | Build, test, scan and deploy by default | Onboarding time for a new service |
-| Secrets and identity | Workload identity and secret rotation wired in | Number of long-lived credentials |
-| Observability | Logs, metrics, traces and dashboards preconfigured | Share of services with an SLO and alerts |
-| Service template | Repository, pipeline and baseline policy in one step | Adoption rate of the template |
-| Support model | Named owner, office hours and an escalation path | Requests resolved through self-service |
-
-: Platform capabilities and their product measures
-
-Figure 8.4 presents the golden path as a product with a supported route and an anti-pattern beside it, so the product measures in the table have a visible owner.
-
-![Figure 8.4 — The golden path as a product, and the anti-pattern](../../assets/diagrams/rendered/ch08-platform-path.png){#fig-8-4 width="100%"}
-
-**Why it is needed.** Without a platform, every team implements its own pipeline, its own secret handling and its own monitoring, and the estate accumulates variants that security and operations cannot review at scale. With a platform that only accepts tickets, delivery waits on the platform team for work it could have done itself. The evidence is onboarding time for a new service, adoption rate and the number of exceptions to golden paths.
-
-**Example.** A new service in the reference checkout is created from the platform template: repository, pipeline, workload identity, dashboards and alerts exist before the first commit. The team adds application-specific controls — authorization, data classification, reconciliation — and the platform team measures onboarding time rather than counting tickets.
-
-::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
-Building a platform nobody asked to use: capabilities chosen by the platform team, delivered through a ticket queue, with no adoption measure. Teams route around it, and the estate grows more variants than before. Treat the platform as a product with named users, a golden path that is faster than the alternative, and adoption and onboarding time as its metrics.
-:::
-
-::: {.callout-important appearance="simple" icon=false title="Decision & Trade-off"}
-Choose the platform operating model.
-
-| Option | Choose when | Consequences |
-| :--- | :--- | :--- |
-| Self-service golden path | Many teams repeat the same platform work | Scales and standardizes; the path must stay faster than doing it manually |
-| Central platform team with exceptions | A few capabilities need central expertise | Control and consistency; queue risk and slower delivery |
-| Embedded platform engineers per team | Capabilities differ materially between domains | Local fit; duplicated effort and drift between teams |
-:::
+A platform is the set of reusable capabilities — delivery pipelines, workload identity and secrets, observability, service templates and a support model — that a workload team consumes as an internal product, so that each team does not rebuild them and a control is implemented once. Infrastructure must provide what the platform composes: capacity and placement, network segmentation and traffic entry, storage, runtime isolation, workload identity and the landing-zone controls that make shared tenancy safe. Chapter 9 designs the platform itself: its product model, interfaces, tenancy, guardrails, reliability, measures and economics.
 
 ## 8.5 Cloud Well-Architected Frameworks
 
@@ -499,7 +463,7 @@ Choose the connectivity and exposure model before selecting network products.
 
 ## 8.7 Container and Runtime Platforms
 
-The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; platform ownership is covered in 8.4 and release mechanics in 12.1.
+The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; platform ownership is covered in Chapter 9 and release mechanics in 12.1.
 
 ### 8.7.1 Runtime Limits and Isolation
 

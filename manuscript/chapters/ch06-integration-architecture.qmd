@@ -597,7 +597,7 @@ Choose what carries an interface.
 | Dedicated adapter service | A strategic or demanding interface exceeds platform limits or needs its own release cadence | Full control; the team owns the code, operations and on-call |
 :::
 
-## 6.7 Worked Example: Reference Design and Review
+## 6.7 Worked Example: Order and Payment Integration
 
 *In practice:* This example follows the reference order-and-payment sequence to show how ownership, delivery guarantees, unknown outcomes and evidence fit together in one integration design.
 

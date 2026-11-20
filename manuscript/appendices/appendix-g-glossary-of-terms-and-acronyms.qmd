@@ -8,7 +8,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | ABAC | Attribute-based access control: authorization decided from attributes of the principal, resource and context. | 10.3.1 |
 | Access-controlled retrieval | Retrieval that applies the requesting user’s permissions at query time, so the model only receives content the user is entitled to see. | 19.3.5 |
 | Accessibility | The degree to which people with different abilities can use the experience. | 1.2.11 |
-| Accountability | A named person or role answerable for a principle, decision or control. | 2.15 |
+| Accountability | A named person or role answerable for a principle, decision or control. | 2.13 |
 | ACL | Access control list: the set of permissions attached to a resource or a network path. | 8.6.2 |
 | Activity diagram | A UML behavioral diagram showing the flow of actions and control or data through an activity; optional partitions group actions by responsibility. The handbook discusses it alongside swimlane process views. | 13.2.3 |
 | ADD | Attribute-driven design: an iterative method that selects the quality attribute which most constrains the design, chooses a structure for it and verifies the result. | 3.3.4 |
@@ -62,7 +62,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | ATAM | Architecture Tradeoff Analysis Method: an SEI method that evaluates an architecture against prioritized quality scenarios and exposes risks, sensitivity and trade-off points. | 14.2.1; 18.3.1 |
 | Audit readiness | The ability to evidence, on request, that controls were designed adequately and operated effectively over a stated period. | 4.9 |
 | Audit trail | The protected record that establishes who did what, to which resource, when, from where and with what result. | 10.7.2 |
-| Auditability | The quality attribute that lets a reviewer reconstruct who did what, when and under which authority, from records the system keeps. | 1.2.13; 2.15 |
+| Auditability | The quality attribute that lets a reviewer reconstruct who did what, when and under which authority, from records the system keeps. | 1.2.13; 2.13 |
 | Authenticated dynamic testing | Dynamic testing that exercises the running application with real roles and sessions rather than only its public pages. | 10.5.4 |
 | Authentication | Proof that a claimed identity controls a credential. | 10.2.2 |
 | Authorization | The decision that a principal may perform a specific action on a specific resource in a specific context. | 10.3.1 |
