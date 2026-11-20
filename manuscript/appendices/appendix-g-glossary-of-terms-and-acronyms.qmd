@@ -314,7 +314,7 @@ The glossary is **Table G.1**. Terms are grouped by first letter; the last colum
 | Pipeline | A governed sequence of jobs that moves and transforms data from sources to consumers. | 5.2.6 |
 | PKCE | Proof Key for Code Exchange: an OAuth 2.0 extension that protects authorization-code flows for public clients. | 10.2.4 |
 | Platform as a product | Running a platform with identified users, a value proposition, a needs-based roadmap and measures of adoption and benefit. | 9.2.1 |
-| Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 8.4 |
+| Platform engineering | The discipline that offers reusable capabilities — pipelines, secrets, observability, service templates — to workload teams as an internal product. | 9.1.1 |
 | Platform responsibility model | The division of duties, per platform capability, between the platform team and the teams whose workloads use it. | 9.3.1 |
 | Policy as code | Organizational rules expressed as versioned, tested code that the platform evaluates automatically. | 9.7.1 |
 | Polling | Periodically querying a system for changes rather than receiving a push. | 6.1.8 |

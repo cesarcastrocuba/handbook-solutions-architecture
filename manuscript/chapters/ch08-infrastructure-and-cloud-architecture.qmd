@@ -260,7 +260,7 @@ Figure 8.3 follows an infrastructure change from definition through apply to dri
 | Data transfer and egress | Chatty cross-zone or cross-region traffic | Locality, private endpoints, payload design |
 | Storage tiers and retention | Copies kept beyond their purpose | Lifecycle rules tied to the retention schedule (5.2.4) |
 | Managed service tiers | Premium features used by default | Feature-by-feature justification |
-| Operational labor | Manual toil and incident load | Automation and platform paths (8.3.1, 8.4) |
+| Operational labor | Manual toil and incident load | Automation and platform paths (8.3.1, 8.7) |
 
 : Cost drivers and levers
 
@@ -281,10 +281,6 @@ Choose how capacity is bought before comparing unit prices.
 | Reserved or committed use against a measured baseline | The baseline is stable and measured over several months | Lower unit price; unused commitment becomes waste |
 | Provision for the peak and shed or queue the excess | The peak is short and the work can be deferred | Lowest capacity cost; explicit degradation, queue limits and an owner |
 :::
-
-## 8.4 Platform Engineering and Shared Capabilities
-
-A platform is the set of reusable capabilities — delivery pipelines, workload identity and secrets, observability, service templates and a support model — that a workload team consumes as an internal product, so that each team does not rebuild them and a control is implemented once. Infrastructure must provide what the platform composes: capacity and placement, network segmentation and traffic entry, storage, runtime isolation, workload identity and the landing-zone controls that make shared tenancy safe. Chapter 9 designs the platform itself: its product model, interfaces, tenancy, guardrails, reliability, measures and economics.
 
 ## 8.5 Cloud Well-Architected Frameworks
 
@@ -463,7 +459,9 @@ Choose the connectivity and exposure model before selecting network products.
 
 ## 8.7 Container and Runtime Platforms
 
-The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; platform ownership is covered in Chapter 9 and release mechanics in 12.1.
+The runtime platform decides how workloads are packaged, placed, scaled and replaced. It also decides how much of that work the organization operates for itself. Section 8.1.2 compares the execution models. This section covers the limits and architectural obligations that come with the chosen runtime; release mechanics are covered in 12.1.
+
+A platform is the set of reusable capabilities — delivery pipelines, workload identity and secrets, observability, service templates and a support model — that a workload team consumes as an internal product, so that each team does not rebuild them and a control is implemented once. Infrastructure must provide what the platform composes: capacity and placement, network segmentation and traffic entry, storage, runtime isolation, workload identity and the landing-zone controls that make shared tenancy safe. Chapter 9 designs the platform itself: its product model, interfaces, tenancy, guardrails, reliability, measures and economics.
 
 ### 8.7.1 Runtime Limits and Isolation
 

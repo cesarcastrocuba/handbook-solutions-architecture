@@ -2,7 +2,7 @@
 
 An internal platform is architecture that other solutions stand on. A solution architect meets it in three ways: as a consumer, who must know what the platform provides, what it limits and what remains the solution's responsibility; as a decision maker, who decides whether a capability belongs in the solution, in a shared platform or with a provider; and sometimes as its designer, because a platform is itself a solution with requirements, decisions, governance, evaluation and cost.
 
-This chapter treats the platform in all three roles. Section 8.4 introduces platform engineering as a shared infrastructure capability, Section 2.12 sets the principle of standardization and reuse, and Section 4.10 describes the team types and interaction modes around it. Here the platform is designed as an architecture of its own: its product model, responsibilities, reference structure, interfaces, tenancy, guardrails, reliability, measures, economics and sourcing.
+This chapter treats the platform in all three roles. Section 8.7 introduces platform engineering as a shared infrastructure capability, Section 2.12 sets the principle of standardization and reuse, and Section 4.10 describes the team types and interaction modes around it. Here the platform is designed as an architecture of its own: its product model, responsibilities, reference structure, interfaces, tenancy, guardrails, reliability, measures, economics and sourcing.
 
 ::: {.callout-note appearance="simple" icon=false title="When to Use This Chapter"}
 - Deciding whether a capability belongs in a solution, in a shared platform or with a provider.
