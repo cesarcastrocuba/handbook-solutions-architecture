@@ -25,6 +25,10 @@ Model:
 * A table column headed ``Table``/``Tables`` holds table numbers and a column
   headed ``Figure``/``Figures`` holds figure numbers, whatever their shape: a
   bare ``E.2`` under ``Table`` is table E.2, not section E.2.
+* The data files under ``publishing/`` and ``checklists/canonical/`` are
+  rewritten in every string value, prose fields included (``question``,
+  ``expected_evidence``, ``rationale``, ``problem``); ``external_reference``
+  names standards and is left alone.
 * Nothing is written unless the whole run is clean: a reference to a deleted
   target without --alias, a numbering gap, a figure id that disagrees with its
   alt text or a range whose image leaves a hole aborts the run. A permutation
@@ -44,10 +48,11 @@ Two guards keep the tool honest:
 A table has no literal number, so a run that changes only table numbering has no
 anchor for that state test; the tool refuses it instead of guessing.
 
-Generated appendices C, H, I and J belong to ``scripts/checklists.py`` and
-``scripts/generate_catalogs.py``. They are recognised by title, not by file
-name, because the edition renames the files when letters swap; the tool counts
-them for numbering, never rewrites them and prints the regeneration commands.
+Generated appendices H, I and J belong to ``scripts/generate_catalogs.py``. They
+are recognised by title, not by file name, because the edition renames the files
+when letters swap; the tool counts them for numbering, never rewrites them and
+prints the regeneration commands. Appendix C is authored and rewritten like any
+chapter, because ``scripts/checklists.py`` checks rather than generates it.
 
 Usage::
 
@@ -150,10 +155,10 @@ BARE_RANGE = re.compile(
 RANGE_TOKEN_WORDS = re.compile(r'\b(?:Chapters?|Sections?|Figures?|Tables?)\s*$', re.I)
 
 # Appendices produced by scripts/generate_catalogs.py (anti-patterns, decisions,
-# patterns) and scripts/checklists.py (assurance checklist). They are recognised
-# by title, not by file name: the edition renames the files when letters swap.
+# patterns). They are recognised by title, not by file name: the edition renames
+# the files when letters swap. Appendix C is authored: scripts/checklists.py
+# checks its questions against the canonical files, it does not generate it.
 GENERATED_TITLES = frozenset({
-    'Architecture Assurance Checklist',
     'Anti-Pattern Catalog',
     'Decision Catalog',
     'Pattern Catalog',
@@ -1222,9 +1227,9 @@ def rewrite_document(document: Document, rewriter: Rewriter) -> str:
 # --------------------------------------------------------------------------- #
 
 
-SECTION_KEY = re.compile(r"(\bsection:\s*)(['\"]?)([0-9A-Z][0-9A-Z.]*)(\2)(?=[,}\s]|$)")
-DEFINED_KEY = re.compile(r"^(\s*defined:\s*)(['\"]?)([0-9A-Z][0-9A-Z.]*)(\2)\s*$")
-RATIONALE = re.compile(r'(\bsection\s+)(\d{1,2}(?:\.\d{1,2})+)(\s+owns\b)')
+EXTERNAL_REFERENCE = re.compile(r'^\s*(?:-\s*)?external_reference:')
+YAML_KEY = re.compile(r"(\b(?:section|defined):\s*)(['\"]?)([0-9A-Z][0-9A-Z.]*)(\2)")
+SECTION_PROSE = re.compile(r'\b[Ss]ection\s+(\d{1,2}(?:\.\d{1,2}){1,3})(?![\w.]|\.\d)')
 
 
 def yaml_targets(root: Path) -> list[Path]:
@@ -1234,7 +1239,35 @@ def yaml_targets(root: Path) -> list[Path]:
     return [path for path in files if path.is_file()]
 
 
+def yaml_edits(line: str, rewriter: Rewriter) -> list[tuple[int, int, str]]:
+    """The two reference forms that need the key or the word, not the prose gate."""
+    edits = []
+    for match in YAML_KEY.finditer(line):
+        old = match.group(3)
+        new = rewriter.resolve('section', old)
+        if new is not None and new != old:
+            rewriter.record('section', old, new)
+            edits.append((match.start(3), match.end(3), new))
+    for match in SECTION_PROSE.finditer(line):
+        old = match.group(1)
+        new = rewriter.resolve('section', old)
+        if new is not None and new != old:
+            rewriter.record('section', old, new)
+            edits.append((match.start(1), match.end(1), new))
+    return edits
+
+
 def rewrite_yaml(root: Path, rewriter: Rewriter) -> dict[Path, str]:
+    """Rewrite references in every string value, not only `section:`.
+
+    These files carry references in prose fields too (`question`,
+    `expected_evidence`, `rationale`, `problem`, ...). `section:`/`defined:`
+    values and the worded "section N" form are handled explicitly, because the
+    toolkit treats "section" as a structure word and refuses a bare number after
+    it; the manuscript rewriter then covers every other prose reference. The key
+    spans are blocked so the same number is never mapped twice, and
+    `external_reference` is skipped because it names standards.
+    """
     changed: dict[Path, str] = {}
     for path in yaml_targets(root):
         rel = str(path.relative_to(root))
@@ -1243,34 +1276,12 @@ def rewrite_yaml(root: Path, rewriter: Rewriter) -> dict[Path, str]:
         for number, line in enumerate(original.split('\n')):
             rewriter.path = rel
             rewriter.line = number
-
-            def section_value(match: re.Match[str]) -> str:
-                old = match.group(3)
-                new = rewriter.resolve('section', old)
-                if new is None or new == old:
-                    return match.group(0)
-                rewriter.record('section', old, new)
-                return match.group(1) + match.group(2) + new + match.group(4)
-
-            new_line = SECTION_KEY.sub(section_value, line)
-            defined = DEFINED_KEY.match(new_line)
-            if defined:
-                old = defined.group(3)
-                new = rewriter.resolve('section', old)
-                if new and new != old:
-                    rewriter.record('section', old, new)
-                    new_line = defined.group(1) + defined.group(2) + new + defined.group(4)
-
-            def rationale(match: re.Match[str]) -> str:
-                old = match.group(2)
-                new = rewriter.resolve('section', old)
-                if new is None or new == old:
-                    return match.group(0)
-                rewriter.record('section', old, new)
-                return match.group(1) + new + match.group(3)
-
-            new_line = RATIONALE.sub(rationale, new_line)
-            output.append(new_line)
+            if EXTERNAL_REFERENCE.match(line):
+                output.append(line)
+                continue
+            keys = yaml_edits(line, rewriter)
+            blocked = tuple((start, end) for start, end, _ in keys)
+            output.append(apply_edits(line, keys + rewriter.inline_edits(line, blocked)))
         text = '\n'.join(output)
         if text != original:
             changed[path] = text
