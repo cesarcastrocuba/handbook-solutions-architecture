@@ -1,24 +1,39 @@
 # Conclusions {.unnumbered}
 
-Solution architecture is the discipline of making consequential decisions under uncertainty and demonstrating that they work. The chapters of this handbook cover different domains, but they apply the same small set of ideas. This section summarizes those ideas and how they combine in practice.
+Solution architecture is the discipline of making consequential decisions under uncertainty and demonstrating that they work. The chapters of this handbook cover different domains, but they apply the same small set of ideas: state what must be true, decide with alternatives and evidence, assign an owner to every fact and interface, design for the failure that will happen, and keep proving the result while the system and its context change. This section draws those ideas together, shows how the chapters build on one another, and suggests how to put the handbook to work.
 
 ## Cross-Cutting Principles
 
 ::: {.rc2-list-group}
 1. **Measurable requirements drive design.** A quality attribute that cannot be measured cannot justify a decision or be verified (Chapter 1).
-2. **Every significant decision has alternatives and a cost.** Record what was chosen, what was rejected and what was traded away (Chapter 3).
-3. **Evidence over assertion.** Diagrams describe intent; tests, measurements and exercises demonstrate it (Chapters 4, 5, 6, 7, 9, 10, 11, 12, 17, 13, 14 and 15).
-4. **One accountable owner per fact, interface and decision.** Ambiguous ownership becomes coupling, inconsistency and incident delay (Chapters 4, 9, 10).
-5. **Design for failure and for unknown outcomes.** Timeouts, duplicates and partial failures are normal; idempotency, reconciliation and explicit pending states turn them into recoverable events (Chapters 10, 11, 14).
-6. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 9).
-7. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 11).
-8. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 13).
-9. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.8 and 2.14, 13.9).
-10. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 14).
-11. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 15, 18).
-12. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 17).
-13. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 5, 7).
+2. **Every significant decision has alternatives and a cost.** Record what was chosen, what was rejected, what was traded away and what would trigger a revisit (Chapter 3).
+3. **Prefer the simplest design that meets the requirements over its lifetime,** including operations, security and recovery (Chapters 2, 11).
+4. **Governance is proportionate to risk.** Automate repeatable controls and reserve human review for consequential trade-offs (Chapters 4, 17).
+5. **Documentation is right-sized and connected.** Artifacts link by identifier, agree with each other and have owners (Chapters 5, 7).
+6. **Evidence over assertion.** Diagrams describe intent; evaluations, tests, measurements and exercises demonstrate it (4.9; Chapters 6, 16).
+7. **Frameworks serve concerns, not the other way round.** Adopt a framework, method or standard for a concern that no other artifact covers, and confirm that a regulation applies before designing for it (Chapter 8).
+8. **One accountable owner per fact, interface and decision.** Ambiguous ownership becomes coupling, inconsistency and incident delay (Chapters 4, 9, 10).
+9. **Consistency is chosen per invariant.** Strong consistency where the business requires it; documented, observable eventual consistency elsewhere (Chapter 9).
+10. **Design for failure and for unknown outcomes.** Timeouts, duplicates and partial failures are normal; idempotency, reconciliation and explicit pending states turn them into recoverable events (Chapters 10, 11, 14).
+11. **Security is verified at each trust boundary,** with identity and authorization enforced where the resource is owned (Chapter 13).
+12. **Personal data is limited to a stated purpose, and the record of who did what is designed, retained and testable.** Privacy and auditability pull against each other and are reconciled explicitly rather than by whichever team owns the store (1.2.12–1.2.13, 2.8 and 2.14, 13.9).
+13. **Reliability is defined by user outcomes,** measured with SLIs and governed with error budgets (Chapter 14).
+14. **Change must be reversible or explicitly irreversible.** Compatible migrations, progressive delivery and stated rollback limits keep change safe (Chapters 15, 18).
+15. **A shared capability is a product with a contract.** A platform earns adoption by making delivery faster and safer than the alternative, through an explicit responsibility boundary and interfaces that can evolve (Chapter 17).
+16. **Options are compared on lifecycle cost and value,** including operations, risk, capacity and exit, not on license or build price (Chapter 18).
+17. **An AI capability is only as trustworthy as the system around the model:** data provenance, authorization, evaluation and fallback decide whether it is safe, affordable and operable (Chapter 19).
 :::
+
+## How the Chapters Fit Together
+
+The chapters are ordered so that each one relies mainly on those before it.
+
+- **How architecture is practised (Chapters 1–8).** Requirements, principles and decisions give a design its purpose and its reasons; governance allocates decision rights and the evidence that a decision holds; documentation, evaluation and artifacts make the reasoning visible, testable and reviewable. The frameworks, methods and standards chapter closes the practice by positioning the established frameworks against these activities, so that a framework is chosen for a concern rather than adopted whole.
+- **Technical domains (Chapters 9–13).** Data, integration, application, infrastructure and security apply the practice to the structure of a solution. Each domain contributes its own decisions, but the same questions recur: who owns this, what happens when it fails, and how is the claim verified.
+- **Operation and verification (Chapters 14–16).** Observability and reliability define what “working” means for users; deployment and operations make change safe; testing turns every architectural claim into evidence that a release decision or an audit can rely on.
+- **Platform, evolution and AI (Chapters 17–19).** An internal platform consolidates the infrastructure, security, delivery and operational capabilities of the preceding chapters into a product that many teams consume. Evolution and economics keep a solution changeable and affordable over years rather than releases. AI and machine learning come last because an AI capability draws on every earlier chapter: requirements and evaluation, data and integration, security, reliability, delivery and cost.
+
+One example runs through the book: a checkout with an external payment provider. It becomes an acceptance contract (1.6), a right-sized description (5.4) and an evaluated payment design (6.4); it is integrated (10.7), designed internally (11.8) and tested (16.5); and it runs on a shared platform (17.13). Appendix A.1 assembles it into one reference design. Following that thread is a quick way to see how the chapters depend on each other.
 
 ## Applying the Handbook in an Engagement
 
@@ -26,16 +41,45 @@ A typical solution engagement moves through the following stages; the role secti
 
 | Stage | Key questions | Chapters | Typical outputs |
 | :--- | :--- | :--- | :--- |
-| Understand | What outcomes, constraints and quality attributes matter? | 1, 2 | Requirements, quality scenarios, constraint and assumption logs |
-| Decide | Which options exist, and which trade-offs are acceptable? | 3, 6, 8 | ADRs, evaluation results, spikes |
-| Design | How are data, integration, application, infrastructure, platform and security structured? | 9, 10, 11, 12, 17 and 13 | HLD, data and integration contracts, threat model |
+| Understand | What outcomes, constraints and quality attributes matter? | 1, 2 | Requirements, quality attribute scenarios (Appendix B.1), constraint and assumption logs |
+| Decide | Which options exist, and which trade-offs are acceptable? | 3, 6, 8 | ADRs (Appendix B.5), evaluation results, spikes |
+| Design | How are data, integration, application, infrastructure and security structured? | 9–13 | HLD (Appendix B.3), data and integration contracts (Appendix B.9), threat model |
 | Validate | Does the design meet its requirements under load and failure? | 6, 14, 16 | Test and exercise reports, SLO definitions |
-| Govern | Is the right level of review applied, and are conditions verified? | 4, 7 | Review records, exception register |
+| Govern | Is the right level of review applied, and are conditions verified? | 4, 7 | Review records (Appendix B.14), exception register, assurance checklist (Appendix C) |
 | Release and operate | Can the solution be deployed, observed and recovered safely? | 14, 15 | Runbooks, release plan, readiness evidence |
-| Evolve | How will the solution change, migrate and remain economical? | 18 | Roadmap, migration gates, cost model |
+| Share | Which capabilities should many teams consume from a platform, and on what terms? | 17 | Platform capability contracts (Appendix B.12), platform assessment (Appendix B.13) |
+| Evolve | How will the solution change, migrate and remain economical? | 18 | Roadmap, migration gates, cost model, vendor evaluation (Appendix B.8) |
+| Add AI capabilities | Is an AI component justified, evaluated, bounded and governed? | 19 | Evaluation sets, release manifests, fallback and kill-switch design |
 
 : Engagement stages, questions and outputs
+
+## Getting Started
+
+The handbook does not need to be adopted all at once. A useful start depends on the reader.
+
+- **An architect new to the role** can begin with three habits: write the top quality attributes as scenarios (Appendix B.1), record each significant decision as an ADR with its alternatives and revisit trigger (Appendix B.5), and review designs with the chapter checklists and the assurance checklist (Appendix C).
+- **A delivery team** can start from the contracts it already owns — interfaces, schemas and SLOs — make each one explicit and owned, and add the evidence for it to the pipeline (Chapters 10, 14 and 16).
+- **An organization establishing architecture governance** can start with decision rights and a risk-based review route (Chapter 4), a small set of owned artifacts (Chapter 7) and the cross-artifact consistency matrix (Appendix D), adding automated controls as repeatable checks emerge.
+
+The catalogs support whichever route is taken: patterns (Appendix G), anti-patterns (Appendix H), decisions (Appendix I) and terms (Appendix J) can each be scanned in one place, and each entry links to the section that explains it.
+
+## Recurring Failure Modes
+
+The anti-patterns of the individual chapters (Appendix H) are specific, but most of them are instances of a few recurring failures. Recognizing the family makes a new instance easier to spot.
+
+- **Naming a property instead of designing it.** Principles published as adjectives (2.1), “highly available” accepted as a requirement (1.3), “managed” taken to mean “secured” (12.1) and every shared asset called a platform (17.1) all state a property without the mechanism or the evidence that would deliver it.
+- **Doing it once.** A traceability matrix built at design time (1.5), threat modeling filed after the first review (13.1), quality attributes tested only before the first launch (16.3) and a platform review treated as a one-off gate (17.12) decay while the system keeps changing.
+- **Measuring the proxy.** Approvals counted as governance (4.8), a reviewed diagram treated as validation (6.1), coverage treated as evidence (16.1) and a platform measured by its own activity rather than its consumers’ outcomes (17.9) replace the outcome with what is easiest to count.
+- **Enforcing a boundary at one point.** Authorization only in the user interface or the gateway (2.7, 13.3), an application-level tenant filter as the only isolation (11.7), policy enforced only at the last gate (17.7) and the system prompt treated as the security boundary (19.5) leave every other path open.
+- **Assuming the happy path.** Retries without a deadline or an idempotency key (2.9), at-least-once delivery read as exactly-once (10.3), a second region without replicated DNS, identity and access (12.4) and the assumption that every release can be rolled back (15.6) fail exactly when they are needed.
+- **Leaving ownership implicit.** Decisions taken by consensus because no owner was named (4.2), a platform whose responsibility boundary is implicit (17.3) and postmortem actions without an owner or a date (14.5) turn into delay and repeated incidents.
 
 ## Limits of This Handbook
 
 The handbook provides concepts, criteria and evidence patterns; it cannot replace contextual judgment. The right design depends on business priorities, regulatory obligations, team capability and existing systems, and several sound answers often exist. When guidance here conflicts with a measured result from the actual system, the measurement takes precedence, and the relevant decision should be revisited.
+
+Standards, regulations and technologies change faster than any edition. Products are named only as labelled examples, and the regulatory instruments discussed are applicability questions to confirm for each solution and jurisdiction, in their current editions (8.4; Appendix E.10). The handbook is versioned so that its own changes are recorded (Document Control).
+
+## Closing
+
+The solutions architect’s contribution is rarely a single design. It is the chain of reasoning that lets other people build, operate and change a system with confidence: requirements that can be tested, decisions that can be revisited, ownership that is clear, and evidence that keeps up with the system. The chapters describe that chain domain by domain; the role section at the start of the handbook describes the work of keeping it intact.
