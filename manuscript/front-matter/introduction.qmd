@@ -69,7 +69,7 @@ Hands-on readers are assumed to have practical software delivery experience and 
 - **Technical domains (Chapters 9–13):** data, integration, application, infrastructure and cloud, and security.
 - **Operation and verification (Chapters 14–16):** observability and reliability, deployment and operations, and testing and quality verification.
 - **Platform, evolution and AI (Chapters 17–19):** the internal platform that consolidates those capabilities for many teams, evolution and economics, and AI and machine learning.
-- **Conclusions** summarize the cross-cutting principles. **Appendices** provide worked cases, artifact schemas, an assurance checklist, a consistency matrix, a security requirements baseline, a security reference (protocols, OWASP and ASVS, testing techniques, vulnerability scoring and tools), a pattern catalog, catalogs of the anti-patterns and decisions discussed in the chapters, and the glossary. **References** list the sources cited and recommended for further reading.
+- **Conclusions** summarize the cross-cutting principles, show how the chapters fit together, map them to the stages of an engagement and suggest where to start. **Appendices** provide worked cases, artifact schemas, an assurance checklist, a consistency matrix, a security requirements baseline, a security reference (protocols, OWASP and ASVS, testing techniques, vulnerability scoring and tools), a pattern catalog, catalogs of the anti-patterns and decisions discussed in the chapters, and the glossary. **References** list the sources cited and recommended for further reading.
 
 Each concept is explained in one primary location and referenced elsewhere. Each chapter ends with an architecture review checklist and suggested further reading.
 
@@ -119,6 +119,8 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Define a test strategy | 16.1 |
 | Deal with flaky tests or unreliable pipelines | 16.2.3 |
 | Plan performance and failure testing | 16.3.1 |
+| Decide whether an internal platform is justified and how to run it as a product | 17.1; 17.2 |
+| Define a platform capability and its contract | 17.5; Appendix B.12 |
 | Plan a legacy migration | 18.1; 18.4 |
 | Assess a portfolio before a cloud migration | 18.1.4 |
 | Evaluate vendors or run a proof of concept | 18.2.6; Appendix B.8 |

@@ -83,19 +83,16 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for infrastructure and runtime
 
-## G.5 Platform
+## G.5 Security and Data
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
-| Golden path | Teams repeat the same setup work and meet standards unevenly | 17.4.3 |
-| Service catalog | Ownership and dependencies of components are unknown during incidents and audits | 17.4.2 |
-| Capability contract | Consumers infer a platform capability's guarantees from experience | 17.5.2 |
-| Escape hatch | An abstraction cannot serve an unusual requirement | 17.5.1 |
-| Policy as code | Rules in documents are applied unevenly and checked late | 17.7.1 |
-| Ring-based platform rollout | A platform change can break every tenant at once | 17.8.2 |
-| Static stability | A control-plane outage must not stop running workloads | 17.8.1 |
+| Crypto-shredding | Data must be made unreadable where it cannot be deleted | 9.2.5 |
+| Data product | Several consumers need governed analytical data | 9.2.6 |
+| Least privilege | Access must be limited to what is needed | 13.3.1 |
+| Zero Trust | Network location must not imply trust | 13.4.1 |
 
-: Patterns for platform
+: Patterns for security and data
 
 ## G.6 Delivery and Evolution
 
@@ -115,16 +112,19 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for delivery and evolution
 
-## G.7 Security and Data
+## G.7 Platform
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
-| Crypto-shredding | Data must be made unreadable where it cannot be deleted | 9.2.5 |
-| Data product | Several consumers need governed analytical data | 9.2.6 |
-| Least privilege | Access must be limited to what is needed | 13.3.1 |
-| Zero Trust | Network location must not imply trust | 13.4.1 |
+| Golden path | Teams repeat the same setup work and meet standards unevenly | 17.4.3 |
+| Service catalog | Ownership and dependencies of components are unknown during incidents and audits | 17.4.2 |
+| Capability contract | Consumers infer a platform capability's guarantees from experience | 17.5.2 |
+| Escape hatch | An abstraction cannot serve an unusual requirement | 17.5.1 |
+| Policy as code | Rules in documents are applied unevenly and checked late | 17.7.1 |
+| Ring-based platform rollout | A platform change can break every tenant at once | 17.8.2 |
+| Static stability | A control-plane outage must not stop running workloads | 17.8.1 |
 
-: Patterns for security and data
+: Patterns for platform
 
 ## G.8 AI Systems
 

@@ -519,7 +519,7 @@ Choose how clients obtain data shaped for their experience.
 
 ## 11.7 Multi-Tenant Architecture
 
-Multi-tenancy serves several customer organizations from one solution while keeping each one's data, performance and lifecycle separate. Section 13.4.3 owns the security requirement that tenants are segregated; this section covers the application design that makes the requirement achievable and affordable.
+Multi-tenancy serves several customer organizations from one solution while keeping each one's data, performance and lifecycle separate. Section 13.4.3 owns the security requirement that tenants are segregated; this section covers the application design that makes the requirement achievable and affordable. The tenancy choice is recorded in a Tenancy Decision Record (Appendix B.6), and Section 17.6 applies the same models to the teams and workloads that share an internal platform.
 
 ### 11.7.1 Tenancy Models
 

@@ -57,14 +57,11 @@ Infrastructure and Runtime:
   - {name: Service mesh, problem: Service-to-service controls must be uniform, section: 12.3.3}
   - {name: GitOps, problem: Runtime state must follow a reviewed record, section: 12.3.4}
   - {name: Store and forward, problem: Devices or sites lose connectivity, section: 12.6.2, match: store-and-forward}
-Platform:
-  - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 17.4.3}
-  - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 17.4.2}
-  - {name: Capability contract, problem: Consumers infer a platform capability's guarantees from experience, section: 17.5.2}
-  - {name: Escape hatch, problem: An abstraction cannot serve an unusual requirement, section: 17.5.1}
-  - {name: Policy as code, problem: Rules in documents are applied unevenly and checked late, section: 17.7.1, match: policy}
-  - {name: Ring-based platform rollout, problem: A platform change can break every tenant at once, section: 17.8.2, match: rings}
-  - {name: Static stability, problem: A control-plane outage must not stop running workloads, section: 17.8.1}
+Security and Data:
+  - {name: Crypto-shredding, problem: Data must be made unreadable where it cannot be deleted, section: 9.2.5}
+  - {name: Data product, problem: Several consumers need governed analytical data, section: 9.2.6}
+  - {name: Least privilege, problem: Access must be limited to what is needed, section: 13.3.1}
+  - {name: Zero Trust, problem: Network location must not imply trust, section: 13.4.1}
 Delivery and Evolution:
   - {name: Canary release, problem: A change must reach a small audience first, section: 15.1.2, match: canary}
   - {name: Blue-green deployment, problem: Cut-over must be immediate and reversible, section: 15.1.2, match: blue}
@@ -77,11 +74,14 @@ Delivery and Evolution:
   - {name: Architecture test, problem: The built structure must not drift from the intended dependencies and boundaries, section: 16.3.5, match: architecture test}
   - {name: Walking skeleton, problem: The end-to-end path must be proven before the parts are built out, section: 6.3.2}
   - {name: Docs as code, problem: Documentation must change with the system it describes, section: 5.3.3}
-Security and Data:
-  - {name: Crypto-shredding, problem: Data must be made unreadable where it cannot be deleted, section: 9.2.5}
-  - {name: Data product, problem: Several consumers need governed analytical data, section: 9.2.6}
-  - {name: Least privilege, problem: Access must be limited to what is needed, section: 13.3.1}
-  - {name: Zero Trust, problem: Network location must not imply trust, section: 13.4.1}
+Platform:
+  - {name: Golden path, problem: Teams repeat the same setup work and meet standards unevenly, section: 17.4.3}
+  - {name: Service catalog, problem: Ownership and dependencies of components are unknown during incidents and audits, section: 17.4.2}
+  - {name: Capability contract, problem: Consumers infer a platform capability's guarantees from experience, section: 17.5.2}
+  - {name: Escape hatch, problem: An abstraction cannot serve an unusual requirement, section: 17.5.1}
+  - {name: Policy as code, problem: Rules in documents are applied unevenly and checked late, section: 17.7.1, match: policy}
+  - {name: Ring-based platform rollout, problem: A platform change can break every tenant at once, section: 17.8.2, match: rings}
+  - {name: Static stability, problem: A control-plane outage must not stop running workloads, section: 17.8.1}
 AI Systems:
   - {name: Retrieval-augmented generation, problem: A model must answer from governed sources, section: 19.3, match: RAG}
   - {name: Agent loop, problem: The steps of a task cannot be known in advance, section: 19.8.1, match: plans}
