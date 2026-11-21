@@ -128,7 +128,8 @@ def render_patterns(catalog):
     for index, (category, entries) in enumerate(catalog.items(), 1):
         out += [f'## G.{index} {category}', '', '| Pattern | Problem it addresses | Section |', '| :--- | :--- | :--- |']
         out += [f'| {cell(e["name"])} | {cell(e["problem"])} | {e["section"]} |' for e in entries]
-        out += ['', f': Patterns for {category.lower()}', '']
+        group = ' '.join(w if w.isupper() else w.lower() for w in category.split())
+        out += ['', f': Patterns for {group}', '']
     return '\n'.join(out).rstrip('\n')+'\n'
 
 
