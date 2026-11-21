@@ -25,6 +25,10 @@ class GenerateCatalogsTest(unittest.TestCase):
             rows = [x for x in lines if x.startswith('| ') and not x.startswith(('| Anti-pattern', '| Decision |', '| :---'))]
             self.assertEqual(len(rows), expected)
 
+    def test_pattern_group_caption_keeps_capitals(self):
+        catalog = {'AI Systems': [{'name': 'A', 'problem': 'B', 'section': '1.1'}]}
+        self.assertIn(': Patterns for AI systems', gc.render_patterns(catalog))
+
     def test_pattern_entries_match_their_sections(self):
         self.assertEqual(gc.pattern_errors(gc.load_patterns(), gc.section_bodies()), [])
 

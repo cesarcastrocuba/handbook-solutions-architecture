@@ -100,7 +100,7 @@ How should a legacy capability be modernized?
 
 ## 18.2 Architecture Economics and Sourcing
 
-Economic reasoning turns architecture options into comparable propositions: what the organization pays over the life of the solution, what risk it carries, what it can reverse, and what each unit of delivered value costs. The domain chapters apply the same reasoning to their own cost drivers: infrastructure cost and capacity (12.5.2), platform economics and chargeback (17.10) and the cost of AI capabilities (19.7).
+Economic reasoning turns architecture options into comparable propositions: what the organization pays over the life of the solution, what risk it carries, what it can reverse, and what each unit of delivered value costs. Other chapters apply the same reasoning to their own cost drivers: infrastructure cost and capacity (12.5.2), platform economics and chargeback (17.10) and the cost of AI capabilities (19.7).
 
 ![Figure 18.2 — Sourcing economics: options, total cost, exit and unit cost](../../assets/diagrams/rendered/ch13-economics.png){#fig-18-2 width="100%"}
 

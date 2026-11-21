@@ -119,7 +119,7 @@ Replay rebuilds projections only if handlers are deterministic and side effects 
 
 ### 10.1.8 Webhooks, Callbacks and Polling
 
-**Definition.** Webhooks, callbacks and polling are the three ways a system learns about a change it did not initiate: pushed notification, returned result and periodic query.
+**Definition.** Webhooks, callbacks and polling are the three ways a system learns about an event or an outcome that happens elsewhere: pushed notification, returned result and periodic query.
 
 **Purpose.** These mechanisms connect to parties whose availability and behavior the solution does not control. The design question is how to make an unreliable notification channel produce a reliable business outcome.
 

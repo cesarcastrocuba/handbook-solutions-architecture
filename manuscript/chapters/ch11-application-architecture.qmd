@@ -340,7 +340,7 @@ Security and evolution decide whether the application can be changed safely and 
 
 **Purpose.** The application is where object-level decisions are made: whether this user may read this order. Platform controls — gateway authentication, network policy, WAF — cannot make that decision, so the application must.
 
-**What it includes.** Authenticate callers and authorize each requested resource: possession of an `order_id` does not grant access to the order. Appendix F.7 lists common web vulnerabilities and their primary defenses. Validate input at adapters in addition to domain invariants, keep secrets out of code and configuration files, and scan dependencies (see Chapter 13).
+**What it includes.** Authenticate callers and authorize each requested resource: possession of an `order_id` does not grant access to the order. Validate input at adapters in addition to domain invariants, keep secrets out of code and configuration files, and scan dependencies (see Chapter 13). Appendix F.7 lists common web vulnerabilities and their primary defenses.
 
 | Control | Enforced at | Test that proves it |
 | :--- | :--- | :--- |
@@ -519,7 +519,7 @@ Choose how clients obtain data shaped for their experience.
 
 ## 11.7 Multi-Tenant Architecture
 
-Multi-tenancy serves several customer organizations from one solution while keeping each one's data, performance and lifecycle separate. Section 13.4.3 owns the security requirement that tenants are segregated; this section covers the application design that makes the requirement achievable and affordable. The tenancy choice is recorded in a Tenancy Decision Record (Appendix B.6), and Section 17.6 applies the same models to the teams and workloads that share an internal platform.
+Multi-tenancy serves several customer organizations from one solution while keeping each one's data, performance and lifecycle separate. Section 13.4.3 owns the security requirement that tenants are segregated; this section covers the application design that makes the requirement achievable and affordable. The tenancy choice is recorded in a Tenancy Decision Record (Appendix B.6), and Section 17.6 applies the same isolation reasoning to the teams and workloads that share an internal platform.
 
 ### 11.7.1 Tenancy Models
 

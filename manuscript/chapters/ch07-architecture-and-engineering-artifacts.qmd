@@ -89,7 +89,7 @@ How much design documentation should precede implementation?
 
 ## 7.2 Requirements Artifacts
 
-Requirements artifacts record what the solution must achieve and how success will be recognized. They are the only artifacts whose audience includes the business, which makes clarity and testability their dominant quality criteria.
+Requirements artifacts record what the solution must achieve and how success will be recognized. Their audience includes the business as well as the delivery teams, which makes clarity and testability their dominant quality criteria.
 
 ![Figure 7.2 — Requirements artifacts and the gate into design](../../assets/diagrams/rendered/ch14-requirements.png){#fig-7-2 width="100%"}
 

@@ -136,4 +136,4 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 | Supervisor agent | Several agents need one place for policy and tracing | 19.8.3 |
 | Human approval gate | High-impact actions need accountable authorization | 19.8.4 |
 
-: Patterns for ai systems
+: Patterns for AI systems

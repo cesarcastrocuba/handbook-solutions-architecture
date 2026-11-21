@@ -114,13 +114,13 @@ Chapter 19 (19.6.7) extends SLIs and SLOs to AI quality, groundedness, latency a
 
 **Purpose.** The budget converts an objective into a quantity that can be spent and defended: how much change a period can absorb and when reliability work outranks new features. Burn rate makes that number actionable as a rate.
 
-**What it includes.** A 99.9% SLO allows 0.1% of valid requests to fail; over 28 days, that is about 40 minutes of full outage. A burn rate of 1 uses the whole budget over the window, so a rate of 15.4 consumes 2% in an hour.
+**What it includes.** A 99.9% SLO allows 0.1% of valid requests to fail; over 28 days, that is about 40 minutes of full outage. A burn rate of 1 uses the whole budget over the window, so a rate of 14.4 consumes 2% in an hour.
 
 Alerting on burn rate over several windows detects both sudden outages and slow degradation while ignoring brief noise. Google's *Site Reliability Workbook* documents a commonly cited configuration, reproduced in Table 14.3.
 
 | Budget consumed | Long window | Burn rate | Action |
 | :--- | :--- | :--- | :--- |
-| 2% | 1 hour | 15.4 | Page |
+| 2% | 1 hour | 14.4 | Page |
 | 5% | 6 hours | 6 | Page |
 | 10% | 3 days | 1 | Ticket |
 

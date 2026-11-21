@@ -150,7 +150,7 @@ Decide how much structural complexity the next two years of change justify.
 | Dependency direction | Contracts point one way; no cycles | Modules call each other’s internals |
 | Change impact | One module plus its own tests | A change requires edits in three modules |
 | Data access | Each module reads and writes through its own store | Shared tables with several writers |
-| Release coupling | Modules deploy independently | Every change needs a coordinated release |
+| Release coupling | A module's change ships without coordinated changes in other modules | Every change needs a coordinated release |
 | Test surface | Module tests run without the whole system | Tests need the full environment |
 
 : Signals of healthy and unhealthy module boundaries
