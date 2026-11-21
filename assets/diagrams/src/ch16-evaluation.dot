@@ -1,14 +1,16 @@
 digraph G { 
 
  rankdir=TB;
- g [label="Golden set\nexpected sources, acceptable\nanswers, hard negatives"];
- off [label="Offline evaluation\ncritical slices, thresholds,\nconfidence intervals"];
+ g [label="Golden set expected sources,\nacceptable answers,\nhard negatives"];
+ off [label="Offline evaluation critical\nslices, thresholds,\nconfidence intervals"];
  gate [label="Every critical slice\nat least as good?", shape=diamond, style="filled"];
- rel [class="focal", label="Release with manifest\nmodel, prompt, index, tools,\nevaluation set, configuration"];
- on [label="Online evaluation\ncanary, sampled review,\ngroundedness, safety, cost"];
- drift [label="Behavior or data changed?\n(no: continue monitoring)", shape=diamond, style="filled"];
+ rel [class="focal", label="Release with manifest model,\nprompt, index, tools,\nevaluation set, configuration"];
+ on [label="Online evaluation canary,\nsampled review, groundedness,\nsafety, cost"];
+ drift [label="Behavior or data\nchanged?\n(no: continue monitoring)", shape=diamond, style="filled"];
  fix [label="Roll back, re-index,\nretrain or add review"];
  g->off->gate; gate->rel [label=" yes"]; gate->fix [label=" no"];
  rel->on; on->drift; drift->fix [label=" yes"];
  fix->g [label=" new baseline", style=dashed, constraint=false];
+ {rank=same; rel; on}
+ {rank=same; drift; fix}
 }

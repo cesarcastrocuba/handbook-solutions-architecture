@@ -1,25 +1,22 @@
 digraph G { 
 
- rankdir=LR;
- subgraph cluster_poly { label="Polyrepo — independent pipelines, versioned packages"; labeljust="l"; labelloc="b";
+ rankdir=TB;
+ subgraph cluster_poly { label="Polyrepo — independent pipelines,\nversioned packages"; labeljust="l"; labelloc="t";
   p1 [label="Same change spans\ntwo repositories"];
-  p2 [label="Two review cycles;\nevery consumer\nupgrades and\nreleases"];
-  { rank=same; p1; p2; }
-  p1->p2 [constraint=false];
+  p2 [label="Two review cycles;\nevery consumer upgrades\nand releases"];
+  p1->p2;
  }
- subgraph cluster_hybrid { label="Hybrid — repository per domain, packages published"; labeljust="l"; labelloc="b";
+ subgraph cluster_hybrid { label="Hybrid — repository per domain,\npackages published"; labeljust="l"; labelloc="t";
   h1 [label="Same change stays\ninside the domain\nrepository"];
-  h2 [label="Two pull requests;\nthe package is\npublished and pinned\nby version"];
-  { rank=same; h1; h2; }
-  h1->h2 [constraint=false];
+  h2 [label="Two pull requests;\nthe package is published\nand pinned by version"];
+  h1->h2;
  }
- subgraph cluster_mono { label="Monorepo — atomic change, one version policy"; labeljust="l"; labelloc="b";
+ subgraph cluster_mono { label="Monorepo — atomic change,\none version policy"; labeljust="l"; labelloc="t";
   m1 [label="Change touches a\nservice and a shared\npackage"];
-  m2 [label="One pull request;\nowners of both\nreview;\naffected-only build"];
-  { rank=same; m1; m2; }
-  m1->m2 [constraint=false];
+  m2 [label="One pull request;\nowners of both review;\naffected-only build"];
+  m1->m2;
  }
- reg [label="Internal package\nregistry: pinned\nversions,\ndeprecation window\nper major version"];
+ reg [label="Internal package registry:\npinned versions, deprecation\nwindow per major version"];
  h2->reg [label="publishes", style=dashed];
  p2->reg [label="publishes"];
 }

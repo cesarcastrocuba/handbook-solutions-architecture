@@ -2,13 +2,13 @@ digraph G {
 
  rankdir=TB;
  p [label="Change proposal"];
- a [label="Automated\nguardrails\n(policy-as-code,\ncontract,\ndependency checks)"];
- c [label="Risk\nclassification", shape=diamond, style="filled"];
+ a [label="Automated guardrails (policy-as-code,\ncontract, dependency checks)"];
+ c [label="Risk classification", shape=diamond, style="filled"];
  t1 [label="Tier 1 — Low risk\nTeam decides"];
- t2 [label="Tier 2 — Medium\nrisk Consult\nplatform and data\nowners"];
- t3 [label="Tier 3 — High /\nirreversible\nFocused review;\nrisk owner accepts"];
- r [label="Decision recorded\n(ADR, conditions,\nexceptions with\nexpiry)"];
- v [label="Deploy and verify\nconditions with\nevidence"];
+ t2 [label="Tier 2 — Medium risk\nConsult platform and data owners"];
+ t3 [label="Tier 3 — High / irreversible\nFocused review;\nrisk owner accepts"];
+ r [label="Decision recorded (ADR, conditions,\nexceptions with expiry)"];
+ v [label="Deploy and verify\nconditions with evidence"];
  p->a->c; c->t1; c->t2; c->t3; t1->r; t2->r; t3->r; r->v;
- v->a [xlabel="incidents and\nfindings update\nguardrails", style=dashed, constraint=false];
+ v->a [label="incidents and\nfindings update\nguardrails", style=dashed, constraint=false];
 }

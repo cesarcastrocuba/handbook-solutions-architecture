@@ -2,15 +2,21 @@ digraph G {
 
  rankdir=TB;
  q1 [label="Answers need current or\naccess-controlled knowledge?", shape=diamond, style="filled"];
- rag [label="Retrieval-augmented\nworkflow\nindex, ACL filters,\ncitations"];
+ rag [label="Retrieval-augmented workflow\nindex, ACL filters,\ncitations"];
  q2 [label="Measured behavior gap\nnot closed by context?", shape=diamond, style="filled"];
- ft [label="Fine-tuning or\nadaptation\ntraining data, evaluation,\nrollback"];
+ ft [label="Fine-tuning or adaptation\ntraining data, evaluation,\nrollback"];
  q3 [label="Bounded multi-step\ntool use required?", shape=diamond, style="filled"];
- ag [label="Agentic workflow\nscoped tools, policy,\naudit, kill switch"];
+ ag [label="Agentic workflow scoped tools,\npolicy, audit, kill switch"];
  det [label="Simpler deterministic\nsolution"];
- hitl [label="Human-in-the-loop\nwhen impact, uncertainty\nor regulation requires a person", shape=box, style="rounded,filled,dashed"];
+ hitl [label="Human-in-the-loop when\nimpact, uncertainty or\nregulation requires\na person", shape=box, style="rounded,filled,dashed"];
  q1->rag [label=" yes"]; q1->q2 [label=" no"];
  q2->ft [label=" yes"]; q2->q3 [label=" no"];
  q3->ag [label=" yes"]; q3->det [label=" no"];
  rag->hitl [style=dotted]; ft->hitl [style=dotted]; ag->hitl [style=dotted];
+ {rank=same; q2; rag}
+ q2 -> rag [style=invis];
+ {rank=same; q3; ft}
+ q3 -> ft [style=invis];
+ {rank=same; det; ag; hitl}
+ det -> ag [style=invis];
 }

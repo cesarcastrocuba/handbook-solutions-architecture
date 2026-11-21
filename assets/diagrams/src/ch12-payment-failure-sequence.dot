@@ -2,13 +2,13 @@ digraph G {
 
  rankdir=TB;
  n1 [label="1  Customer submits the order"];
- n2 [label="2  Checkout persists the order as PENDING\nand writes the payment attempt to the outbox"];
- n3 [label="3  Worker consumes the event and calls\nauthorize(payment_attempt_id)"];
+ n2 [label="2  Checkout persists the\norder as PENDING and writes\nthe payment attempt to\nthe outbox"];
+ n3 [label="3  Worker consumes the\nevent and calls\nauthorize(payment_attempt_id)"];
  q [label="Provider\nresponse?", shape=diamond, style="filled"];
- a [label="4a  AUTHORIZED or DECLINED\norder updated once"];
- u [label="4b  Response lost: attempt = UNKNOWN\n(order stays PAYMENT_PENDING)"];
+ a [label="4a  AUTHORIZED or\nDECLINED\norder updated once"];
+ u [label="4b  Response lost:\nattempt = UNKNOWN\n(order stays\nPAYMENT_PENDING)"];
  r [label="5  Retry with the same\nidempotency key"];
- rec [label="6  Reconciliation queries the provider\nuntil a terminal state; alert when\nqueue age exceeds 5 min at p99"];
+ rec [label="6  Reconciliation queries the\nprovider until a terminal state;\nalert when queue age exceeds\n5 min at p99"];
  done [label="Order and payment reach a\nterminal state; no duplicate charge"];
  n1->n2->n3->q;
  q->a [label=" within timeout"];
@@ -18,5 +18,7 @@ digraph G {
  r->rec;
  rec->done;
  rec->u [label=" still UNKNOWN", style=dashed, constraint=false];
- {rank=same; a; u;}
+ {rank=same; a; u}
+ {rank=same; r; rec}
+ {rank=same; n2; n3}
 }

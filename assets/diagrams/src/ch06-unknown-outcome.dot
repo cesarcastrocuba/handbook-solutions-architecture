@@ -16,4 +16,6 @@ digraph G {
  q->ok [label=" resolved"];
  q->rec [label=" still unknown"];
  rec->ok [label=" evidence of\nthe true outcome", style=dashed, constraint=false];
+ {rank=same; call; out}
+ {rank=same; unk; q}
 }

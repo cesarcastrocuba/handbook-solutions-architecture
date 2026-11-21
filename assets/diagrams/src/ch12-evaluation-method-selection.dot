@@ -4,11 +4,13 @@ digraph G {
  start [label="Change or design under review"];
  d1 [label="Reversible and inside\none team's boundary?", shape=diamond, style="filled"];
  light [label="Lightweight review\nchecklist plus peer architect"];
- d2 [label="Few uncertain quality\nattributes, decision still\nreversible?", shape=diamond, style="filled"];
+ d2 [label="Few uncertain quality attributes,\ndecision still reversible?", shape=diamond, style="filled"];
  ws [label="Scenario-based workshop\nranked scenarios, ATAM-lite\non the top few"];
  full [label="Full ATAM, with CBAM\nwhere options differ in cost"];
  esc [label="Unbounded risk or disputed\ntrade-off: escalate one level"];
- rec [class="focal", label="Record the weight, scenarios assessed,\nsensitivity and trade-off points, open risks\nwith owners, and a re-evaluation trigger"];
+ rec [class="focal", label="Record the weight, scenarios assessed, sensitivity\nand trade-off points, open risks with owners,\nand a re-evaluation trigger"];
+ {rank=same; ws; full}
+ {rank=same; esc; rec}
  start->d1;
  d1->light [label=" yes"];
  d1->d2 [label=" no"];

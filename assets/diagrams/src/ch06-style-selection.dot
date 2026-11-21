@@ -1,16 +1,16 @@
 digraph G { 
 
  rankdir=TB;
- q1 [label="Must the\ncaller act\non the\noutcome\nbefore\ncontinuing?", shape=diamond, style="filled"];
- q2 [label="Is a\nbounded\nlatency\nbudget\ncredible?", shape=diamond, style="filled"];
+ q1 [label="Must the caller act\non the outcome\nbefore continuing?", shape=diamond, style="filled"];
+ q2 [label="Is a bounded\nlatency budget\ncredible?", shape=diamond, style="filled"];
  q3 [label="Is per-key\norder and\nreplay\nrequired?", shape=diamond, style="filled"];
- q4 [label="Scheduled\nbulk with\na legacy\npeer?", shape=diamond, style="filled"];
- rr [label="Request/response:\ndeadline,\nidempotency\nkey"];
- acc [label="Async\nacceptance:\n202 +\nstatus\nresource"];
- wh [label="Webhook or\npolling,\nplus\nreconciliation"];
- st [label="Event\nstreaming:\npartitions,\nretention,\noffsets"];
- ba [label="Batch or\nfile:\nmanifest,\nchecksum"];
- qu [label="Durable\nqueue:\nretry,\ndead-letter"];
+ q4 [label="Scheduled\nbulk with a\nlegacy peer?", shape=diamond, style="filled"];
+ rr [label="Request/response:\ndeadline, idempotency\nkey"];
+ acc [label="Async acceptance:\n202 + status\nresource"];
+ wh [label="Webhook or\npolling, plus\nreconciliation"];
+ st [label="Event\nstreaming:\npartitions,\nretention, offsets"];
+ ba [label="Batch or file:\nmanifest,\nchecksum"];
+ qu [label="Durable queue:\nretry,\ndead-letter"];
  q1->q2 [label="yes"]; q1->q3 [label="no"];
  q2->rr [label="yes"]; q2->acc [label="no"];
  acc->wh;

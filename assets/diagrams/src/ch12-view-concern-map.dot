@@ -1,11 +1,11 @@
 digraph G { 
 
  rankdir=LR;
- c1 [label="Product\nscope, capability,\npriority"];
- c2 [label="Engineering\nstructure, interfaces,\nownership"];
- c3 [label="Engineering\nruntime behavior,\nfailure paths"];
- c4 [label="Operations\ndeployment, recovery,\ncapacity"];
- c5 [label="Security and privacy\ntrust boundaries,\ndata movement"];
+ c1 [label="Product scope,\ncapability,\npriority"];
+ c2 [label="Engineering structure,\ninterfaces,\nownership"];
+ c3 [label="Engineering runtime\nbehavior,\nfailure paths"];
+ c4 [label="Operations deployment,\nrecovery,\ncapacity"];
+ c5 [label="Security and privacy\ntrust boundaries, data\nmovement"];
  c6 [label="Architecture board\nrationale,\nconformance"];
  v1 [label="System context\n(people and external systems)"];
  v2 [label="Container\n(deployable units and stores)"];
@@ -22,4 +22,5 @@ digraph G {
  subgraph cluster_note { label="Applies to every view";
   n [label="audience, owner, scope,\nrevision trigger, location;\nretire views that no longer\nmatch the deployed inventory"];
  }
+ v1 -> n [style=invis];
 }
