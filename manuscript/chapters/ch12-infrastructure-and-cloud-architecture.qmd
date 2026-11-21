@@ -518,7 +518,7 @@ How much intelligence should run at the site?
 
 ## 12.7 Cloud Well-Architected Frameworks
 
-A well-architected framework is a provider's structured set of design principles, best practices and review questions for workloads on its platform. The major cloud providers publish them, and they are useful as review checklists and as a shared vocabulary with provider teams. They are provider guidance, not standards, and passing a review does not prove that a solution meets its business SLOs. Using one deliberately — a primary framework, findings recorded as risks — turns a vendor questionnaire into an architecture review with evidence.
+A well-architected framework is a provider's structured set of design principles, best practices and review questions for workloads on its platform. The major cloud providers publish them, and they are useful as review checklists and as a shared vocabulary with provider teams. They are provider guidance, not standards, and passing a review does not prove that a solution meets its business SLOs. Using one deliberately — a primary framework, findings recorded as risks — turns a vendor questionnaire into an architecture review with evidence. Section 8.3.4 positions these frameworks among the evaluation methods and contrasts them with scenario-based evaluation; this section covers their pillars and their use in a cloud review.
 
 ### 12.7.1 Pillars by Provider
 
