@@ -1,4 +1,4 @@
-# 8. Data Architecture
+# 9. Data Architecture
 
 Data architecture begins with semantic ownership: which domain is authoritative for a fact, how the fact is identified, and what other domains may infer from it. Sharing a database schema between teams appears efficient but creates hidden coupling in deployment, authorization and evolution. Domain-owned APIs, events and data products make the coupling explicit, at the cost of synchronization and consistency choices.
 
@@ -15,13 +15,13 @@ Consistency requirements are expressed per business invariant. Preventing two ca
 Data architecture is the architecture of authority: who owns each fact, what consistency it needs, and how every copy is governed across its lifecycle. A schema without an owner is a future inconsistency.
 :::
 
-## 8.1 Data Principles
+## 9.1 Data Principles
 
 **Definition.** Data principles are the small set of enforceable rules that decide who may create a fact, who may read it, how long it is kept and what evidence proves the rule is followed.
 
 **Purpose.** Principles convert architecture intent into criteria that can be applied before a design exists and checked after it ships. They let a reviewer reject a design on a stated ground — two writers for one fact, an unclassified field, a copy with no retention rule — instead of arguing taste, and give delivery teams a predictable answer under delivery pressure.
 
-**What it includes.** A principle is useful only when it names the data it governs, the owner accountable for it and the control that demonstrates compliance. Four areas matter: authority (one accountable writer per fact, replicas disclose provenance and freshness); contract (shared data carries meaning, allowed values, sensitivity, permitted uses and compatibility policy); access (classification drives least privilege); and lifecycle (retention and deletion cover primary stores, replicas, caches, archives and backups). Table 8.1 shows how a principle becomes testable.
+**What it includes.** A principle is useful only when it names the data it governs, the owner accountable for it and the control that demonstrates compliance. Four areas matter: authority (one accountable writer per fact, replicas disclose provenance and freshness); contract (shared data carries meaning, allowed values, sensitivity, permitted uses and compatibility policy); access (classification drives least privilege); and lifecycle (retention and deletion cover primary stores, replicas, caches, archives and backups). Table 9.1 shows how a principle becomes testable.
 
 | Principle | Enforceable rule | Control and evidence |
 | :--- | :--- | :--- |
@@ -33,9 +33,9 @@ Data architecture is the architecture of authority: who owns each fact, what con
 
 : From data principle to enforceable control
 
-A **single source of truth** is an authority for a particular fact, not a mandate to keep every fact in one database. For each principle, identify the owner, a measurable control and an exception process. Figure 8.1 shows the path from principle to evidence, including the branch that turns an exception into the new rule.
+A **single source of truth** is an authority for a particular fact, not a mandate to keep every fact in one database. For each principle, identify the owner, a measurable control and an exception process. Figure 9.1 shows the path from principle to evidence, including the branch that turns an exception into the new rule.
 
-![Figure 8.1 — How a data principle becomes a control with evidence](../../assets/diagrams/rendered/ch05-principles-controls.png){#fig-8-1 width="100%"}
+![Figure 9.1 — How a data principle becomes a control with evidence](../../assets/diagrams/rendered/ch05-principles-controls.png){#fig-9-1 width="100%"}
 
 **Why it is needed.** Without enforceable principles, data decisions are made case by case by whoever ships first, and the estate accumulates the failures this chapter is written against: dual writes, unclassified copies, exports that never expire and schemas nobody owns. The consequence appears late — in a failed audit, an erasure request that cannot be honored, or two reports that disagree about revenue — when correction is expensive. The evidence is not the document: it is the exception register with expiry dates, the automated checks that block a merge, and the review record showing a principle applied to a named data set.
 
@@ -55,11 +55,11 @@ Decide how a principle will be enforced before publishing it.
 | Exception register with expiry | A known legacy gap cannot be closed before a deadline | Keeps delivery moving and makes debt visible; an exception without an expiry becomes the new rule |
 :::
 
-## 8.2 Data Modeling, Storage and Flows
+## 9.2 Data Modeling, Storage and Flows
 
 Modeling, storage and flow decisions are made together: a model that assumes a joinable single database fails when the data is partitioned, and a flow designed for nightly files cannot serve a screen that needs seconds.
 
-### 8.2.1 Data Domains
+### 9.2.1 Data Domains
 
 **Definition.** A data domain groups facts that share business meaning, rules and accountability — for example Customer, Order, Payment, Shipment and Billing.
 
@@ -67,9 +67,9 @@ Modeling, storage and flow decisions are made together: a model that assumes a j
 
 **What it includes.** Validate boundaries against business invariants and team ownership. Payment owns authorization and capture outcomes; Order owns order lifecycle. Copying payment status into an order read model does not transfer authority. Describe each domain with its entities, identifiers, invariants, owner, lifecycle, access rules and published interfaces. A domain map exposes where shared concepts need translation rather than a forced universal model.
 
-**Why it is needed.** Domains drawn by department, by application or by database table produce models that no team can change safely and invariants that span owners. The test of a boundary is practical: a workflow that must stay consistent should complete inside one domain, and a change to the model should require review from one accountable owner. When a workflow crosses domains, the crossing is an explicit contract with its own failure semantics (8.3.3), not a shared table.
+**Why it is needed.** Domains drawn by department, by application or by database table produce models that no team can change safely and invariants that span owners. The test of a boundary is practical: a workflow that must stay consistent should complete inside one domain, and a change to the model should require review from one accountable owner. When a workflow crosses domains, the crossing is an explicit contract with its own failure semantics (9.3.3), not a shared table.
 
-### 8.2.2 Data Stores
+### 9.2.2 Data Stores
 
 **Definition.** A data store is the persistence technology chosen for a defined set of access patterns, consistency requirements and lifecycle rules.
 
@@ -91,13 +91,13 @@ Evaluate candidates against read/write rates, query shapes, volume, indexing, is
 
 **Why it is needed.** A store that cannot enforce an invariant moves that work into application code, where concurrency and partial failure make it unreliable; a search index treated as a system of record makes freshness and deletion somebody's unowned problem. Record the decision with its rejected alternatives and the measured basis, then confirm it under realistic contention, because benchmark results at low load mislead about write contention, hot keys and recovery time.
 
-### 8.2.3 Data Flows
+### 9.2.3 Data Flows
 
 **Definition.** A data-flow view traces each fact from the producer that creates it, through validation, transformation and storage, to every consumer and every copy.
 
-**Purpose.** This subsection is the owning treatment of data-flow views in this handbook. Its purpose is to make one question answerable for every edge of the estate: where does this fact come from, who owns it at this point, how current is it and what happens when the edge fails? Other chapters reference this view rather than restating it — transport mechanics and delivery guarantees belong to Chapter 9 (9.1.2, 9.3), lineage records belong to 8.3.5, and trust boundaries are assessed with Chapter 13.
+**Purpose.** This subsection is the owning treatment of data-flow views in this handbook. Its purpose is to make one question answerable for every edge of the estate: where does this fact come from, who owns it at this point, how current is it and what happens when the edge fails? Other chapters reference this view rather than restating it — transport mechanics and delivery guarantees belong to Chapter 10 (10.1.2, 10.3), lineage records belong to 9.3.5, and trust boundaries are assessed with Chapter 13.
 
-**What it includes.** For every edge document protocol, schema, authentication, sensitivity, volume, frequency, latency, error handling and owner, and mark trust boundaries and places where data is copied (Table 8.3). Show how duplicates, out-of-order records, schema changes and rejected payloads are handled. Distinguish the authoritative path from derived copies, and state the freshness each consumer may rely on. Figure 8.2 shows the shape of the view: one producer, one validation gate, one authoritative store, and every copy declared on the way out.
+**What it includes.** For every edge document protocol, schema, authentication, sensitivity, volume, frequency, latency, error handling and owner, and mark trust boundaries and places where data is copied (Table 9.3). Show how duplicates, out-of-order records, schema changes and rejected payloads are handled. Distinguish the authoritative path from derived copies, and state the freshness each consumer may rely on. Figure 9.2 shows the shape of the view: one producer, one validation gate, one authoritative store, and every copy declared on the way out.
 
 | Attribute | What to record | Failure it prevents |
 | :--- | :--- | :--- |
@@ -112,13 +112,13 @@ Evaluate candidates against read/write rates, query shapes, volume, indexing, is
 
 : Attributes of a data-flow edge
 
-Figure 8.2 shows where validation rejects a record and where accepted data is copied, so the edge attributes in the table can be checked against an actual flow.
+Figure 9.2 shows where validation rejects a record and where accepted data is copied, so the edge attributes in the table can be checked against an actual flow.
 
-![Figure 8.2 — Data-flow view from producer to copies, with validation and rejection](../../assets/diagrams/rendered/ch05-data-flow.png){#fig-8-2 width="100%"}
+![Figure 9.2 — Data-flow view from producer to copies, with validation and rejection](../../assets/diagrams/rendered/ch05-data-flow.png){#fig-9-2 width="100%"}
 
 **Why it is needed.** Integration monitoring proves that messages moved, not that the data is right: a flow can be green while a unit changed, a timestamp lost its time zone or a field was silently dropped by a mapping. Without an owned flow view, incident investigation starts by reading code, privacy requests cannot enumerate the copies of a subject's data, and impact analysis for a schema change is guesswork. The evidence is a maintained flow diagram with owners, the attribute record above, and tests that inject a duplicate, a late record and a rejected payload.
 
-### 8.2.4 Data Lifecycle and Retention
+### 9.2.4 Data Lifecycle and Retention
 
 **Definition.** The data lifecycle runs from collection through use, sharing and archival to deletion.
 
@@ -144,9 +144,9 @@ Record retention per category of data, not per system, so that every copy follow
 
 **Why it is needed.** Retention defined per system leaves files, exports, logs and backups outside every rule, so an obligation is met on paper and violated in storage; an unmanaged archive also becomes a cost and discovery problem. The evidence is an approved retention schedule mapped to stores and file locations, lifecycle configuration, and a report showing expired data actually gone.
 
-Privacy obligations that shape retention — data-subject rights, international transfers, DPIA triggers and pseudonymization — are covered in 13.9. Chapter 18 (18.3.7) extends retention to embeddings, indexes, prompts, caches, traces and evaluation data.
+Privacy obligations that shape retention — data-subject rights, international transfers, DPIA triggers and pseudonymization — are covered in 13.9. Chapter 19 (19.3.7) extends retention to embeddings, indexes, prompts, caches, traces and evaluation data.
 
-### 8.2.5 Files, Deletion and Crypto-Shredding
+### 9.2.5 Files, Deletion and Crypto-Shredding
 
 **Definition.** Deletion is a property of every copy of a fact — files, object versions, archives, indexes and backups — not of the primary row alone.
 
@@ -158,7 +158,7 @@ Deleting the primary row is not deletion: replicas, derived views, search indexe
 
 **Why it is needed.** A deletion request that reaches the database but not the export, the search index or the nightly backup fails in audit and, after a restore, reappears in production. The evidence is lifecycle and object-lock configuration, deletion-propagation tests across copies, and a restore test that confirms deleted records do not reappear.
 
-### 8.2.6 Data Platforms and Pipelines
+### 9.2.6 Data Platforms and Pipelines
 
 **Definition.** A data platform is the governed set of stores, catalogues and pipelines that serves analytical work, reporting and model training alongside the operational systems that serve transactions.
 
@@ -166,7 +166,7 @@ Deleting the primary row is not deletion: replicas, derived views, search indexe
 
 **What it includes.** Operational stores serve transactions and current state; analytical platforms serve reporting, exploration and model training. A warehouse suits governed structured analytics, a lake holds raw or semi-structured data, and a lakehouse combines both; choose from workload, latency, cost, governance and the skills available. A lake without a catalogue, ownership and lifecycle rules becomes an ungoverned copy of the estate, not a platform. Organize a lake in zones with increasing trust, such as raw, validated and published, and use a table format that provides transactional updates and schema evolution when many writers and readers share the data. Separating storage from compute allows each workload to scale independently, at the cost of data-transfer and metadata management.
 
-Pipelines move and transform data through ingestion, validation, transformation, orchestration and publication. Specify batch or streaming behavior, idempotency, replay and backfill, schema evolution, late or duplicate records, and the freshness each consumer needs. Publish data products with an owner and contract rather than letting every consumer copy raw tables. Reuse the data-flow, quality and lineage practices in 8.2.3 and 8.3; the transport mechanics belong to Chapter 9, and platform cost is part of the economics in Chapter 17.
+Pipelines move and transform data through ingestion, validation, transformation, orchestration and publication. Specify batch or streaming behavior, idempotency, replay and backfill, schema evolution, late or duplicate records, and the freshness each consumer needs. Publish data products with an owner and contract rather than letting every consumer copy raw tables. Reuse the data-flow, quality and lineage practices in 9.2.3 and 9.3; the transport mechanics belong to Chapter 10, and platform cost is part of the economics in Chapter 18.
 
 **Why it is needed.** A platform without owners, contracts and lifecycle rules produces the classic failure: several teams build their own extracts of the same source, disagree on definitions, and nobody can say which number is authoritative. Pipelines without idempotency and replay turn a failed night into a manual repair. The evidence is a catalogued platform with an owner per data product, replay and backfill tests, and a stated freshness target measured against the consumers' needs.
 
@@ -186,11 +186,11 @@ Choose how consumers reach a domain's data before choosing a platform product.
 | Direct read of the owner's tables | A short-lived migration or a single colocated team | Fastest to build; couples schemas and bypasses authorization and lifecycle |
 :::
 
-## 8.3 Trusted Data
+## 9.3 Trusted Data
 
 Trusted data combines accountable authority, unambiguous semantics, explicit contracts, measurable quality and traceable transformation. Consumers must know who owns a fact, what it means, when it was observed, how current it is and how corrections propagate. A schema-valid record is not necessarily semantically correct.
 
-### 8.3.1 Ownership, Systems of Record and Boundaries
+### 9.3.1 Ownership, Systems of Record and Boundaries
 
 **Definition.** A system of record is the system authorized to change a defined set of facts, and its owner is the person accountable for their meaning, quality and lifecycle.
 
@@ -198,9 +198,9 @@ Trusted data combines accountable authority, unambiguous semantics, explicit con
 
 **What it includes.** Assign a named owner to each authoritative fact and to the system that may change it. Ownership includes validation rules, correction workflow, retention and publication. A system of record is authoritative for defined facts, not necessarily every attribute of an entity: CRM may own legal name while Billing owns invoice status. Document attribute-level ownership where needed.
 
-Copies may exist for performance, resilience or analytics (Figure 8.3), but they carry provenance and staleness expectations; conflicts are resolved against documented authority, not the largest timestamp. Cross-domain reads use a published API, event or governed data product. Direct shared-table access may be justified during a constrained legacy migration, but only as a temporary exception with an exit plan.
+Copies may exist for performance, resilience or analytics (Figure 9.3), but they carry provenance and staleness expectations; conflicts are resolved against documented authority, not the largest timestamp. Cross-domain reads use a published API, event or governed data product. Direct shared-table access may be justified during a constrained legacy migration, but only as a temporary exception with an exit plan.
 
-![Figure 8.3 — Authority, contract, delivery and copies](../../assets/diagrams/rendered/ch05-authority-and-copies.png){#fig-8-3 width="100%"}
+![Figure 9.3 — Authority, contract, delivery and copies](../../assets/diagrams/rendered/ch05-authority-and-copies.png){#fig-9-3 width="100%"}
 
 Three ownership models cover most cases, and the choice is worth recording once rather than re-arguing per project. The table states when each applies and what it costs.
 
@@ -214,7 +214,7 @@ Three ownership models cover most cases, and the choice is worth recording once 
 
 **Why it is needed.** Sharing a schema or dual-writing to two stores without one authoritative writer creates divergent facts that no report can reconcile, and the divergence is discovered by a customer or an auditor rather than by monitoring. Attribute-level ownership matters because entity-level claims hide the real conflict: two systems both "own the customer" while each owns different fields. The evidence is an ownership map naming the writer per fact or attribute, the freshness each replica publishes, and a reconciliation result that shows divergence being detected and closed.
 
-### 8.3.2 Semantics and Canonical Models
+### 9.3.2 Semantics and Canonical Models
 
 **Definition.** Semantics define what a field means: its units, identifier, time basis, nullability, allowed values and lifecycle.
 
@@ -224,7 +224,7 @@ Three ownership models cover most cases, and the choice is worth recording once 
 
 **Why it is needed.** Structural compatibility is not semantic compatibility: renaming nothing and changing only the unit, the currency, the rounding rule or the time zone breaks consumers while every validator passes. Undefined nullability turns "unknown" into zero in a report. The evidence is a written definition per published field, a mapping table at each boundary that names the source and target semantics, and tests that assert meaning — not only type — on representative historical data.
 
-### 8.3.3 Data Contracts
+### 9.3.3 Data Contracts
 
 **Definition.** A data contract is the versioned agreement between a data owner and its consumers covering schema, meaning, quality, freshness, permitted use and compatibility.
 
@@ -232,11 +232,11 @@ Three ownership models cover most cases, and the choice is worth recording once 
 
 **What it includes.** A data contract combines schema with semantic definitions, owner, classification, quality expectations, freshness, permitted use and compatibility rules. Consumers need to know how fields evolve, which changes are breaking and how long old versions remain supported.
 
-Additive optional fields are usually compatible; renaming an identifier or changing the meaning or unit of an existing field is breaking even when the wire type is unchanged. Automate schema and consumer-contract checks in CI and review semantic changes that validators cannot detect. Event contract mechanics are covered in 9.2.
+Additive optional fields are usually compatible; renaming an identifier or changing the meaning or unit of an existing field is breaking even when the wire type is unchanged. Automate schema and consumer-contract checks in CI and review semantic changes that validators cannot detect. Event contract mechanics are covered in 10.2.
 
 **Why it is needed.** Without a contract, consumers infer meaning from samples, producers cannot tell who depends on a field, and the first breaking change is discovered in production. Contracts also carry obligations that outlive a request — classification, retention and permitted use — which no schema expresses. The evidence is a versioned contract per published data set, automated compatibility checks in the pipeline, a named consumer list, and a deprecation record showing how the previous version was retired.
 
-### 8.3.4 Data Quality
+### 9.3.4 Data Quality
 
 **Definition.** Data quality is the degree to which data is fit for the decisions and processes that consume it, measured against stated dimensions rather than asserted.
 
@@ -257,7 +257,7 @@ Additive optional fields are usually compatible; renaming an identifier or chang
 
 **Why it is needed.** Undetected quality defects propagate into reports, invoices and models, and the cost of correction grows with every copy. A threshold with an owner also prevents the opposite failure: a dashboard of thousands of alerts that everyone ignores. The evidence is a defined threshold per dimension and consumer, a detection query in the pipeline, a named owner for each alert and a record of quarantined records being resolved.
 
-### 8.3.5 Lineage and Traceability
+### 9.3.5 Lineage and Traceability
 
 **Definition.** Lineage records how data moves and transforms from source to consumer, including jobs, versions and owners.
 
@@ -267,7 +267,7 @@ Additive optional fields are usually compatible; renaming an identifier or chang
 
 **Why it is needed.** Without lineage, impact analysis is done by asking around, and a privacy request cannot be answered with confidence. Lineage also exposes the pipelines nobody owns: a transformation with no owner and no tests is where definitions silently diverge. The evidence is a lineage graph that resolves from a published data product back to its sources, including manual imports and corrections, and a recent impact analysis that used it.
 
-### 8.3.6 Consistency, Synchronization and Reconciliation
+### 9.3.6 Consistency, Synchronization and Reconciliation
 
 **Definition.** Consistency is the guarantee a consumer can rely on about how current and how ordered the data it reads is; reconciliation is the process that detects and closes divergence between the authority and its copies.
 
@@ -279,7 +279,7 @@ Reconciliation compares authoritative records with derived or external state to 
 
 **Why it is needed.** A stated guarantee that nobody measures is a guess, and an unmeasured divergence becomes an unexplained report. Reconciliation also protects revenue: a provider that charged but never answered leaves an unknown outcome that only comparison can resolve. The evidence is a consistency statement per invariant, lag and divergence dashboards with thresholds, and a reconciliation report that shows discrepancies, owners and time to close.
 
-### 8.3.7 Master Data Management
+### 9.3.7 Master Data Management
 
 **Definition.** Master data management (MDM) governs shared reference entities and identity resolution across systems: matching, survivorship rules, stewardship and publication of mastered identifiers.
 
@@ -297,7 +297,7 @@ Reconciliation compares authoritative records with derived or external state to 
 
 **Why it is needed.** Without identity resolution, the same customer exists under several identifiers, analytics undercounts, and consent or erasure requests are applied to one record while copies survive. Merge and split events are the subtle part: a downstream system that never learned about a merge keeps transacting against a retired identifier. The evidence is a documented match and survivorship rule, a published identifier, and a tested merge and split notification path.
 
-### 8.3.8 Data Governance
+### 9.3.8 Data Governance
 
 **Definition.** Data governance allocates decision rights and policies for quality, classification, access, contracts and lifecycle.
 
@@ -307,7 +307,7 @@ Reconciliation compares authoritative records with derived or external state to 
 
 **Why it is needed.** A governance body that meets without operational controls produces decisions nobody applies; controls without decision rights produce escalations nobody can close. The practical test is whether a contested definition or a retention exception reaches a named decision-maker within an agreed time. The evidence is a decision-rights table, a register of open exceptions with owners, and control results reviewed on a schedule.
 
-### 8.3.9 Data Auditing and Change History
+### 9.3.9 Data Auditing and Change History
 
 **Definition.** Change history records what a datum contained at a given time and who changed it; access auditing records who read sensitive data.
 
@@ -328,7 +328,7 @@ Reconciliation compares authoritative records with derived or external state to 
 
 **Bitemporal** models record both when a fact was true in the business (valid time) and when the system recorded it (transaction time); they answer questions such as “what did we believe on 31 March about the customer’s address on 1 March?” — common in finance, insurance and regulatory reporting.
 
-**Why it is needed.** History keeps personal data, so retention and deletion rules (8.2.4, 8.2.5) apply to history tables, event stores and change streams as well, and crypto-shredding can reconcile immutability with erasure. Lineage (8.3.5) complements history by showing how values were derived. The evidence is history and access-audit coverage for regulated datasets, a reconstruction test that retrieves a record’s state at a past date, and retention applied to history stores.
+**Why it is needed.** History keeps personal data, so retention and deletion rules (9.2.4, 9.2.5) apply to history tables, event stores and change streams as well, and crypto-shredding can reconcile immutability with erasure. Lineage (9.3.5) complements history by showing how values were derived. The evidence is history and access-audit coverage for regulated datasets, a reconstruction test that retrieves a record’s state at a past date, and retention applied to history stores.
 
 **Example.** A regulator asks why an invoice was credited in March. Billing answers from its temporal table — the invoice state on each date, the actor and the reason — while the access-audit log shows which support users opened the customer record. Neither answer exists in the application log alone, and the reconstructed state is reproducible a year later because the history store follows the same retention schedule as the invoice.
 
@@ -346,19 +346,19 @@ Choose how a consumer will obtain another domain's data.
 | Governed data product | Several consumers share the same analytical need | Reusable and catalogued; not suitable for transactional decisions |
 :::
 
-## 8.4 Distributed Data Fundamentals
+## 9.4 Distributed Data Fundamentals
 
 Once data and processing are spread across machines, networks and regions, failure, latency and concurrency become normal conditions rather than exceptions. The concepts below explain why the consistency, integration and resilience choices in this handbook are necessary.
 
-They sit in the data chapter because consistency, replication, partitioning and transaction boundaries are decided primarily as data concerns: they determine which copy may answer a read, what a write must coordinate and how much a failure costs. Communication between services — transport, contracts and their failure semantics — is covered in Chapter 9; how an application is decomposed and where its state lives is covered in Chapter 10.
+They sit in the data chapter because consistency, replication, partitioning and transaction boundaries are decided primarily as data concerns: they determine which copy may answer a read, what a write must coordinate and how much a failure costs. Communication between services — transport, contracts and their failure semantics — is covered in Chapter 10; how an application is decomposed and where its state lives is covered in Chapter 11.
 
-### 8.4.1 Fallacies of Distributed Computing
+### 9.4.1 Fallacies of Distributed Computing
 
 **Definition.** The fallacies of distributed computing are assumptions that hold inside one process but not across a network: that the network is reliable, latency is zero, bandwidth is infinite, the network is secure, topology never changes, there is one administrator, transport cost is zero and the network is homogeneous.
 
 **Purpose.** Naming the fallacies gives each one a design obligation, so that a review can ask for the timeout, the latency budget, the payload limit or the encryption decision instead of hoping the team remembered it. They are the cheapest checklist available before a design leaves the whiteboard.
 
-**What it includes.** Each fallacy corresponds to a design obligation, summarized in Table 8.9: timeouts and retries, latency budgets, payload limits, encryption and authentication, service discovery, operational ownership, cost models and interoperable formats. Apply them per hop, not per system: a chain of five services inherits every fallacy five times.
+**What it includes.** Each fallacy corresponds to a design obligation, summarized in Table 9.9: timeouts and retries, latency budgets, payload limits, encryption and authentication, service discovery, operational ownership, cost models and interoperable formats. Apply them per hop, not per system: a chain of five services inherits every fallacy five times.
 
 | Fallacy | Design obligation | Evidence |
 | :--- | :--- | :--- |
@@ -375,25 +375,25 @@ They sit in the data chapter because consistency, replication, partitioning and 
 
 **Why it is needed.** Each fallacy that reaches production becomes a specific incident class: a missing timeout becomes thread exhaustion, an unbounded payload becomes an outage during the month-end export, an unowned component becomes an escalation with no responder. The evidence is not the list but its application — a design review that names, for each hop, the timeout, the retry policy and the failure mode.
 
-### 8.4.2 CAP and PACELC
+### 9.4.2 CAP and PACELC
 
 **Definition.** The **CAP theorem** states that when a network partition occurs, a distributed data store must choose between **consistency** (every read sees the latest write, in the strict sense of linearizability) and **availability** (every request to a non-failed node receives a response).
 
 **Purpose.** CAP and PACELC give an architect the vocabulary to state what a system does when the network fails and what it pays when it does not. They turn "we need it fast and correct" into a decision with a named branch.
 
-**What it includes.** CAP is often misquoted as “pick two of three”; partitions cannot be ruled out in practice, so the real choice is what the system does during one. **PACELC** extends the reasoning to normal operation: if there is a Partition, choose between Availability and Consistency; Else, choose between Latency and Consistency. Synchronous coordination across replicas or regions adds latency even when nothing has failed. Systems built on consensus typically favor consistency in both cases, while leaderless, Dynamo-style stores typically favor availability and low latency. Figure 8.4 applies the reasoning to a single invariant.
+**What it includes.** CAP is often misquoted as “pick two of three”; partitions cannot be ruled out in practice, so the real choice is what the system does during one. **PACELC** extends the reasoning to normal operation: if there is a Partition, choose between Availability and Consistency; Else, choose between Latency and Consistency. Synchronous coordination across replicas or regions adds latency even when nothing has failed. Systems built on consensus typically favor consistency in both cases, while leaderless, Dynamo-style stores typically favor availability and low latency. Figure 9.4 applies the reasoning to a single invariant.
 
-![Figure 8.4 — From a business invariant to a consistency decision](../../assets/diagrams/rendered/ch05-consistency-decision.png){#fig-8-4 width="100%"}
+![Figure 9.4 — From a business invariant to a consistency decision](../../assets/diagrams/rendered/ch05-consistency-decision.png){#fig-9-4 width="100%"}
 
-**Why it is needed.** Apply the reasoning per business invariant (8.3.6): a payment ledger needs consistency and accepts reduced availability during a partition; a product catalog can serve slightly stale data and stay available. Choosing once for the whole estate forces one of those two to be wrong. The evidence is a recorded decision per invariant, naming the branch taken, the resulting behavior during a partition and the latency accepted in normal operation.
+**Why it is needed.** Apply the reasoning per business invariant (9.3.6): a payment ledger needs consistency and accepts reduced availability during a partition; a product catalog can serve slightly stale data and stay available. Choosing once for the whole estate forces one of those two to be wrong. The evidence is a recorded decision per invariant, naming the branch taken, the resulting behavior during a partition and the latency accepted in normal operation.
 
-### 8.4.3 Consistency Models
+### 9.4.3 Consistency Models
 
 **Definition.** A consistency model is the contract between a data store and its clients describing which values a read may return.
 
 **Purpose.** The model tells application code what it must handle — stale reads, reordering, missing writes — and therefore which user-visible behavior is possible. Choosing it explicitly prevents both unnecessary coordination and silent correctness bugs.
 
-**What it includes.** The common models and their typical uses are summarized in Table 8.10. Weaker models give better availability and latency but push complexity to the application, which must tolerate stale or reordered data. State the model each consumer can rely on, together with the expected staleness.
+**What it includes.** The common models and their typical uses are summarized in Table 9.10. Weaker models give better availability and latency but push complexity to the application, which must tolerate stale or reordered data. State the model each consumer can rely on, together with the expected staleness.
 
 | Model | Guarantee | Typical use |
 | :--- | :--- | :--- |
@@ -407,13 +407,13 @@ They sit in the data chapter because consistency, replication, partitioning and 
 
 **Why it is needed.** A consumer built for linearizable reads breaks visibly when it is moved to a replica, and a consumer that only needed eventual consistency pays coordination cost for nothing. The failure is usually a user-visible regression after a routing change, not a design discussion. The evidence is the model stated per consumer, the staleness bound published with the data, and a test that exercises the read path against a lagging replica.
 
-### 8.4.4 Transaction Isolation
+### 9.4.4 Transaction Isolation
 
 **Definition.** Isolation levels define which anomalies concurrent transactions can observe within a single database.
 
 **Purpose.** Isolation is where correctness is decided for the invariants that live in one store. Choosing it explicitly — and testing it under concurrency — is what separates a constraint from a hope.
 
-**What it includes.** The levels and the anomalies they permit are summarized in Table 8.11. Defaults differ by product — PostgreSQL, Oracle and SQL Server default to read committed; MySQL InnoDB defaults to repeatable read — and the same name can mean different guarantees, so verify the behavior of the actual database.
+**What it includes.** The levels and the anomalies they permit are summarized in Table 9.11. Defaults differ by product — PostgreSQL, Oracle and SQL Server default to read committed; MySQL InnoDB defaults to repeatable read — and the same name can mean different guarantees, so verify the behavior of the actual database.
 
 | Isolation level | Prevents | Still allows |
 | :--- | :--- | :--- |
@@ -429,13 +429,13 @@ They sit in the data chapter because consistency, replication, partitioning and 
 
 **Why it is needed.** For the reference checkout, decrementing stock with a read followed by a separate write can oversell under concurrency. Use an atomic conditional update (`UPDATE … SET available = available - 1 WHERE available > 0`), an explicit row lock or serializable isolation for that invariant. The evidence is the isolation level recorded per critical invariant and a concurrency test that reproduces the oversell or write-skew scenario and fails without the chosen control.
 
-### 8.4.5 Replication and Partitioning
+### 9.4.5 Replication and Partitioning
 
 **Definition.** Replication keeps copies of data on several nodes for availability, locality and read scale; partitioning splits data across nodes to spread volume and load.
 
 **Purpose.** These two mechanisms decide what a failure costs and how the system grows. Replication sets the achievable recovery point; partitioning sets the ceiling on single-node transactions and the shape of every future query.
 
-**What it includes.** Replication modes and their consequences are summarized in Table 8.12. Synchronous replication avoids data loss on failover at the cost of write latency; asynchronous replication is faster but loses the unreplicated tail, which defines the achievable RPO (1.2.10).
+**What it includes.** Replication modes and their consequences are summarized in Table 9.12. Synchronous replication avoids data loss on failover at the cost of write latency; asynchronous replication is faster but loses the unreplicated tail, which defines the achievable RPO (1.2.10).
 
 | Mode | How writes are handled | Main consequence |
 | :--- | :--- | :--- |
@@ -449,13 +449,13 @@ They sit in the data chapter because consistency, replication, partitioning and 
 
 **Why it is needed.** A replication choice made for read scale silently sets the data-loss window, and a partition key chosen for convenience becomes a hot spot under a real traffic pattern. Both are expensive to change later. The evidence is the replication mode and its measured lag, a failover test that records data loss, and a partition-key review against the largest tenants and the dominant query shapes.
 
-### 8.4.6 Time, Ordering and Consensus
+### 9.4.6 Time, Ordering and Consensus
 
 **Definition.** Distributed systems have no global clock and no natural total order; ordering must be constructed from sequence numbers, versions or agreement protocols.
 
 **Purpose.** Ordering decides which update wins and which state transition is legal. Getting it wrong produces the quiet failures — a lost update, a regressed state machine, a duplicate posting — that survive every health check.
 
-**What it includes.** Machine clocks drift, so timestamps from different nodes cannot reliably order events, and “last write wins” by timestamp can silently discard updates. Use sequence numbers or versions per entity (9.4.2), logical clocks or version vectors when causal order matters.
+**What it includes.** Machine clocks drift, so timestamps from different nodes cannot reliably order events, and “last write wins” by timestamp can silently discard updates. Use sequence numbers or versions per entity (10.4.2), logical clocks or version vectors when causal order matters.
 
 **Consensus** protocols such as Raft and Paxos let a group of nodes agree on a value or an ordered log despite failures; they underpin leader election, configuration stores and strongly consistent databases. A majority quorum of 2f + 1 nodes tolerates f failed nodes — three nodes tolerate one failure, five tolerate two. Use proven implementations provided by databases and coordination services; do not implement consensus in application code.
 
@@ -477,7 +477,7 @@ Choose the failure behavior of a critical write path before choosing the datasto
 | Degrade to read-only | Reads must continue while writes wait | Preserves most journeys; needs a queue, backlog limit and drain plan |
 :::
 
-## 8.5 Worked Example: Customer Data with Explicit Ownership
+## 9.5 Worked Example: Customer Data with Explicit Ownership
 
 *In practice:* This example shows how ownership, data contracts and consistency choices are made explicit for customer data across domains.
 
@@ -514,7 +514,7 @@ A new optional `preferred_language` field is added compatibly; renaming `custome
 ☐  Are the consistency model and isolation level explicit for each critical invariant, and tested under concurrency?
 :::
 
-## 8.6 Further Reading
+## 9.6 Further Reading
 
 - Kleppmann and Riccomini (2026), *Designing Data-Intensive Applications* — replication, partitioning, consistency and stream processing.
 - DAMA International (2017), *DAMA-DMBOK* — data governance, quality, metadata and master data.

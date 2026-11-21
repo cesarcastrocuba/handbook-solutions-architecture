@@ -12,10 +12,10 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | E.3 | Third parties and personnel | 13.2.6, 13.8 |
 | E.4 | Access control and identity | 13.2.1–13.2.6, 13.3, 13.4.4 |
 | E.5 | System security | 13.4.4, 13.5.3, 13.5.7, 13.6, 13.6.4 |
-| E.6 | Data protection | 8.2.4, 13.4.2, 13.4.3, 13.4.5, 13.9 |
+| E.6 | Data protection | 9.2.4, 13.4.2, 13.4.3, 13.4.5, 13.9 |
 | E.7 | Application security | 13.1.1, 13.5.1–13.5.6 |
-| E.8 | Cloud services | 11.1.1, 11.1.4, 11.7, 13.2.1, 13.2.3, 13.4.6, 13.7.2, 13.8 |
-| E.9 | Business continuity and incident management | 11.4.2, 11.4.3, 13.4.6, 13.7.1, 13.7.3, 14.3 |
+| E.8 | Cloud services | 12.1.1, 12.1.4, 12.7, 13.2.1, 13.2.3, 13.4.6, 13.7.2, 13.8 |
+| E.9 | Business continuity and incident management | 12.4.2, 12.4.3, 13.4.6, 13.7.1, 13.7.3, 14.3 |
 
 : Coverage map: baseline tables and handbook sections
 
@@ -77,9 +77,9 @@ This map links each baseline table to the handbook sections that explain it. Ind
 | Encrypt data in transit (TLS 1.2 minimum, 1.3 preferred) and restricted data at rest, including backups | Encryption design; configuration evidence | 13.4.2 |
 | Protect encryption keys against unauthorized access and loss | Key-management design; key-access audit | 13.4.2 |
 | Separate production from test and development; use masked or synthetic test data | Environment design; data-masking procedure | 13.4.3 |
-| Log access to customer data and retain logs (commonly at least one year) | Logging design and retention configuration | 8.2.4, 13.7.2 |
+| Log access to customer data and retain logs (commonly at least one year) | Logging design and retention configuration | 9.2.4, 13.7.2 |
 | Prohibit restricted data on removable media and unapproved cloud services | Data-loss prevention and policy controls | Organizational policy |
-| Back up data to meet agreed RTO and RPO | Backup design; restore test results | 1.2.10; 11.4 |
+| Back up data to meet agreed RTO and RPO | Backup design; restore test results | 1.2.10; 12.4 |
 | Return or securely destroy data at contract end, with a certificate of destruction | Data export capability; sanitization procedure | NIST SP 800-88 Rev. 2 (2025) |
 | Assess privacy risk before high-risk processing goes live | DPIA with mitigations and a residual-risk owner | GDPR Article 35; 13.9.2 |
 | Fulfill data-subject requests within statutory deadlines | Subject-data locator, export and erasure procedures; request log | GDPR Articles 15–22; 13.9.3 |
@@ -106,11 +106,11 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Document the shared responsibility model and recommended secure configuration | Customer-facing security documentation | Chapter 11 |
+| Document the shared responsibility model and recommended secure configuration | Customer-facing security documentation | Chapter 12 |
 | Integrate with the customer’s SSO | SAML 2.0 or OIDC support | 13.2.3 |
-| Maintain an inventory of cloud identities and account or tenant mappings | Cloud identity inventory; account and tenant map | 13.2.1; 11.1.1 |
+| Maintain an inventory of cloud identities and account or tenant mappings | Cloud identity inventory; account and tenant map | 13.2.1; 12.1.1 |
 | Provide access logs to the customer in real time or near real time | Log export or streaming interface | 13.7.2 |
-| Delete personal data when no longer required; export all customer data at contract end | Deletion and export capabilities | 8.2.4; 13.9 |
+| Delete personal data when no longer required; export all customer data at contract end | Deletion and export capabilities | 9.2.4; 13.9 |
 
 : Cloud service requirements
 
@@ -118,7 +118,7 @@ This map links each baseline table to the handbook sections that explain it. Ind
 
 | Requirement | Architecture evidence | Reference |
 | :--- | :--- | :--- |
-| Maintain BCP and DRP, updated and tested at least annually | Plans and exercise reports | ISO 22301:2019; 11.4.3 |
+| Maintain BCP and DRP, updated and tested at least annually | Plans and exercise reports | ISO 22301:2019; 12.4.3 |
 | Document RTO and RPO in the service agreement | Service agreement; recovery design | 1.2.10 |
 | Report security incidents affecting the customer within the agreed deadline (commonly 24–48 hours) | Incident procedure with notification step | 13.7.3 |
 | Provide a security contact and deliver a corrective plan after an incident | Contact register; post-incident action plan | 13.7.3, 14.5.2 |
@@ -132,26 +132,26 @@ Editions cited in this handbook, checked at the review date. Confirm the edition
 
 | Standard | Edition cited | Where used |
 | :--- | :--- | :--- |
-| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 13.1.2, 13.8.2, E.2, 19.4.2 |
-| ISO/IEC 27002 | 2022 | 13.1.2, 19.4.2 |
-| ISO/IEC 27017 | 2026 | 19.4.2 |
-| ISO/IEC 27018 | 2025 | 19.4.2 |
-| ISO 22301 | 2019 | 11.4.3, E.9, 19.4.2 |
-| NIST Cybersecurity Framework | 2.0 (2024) | 13.1.2, E.2, 19.4.2 |
-| NIST SP 800-53 | Rev. 5 (2020) | 13.1.2, E.5, 19.4.2 |
+| ISO/IEC 27001 | 2022, including Amendment 1:2024 | 13.1.2, 13.8.2, E.2, 8.4.2 |
+| ISO/IEC 27002 | 2022 | 13.1.2, 8.4.2 |
+| ISO/IEC 27017 | 2026 | 8.4.2 |
+| ISO/IEC 27018 | 2025 | 8.4.2 |
+| ISO 22301 | 2019 | 12.4.3, E.9, 8.4.2 |
+| NIST Cybersecurity Framework | 2.0 (2024) | 13.1.2, E.2, 8.4.2 |
+| NIST SP 800-53 | Rev. 5 (2020) | 13.1.2, E.5, 8.4.2 |
 | NIST SP 800-63-4 | 2025 | 13.2.2, E.4 |
 | NIST SP 800-88 | Rev. 2 (2025) | 13.4.6, E.6 |
 | NIST SP 800-207 | 2020 | 13.4.1, E.4 |
-| NIST SP 800-218 | 2022 | 13.5.1, 19.4.2 |
+| NIST SP 800-218 | 2022 | 13.5.1, 8.4.2 |
 | OWASP ASVS | 5.0.0 (2025) | 13.5.2, E.7, F.3 |
 | OWASP Top 10 | 2025 | 13.5.1, F.3 |
 | OWASP API Security Top 10 | 2023 | 13.5.1, F.3 |
-| PCI DSS | v4.0.1 | 13.8.2, E.2, 19.4.2 |
+| PCI DSS | v4.0.1 | 13.8.2, E.2, 8.4.2 |
 | CVSS | v4.0 (2023) | 13.6.1, F.5 |
 | AICPA Trust Services Criteria | 2017, with revised points of focus 2022 | 13.8.2, E.2 |
 | CIS Benchmarks | Living document; record the benchmark name and version used | 13.5.3, 13.5.7, E.5 |
-| GDPR | Regulation (EU) 2016/679 | 13.7.1, 13.7.3, 13.9, 19.4.1 |
-| NIS2 | Directive (EU) 2022/2555 | 13.7.1, 13.7.3, 19.4.1 |
-| DORA | Regulation (EU) 2022/2554 | 13.7.3, 17.2.4, 19.4.1 |
+| GDPR | Regulation (EU) 2016/679 | 13.7.1, 13.7.3, 13.9, 8.4.1 |
+| NIS2 | Directive (EU) 2022/2555 | 13.7.1, 13.7.3, 8.4.1 |
+| DORA | Regulation (EU) 2022/2554 | 13.7.3, 18.2.4, 8.4.1 |
 
 : Standards editions cited

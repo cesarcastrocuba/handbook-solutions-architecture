@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-FWK
 title: Frameworks, methods and standards
-manuscript: chapters/ch19-architecture-frameworks-methods-and-standards.qmd
+manuscript: chapters/ch08-architecture-frameworks-methods-and-standards.qmd
 items:
 - id: SA-FWK-001
   title: Each framework covers a unique concern
@@ -9,7 +9,7 @@ items:
   rationale: Overlapping frameworks produce redundant artifacts and competing authorities without improving decisions.
   applicability: Organizations selecting enterprise or solution frameworks.
   expected_evidence: Framework selection record naming the concern, consumer, decision supported and artifact produced for each adopted activity.
-  section: '19.1'
+  section: '8.1'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -20,7 +20,7 @@ items:
   rationale: The same fact maintained in several frameworks drifts until nobody knows which version governs.
   applicability: Organizations combining multiple frameworks or templates.
   expected_evidence: Concern-to-source map designating one authoritative artifact per concern and recording mappings rather than duplicates.
-  section: '19.5'
+  section: '8.5'
   external_reference: ''
   risk_relevance: Low
   version: '2.1'
@@ -31,7 +31,7 @@ items:
   rationale: Applying every element mechanically slows work without adding assurance, especially for small, reversible changes.
   applicability: All framework adoptions.
   expected_evidence: Tailoring rationale showing which activities were adopted, reduced or omitted and why, proportionate to solution scale and risk.
-  section: '19.5'
+  section: '8.5'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -42,7 +42,7 @@ items:
   rationale: Reference models reduce design effort and partner friction, but silently mixing releases produces incompatible vocabularies.
   applicability: Solutions in industries with a published reference model.
   expected_evidence: Recorded assessment of the relevant reference model, the release adopted (for example HL7 FHIR R4 or R5) and any deliberate deviations.
-  section: 19.2.6
+  section: 8.2.6
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -53,7 +53,7 @@ items:
   rationale: Using an evaluation method to design or a documentation template to decide produces activity without the right evidence.
   applicability: All method selection for architecture work.
   expected_evidence: Method-to-purpose mapping covering elicitation, design, decision, evaluation, economics, assurance and description, with the output of each.
-  section: 19.3.5
+  section: 8.3.5
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -64,7 +64,7 @@ items:
   rationale: Assuming every regulation applies, or that none does, misdirects effort and leaves real obligations unimplemented.
   applicability: Solutions potentially subject to laws, regulations or assurance schemes.
   expected_evidence: Applicability assessment signed by legal or compliance owners, with each applicable obligation traced to a requirement, control and evidence artifact.
-  section: '19.4'
+  section: '8.4'
   external_reference: ''
   risk_relevance: High
   version: '2.1'

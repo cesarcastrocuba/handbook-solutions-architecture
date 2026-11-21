@@ -48,7 +48,7 @@ Table 7.1 makes the chain operational: it states what each link carries forward 
 
 **Purpose.** The catalog turns “which documents do we need?” into a decision with criteria. It informs the artifact set chosen at the start of a change, the evidence a review expects for a given risk tier, and the conversation about what will deliberately not be produced.
 
-**What it includes.** Fourteen artifacts across requirements, design and decisions, interfaces, data and security, and verification and operations (Table 7.2). Each artifact has a fiche later in this chapter with its purpose, audience, owner, mandatory trigger, minimum content, quality criteria, related artifacts and a short example. Chapter 18 extends this set for AI solutions: evaluation reports (18.6.1–18.6.2), release manifests (18.6.3) and the model card and impact assessment named in the artifact list of 18.9 (item 10).
+**What it includes.** Fourteen artifacts across requirements, design and decisions, interfaces, data and security, and verification and operations (Table 7.2). Each artifact has a fiche later in this chapter with its purpose, audience, owner, mandatory trigger, minimum content, quality criteria, related artifacts and a short example. Chapter 19 extends this set for AI solutions: evaluation reports (19.6.1–19.6.2), release manifests (19.6.3) and the model card and impact assessment named in the artifact list of 19.9 (item 10).
 
 | Artifact | Typical owner | Mandatory when |
 | :--- | :--- | :--- |
@@ -292,7 +292,7 @@ These artifacts describe the boundaries where independent teams, systems and tru
 
 ### 7.4.1 ICD and API/Event Specifications
 
-**Definition.** The Interface Control Document (ICD) is the authoritative agreement on an interface between two parties, and the API or event specification is its machine-readable expression in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers; the integration semantics are defined in 9.2.3.
+**Definition.** The Interface Control Document (ICD) is the authoritative agreement on an interface between two parties, and the API or event specification is its machine-readable expression in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers; the integration semantics are defined in 10.2.3.
 
 **Purpose.** The ICD informs the commercial and operational relationship between teams or organizations: who owns what, what the other party may rely on, how failures and changes are handled. The machine-readable specification informs tooling — code generation, validation and contract tests — and gives CI something to enforce. Together they let two teams ship independently without a shared integration environment.
 
@@ -330,7 +330,7 @@ Table 7.11 gives the fiche for the machine-readable specification that expresses
 
 ### 7.4.2 Data Artifacts
 
-**Definition.** Data artifacts are the models, dictionaries, data contracts, lineage maps, classification matrices and retention schedules that make the meaning, ownership and obligations of data explicit; Chapter 8 defines the data architecture they describe.
+**Definition.** Data artifacts are the models, dictionaries, data contracts, lineage maps, classification matrices and retention schedules that make the meaning, ownership and obligations of data explicit; Chapter 9 defines the data architecture they describe.
 
 **Purpose.** These artifacts let data be shared without losing its meaning or its constraints. They inform integration design, privacy and retention decisions, analytics correctness and the response to a data-subject request, and they establish which system is authoritative for each attribute.
 
@@ -344,7 +344,7 @@ Table 7.11 gives the fiche for the machine-readable specification that expresses
 | Mandatory when | Data is shared, replicated, regulated or used for decisions |
 | Minimum content | Entities and keys, system of record, attribute definitions, classification, quality rules, lineage, retention and deletion obligations |
 | Quality criteria | Every attribute has one authoritative definition and owner; lineage current; retention justified by a legal or business driver; deletion tested end to end |
-| Related artifacts | Data contract (8.3.3), ICD (7.4.1), retention schedule (Appendix B.11), privacy assessment (7.4.3) |
+| Related artifacts | Data contract (9.3.3), ICD (7.4.1), retention schedule (Appendix B.11), privacy assessment (7.4.3) |
 | Example | Customer entity: party identifier, system of record, classification, retention, lineage to the analytics store, deletion propagated to backups |
 
 : Artifact fiche: data model, dictionary and lineage

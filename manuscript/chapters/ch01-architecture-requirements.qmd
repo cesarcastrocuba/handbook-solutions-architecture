@@ -85,7 +85,7 @@ The table below states the question each category answers and the evidence that 
 
 : Minimum data-flow record for each material dataset
 
-Batch and streaming are execution models with different latency and recovery characteristics. Specify poison-record handling, replay boundaries and reconciliation so that a failed pipeline cannot silently lose or duplicate business effects. Data flows are covered in 8.2.3, pipelines in 8.2.6 and lineage in 8.3.5; the dynamic views that keep a flow diagram readable are in 5.2.1; the durable data artifacts that carry these requirements into delivery are in 7.4.2.
+Batch and streaming are execution models with different latency and recovery characteristics. Specify poison-record handling, replay boundaries and reconciliation so that a failed pipeline cannot silently lose or duplicate business effects. Data flows are covered in 9.2.3, pipelines in 9.2.6 and lineage in 9.3.5; the dynamic views that keep a flow diagram readable are in 5.2.1; the durable data artifacts that carry these requirements into delivery are in 7.4.2.
 
 **Why it is needed.** Datasets without a stated transformation and lineage cannot be reconciled, and records that cannot be reconciled cannot be trusted in a financial or regulatory process. The usual failures are silent: a currency conversion applied twice, a de-identification step skipped on one path, a schema change that breaks a consumer nobody listed. Evidence: every material dataset has a flow record, a reconciliation check compares source and destination totals, and a lineage query can answer where a single order’s amount came from without reading application code.
 
@@ -97,7 +97,7 @@ Batch and streaming are execution models with different latency and recovery cha
 
 **What it includes.** Owners on both sides, transport and protocol, authentication and authorization, schema and versioning rules, latency and throughput expectations, timeout and retry behavior, ordering and delivery guarantees, idempotency, failure handling and the reconciliation path. State the direction of the dependency and what the caller does while waiting. For the reference checkout the payment integration states a 900 ms timeout, two retries with backoff, duplicate detection on the provider reference and an explicit pending state when the provider does not answer.
 
-**Why it is needed.** Vague integrations produce retries that duplicate orders, timeouts that leave the business state unknown and schema changes that break consumers nobody listed. A retry policy cannot substitute for idempotency, and a schema cannot define operational recovery; both must be stated separately. Evidence: a contract test runs against both sides, duplicate and out-of-order delivery are demonstrated, and the reconciliation job reports zero unresolved differences. Chapter 9 covers the mechanisms and their trade-offs.
+**Why it is needed.** Vague integrations produce retries that duplicate orders, timeouts that leave the business state unknown and schema changes that break consumers nobody listed. A retry policy cannot substitute for idempotency, and a schema cannot define operational recovery; both must be stated separately. Evidence: a contract test runs against both sides, duplicate and out-of-order delivery are demonstrated, and the reconciliation job reports zero unresolved differences. Chapter 10 covers the mechanisms and their trade-offs.
 
 **Example.** In the reference checkout, “place an order” is one use case traced across all five categories. The capability is *order capture*; the main path ends with a durable order in state ACCEPTED; the invariant is that one idempotency key creates at most one order; the data flow originates at the Checkout API, replaces card data with a token and lands in the order store with `orderId` as the lineage key; and the payment integration states a 900 ms timeout, two bounded retries and duplicate detection on the provider reference. Each of the five statements has an owner and a test, and none of them describes a screen.
 
@@ -143,7 +143,7 @@ The table states the question each attribute answers and the measure that makes 
 
 ISO/IEC 25010:2023 groups availability, fault tolerance and recoverability as sub-characteristics of reliability. This handbook separates them because they drive different decisions, but state the mapping when a standard taxonomy is required. Privacy and auditability are separated for the same reason: one limits how long data is kept, the other requires that some records survive long enough to be examined, and a single “compliance” label hides that conflict.
 
-Chapter 18 (18.1.4) extends this attribute set with AI-specific measures such as task quality, groundedness, safety, cost per outcome and freshness.
+Chapter 19 (19.1.4) extends this attribute set with AI-specific measures such as task quality, groundedness, safety, cost per outcome and freshness.
 
 ### 1.2.1 Availability
 
@@ -243,7 +243,7 @@ Chapter 18 (18.1.4) extends this attribute set with AI-specific measures such as
 
 **What it includes.** The **Recovery Time Objective (RTO)**, the maximum acceptable time to restore service, and the **Recovery Point Objective (RPO)**, the maximum acceptable data loss measured as time before the disruption. Add the scope of recovery — which functions and datasets are restored first — the dependency order, and the credential and configuration restoration that are usually forgotten in plans.
 
-**Why it is needed.** RTO and RPO are business requirements, not properties delivered by a backup product, and backups are not proof of recovery. A restore that takes longer than the business can tolerate, or one that recovers data but not the credentials to use it, is a failed recovery discovered at the worst possible time. Evidence: a timed restore and failover exercise that includes data integrity checks, dependent services and credential restoration, with the measured result recorded against both objectives. Chapter 11 covers recovery topologies.
+**Why it is needed.** RTO and RPO are business requirements, not properties delivered by a backup product, and backups are not proof of recovery. A restore that takes longer than the business can tolerate, or one that recovers data but not the credentials to use it, is a failed recovery discovered at the worst possible time. Evidence: a timed restore and failover exercise that includes data integrity checks, dependent services and credential restoration, with the measured result recorded against both objectives. Chapter 12 covers recovery topologies.
 
 ### 1.2.11 Usability and Accessibility
 
@@ -428,7 +428,7 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **What it includes.** Initial implementation, recurring consumption, licensing, operational labor and the capacity reserved for recovery. Separate the one-off from the recurring, and state the demand assumptions that drive the recurring figure. Compare alternatives with sensitivity analysis, because the ranking often changes when demand is half or double the estimate.
 
-**Why it is needed.** A lower infrastructure bill frequently shifts substantial cost to engineering operations, and a cost target set without a demand model is satisfied by under-provisioning that the first peak exposes. Evidence: each alternative is costed with the same workload assumptions, the sensitivity range is recorded, and the total cost of ownership including operational labor is compared (see 17.2).
+**Why it is needed.** A lower infrastructure bill frequently shifts substantial cost to engineering operations, and a cost target set without a demand model is satisfied by under-provisioning that the first peak exposes. Evidence: each alternative is costed with the same workload assumptions, the sensitivity range is recorded, and the total cost of ownership including operational labor is compared (see 18.2).
 
 ### 1.4.6 Legacy Constraints
 
@@ -438,7 +438,7 @@ The table lists the fields that make a constraint reviewable; a statement that c
 
 **What it includes.** Throughput and availability characteristics, data semantics and known defects, release cadence, ownership, supported integration styles and the contractual or vendor limits on change. Include the decommissioning intent and its date, if one exists.
 
-**Why it is needed.** Assuming that a legacy endpoint behaves like a modern service produces duplicate writes, silent data loss and integrations that fail under retry. The cost of these assumptions lands on the new system, which must then compensate for a capability it cannot rely on. Evidence: the legacy behavior is characterized by measurement rather than documentation alone, and the new design protects itself with an anti-corruption layer and a staged migration plan (see 17.1).
+**Why it is needed.** Assuming that a legacy endpoint behaves like a modern service produces duplicate writes, silent data loss and integrations that fail under retry. The cost of these assumptions lands on the new system, which must then compensate for a capability it cannot rely on. Evidence: the legacy behavior is characterized by measurement rather than documentation alone, and the new design protects itself with an anti-corruption layer and a staged migration plan (see 18.1).
 
 ### 1.4.7 Delivery Constraints
 

@@ -12,7 +12,7 @@
 
 ☐  Context and container views and interface contracts have owners.
 
-☐  Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (12.3.1, 12.5.2, 12.6.1).
+☐  Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (17.3.1, 17.5.2, 17.6.1).
 
 ☐  Data ownership, classification and a retention schedule (including files, logs and backups) are defined.
 

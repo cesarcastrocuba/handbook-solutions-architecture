@@ -24,7 +24,7 @@ Security requirements are only credible when they trace to an asset, an abuse pa
 
 **Purpose.** It finds plausible abuse before build, ranks the threats that matter and gives every mitigation an owner and a verification method.
 
-**What it includes.** Draw the data flows and trust boundaries, mark sensitive data, and enumerate abuse paths with a method such as STRIDE: spoofing, tampering, repudiation, information disclosure, denial of service and elevation of privilege. Rank threats by likelihood and impact in the deployed context, then map each mitigation to a control and a test. Model early, and repeat the exercise after a material trust-boundary change, a new partner or a new administrative path. Chapter 18 (18.5.1) extends the same method to prompt injection, untrusted retrieval, model supply chain and tool or agent actions.
+**What it includes.** Draw the data flows and trust boundaries, mark sensitive data, and enumerate abuse paths with a method such as STRIDE: spoofing, tampering, repudiation, information disclosure, denial of service and elevation of privilege. Rank threats by likelihood and impact in the deployed context, then map each mitigation to a control and a test. Model early, and repeat the exercise after a material trust-boundary change, a new partner or a new administrative path. Chapter 19 (19.5.1) extends the same method to prompt injection, untrusted retrieval, model supply chain and tool or agent actions.
 
 ![Figure 13.1 — Threat modeling loop](../../assets/diagrams/rendered/ch09-threat-model-loop.png){#fig-13-1 width="100%"}
 
@@ -269,7 +269,7 @@ A trust boundary is a place where the identity, privilege or data classification
 
 **Purpose.** Prevent one customer from reaching another customer’s data and prevent production data or credentials from leaking into test and development.
 
-**What it includes.** Customer data is separated between tenants, and production from test and development; lower environments use masked or synthetic data and cannot reach production. Enterprise contracts commonly require this. Choose the isolation mechanism — separate accounts, separate databases, row-level tenant keys or dedicated infrastructure — from the threat model, regulatory obligations and cost. Test the boundary with a cross-tenant request and a network-path test, not only with a configuration review. Section 10.7 covers the tenancy model and how isolation is enforced in the application.
+**What it includes.** Customer data is separated between tenants, and production from test and development; lower environments use masked or synthetic data and cannot reach production. Enterprise contracts commonly require this. Choose the isolation mechanism — separate accounts, separate databases, row-level tenant keys or dedicated infrastructure — from the threat model, regulatory obligations and cost. Test the boundary with a cross-tenant request and a network-path test, not only with a configuration review. Section 11.7 covers the tenancy model and how isolation is enforced in the application.
 
 **Why it is needed.** A shared table or a shared administrator path turns a small application bug into a cross-customer incident. The evidence is an isolation test and a data-flow view that shows every copy.
 
@@ -444,7 +444,7 @@ Table 13.6 maps each testing technique to what it finds and where it stops being
 
 **Purpose.** Build and maintain systems from a known secure configuration, then detect drift before it becomes an exploit path.
 
-**What it includes.** Choose the benchmark or provider baseline that fits the platform and threat model, record its name and version, and state which deviations are approved. Benchmarks such as the CIS Benchmarks are living documents; an unversioned reference cannot be audited. Prefer immutable images or infrastructure as code so that the baseline is built once and tested, rather than applied by hand after deployment. Define the baseline owner and exception route, scan images, containers, operating systems, middleware and managed services, and detect drift continuously. Hardening complements patching (13.6.4) and network segmentation (11.2.2).
+**What it includes.** Choose the benchmark or provider baseline that fits the platform and threat model, record its name and version, and state which deviations are approved. Benchmarks such as the CIS Benchmarks are living documents; an unversioned reference cannot be audited. Prefer immutable images or infrastructure as code so that the baseline is built once and tested, rather than applied by hand after deployment. Define the baseline owner and exception route, scan images, containers, operating systems, middleware and managed services, and detect drift continuously. Hardening complements patching (13.6.4) and network segmentation (12.2.2).
 
 **Why it is needed.** A passing build scan does not prove that production still matches the baseline. The evidence is a baseline register, drift alerts and approved exceptions with expiry.
 
@@ -576,16 +576,16 @@ Security operations need three kinds of evidence: detection and response records
 
 | Requirement | Design approach |
 | :--- | :--- |
-| Completeness | Write the audit record in the same transaction as the business change, or through a transactional outbox (9.3.1) |
+| Completeness | Write the audit record in the same transaction as the business change, or through a transactional outbox (10.3.1) |
 | Integrity | Append-only or write-once (WORM) storage, cryptographic chaining or signing, periodic integrity verification |
 | Segregation of duties | Separate account or subscription; administrators of the audited system cannot modify or delete audit records |
-| Retention | Per regulation and contract — commonly at least one year, often much longer for financial records — with legal holds (8.2.4) |
+| Retention | Per regulation and contract — commonly at least one year, often much longer for financial records — with legal holds (9.2.4) |
 | Privacy | Record identifiers rather than full personal data; never record secrets or card numbers; audit access to the audit trail itself |
 | Usability | Search by actor, resource and time; export or stream to customers and auditors where agreed |
 
 : Audit record requirements
 
-Cloud control-plane logs — for example AWS CloudTrail, Azure Activity Log, Google Cloud Audit Logs — record actions on cloud resources, not business actions, which the application must audit itself. Record-level data history is covered in 8.3.9. For cloud services, export the customer’s access logs at the latency agreed in the contract and protect them like other audit evidence; real-time streaming is a contract term, not a universal default.
+Cloud control-plane logs — for example AWS CloudTrail, Azure Activity Log, Google Cloud Audit Logs — record actions on cloud resources, not business actions, which the application must audit itself. Record-level data history is covered in 9.3.9. For cloud services, export the customer’s access logs at the latency agreed in the contract and protect them like other audit evidence; real-time streaming is a contract term, not a universal default.
 
 **Why it is needed.** An auditor or dispute asks who changed a record and when; sampled operational logs cannot answer. The evidence is a complete record, a tamper test and a retrieval test.
 
@@ -629,7 +629,7 @@ Security requirements between organizations are set by contract and verified wit
 
 **Purpose.** A supplier extends the solution's attack surface and failure domain beyond direct control. Tiering focuses assessment effort where a supplier's failure would matter, and a lifecycle keeps that assessment from ending when the contract is signed.
 
-**What it includes.** Tier suppliers by data sensitivity, operational criticality, privileged access and replaceability. Before selection, assess the supplier in proportion to its tier and record the findings. In the contract, state security requirements, incident notification (13.7.3), audit rights, data location, subprocessor disclosure and return or deletion of data at termination. During the service, review assurance evidence at each renewal (13.8.2), watch for changes in ownership, subprocessors and service scope, and track open findings to closure. Plan the exit before it is needed: data export, credential revocation, and the fallback or replacement path for critical services (17.2.4). The same discipline applies in reverse when the solution is the supplier: keep the answers, evidence and subprocessor list current, so a customer questionnaire draws on maintained records.
+**What it includes.** Tier suppliers by data sensitivity, operational criticality, privileged access and replaceability. Before selection, assess the supplier in proportion to its tier and record the findings. In the contract, state security requirements, incident notification (13.7.3), audit rights, data location, subprocessor disclosure and return or deletion of data at termination. During the service, review assurance evidence at each renewal (13.8.2), watch for changes in ownership, subprocessors and service scope, and track open findings to closure. Plan the exit before it is needed: data export, credential revocation, and the fallback or replacement path for critical services (18.2.4). The same discipline applies in reverse when the solution is the supplier: keep the answers, evidence and subprocessor list current, so a customer questionnaire draws on maintained records.
 
 **Why it is needed.** A supplier that was assessed once can change its subprocessors, lose a certification or be acquired without anyone on the customer side noticing, and an unplanned exit from a critical service becomes an availability incident. The evidence is a tiered supplier register with an owner per entry, dated assessments, contract clauses mapped to tier, tracked findings and a tested exit path for critical suppliers.
 
@@ -712,7 +712,7 @@ Privacy obligations restrict which personal data a solution may collect, how it 
 
 **Purpose.** Translate each right into an architectural capability that can be located, executed and evidenced across every copy of the data.
 
-**What it includes.** Access and portability require locating every store by a stable subject identifier and exporting it in a structured, machine-readable format. Rectification must propagate corrections to replicas, caches, search indexes and derived data sets. Erasure must delete across operational stores, analytics, logs and caches; for backups, expire by retention or record the erasure and re-apply it after any restore. Restriction and objection require a processing flag that downstream consumers honor, including event subscribers. Automated decision-making with legal or similarly significant effects needs human review and an explanation path (GDPR Article 22; Chapter 18). Track each request with its deadline and completion evidence; the request log is part of the audit trail (13.7.2).
+**What it includes.** Access and portability require locating every store by a stable subject identifier and exporting it in a structured, machine-readable format. Rectification must propagate corrections to replicas, caches, search indexes and derived data sets. Erasure must delete across operational stores, analytics, logs and caches; for backups, expire by retention or record the erasure and re-apply it after any restore. Restriction and objection require a processing flag that downstream consumers honor, including event subscribers. Automated decision-making with legal or similarly significant effects needs human review and an explanation path (GDPR Article 22; Chapter 19). Track each request with its deadline and completion evidence; the request log is part of the audit trail (13.7.2).
 
 | Right | Architectural implication |
 | :--- | :--- |
@@ -720,7 +720,7 @@ Privacy obligations restrict which personal data a solution may collect, how it 
 | Rectification | Propagate corrections to replicas, caches, search indexes and derived data sets |
 | Erasure | Delete across operational stores, analytics, logs and caches; re-apply after a restore |
 | Restriction and objection | Carry a processing flag that downstream consumers honor, including event subscribers |
-| Automated decision-making | Provide human review and an explanation path; log inputs and model version (Chapter 18) |
+| Automated decision-making | Provide human review and an explanation path; log inputs and model version (Chapter 19) |
 
 : Data-subject rights and architectural implications
 
@@ -758,7 +758,7 @@ Privacy obligations restrict which personal data a solution may collect, how it 
 
 **Purpose.** Make privacy auditable without reconstructing decisions from memory or scattered tickets.
 
-**What it includes.** Expected evidence includes a record of processing activities (GDPR Article 30), DPIAs, a data inventory and flow map, the retention schedule with deletion evidence, the data-subject request log, a transfer register and a named privacy owner or data protection officer. The compliance record must cover minimization, purpose limitation, retention, residency and access decisions across stores, replicas, logs, files and backups (8.2.4), with the deletion and export results that show each one operates. A provider’s certification does not prove that the solution itself is compliant. Appendix E lists the corresponding baseline requirements.
+**What it includes.** Expected evidence includes a record of processing activities (GDPR Article 30), DPIAs, a data inventory and flow map, the retention schedule with deletion evidence, the data-subject request log, a transfer register and a named privacy owner or data protection officer. The compliance record must cover minimization, purpose limitation, retention, residency and access decisions across stores, replicas, logs, files and backups (9.2.4), with the deletion and export results that show each one operates. A provider’s certification does not prove that the solution itself is compliant. Appendix E lists the corresponding baseline requirements.
 
 **Why it is needed.** A privacy program that cannot produce evidence is indistinguishable from one that did not operate. Review the set when the processing, vendor or jurisdiction changes. An unowned record set cannot answer an auditor or a regulator.
 

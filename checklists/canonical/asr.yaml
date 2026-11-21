@@ -44,7 +44,7 @@ items:
   question: Context and container views and interface contracts have owners.
   rationale: Unowned views and contracts become stale and leave interface change without an accountable party.
   applicability: All solutions with external or cross-team interfaces.
-  expected_evidence: Context and container views with named owners (5.1), and ICDs with producer and consumer owners plus machine-readable contracts (9.2.3).
+  expected_evidence: Context and container views with named owners (5.1), and ICDs with producer and consumer owners plus machine-readable contracts (10.2.3).
   section: C
   external_reference: ISO/IEC/IEEE 42010:2022
   risk_relevance: High
@@ -53,7 +53,7 @@ items:
   group: Design
 - id: SA-ASR-018
   title: Platform dependencies recorded
-  question: Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (12.3.1, 12.5.2, 12.6.1).
+  question: Platform dependencies — capability contracts, the responsibility split and the isolation model — are recorded (17.3.1, 17.5.2, 17.6.1).
   rationale: A solution that runs on a shared platform inherits its guarantees and its gaps; unrecorded dependencies are found during incidents and audits.
   applicability: Solutions that use an internal platform or shared platform capabilities.
   expected_evidence: Capability contracts cited by version in the design, the confirmed responsibility matrix and the isolation decision for the solution's risk class.
@@ -68,7 +68,7 @@ items:
   question: Data ownership, classification and a retention schedule (including files, logs and backups) are defined.
   rationale: Unowned or unclassified data cannot be protected, retained or deleted consistently across copies.
   applicability: All solutions that store business or personal data.
-  expected_evidence: Data ownership map, classification matrix and retention schedule covering primary stores, replicas, files, logs and backups (8.2.4, 8.3.1).
+  expected_evidence: Data ownership map, classification matrix and retention schedule covering primary stores, replicas, files, logs and backups (9.2.4, 9.3.1).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -80,7 +80,7 @@ items:
   question: Audit trails and data change history meet regulatory and contractual requirements.
   rationale: Regulated data needs verifiable proof of what changed, who changed it and who accessed it.
   applicability: Solutions with regulatory, contractual or financial audit obligations.
-  expected_evidence: Audit-event catalog mapped to obligations, history and access-audit coverage, retrieval and tamper tests, and retention with legal holds (13.7.2, 8.3.9).
+  expected_evidence: Audit-event catalog mapped to obligations, history and access-audit coverage, retrieval and tamper tests, and retention with legal holds (13.7.2, 9.3.9).
   section: C
   external_reference: ''
   risk_relevance: High
@@ -140,7 +140,7 @@ items:
   question: Failure scenarios, RTO/RPO and capacity assumptions are tested; BCP and DRP are current.
   rationale: Untested RTO, RPO and capacity assumptions fail under real disruption, and stale plans mislead responders.
   applicability: Solutions supporting critical business services.
-  expected_evidence: Dated exercise reports with measured RTO and RPO, capacity test results, and a current business impact analysis, BCP and DRP with owners (11.4).
+  expected_evidence: Dated exercise reports with measured RTO and RPO, capacity test results, and a current business impact analysis, BCP and DRP with owners (12.4).
   section: C
   external_reference: ISO 22301:2019
   risk_relevance: High
@@ -152,7 +152,7 @@ items:
   question: A cloud well-architected review is completed, and critical suppliers are assessed.
   rationale: Provider guidance and supplier assurance are inherited claims that must be verified in the solution's own scope.
   applicability: Cloud-hosted solutions and solutions depending on critical suppliers.
-  expected_evidence: Dated well-architected review with a findings register, and current supplier assurance scoped to the service (11.2, 13.8).
+  expected_evidence: Dated well-architected review with a findings register, and current supplier assurance scoped to the service (12.2, 13.8).
   section: C
   external_reference: ''
   risk_relevance: Medium

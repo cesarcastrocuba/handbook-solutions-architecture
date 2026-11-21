@@ -27,6 +27,26 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Rozanski, N. and Woods, E. *Software Systems Architecture*, 2nd ed. Addison-Wesley, 2011.
 - Skelton, M. and Pais, M. *Team Topologies*. IT Revolution, 2019.
 
+## Standards, Frameworks and Notations
+
+- ACORD. *ACORD Standards*. acord.org.
+- BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
+- Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
+- HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
+- IEC 62264 (ISA-95). *Enterprise-control system integration*.
+- ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
+- ISO/IEC 9075. *Information technology — Database languages — SQL*. System-versioned temporal tables were introduced in SQL:2011; the current edition is SQL:2023.
+- ISO/IEC/IEEE 29119-1:2022. *Software and systems engineering — Software testing — Part 1: General concepts*.
+- ISO/IEC/IEEE 29148:2018. *Systems and software engineering — Life cycle processes — Requirements engineering*.
+- ISO/IEC/IEEE 42010:2022. *Software, systems and enterprise — Architecture description*.
+- Scaled Agile, Inc. *SAFe — Scaled Agile Framework*. scaledagileframework.com.
+- Starke, G. and Hruschka, P. *arc42 Architecture Documentation Template*. arc42.org.
+- The Open Group. *ArchiMate 3.2 Specification*. 2022.
+- The Open Group. *The TOGAF Standard*, 10th Edition. 2022.
+- TM Forum. *Open Digital Architecture (ODA)* and *Open APIs*. tmforum.org.
+- W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation, 2023.
+- Zachman, J. A. *The Zachman Framework for Enterprise Architecture*. Zachman International.
+
 ## Domain Design, Data and Consistency
 
 - Abadi, D. “Consistency Tradeoffs in Modern Distributed Database System Design.” *IEEE Computer* 45(2), 2012.
@@ -200,23 +220,3 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - NIST. *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*. NIST AI 600-1, 2024.
 - OWASP Foundation. *OWASP Top 10 for LLM Applications 2025*. genai.owasp.org.
 - OWASP GenAI Security Project. *OWASP Top 10 for Agentic Applications for 2026*. genai.owasp.org, 2025.
-
-## Standards, Frameworks and Notations
-
-- ACORD. *ACORD Standards*. acord.org.
-- BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
-- Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
-- HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
-- IEC 62264 (ISA-95). *Enterprise-control system integration*.
-- ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
-- ISO/IEC 9075. *Information technology — Database languages — SQL*. System-versioned temporal tables were introduced in SQL:2011; the current edition is SQL:2023.
-- ISO/IEC/IEEE 29119-1:2022. *Software and systems engineering — Software testing — Part 1: General concepts*.
-- ISO/IEC/IEEE 29148:2018. *Systems and software engineering — Life cycle processes — Requirements engineering*.
-- ISO/IEC/IEEE 42010:2022. *Software, systems and enterprise — Architecture description*.
-- Scaled Agile, Inc. *SAFe — Scaled Agile Framework*. scaledagileframework.com.
-- Starke, G. and Hruschka, P. *arc42 Architecture Documentation Template*. arc42.org.
-- The Open Group. *ArchiMate 3.2 Specification*. 2022.
-- The Open Group. *The TOGAF Standard*, 10th Edition. 2022.
-- TM Forum. *Open Digital Architecture (ODA)* and *Open APIs*. tmforum.org.
-- W3C. *Web Content Accessibility Guidelines (WCAG) 2.2*. W3C Recommendation, 2023.
-- Zachman, J. A. *The Zachman Framework for Enterprise Architecture*. Zachman International.

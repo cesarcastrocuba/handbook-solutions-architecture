@@ -33,7 +33,7 @@ Three architecture disciplines overlap but differ in scope, time horizon and aud
 | Time horizon | Years | Months to a few years | Releases and iterations |
 | Typical concerns | Capability maps, application portfolio, target state, transition roadmaps, investment governance | Cross-domain integration, quality attributes, trade-offs, decisions, risk and delivery feasibility | Module structure, design patterns, code quality, testability, refactoring |
 | Typical artifacts | Capability models, roadmaps, standards, principles | Requirements, HLD, ADRs, ICDs, review records | Component designs, LLD, code-level conventions |
-| Coverage here | Interfaces only: principles, standards, capability context, TOGAF and ArchiMate (Chapter 19; context in Chapters 2 and 4) | Full coverage | Interfaces only: decomposition, internal structure and engineering practice where they affect architecture (Chapters 7, 10 and 15) |
+| Coverage here | Interfaces only: principles, standards, capability context, TOGAF and ArchiMate (Chapter 8; context in Chapters 2 and 4) | Full coverage | Interfaces only: decomposition, internal structure and engineering practice where they affect architecture (Chapters 7, 11 and 15) |
 
 : Architecture Discipline Comparison
 
@@ -44,30 +44,31 @@ Three groups of readers use the handbook, and each needs a different route throu
 | Profile | What they use the handbook for | Start with |
 | :--- | :--- | :--- |
 | Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–6, then 16; Appendix C |
-| Enterprise architect | The principles, standards and governance a solution must respect, and the decisions that feed the portfolio | 2, 4, 19 |
-| Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 10, 16 |
-| Data architect | Data ownership, flows, retention and quality across the solution | 8 |
-| Integration architect | Interfaces, contracts and messaging between systems and teams | 9 |
-| Cloud or platform architect | Hosting, landing zones and the shared platform the solution runs on | 11, 12 |
+| Enterprise architect | The principles, standards and governance a solution must respect, and the decisions that feed the portfolio | 2, 4, 8 |
+| Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 11, 16 |
+| Data architect | Data ownership, flows, retention and quality across the solution | 9 |
+| Integration architect | Interfaces, contracts and messaging between systems and teams | 10 |
+| Cloud or platform architect | Hosting, landing zones and the shared platform the solution runs on | 12, 17 |
 | Security architect | Threats, identity, controls and the evidence that proves them | 13 |
-| Tech lead | Turning a design into delivery: contracts, pipelines, environments and readiness | 9, 15 |
+| Tech lead | Turning a design into delivery: contracts, pipelines, environments and readiness | 10, 15 |
 | Principal or staff engineer | Reviewing and steering designs across teams, and settling trade-offs with evidence | 3, 4, 6 |
 | Senior engineer moving into architecture | The full method in order, then the domain chapter they work in | 1–4, then the relevant domain chapter |
-| Developer | The requirements, contracts and tests that touch their code | 1.3, 9.2, 16.1 |
+| Developer | The requirements, contracts and tests that touch their code | 1.3, 10.2, 16.1 |
 | Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 6, 14; Appendix C |
 
 : The handbook as a reference for each role and reader
 
-The routes overlap rather than exclude: an enterprise architect reviewing a cross-organization integration reads Chapter 9 as well, and a developer who owns an interface reads the contract guidance before the code.
+The routes overlap rather than exclude: an enterprise architect reviewing a cross-organization integration reads Chapter 10 as well, and a developer who owns an interface reads the contract guidance before the code.
 
 Hands-on readers are assumed to have practical software delivery experience and familiarity with networked applications, databases and cloud services. Managers without that background can start from the review checklists and Appendix C, which state the questions a review asks rather than assuming the technology. Specialized concepts are explained where they first appear and listed in the glossary (Appendix J).
 
 ## Structure of the Handbook
 
 - **The Solutions Architect Role:** responsibilities, boundaries with other roles, engagement lifecycle and stakeholder communication.
-- **How architecture is practised (Chapters 1–7):** requirements, principles, decisions and governance; architecture documentation and communication; architecture evaluation, including ATAM; and the artifacts and engineering practices that carry the design.
-- **Technical domains (Chapters 8–15):** data, integration, application, infrastructure and cloud, platform, security, observability and reliability, deployment and operations.
-- **Verification, evolution and reference (Chapters 16–19):** testing and quality verification; evolution and economics; AI and machine learning; and the frameworks, methods and standards that frame the work.
+- **How architecture is practised (Chapters 1–8):** requirements, principles, decisions and governance; architecture documentation and communication; architecture evaluation, including ATAM; the artifacts and engineering practices that carry the design; and the frameworks, methods and standards that frame the practice.
+- **Technical domains (Chapters 9–13):** data, integration, application, infrastructure and cloud, and security.
+- **Operation and verification (Chapters 14–16):** observability and reliability, deployment and operations, and testing and quality verification.
+- **Platform, evolution and AI (Chapters 17–19):** the internal platform that consolidates those capabilities for many teams, evolution and economics, and AI and machine learning.
 - **Conclusions** summarize the cross-cutting principles. **Appendices** provide worked cases, artifact schemas, an assurance checklist, a consistency matrix, a security requirements baseline, a security reference (protocols, OWASP and ASVS, testing techniques, vulnerability scoring and tools), a pattern catalog, catalogs of the anti-patterns and decisions discussed in the chapters, and the glossary. **References** list the sources cited and recommended for further reading.
 
 Each concept is explained in one primary location and referenced elsewhere. Each chapter ends with an architecture review checklist and suggested further reading.
@@ -79,8 +80,8 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | If you need to… | Start with |
 | :--- | :--- |
 | Clarify responsibilities with other roles | The Solutions Architect Role |
-| Prepare a proposal or respond to a bid | The Solutions Architect Role; 17.2.6 |
-| Plan high availability or disaster recovery | 1.2.10; 11.4 |
+| Prepare a proposal or respond to a bid | The Solutions Architect Role; 18.2.6 |
+| Plan high availability or disaster recovery | 1.2.10; 12.4 |
 | Design privacy and auditability into a solution | 1.2.12–1.2.13; 2.8 and 2.14; 13.9 |
 | Turn a stakeholder request into testable requirements | 1.3 Quality Attribute Scenarios; Appendix B.1 |
 | Choose, revise or reconcile architecture principles | Chapter 2; 2.15 |
@@ -92,21 +93,22 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Run an architecture evaluation or an ATAM | 6.1.3; 6.2.1 |
 | Assess an existing system before a major change | 6.3.3 |
 | Decide which documents to produce | 7.1.2 Artifact Catalog |
-| Choose a consistency model or isolation level | 8.4 |
-| Design an integration between teams or organizations | Chapter 9; Appendix A.4 |
-| Push real-time updates to clients | 9.1.9 |
-| Design or review an API | 9.2.5–9.2.8 |
-| Choose an integration platform or connect a legacy system | 9.6; 17.1.2 |
-| Choose a caching pattern or event sourcing | 10.3.3–10.3.5 |
-| Choose a branching strategy or repository structure | 10.5.3; 15.1.3 |
-| Design web or mobile clients | 10.6 |
-| Support several languages and regions | 10.6.6 |
-| Design a multi-tenant application | 10.7; 13.4.3 |
-| Choose a container or runtime platform | 11.1.2; 11.3 |
-| Select block, file, object or archive storage | 11.1.5 |
-| Choose between a load balancer, reverse proxy and API gateway | 11.2.3 |
-| Design edge or IoT solutions | 11.6 |
-| Run a cloud well-architected review | 11.7 |
+| Select a framework, method or notation | Chapter 8; 8.1 |
+| Choose a consistency model or isolation level | 9.4 |
+| Design an integration between teams or organizations | Chapter 10; Appendix A.4 |
+| Push real-time updates to clients | 10.1.9 |
+| Design or review an API | 10.2.5–10.2.8 |
+| Choose an integration platform or connect a legacy system | 10.6; 18.1.2 |
+| Choose a caching pattern or event sourcing | 11.3.3–11.3.5 |
+| Choose a branching strategy or repository structure | 11.5.3; 15.1.3 |
+| Design web or mobile clients | 11.6 |
+| Support several languages and regions | 11.6.6 |
+| Design a multi-tenant application | 11.7; 13.4.3 |
+| Choose a container or runtime platform | 12.1.2; 12.3 |
+| Select block, file, object or archive storage | 12.1.5 |
+| Choose between a load balancer, reverse proxy and API gateway | 12.2.3 |
+| Design edge or IoT solutions | 12.6 |
+| Run a cloud well-architected review | 12.7 |
 | Define a security test strategy | 13.5; Appendix F |
 | Set application security requirements | 13.5.2 (OWASP ASVS) |
 | Assess a supplier or answer a customer security questionnaire | 13.8; Appendix E |
@@ -117,11 +119,10 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Define a test strategy | 16.1 |
 | Deal with flaky tests or unreliable pipelines | 16.2.3 |
 | Plan performance and failure testing | 16.3.1 |
-| Plan a legacy migration | 17.1; 17.4 |
-| Assess a portfolio before a cloud migration | 17.1.4 |
-| Evaluate vendors or run a proof of concept | 17.2.6; Appendix B.8 |
-| Design an AI agent or tool integration | 18.8 |
-| Select a framework, method or notation | Chapter 19; 19.1 |
+| Plan a legacy migration | 18.1; 18.4 |
+| Assess a portfolio before a cloud migration | 18.1.4 |
+| Evaluate vendors or run a proof of concept | 18.2.6; Appendix B.8 |
+| Design an AI agent or tool integration | 19.8 |
 | Review a design before approval | Chapter review checklists; Appendix C |
 | Look up anti-patterns or decisions across chapters | Appendix H; Appendix I |
 | Find where a pattern is discussed | Appendix G |
