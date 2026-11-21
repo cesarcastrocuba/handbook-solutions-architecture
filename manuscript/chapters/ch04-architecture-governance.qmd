@@ -22,7 +22,7 @@ An effective model allocates authority according to the scope and reversibility 
 
 ![Figure 4.1 — Risk-tiered governance operating model](../../assets/diagrams/rendered/governance.png){#fig-4-1 width="100%"}
 
-Chapter 18 (18.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
+Chapter 19 (19.5.6) applies this operating model to AI systems, covering model supply chain, human oversight and high-impact actions.
 
 ### 4.1.1 Governance Taxonomy and Translation Chain
 
@@ -384,7 +384,7 @@ Choose what the governance report measures.
 | Change management | Pipeline records linking change, review, approval and deployment (15.4) |
 | Access management | Identity-provider reports of access reviews and deprovisioning |
 | Vulnerability management | Scan results and remediation-time metrics (13.6) |
-| Backup and recovery | Restore-test reports with measured RTO and RPO (11.4) |
+| Backup and recovery | Restore-test reports with measured RTO and RPO (12.4) |
 | Encryption and configuration | Policy-as-code and configuration-scan results over time (4.3) |
 | Accountability | Application audit trails (13.7.2) |
 
@@ -424,7 +424,7 @@ Team structure constrains architecture as firmly as technology does, and a desig
 
 **Purpose.** Alignment makes ownership boundaries and system boundaries reinforce each other, so that most changes stay inside one team and cross-team coordination is reserved for published contracts.
 
-**What it includes.** Compare the target decomposition (10.1) with the current team map, and mark each component with several owning teams and each team that owns unrelated components. Use the change history as evidence: components routinely changed together by different teams show a misplaced boundary or a missing contract. For each mismatch, choose whether to move the boundary, move the responsibility between teams, or accept the coordination cost and record it in an ADR. Treat a reorganization as an architectural change, and assess which interfaces, on-call rotations and system knowledge move with it. Where the architect has no authority over team structure, the decision rights (4.2) say who does: state the constraint, make the cost visible and design for the structure that will actually deliver the work.
+**What it includes.** Compare the target decomposition (11.1) with the current team map, and mark each component with several owning teams and each team that owns unrelated components. Use the change history as evidence: components routinely changed together by different teams show a misplaced boundary or a missing contract. For each mismatch, choose whether to move the boundary, move the responsibility between teams, or accept the coordination cost and record it in an ADR. Treat a reorganization as an architectural change, and assess which interfaces, on-call rotations and system knowledge move with it. Where the architect has no authority over team structure, the decision rights (4.2) say who does: state the constraint, make the cost visible and design for the structure that will actually deliver the work.
 
 **Why it is needed.** Service boundaries that cut across teams produce a distributed monolith in practice, because every release needs several teams to coordinate even though the deployment units are separate. The evidence is a component-to-team ownership map, a cross-team change measure taken from version control, and ADRs for the mismatches that were accepted.
 
@@ -434,7 +434,7 @@ Team structure constrains architecture as firmly as technology does, and a desig
 
 **Purpose.** A shared vocabulary lets the architect state how teams are expected to work together around each boundary, and shows when a boundary is carrying more interaction than its contract was designed for.
 
-**What it includes.** Table 4.10 relates each team type to what the architecture must provide for it. Assign an interaction mode to each significant dependency between teams. Collaboration suits discovery of a new boundary, is expensive and should be time-limited. X-as-a-service suits a stable boundary, and it needs a documented interface, an objective and a support path (12.3.2). Facilitating is a temporary transfer of skill and ends when the receiving team is independent. Review the modes when the boundary matures: a collaboration that never ends indicates a boundary that was never settled. The model is a reference vocabulary and not a mandated structure, so adapt the names and keep the discipline of an explicit owner and an explicit mode.
+**What it includes.** Table 4.10 relates each team type to what the architecture must provide for it. Assign an interaction mode to each significant dependency between teams. Collaboration suits discovery of a new boundary, is expensive and should be time-limited. X-as-a-service suits a stable boundary, and it needs a documented interface, an objective and a support path (17.3.2). Facilitating is a temporary transfer of skill and ends when the receiving team is independent. Review the modes when the boundary matures: a collaboration that never ends indicates a boundary that was never settled. The model is a reference vocabulary and not a mandated structure, so adapt the names and keep the discipline of an explicit owner and an explicit mode.
 
 | Team type | Responsibility | What the architecture must provide | Warning sign |
 | :--- | :--- | :--- | :--- |
@@ -457,7 +457,7 @@ Figure 4.10 shows a typical arrangement of the team types and the interaction mo
 
 **Purpose.** Load is a design constraint because a team has finite capacity. An architecture that exceeds that capacity is delivered slowly and operated poorly, however sound it looks on paper.
 
-**What it includes.** Inventory what each team must know: domains, languages, data stores, runtimes, pipelines and on-call scope. Count each new technology as a recurring cost to the team that runs it, and record that cost with the decision (3.4). Reduce incidental load through platform capabilities and supported default paths (12.4.3), and reduce domain load by narrowing a team's responsibilities. Measure developer experience at the team and system level, using delivery measures such as lead time and change failure rate together with the several dimensions of the SPACE framework (Forsgren et al., 2021): satisfaction and well-being, performance, activity, communication and collaboration, and efficiency and flow. Do not use a single number, and do not rank individuals, because activity counts reward the wrong behavior. Useful signals are the time for a new engineer to reach a first production change, build and test duration, and how often work waits for another team.
+**What it includes.** Inventory what each team must know: domains, languages, data stores, runtimes, pipelines and on-call scope. Count each new technology as a recurring cost to the team that runs it, and record that cost with the decision (3.4). Reduce incidental load through platform capabilities and supported default paths (17.4.3), and reduce domain load by narrowing a team's responsibilities. Measure developer experience at the team and system level, using delivery measures such as lead time and change failure rate together with the several dimensions of the SPACE framework (Forsgren et al., 2021): satisfaction and well-being, performance, activity, communication and collaboration, and efficiency and flow. Do not use a single number, and do not rank individuals, because activity counts reward the wrong behavior. Useful signals are the time for a new engineer to reach a first production change, build and test duration, and how often work waits for another team.
 
 **Why it is needed.** Load accumulates one reasonable decision at a time, and its effect appears as slow delivery, fragile on-call and the loss of the few people who understand the system. The evidence is a load review for each team affected by the design, a trend of delivery and developer-experience measures, and an explicit decision to fund any increase in load.
 

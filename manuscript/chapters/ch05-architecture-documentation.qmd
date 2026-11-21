@@ -1,6 +1,6 @@
 # 5. Architecture Documentation
 
-Architecture documentation answers stakeholder concerns with the smallest coherent set of views, and keeps those views true while the system changes. A diagram describes intent: evaluation (Chapter 6) judges whether the intent is sound, and testing (Chapter 16) demonstrates that the built system meets it. This chapter covers static views, dynamic and process views, and the practice that keeps a description useful: its structure, docs as code, communication to different audiences and currency. Chapter 7 catalogs the artifacts and Chapter 19 positions the frameworks.
+Architecture documentation answers stakeholder concerns with the smallest coherent set of views, and keeps those views true while the system changes. A diagram describes intent: evaluation (Chapter 6) judges whether the intent is sound, and testing (Chapter 16) demonstrates that the built system meets it. This chapter covers static views, dynamic and process views, and the practice that keeps a description useful: its structure, docs as code, communication to different audiences and currency. Chapter 7 catalogs the artifacts and Chapter 8 positions the frameworks.
 
 ::: {.callout-note appearance="simple" icon=false title="When to Use This Chapter"}
 - Deciding which views a solution needs and for which stakeholders.
@@ -175,7 +175,7 @@ A view set is useful only while readers can find it, trust it and act on it. Thi
 
 **Purpose.** A predictable outline lets a reader find the deployment view or the open risks without reading everything, and lets a reviewer notice what is missing. It also separates what the description owns from what it only references, so each fact has one authoritative home.
 
-**What it includes.** Standards and templates contribute different things and combine rather than compete (Table 5.5). ISO/IEC/IEEE 42010 (19.2.2) supplies the vocabulary and the conformance rules: stakeholders and their concerns, viewpoints that define how a kind of view is built, the views themselves, correspondences between elements of different views, and the rationale for decisions. A template supplies the outline: arc42 (5.3.2) is the most widely used open template, and Views and Beyond adds guidance on documenting each view and the information that spans views. A viewpoint catalog, such as the viewpoints and perspectives of Rozanski and Woods, tells the author which views a kind of system usually needs. C4 and 4+1 (5.1.2, 5.1.3) are view sets that fill a template's view sections; they are not outlines. Use the chosen template as a checklist, keep the sections that carry risk for this solution, and mark the others as not applicable with a reason instead of deleting them silently. Keep one description per solution, with a short overview page on top, and derive audience-specific material from it (5.3.4) rather than writing one document per audience.
+**What it includes.** Standards and templates contribute different things and combine rather than compete (Table 5.5). ISO/IEC/IEEE 42010 (8.2.2) supplies the vocabulary and the conformance rules: stakeholders and their concerns, viewpoints that define how a kind of view is built, the views themselves, correspondences between elements of different views, and the rationale for decisions. A template supplies the outline: arc42 (5.3.2) is the most widely used open template, and Views and Beyond adds guidance on documenting each view and the information that spans views. A viewpoint catalog, such as the viewpoints and perspectives of Rozanski and Woods, tells the author which views a kind of system usually needs. C4 and 4+1 (5.1.2, 5.1.3) are view sets that fill a template's view sections; they are not outlines. Use the chosen template as a checklist, keep the sections that carry risk for this solution, and mark the others as not applicable with a reason instead of deleting them silently. Keep one description per solution, with a short overview page on top, and derive audience-specific material from it (5.3.4) rather than writing one document per audience.
 
 | Standard or template | What it contributes | Use it when |
 | :--- | :--- | :--- |
@@ -191,7 +191,7 @@ A view set is useful only while readers can find it, trust it and act on it. Thi
 
 ### 5.3.2 Documenting with arc42
 
-**Definition.** arc42 is an open template that structures an architecture description into twelve sections, from introduction and goals to glossary; Chapter 19 positions it among the frameworks (19.2.3), and this unit shows how to fill it.
+**Definition.** arc42 is an open template that structures an architecture description into twelve sections, from introduction and goals to glossary; Chapter 8 positions it among the frameworks (8.2.3), and this unit shows how to fill it.
 
 **Purpose.** It gives every solution description the same table of contents, so a reader who knows one description can navigate the next, and it tells the author where each view, decision and scenario from this chapter belongs.
 
@@ -203,10 +203,10 @@ A view set is useful only while readers can find it, trust it and act on it. Thi
 | 2. Constraints | Technical, organizational and regulatory constraints | Standards and policies (Chapter 4) |
 | 3. Context and scope | C4 context diagram, external interfaces | Interface specifications (7.4.1) |
 | 4. Solution strategy | The main approaches and why they were chosen | ADRs (Chapter 3) |
-| 5. Building-block view | C4 container and component levels | Contracts and module boundaries (10.2.1) |
+| 5. Building-block view | C4 container and component levels | Contracts and module boundaries (11.2.1) |
 | 6. Runtime view | Sequence and dynamic diagrams for priority flows | Quality scenarios (5.2.2) |
-| 7. Deployment view | Nodes, zones and recovery topology | Infrastructure as code (11.5.1) |
-| 8. Cross-cutting concepts | Security, observability, data ownership, error handling | Chapters 8, 13 and 14 |
+| 7. Deployment view | Nodes, zones and recovery topology | Infrastructure as code (12.5.1) |
+| 8. Cross-cutting concepts | Security, observability, data ownership, error handling | Chapters 9, 13 and 14 |
 | 9. Architecture decisions | Index of the decisions that shape the architecture | ADR log (3.4) |
 | 10. Quality requirements | Utility tree and priority scenarios | Evaluation record (Chapter 6) and test evidence (Chapter 16) |
 | 11. Risks and technical debt | Open risks and debt with owners | Findings register (6.3.4) |
@@ -222,7 +222,7 @@ A view set is useful only while readers can find it, trust it and act on it. Thi
 
 **Purpose.** It lets documentation change in the same flow as the system, with history, review and automated checks, so the description is updated in the change that alters the behavior instead of in a separate effort that rarely happens.
 
-**What it includes.** Keep the sources — prose, diagram text and ADRs — beside the code or in a repository the teams already use, and publish them to a portal with a version and a date (Figure 5.6). Choose between a diagram language, which is quick to edit but repeats element names in every diagram, and a model, in which each element is defined once and many views are generated from it, so a rename reaches every view. Automate what can be checked: broken links, missing owners or review dates, diagrams that fail to render, and element names that do not match the deployed inventory or the service catalog. Add a documentation update to the definition of done for changes that alter an interface, a deployment or a decision, so the reviewer of the code also reviews the view. Where the enterprise keeps a modeling repository (19.3.2), export its views into the same portal so readers have one place to look.
+**What it includes.** Keep the sources — prose, diagram text and ADRs — beside the code or in a repository the teams already use, and publish them to a portal with a version and a date (Figure 5.6). Choose between a diagram language, which is quick to edit but repeats element names in every diagram, and a model, in which each element is defined once and many views are generated from it, so a rename reaches every view. Automate what can be checked: broken links, missing owners or review dates, diagrams that fail to render, and element names that do not match the deployed inventory or the service catalog. Add a documentation update to the definition of done for changes that alter an interface, a deployment or a decision, so the reviewer of the code also reviews the view. Where the enterprise keeps a modeling repository (8.3.2), export its views into the same portal so readers have one place to look.
 
 ![Figure 5.6 — Documentation sources, review, automated checks and publication](../../assets/diagrams/rendered/ch12-docs-as-code.png){#fig-5-6 width="100%"}
 

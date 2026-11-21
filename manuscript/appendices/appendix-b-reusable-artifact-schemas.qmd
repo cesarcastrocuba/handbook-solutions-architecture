@@ -85,7 +85,7 @@ The ADR schema preserves the reasoning a later change must either respect or del
 
 ## B.6 Tenancy Decision Record
 
-The tenancy decision record states the isolation model for each layer and how it is proven (10.7).
+The tenancy decision record states the isolation model for each layer and how it is proven (11.7).
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |
@@ -117,7 +117,7 @@ The RFC schema supports structured consultation before a contested or cross-team
 
 ## B.8 Vendor Evaluation Matrix
 
-The vendor evaluation matrix records criteria and scores for each candidate (17.2.6). Agree on the criteria and weights before opening any bid.
+The vendor evaluation matrix records criteria and scores for each candidate (18.2.6). Agree on the criteria and weights before opening any bid.
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |
@@ -180,7 +180,7 @@ The retention schedule schema states how long each data category is kept, where 
 
 ## B.12 Platform Capability Contract
 
-The platform capability contract states what one platform capability provides to its consumers and what remains theirs (12.5.2).
+The platform capability contract states what one platform capability provides to its consumers and what remains theirs (17.5.2).
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |
@@ -198,7 +198,7 @@ The platform capability contract states what one platform capability provides to
 
 ## B.13 Platform Assessment
 
-The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (9.6.6, 11.3.1).
+The platform assessment schema compares an integration or runtime platform with the needs of the workloads it would serve (10.6.6, 12.3.1).
 
 | Section | What to write | Quality check |
 | :--- | :--- | :--- |

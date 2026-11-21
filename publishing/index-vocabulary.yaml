@@ -7,14 +7,14 @@ terms:
   defined: '2.14'
   rationale: Ordinary practice phrase; section 2.14 owns it.
 - term: Application boundary
-  defined: 10.1.1
-  rationale: Heading restatement; section 10.1.1 owns it.
+  defined: 11.1.1
+  rationale: Heading restatement; section 11.1.1 owns it.
 - term: Application resilience
-  defined: 10.4.2
-  rationale: Heading restatement; section 10.4.2 owns it.
+  defined: 11.4.2
+  rationale: Heading restatement; section 11.4.2 owns it.
 - term: Application scalability
-  defined: 10.4.3
-  rationale: Heading restatement; section 10.4.3 owns it.
+  defined: 11.4.3
+  rationale: Heading restatement; section 11.4.3 owns it.
 - term: Architecture documentation
   defined: 5.2.2
   rationale: Generic practice heading; section 5.2.2 owns it.
@@ -28,8 +28,8 @@ terms:
   defined: 15.4.1
   rationale: Heading restatement; section 15.4.1 owns it.
 - term: Change history
-  defined: 8.3.9
-  rationale: Heading restatement; section 8.3.9 owns it.
+  defined: 9.3.9
+  rationale: Heading restatement; section 9.3.9 owns it.
 - term: Change impact
   defined: 1.5.2
   rationale: Heading restatement; section 1.5.2 owns it.
@@ -37,16 +37,16 @@ terms:
   defined: 15.4.2
   rationale: Heading restatement; section 15.4.2 owns it.
 - term: Communication design
-  defined: 10.4.1
-  rationale: Heading restatement; section 10.4.1 owns it.
+  defined: 11.4.1
+  rationale: Heading restatement; section 11.4.1 owns it.
 - term: Compute selection
-  defined: 11.1.2
-  rationale: Heading restatement; section 11.1.2 owns it.
+  defined: 12.1.2
+  rationale: Heading restatement; section 12.1.2 owns it.
 - term: Cost architecture
-  defined: 11.5.2
-  rationale: Heading restatement; section 11.5.2 owns it.
+  defined: 12.5.2
+  rationale: Heading restatement; section 12.5.2 owns it.
 - term: Cost-benefit comparison
-  defined: 17.2.5
+  defined: 18.2.5
   rationale: Method phrase; the CBAM entry and section 15.2.5 cover it.
 - term: Data processing requirement
   defined: 1.1.4
@@ -73,8 +73,8 @@ terms:
   defined: 1.4.2
   rationale: Constraint-taxonomy heading; section 1.4.2 owns it.
 - term: Integration boundary
-  defined: 9.1.1
-  rationale: Heading restatement; section 9.1.1 owns it.
+  defined: 10.1.1
+  rationale: Heading restatement; section 10.1.1 owns it.
 - term: Integration requirement
   defined: 1.1.5
   rationale: Heading restatement; section 1.1.5 owns it.
@@ -82,11 +82,11 @@ terms:
   defined: 1.4.6
   rationale: Constraint-taxonomy heading; section 1.4.6 owns it.
 - term: Method selection
-  defined: 19.3.5
-  rationale: Heading restatement; section 19.3.5 owns it.
+  defined: 8.3.5
+  rationale: Heading restatement; section 8.3.5 owns it.
 - term: Modernization option
-  defined: 17.1.1
-  rationale: Heading restatement; section 17.1.1 owns it.
+  defined: 18.1.1
+  rationale: Heading restatement; section 18.1.1 owns it.
 - term: Organizational constraint
   defined: 1.4.4
   rationale: Constraint-taxonomy heading; section 1.4.4 owns it.
@@ -94,14 +94,14 @@ terms:
   defined: 3.4.2
   rationale: Heading restatement; section 3.4.2 owns it.
 - term: Reference sequence
-  defined: 9.7.1
-  rationale: Worked-example label; section 9.7.1 owns it.
+  defined: 10.7.1
+  rationale: Worked-example label; section 10.7.1 owns it.
 - term: Repository structure
-  defined: 10.5.3
-  rationale: Heading restatement; section 10.5.3 owns it.
+  defined: 11.5.3
+  rationale: Heading restatement; section 11.5.3 owns it.
 - term: Resource and operation design
-  defined: 9.2.6
-  rationale: Heading restatement; section 9.2.6 owns it.
+  defined: 10.2.6
+  rationale: Heading restatement; section 10.2.6 owns it.
 - term: Technology constraint
   defined: 1.4.1
   rationale: Constraint-taxonomy heading; section 1.4.1 owns it.

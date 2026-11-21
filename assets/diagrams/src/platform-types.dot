@@ -1,6 +1,6 @@
 digraph G {
  rankdir=BT;
- f [label="Shared foundation:\nlanding zone, identity,\nnetwork and policy (11.1)"];
+ f [label="Shared foundation:\nlanding zone, identity,\nnetwork and policy (12.1)"];
  subgraph cluster_platforms {
   label="";
   a [label="AI\nplatform"];

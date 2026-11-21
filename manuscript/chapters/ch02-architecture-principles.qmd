@@ -181,7 +181,7 @@ Boundaries decay unless something enforces them; choose the enforcement that mat
 
 **Purpose.** Ownership answers two questions that otherwise surface during an incident: who may change this value, and who decides what it means. It informs the data model, the integration style and the access model, and it sets the boundary within which autonomy is real rather than nominal.
 
-**What it includes.** An owning domain that is the only writer of its authoritative state, consumers that use published APIs, events or governed data products, and copies whose freshness, reconciliation and permitted uses are documented (see 8.3). Ownership covers the interpretation as well as the storage: two services that disagree about what “settled” means have a semantics problem even if only one writes the column. Table 2.5 shows the ownership pattern for four data sets in the checkout scenario.
+**What it includes.** An owning domain that is the only writer of its authoritative state, consumers that use published APIs, events or governed data products, and copies whose freshness, reconciliation and permitted uses are documented (see 9.3). Ownership covers the interpretation as well as the storage: two services that disagree about what “settled” means have a semantics problem even if only one writes the column. Table 2.5 shows the ownership pattern for four data sets in the checkout scenario.
 
 **Why it is needed.** Shared write access produces conflicting updates, unclear accountability and reconciliation work that nobody owns. The failure is quiet until an audit or a customer dispute asks which value is correct. **Evidence.** Mutation paths and access grants show that only the owning domain changes its authoritative data, and every copy has a stated freshness expectation.
 
@@ -220,7 +220,7 @@ Ownership can be enforced at different strengths; choose one deliberately.
 
 **Purpose.** A contract lets two teams change independently. It defines what the caller may rely on, what the provider promises under failure, and how a change is introduced without a coordinated release. It informs the choice between synchronous and asynchronous interaction and between commands and events.
 
-**What it includes.** Use synchronous calls when the caller needs an immediate answer and asynchronous messaging when buffering or temporal decoupling is valuable. Distinguish commands, which request work, from events, which report facts. The contract covers version compatibility, authentication, failure semantics, idempotency and consumer migration; choosing a protocol alone does not make an integration reliable (see Chapter 9). Table 2.6 lists the facets a review must find.
+**What it includes.** Use synchronous calls when the caller needs an immediate answer and asynchronous messaging when buffering or temporal decoupling is valuable. Distinguish commands, which request work, from events, which report facts. The contract covers version compatibility, authentication, failure semantics, idempotency and consumer migration; choosing a protocol alone does not make an integration reliable (see Chapter 10). Table 2.6 lists the facets a review must find.
 
 **Why it is needed.** Unstated assumptions are the usual cause of integration incidents: the caller assumed an ordered stream, the provider assumed one consumer, nobody agreed what happens on redelivery. The consequence appears as duplicate payments or lost notifications after a routine deploy. **Evidence.** Contracts, retry boundaries and consumer idempotency are specified, and duplicate-delivery and dependency-outage tests pass.
 
@@ -300,7 +300,7 @@ Where authorization lives determines how much duplication the team carries.
 
 **Purpose.** It shapes the data model, the flows, the retention schedule and the access model while those are still cheap to change. It informs whether a field is collected at all, where it may be stored, who may read it, how long it exists and how a deletion request can be honored. It is distinct from security: a system can be secure and still collect more personal data than any purpose requires.
 
-**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 13.9; retention and deletion mechanics are in 8.2.4). Table 2.8 states the question each lifecycle stage must answer.
+**What it includes.** A stated purpose and lawful basis for each personal data set, collection limited to the fields that purpose needs, purpose limitation in use, retention with a justified schedule, verifiable deletion or anonymization, a controlled path for data-subject requests, and processor and transfer terms. It also includes the evidence: a data protection impact assessment where risk is high, a record of processing and a data inventory (see 13.9; retention and deletion mechanics are in 9.2.4). Table 2.8 states the question each lifecycle stage must answer.
 
 **Why it is needed.** Personal data that is never collected cannot leak, be subpoenaed or be retained by mistake. The consequence of skipping the design step is a breach with an unnecessarily large blast radius and a deletion request that cannot be satisfied because copies exist in logs, backups and analytics extracts. **Evidence.** Each data set has a purpose, a retention period, a deletion test and a named privacy owner.
 
@@ -551,7 +551,7 @@ Standardization trades local fit for consistency; choose the balance deliberatel
 
 : Decision classes, deciders and records
 
-Chapter 18 (18.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners. Figure 2.14 routes a decision by its reversibility and impact, so the class in the table also sets how much review the choice needs.
+Chapter 19 (19.5.6) applies accountable decision-making to AI systems, where model choice, human oversight and tool permissions need explicit owners. Figure 2.14 routes a decision by its reversibility and impact, so the class in the table also sets how much review the choice needs.
 
 ![Figure 2.14 — Decision routing by reversibility and impact](../../assets/diagrams/rendered/ch02-decision-tiers.png){#fig-2-14 width="100%"}
 

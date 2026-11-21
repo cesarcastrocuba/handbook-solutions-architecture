@@ -641,9 +641,9 @@
       "styled_source_sha256": "3eab68cdd440772cecc230cfd1c875b17c1e5c7d7bc8fe48979659b096c90f5b"
     },
     "platform-types": {
-      "png_sha256": "672ae02f461947842fd63f3dc8f1f37f0fe1049f130cd70a5ce061d29c636668",
-      "source_sha256": "02c6ec604e3cf5cc7fd0c74f06f935d4cc2b5f0854a9251f4aa06fc57989a6a1",
-      "styled_source_sha256": "4f1ace158284f0af45fda508bdeef6cb1938ba803c9c7e6b01c28a726807711b"
+      "png_sha256": "0601f980273be9f3aa66cb5420e6a68421115b2ab0b9d45b7384763b425bbae8",
+      "source_sha256": "5f152f11ebd9ab47274391f67437bd89b2c7bdf379f37b6c7d37e9e247a1efee",
+      "styled_source_sha256": "791f77b31c7f4b7fbf00c9d3690b00f03500c6f5ffffd8b76dfef3f05741d2b4"
     },
     "slo-loop": {
       "png_sha256": "ea8e321f8c0244eb01fc5a9a27cc74b4b12a991bd6f82bbac49078c327b216e5",
