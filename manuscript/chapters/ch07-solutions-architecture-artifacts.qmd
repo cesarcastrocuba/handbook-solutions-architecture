@@ -324,7 +324,7 @@ Which design and decision artifacts should a change produce?
 
 ## 7.4 Interface, Data and Security Specifications
 
-These artifacts describe the boundaries where independent teams, systems and trust domains meet. Their quality is measured by whether two parties can work independently and still interoperate.
+These artifacts describe the boundaries where independent teams, systems and trust domains meet, and the data that crosses them. Their quality is measured by whether two parties can work independently and still interoperate, and whether every fact keeps one authority as it moves.
 
 ![Figure 7.3 — Interface artifacts around a shared boundary](../../assets/diagrams/rendered/ch14-interface.png){#fig-7-3 width="100%"}
 

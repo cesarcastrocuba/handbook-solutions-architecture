@@ -1,6 +1,6 @@
 # 16. Testing and Quality Verification
 
-A test strategy states how the solution will be shown to meet its functional and quality requirements, at what cost and with which feedback speed. Defining it is an architectural responsibility: the shape of the architecture determines what can be tested cheaply, and the test strategy determines whether the architecture’s claims can be trusted. This chapter covers the strategy and its levels, the environments, data and gates that run it, the testing of quality attributes, and the effectiveness and evidence of the suite. Chapter 6 decides which claims matter most; Section C.1.4 describes the test artifacts.
+A test strategy states how the solution will be shown to meet its functional and quality requirements, at what cost and with which feedback speed. Defining it is an architectural responsibility: the shape of the architecture determines what can be tested cheaply, and the test strategy determines whether the architecture’s claims can be trusted. This chapter covers the strategy and its levels, the environments, data and gates that run it, the testing of quality attributes, and the effectiveness and evidence of the suite. Chapter 6 decides which claims matter most; Section C.2.4 describes the test artifacts.
 
 ::: {.callout-note appearance="simple" icon=false title="When to Use This Chapter"}
 - Writing or reviewing a test strategy for a new solution or a major change.

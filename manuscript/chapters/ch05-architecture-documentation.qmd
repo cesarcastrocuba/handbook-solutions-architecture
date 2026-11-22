@@ -147,7 +147,7 @@ The size of the view set is a decision with a cost on both sides: too few views 
 
 Figure 5.5 uses the handbook’s simplified lane notation; a BPMN tool adds the event and gateway symbols while keeping the same lanes and hand-offs.
 
-**Why it is needed.** A sequence diagram that satisfies engineering can still leave the business unable to see who owns a delayed case, and a process that exists only in prose hides its hand-offs and waiting time. The evidence is a process view with every lane owned, every gateway labelled with its condition, and every exception ending in a named state or queue.
+**Why it is needed.** A sequence diagram that satisfies engineering can still leave the business unable to see who owns a delayed case, and a process that exists only in prose hides its hand-offs and waiting time. The evidence is a process view with every lane owned, every gateway labeled with its condition, and every exception ending in a named state or queue.
 
 **Example.** The first payment sequence for the reference checkout showed only authorize and AUTHORIZED. Building the trace against the duplicate-charge scenario exposed the gap: no timeout branch, no retry key, and no row in any test plan. Adding the UNKNOWN path produced the retry and reconciliation steps in Figure 5.4 and the idempotency ADR. The swimlane in Figure 5.5 then showed that reconciliation sits with Payments while the customer-facing decision sits with Checkout, which is why the runbook names both owners.
 

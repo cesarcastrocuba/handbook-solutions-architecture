@@ -46,7 +46,7 @@ These artifacts belong to enterprise architecture; the solution architect takes 
 | Owner | Enterprise Business Architect or Enterprise Architecture Practice |
 | What the solution architect takes | Capability boundary definitions, domain hierarchies, and maturity or heat indicators — for example, treating "Payment Processing" as a core capability needing high reliability |
 | What the solution architect returns | Solution-to-capability mappings, identification of duplicate or missing technical services, and boundary clash reports |
-| Reference | Business Architecture Guild, BIZBOK Guide; The Open Group, The TOGAF Standard (Business Architecture); CMMI maturity scales (as a labelled example) |
+| Reference | Business Architecture Guild, BIZBOK Guide; The Open Group, The TOGAF Standard (Business Architecture); CMMI maturity scales (as a labeled example) |
 | Related chapter | Chapter 1 (1.1.1 Business Capabilities) and Chapter 18 (18.3.2 Architecture Roadmaps) |
 
 : Enterprise context fiche: Business Capability Map
@@ -91,7 +91,7 @@ These artifacts belong to enterprise architecture; the solution architect takes 
 | Owner | Enterprise Architect or Application Portfolio Manager |
 | What the solution architect takes | Baseline system catalogs, application lifecycle statuses, technical debt assessments, and portfolio dispositions — for example, whether a payment reconciliation batch is slated to be eliminated or migrated |
 | What the solution architect returns | Application catalog updates, runtime asset metadata, integration endpoints, and technical fitness assessments |
-| Reference | The Open Group, The TOGAF Standard (Application Portfolio Catalog); Gartner's TIME model (labelled example: Tolerate, Invest, Migrate, Eliminate) |
+| Reference | The Open Group, The TOGAF Standard (Application Portfolio Catalog); Gartner's TIME model (labeled example: Tolerate, Invest, Migrate, Eliminate) |
 | Related chapter | Chapter 18 (18.1 Modernization and Migration) and Chapter 7 (7.5.1 Migration and Transition Plan) |
 
 : Enterprise context fiche: Application Portfolio
