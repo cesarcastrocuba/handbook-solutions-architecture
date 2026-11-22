@@ -93,7 +93,8 @@ This catalog lists the recurring decisions from the Decision & Trade-off callout
 | How should requirements artifacts be maintained? | One combined requirements document; Separate PRD and SRS with linked identifiers; Requirements in the backlog with scenarios in the architecture repository | 7.2 |
 | Which design and decision artifacts should a change produce? | ADR plus updated views in the existing description; HLD, ADR and LLD for the affected area; RFC, HLD, ADRs and LLD | 7.3 |
 | Where should the interface contract live? | ICD owned by the producer; ICD co-owned with a consumer-driven contract; ICD owned by an integration or platform team | 7.4 |
-| How should artifact status and location be managed? | Artifacts in the code repository, reviewed with the change; A document management system with a catalog; A wiki with a maintained index and owners | 7.5 |
+| What evidence justifies moving to the next transition state? | Incremental cohort or capability cutover; Rehearsed cutover in an agreed window; Defer the transition and close a blocking gap | 7.5 |
+| How should artifact status and location be managed? | Artifacts in the code repository, reviewed with the change; A document management system with a catalog; A wiki with a maintained index and owners | 7.6 |
 
 : Decisions from Chapter 7
 

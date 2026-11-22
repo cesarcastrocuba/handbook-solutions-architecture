@@ -93,7 +93,8 @@ This catalog lists the anti-patterns described in the Common Pitfall callouts of
 | Treating the PRD as the requirements baseline and leaving quality attributes to the architect. | 7.2 |
 | Writing the ADR after the work is done, as a summary that justifies what was built. | 7.3 |
 | Maintaining the ICD as prose while the OpenAPI file evolves independently. | 7.4 |
-| Treating approval as the end of an artifact’s life. | 7.5 |
+| Treating design approval as permission to cut over, accept operation and declare recovery proven. | 7.5 |
+| Treating approval as the end of an artifact’s life. | 7.6 |
 
 : Anti-patterns from Chapter 7
 

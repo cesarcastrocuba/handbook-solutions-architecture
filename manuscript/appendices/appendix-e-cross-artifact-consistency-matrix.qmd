@@ -8,6 +8,11 @@
 | Architecture choice | ADR | HLD, deployment view, tests | Same selected option and consequences |
 | Data ownership | Data model / data contract | ICD, migration plan, lineage | Same owner, retention and versioning |
 | Operations | Runbook / DR plan | SLO, drills, incident records | Same recovery assumptions as observed evidence |
+| Current solution architecture | SAD | Change HLDs, deployment inventory, interface and data views | System version, names, responsibilities and implemented boundaries agree; proposed and retiring states are identified; accepted changes update the SAD |
+| Lifecycle cost baseline | TCO | Business case, technology recommendation, budget and cost reports | Same horizon, workload, service scope, ISO 4217 currency codes and price basis; NPV and ROI use explicit assumptions; parallel running and exit are included |
+| Safe transition | Migration and Transition Plan | Cutover rehearsal, data reconciliation, rollback or recovery-forward results, decommissioning record | Transition states and authoritative writers agree; cutover thresholds and reversal limits are tested; accepted writes are preserved; retirement criteria are met |
+| Production readiness decision | Production Readiness Review | Criterion-level tests, condition-closure evidence, service and risk sign-offs, release approval | Evidence matches the assessed version and scope; mandatory conditions are closed; authorized acceptors own residual risk; readiness is distinct from change authorization |
+| Capability continuity and recovery | Continuity and Recovery Plan | Restore and failover exercises, runbooks, dependency inventory and reconciliation results | RTO/RPO and minimum service follow approved business impact; dependencies and procedures match the strategy; observed restoration, data loss and integrity meet the objectives or have an explicit disposition |
 
 : Cross-artifact consistency matrix
 

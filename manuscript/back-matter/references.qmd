@@ -22,6 +22,7 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Keeling, M. *Design It\! From Programmer to Software Architect*. Pragmatic Bookshelf, 2017.
 - Knodel, J. and Naab, M. *Pragmatic Evaluation of Software Architectures*. Springer, 2016.
 - Kruchten, P. “The 4+1 View Model of Architecture.” *IEEE Software* 12(6), 1995, pp. 42–50.
+- MADR contributors. *Markdown Architectural Decision Records (MADR)*, version 4.0.0. adr.github.io.
 - Nygard, M. “Documenting Architecture Decisions.” Cognitect blog, 2011.
 - Richards, M. and Ford, N. *Fundamentals of Software Architecture*, 2nd ed. O’Reilly, 2025.
 - Rozanski, N. and Woods, E. *Software Systems Architecture*, 2nd ed. Addison-Wesley, 2011.
@@ -32,6 +33,7 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - ACORD. *ACORD Standards*. acord.org.
 - BIAN. *Banking Industry Architecture Network Service Landscape*. bian.org.
 - Brown, S. *The C4 Model for Visualising Software Architecture*. c4model.com.
+- Business Architecture Guild. *A Guide to the Business Architecture Body of Knowledge (BIZBOK Guide)*. businessarchitectureguild.org.
 - HL7 International. *FHIR (Fast Healthcare Interoperability Resources)*. hl7.org/fhir.
 - IEC 62264 (ISA-95). *Enterprise-control system integration*.
 - ISO/IEC 25010:2023. *Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — Product quality model*.
@@ -106,7 +108,9 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Amazon Web Services. *SaaS Tenant Isolation Strategies* (whitepaper).
 - CNCF TAG App Delivery. *CNCF Platforms White Paper*. Cloud Native Computing Foundation, 2023.
 - CNCF TAG App Delivery. *Platform Engineering Maturity Model*. Cloud Native Computing Foundation, 2023.
+- Dahlquist, J. and Knight, R. *Principles of Finance*. OpenStax, 2022, Section 16.2, “Net Present Value (NPV) Method.” openstax.org.
 - ETSI. EN 303 645, *Cyber Security for Consumer Internet of Things: Baseline Requirements*.
+- FinOps Foundation. *FinOps Framework*. finops.org.
 - Fournier, C. and Nowland, I. *Platform Engineering: A Guide for Technical, Product, and People Leaders*. O’Reilly, 2024.
 - Google Cloud. *Google Cloud Well-Architected Framework*. docs.cloud.google.com/architecture/framework.
 - IETF. RFC 7239, *Forwarded HTTP Extension*, 2014.
@@ -178,6 +182,7 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 - Beyer, B. et al. (eds.) *The Site Reliability Workbook*. O’Reilly, 2018.
 - Beyer, B., Jones, C., Petoff, J. and Murphy, N. R. (eds.) *Site Reliability Engineering*. O’Reilly, 2016.
 - Crispin, L. and Gregory, J. *Agile Testing*. Addison-Wesley, 2008.
+- Cruz, A. and Bhambhani, A. “The Evolving SRE Engagement Model.” In Beyer, B., Jones, C., Petoff, J. and Murphy, N. R. (eds.), *Site Reliability Engineering*. O’Reilly, 2016, Chapter 32. sre.google.
 - Dean, J. and Barroso, L. A. “The Tail at Scale.” *Communications of the ACM* 56(2), 2013.
 - Driessen, V. “A successful Git branching model.” nvie.com, 2010 (with a note of reflection added in 2020).
 - Forsgren, N., Humble, J. and Kim, G. *Accelerate: The Science of Lean Software and DevOps*. IT Revolution, 2018.
@@ -205,6 +210,7 @@ Sources are grouped by topic. Books are cited with their latest edition known at
 
 ## Evolution and Modernization
 
+- Amazon Web Services. “About the migration strategies.” *AWS Prescriptive Guidance: Guide for AWS Large Migrations*. docs.aws.amazon.com.
 - Cunningham, W. “The WyCash Portfolio Management System.” OOPSLA ’92 Experience Report, 1992.
 - Fowler, M. “Strangler Fig Application.” martinfowler.com, 2004.
 - Fowler, M. “Technical Debt Quadrant.” martinfowler.com, 2009.

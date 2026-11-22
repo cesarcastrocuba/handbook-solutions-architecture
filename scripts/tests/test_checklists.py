@@ -68,7 +68,7 @@ class ImportedChecklistTests(unittest.TestCase):
             with mock.patch.object(checklists, 'EXPORTS', Path(tmp)):
                 changed, count = checklists.export()
                 self.assertEqual(changed, 4)
-                self.assertEqual(count, 157)
+                self.assertEqual(count, 159)
                 self.assertEqual(json.loads((Path(tmp)/'architecture-review-checklist.json').read_text()),
                                  list(checklists.rows()))
                 self.assertEqual(checklists.export(), (0, count))
