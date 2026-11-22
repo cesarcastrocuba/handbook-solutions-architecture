@@ -2,9 +2,9 @@ digraph G {
 
  rankdir=TB;
  q1 [label="Answers need current or\naccess-controlled knowledge?", shape=diamond, style="filled"];
- rag [label="Retrieval-augmented\nworkflow index, ACL filters,\ncitations"];
+ rag [label="Retrieval-augmented workflow\nindex, ACL filters,\ncitations"];
  q2 [label="Measured behavior gap\nnot closed by context?", shape=diamond, style="filled"];
- ft [label="Fine-tuning or\nadaptation training data,\nevaluation, rollback"];
+ ft [label="Fine-tuning or adaptation\ntraining data, evaluation,\nrollback"];
  q3 [label="Bounded multi-step\ntool use required?", shape=diamond, style="filled"];
  ag [label="Agentic workflow\nscoped tools, policy, audit,\nkill switch"];
  det [label="Simpler deterministic\nsolution"];
