@@ -68,6 +68,10 @@ Table 7.1 makes the chain operational: it states what each link carries forward 
 
 **Example.** A payments team opening a new capability uses the catalog to select a PRD, HLD, ADR for the asynchronous confirmation decision, an ICD with the provider, contract tests and a runbook. A later change that adds a field to an internal report selects a contract update and tests only, and records that decision in the change ticket.
 
+### 7.1.3 Inputs and Linked Engineering Artifacts
+
+PLACEHOLDER-713
+
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 Producing every artifact for every change. Teams spend effort on documents nobody reads, the documents drift from the code, and reviewers lose trust in all of them — including the few that matter. Decide the artifact set by risk at the start of the work (7.1.2), and retire or update an artifact whenever the decision it records changes.
 :::
@@ -85,6 +89,8 @@ How much design documentation should precede implementation?
 ## 7.2 Requirements and Description
 
 This section keeps the requirement artifact the architecture is evaluated against: the measurable quality scenarios and their links to tests and monitoring. The business and product requirements that feed them are in Appendix C.
+
+### 7.2.1 SRS and Quality Attribute Scenarios
 
 **Definition.** A Software Requirements Specification (SRS) states externally observable functional and quality requirements, and quality attribute scenarios make the non-functional ones measurable; the scenario format and its use in prioritization are defined in 1.3.
 
@@ -108,6 +114,10 @@ This section keeps the requirement artifact the architecture is evaluated agains
 **Why it is needed.** A quality requirement such as “must be fast” cannot justify a design, a cost or a test, and it cannot be shown to be met. Scenarios that are measurable but unowned drift when the business changes. The evidence is a scenario set traced to load, security, resilience and recovery tests, with the measured result recorded against each threshold.
 
 **Example.** The checkout capability states five priority scenarios: p99 acknowledgment, durability of an acknowledged order, no duplicate charge for one attempt, no loss of a committed event during a broker outage, and recovery within the stated objective. Each is traced to a test and to the SLO that monitors it in production.
+
+### 7.2.2 Solution Architecture Description (SAD)
+
+PLACEHOLDER-722
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 Treating the PRD as the requirements baseline and leaving quality attributes to the architect. The product document describes features, the architecture is then optimized for them, and latency, recovery and privacy arrive as late constraints that force redesign. Write the measurable quality scenarios alongside the functional requirements, with named owners, and gate design entry on both.
@@ -191,6 +201,14 @@ Table 7.6 gives the matching fiche for the ADR, which records the decision that 
 **Why it is needed.** Treating an RFC as an approved decision, or an ADR as meeting minutes, obscures accountability: readers cannot tell whether a choice is open, proposed or binding. An ADR that records only the winner loses the reasoning that would let a successor decide whether the original conditions still hold. The evidence is a decision log in which each significant choice has a status, an owner, the alternatives considered and a review trigger.
 
 **Example.** A team proposes a synchronous payment call in an RFC. Reviewers raise provider degradation and the two-second budget; the RFC closes with the asynchronous option. The ADR records the rejected synchronous option, the pending-state consequence and the trigger — a provider SLA below the target — that would reopen the decision.
+
+### 7.3.3 Technology Evaluation
+
+PLACEHOLDER-733
+
+### 7.3.4 Total Cost of Ownership
+
+PLACEHOLDER-734
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 Writing the ADR after the work is done, as a summary that justifies what was built. The alternatives are reconstructed from memory, the uncomfortable consequences are omitted, and the record cannot help the next team decide whether the context still applies. Write the ADR when the decision is made, keep it short, and include the consequences that will hurt.
@@ -365,6 +383,18 @@ An architecture is only as good as the evidence that it works and the assurance 
 **Why it is needed.** Document theater produces stale files that no team trusts, and a superseded design that still looks current becomes a source of wrong decisions. The evidence is a catalog in which each artifact has an owner, a status, an authoritative location and a review trigger, and in which a sampled reference resolves to the current version.
 
 **Example.** The payment HLD is superseded when the asynchronous workflow replaces the synchronous design. The new version is approved, the old one is retained with a successor pointer for audit, and the ICD, tests and runbook are updated in the same change so that no current reference points to the retired design.
+
+### 7.5.3 Migration and Transition Plan
+
+PLACEHOLDER-751
+
+### 7.5.4 Production Readiness Review
+
+PLACEHOLDER-752
+
+### 7.5.5 Continuity and Recovery Plan
+
+PLACEHOLDER-753
 
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 Treating approval as the end of an artifact’s life. The document is signed, filed and never revisited while the system, the provider and the requirements move on; the next review reads a design that no longer exists. Make the review trigger an event — a decision, a dependency change, a failed test — and store the artifact where the people who change the system will see it.

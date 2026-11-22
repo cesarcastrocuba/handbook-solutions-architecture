@@ -123,3 +123,30 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Why it is needed.** A technically complete application is not ready for production without them: incident response becomes improvisation, and recovery objectives remain claims. Runbooks written by the author and never exercised fail at the moment they are needed. The evidence is a runbook exercised by someone other than its author, an SLO measured from a user-visible signal, and a restore or failover result with a measured time.
 
+## C.2 Enterprise Context Artifacts
+
+PLACEHOLDER-C1
+
+### C.2.1 Architecture Vision
+
+PLACEHOLDER-C11
+
+### C.2.2 Architecture Principles
+
+PLACEHOLDER-C12
+
+### C.2.3 Business Capability Map
+
+PLACEHOLDER-C13
+
+### C.2.4 Architecture Roadmap
+
+PLACEHOLDER-C14
+
+### C.2.5 Architecture Contract and Statement of Architecture Work
+
+PLACEHOLDER-C15
+
+### C.2.6 Application Portfolio
+
+PLACEHOLDER-C16
