@@ -106,7 +106,7 @@ This section keeps the requirement artifact the architecture is evaluated agains
 | Mandatory when | Any quality attribute drives a design decision or a release gate |
 | Minimum content | Functional requirements at the boundary; scenarios with source, stimulus, environment, response and measure; constraints; verification links |
 | Quality criteria | Measures are numeric and testable; workload and failure conditions stated; priorities agreed; each scenario maps to a test or measurement |
-| Related artifacts | PRD (C.1.2), HLD (7.3.1), ADRs (7.3.2), test strategy (C.1.4), SLOs (C.1.5) |
+| Related artifacts | PRD (C.2.2), HLD (7.3.1), ADRs (7.3.2), test strategy (C.2.4), SLOs (C.2.5) |
 | Example | “Under 500 submissions/s, p99 acknowledgment ≤ 2 s, measured at the edge over a 10-minute window” |
 
 : Artifact fiche: SRS and quality attribute scenarios
@@ -155,7 +155,7 @@ Design artifacts describe the intended structure; decision artifacts explain why
 | Mandatory when | The change spans components, teams or a trust boundary |
 | Minimum content | Context and container views, data ownership, integration paths, trust boundaries, deployment and recovery, priority scenarios, principal ADRs, open risks |
 | Quality criteria | Every container has a responsibility and an owner; no product list without data flow; trade-offs name the alternative; assumptions marked and owned |
-| Related artifacts | Requirements (7.2), ADRs (7.3.2), ICDs (7.4.1), threat model (7.4.3), runbook (C.1.5) |
+| Related artifacts | Requirements (7.2), ADRs (7.3.2), ICDs (7.4.1), threat model (7.4.3), runbook (C.2.5) |
 | Example | Checkout HLD: context and container views, order and payment ownership, async payment path, zone failure assumption, links to three ADRs |
 
 : Artifact fiche: HLD
@@ -193,7 +193,7 @@ Table 7.6 gives the matching fiche for the ADR, which records the decision that 
 | Mandatory when | A decision is architecturally significant: hard to reverse, cross-cutting, or constraining a quality attribute |
 | Minimum content | Identifier and status, date, owner, context and drivers, options and criteria, decision, consequences, acceptance evidence, review triggers |
 | Quality criteria | Rejected options and reasons recorded; consequences include the bad ones; review trigger is an event or date, not “periodically” |
-| Related artifacts | RFC (7.3.2), HLD (7.3.1), LLD (C.1.3), tests that validate the decision |
+| Related artifacts | RFC (7.3.2), HLD (7.3.1), LLD (C.2.3), tests that validate the decision |
 | Example | “ADR-014: asynchronous payment confirmation” — context, options, chosen option, pending-state consequence, revisit if provider SLA changes |
 
 : Artifact fiche: ADR
@@ -246,7 +246,7 @@ These artifacts describe the boundaries where independent teams, systems and tru
 | Mandatory when | An interface crosses a team, organizational or trust boundary |
 | Minimum content | Parties and owners, purpose and interaction, protocol and auth, payload semantics and schema reference, compatibility policy, errors, timeouts, retries, idempotency, service levels, observability, escalation, change control |
 | Quality criteria | Both parties have signed the semantics; unknown outcomes defined; compatibility and deprecation rules stated; escalation path tested |
-| Related artifacts | API/event specification (7.4.1), data contract (7.4.2), threat model (7.4.3), contract tests (C.1.4) |
+| Related artifacts | API/event specification (7.4.1), data contract (7.4.2), threat model (7.4.3), contract tests (C.2.4) |
 | Example | PAYMENT-AUTH-v1 clauses in Appendix A.4, covering idempotency key and unknown-outcome handling |
 
 : Artifact fiche: ICD
@@ -261,7 +261,7 @@ Table 7.8 gives the fiche for the machine-readable specification that expresses 
 | Mandatory when | An interface is published to another team, a partner or the public |
 | Minimum content | Schema, operations or event types, errors, examples, authentication scheme, version; generated or validated in CI |
 | Quality criteria | Spec is the single source for generated artifacts; compatibility checks run on every change; examples are executable; breaking change requires a major version |
-| Related artifacts | ICD (7.4.1), data contract (7.4.2), contract tests (C.1.4) |
+| Related artifacts | ICD (7.4.1), data contract (7.4.2), contract tests (C.2.4) |
 | Example | OpenAPI document for the payment authorization endpoint, validated and contract-tested in the provider pipeline |
 
 : Artifact fiche: API and event specification
@@ -307,7 +307,7 @@ Table 7.8 gives the fiche for the machine-readable specification that expresses 
 | Mandatory when | A new trust boundary, sensitive data, external exposure or a regulated scope |
 | Minimum content | Data flow and trust boundaries, threats and attack paths, controls and verification, residual risk and acceptance, review trigger |
 | Quality criteria | Threats tied to the actual data flow; every control has evidence; residual risk has an owner and an expiry; assumptions about attacker capability stated |
-| Related artifacts | HLD (7.3.1), ICD (7.4.1), test strategy (C.1.4), review record (7.5.1) |
+| Related artifacts | HLD (7.3.1), ICD (7.4.1), test strategy (C.2.4), review record (7.5.4) |
 | Example | Payment provider boundary: spoofed callback, replayed authorization and leaked credentials, each with a control and a test |
 
 : Artifact fiche: threat model and risk register
@@ -334,7 +334,19 @@ Where should the interface contract live?
 
 An architecture is only as good as the evidence that it works and the assurance that the evidence still holds. This section covers the record of a review decision and the lifecycle that keeps every artifact trustworthy.
 
-### 7.5.1 Architecture Review Record
+### 7.5.1 Migration and Transition Plan
+
+PLACEHOLDER-751
+
+### 7.5.2 Production Readiness Review
+
+PLACEHOLDER-752
+
+### 7.5.3 Continuity and Recovery Plan
+
+PLACEHOLDER-753
+
+### 7.5.4 Architecture Review Record
 
 **Definition.** An architecture review record is the artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed.
 
@@ -350,7 +362,7 @@ An architecture is only as good as the evidence that it works and the assurance 
 | Mandatory when | The change falls in a risk tier that requires review |
 | Minimum content | Scope and risk tier, requirement and decision inventory, findings by domain, SLO and capacity evidence, exceptions with owners and expiry, outcome and conditions, follow-up actions |
 | Quality criteria | Findings cite evidence; each exception has an owner and an expiry date; conditions are verifiable; the decision owner signs the outcome |
-| Related artifacts | HLD (7.3.1), ADRs (7.3.2), threat model (7.4.3), test reports (C.1.4) |
+| Related artifacts | HLD (7.3.1), ADRs (7.3.2), threat model (7.4.3), test reports (C.2.4) |
 | Example | Payment capability review: no critical findings, two conditions on reconciliation evidence, one exception expiring after the first quarter |
 
 : Artifact fiche: architecture review record
@@ -359,7 +371,9 @@ An architecture is only as good as the evidence that it works and the assurance 
 
 **Example.** The payment capability review records no critical findings, two conditions on reconciliation evidence and one exception expiring after the first quarter. The decision owner signs it, and the conditions become tracked actions in the delivery plan.
 
-### 7.5.2 Artifact Lifecycle
+PLACEHOLDER-TRANSITION-PAIR
+
+## 7.6 Artifact Lifecycle
 
 ![Figure 7.4 — Artifact lifecycle from draft to retirement](../../assets/diagrams/rendered/ch14-lifecycle.png){#fig-7-4 width="100%"}
 
@@ -384,18 +398,6 @@ An architecture is only as good as the evidence that it works and the assurance 
 
 **Example.** The payment HLD is superseded when the asynchronous workflow replaces the synchronous design. The new version is approved, the old one is retained with a successor pointer for audit, and the ICD, tests and runbook are updated in the same change so that no current reference points to the retired design.
 
-### 7.5.3 Migration and Transition Plan
-
-PLACEHOLDER-751
-
-### 7.5.4 Production Readiness Review
-
-PLACEHOLDER-752
-
-### 7.5.5 Continuity and Recovery Plan
-
-PLACEHOLDER-753
-
 ::: {.callout-warning appearance="simple" icon=false title="Common Pitfall"}
 Treating approval as the end of an artifact’s life. The document is signed, filed and never revisited while the system, the provider and the requirements move on; the next review reads a design that no longer exists. Make the review trigger an event — a decision, a dependency change, a failed test — and store the artifact where the people who change the system will see it.
 :::
@@ -410,7 +412,7 @@ How should artifact status and location be managed?
 | A wiki with a maintained index and owners | Mixed audiences and rapidly evolving content | Easy contribution and linking; weak enforcement, so status and owners must be reviewed explicitly |
 :::
 
-## 7.6 Worked Example: Right-Sizing Artifacts for a Payment Capability
+## 7.7 Worked Example: Right-Sizing Artifacts for a Payment Capability
 
 *In practice:* This example shows that the same capability needs a full artifact chain at creation and almost none for a later low-risk change.
 
@@ -429,7 +431,7 @@ A later change that only adds a field to an internal report needs none of the ne
 ☐  Do linked artifacts agree on thresholds, contracts and decisions?
 :::
 
-## 7.7 Further Reading
+## 7.8 Further Reading
 
 - ISO/IEC/IEEE 29148:2018 — requirements engineering processes and information items.
 - Clements et al. (2010), *Documenting Software Architectures: Views and Beyond* — documentation packages and views.

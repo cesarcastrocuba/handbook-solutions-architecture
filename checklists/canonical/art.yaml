@@ -20,7 +20,7 @@ items:
   rationale: Documents without owner, status or location drift from reality and are trusted long after they are obsolete.
   applicability: All maintained architecture artifacts.
   expected_evidence: Artifact catalog entry with owner, lifecycle status, authoritative location, review trigger and successor for superseded documents.
-  section: 7.5.2
+  section: 7.6
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'

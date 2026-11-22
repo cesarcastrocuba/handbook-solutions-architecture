@@ -305,7 +305,7 @@ A suite earns trust when it finds the defects that matter and when its results c
 
 **Purpose.** A green pipeline is evidence only while someone can show what it ran. Release approvals, regulated changes and audits need results tied to requirements and versions, not a statement that testing happened.
 
-**What it includes.** For each run, record the version or artifact digest, the environment and its differences from production, the provenance of the test data, the results with their scenario or requirement identifiers, waivers with owners and expiries, and the gate decision (Figure 16.4). Attach the evidence to the release record (15.1.1) and to the architecture review record where a decision depended on a test (7.5.1). Keep evidence for the period that regulation or contract requires, and protect it from editing (13.7.2). Close the loop: each escaped defect updates the strategy, which changes the next run.
+**What it includes.** For each run, record the version or artifact digest, the environment and its differences from production, the provenance of the test data, the results with their scenario or requirement identifiers, waivers with owners and expiries, and the gate decision (Figure 16.4). Attach the evidence to the release record (15.1.1) and to the architecture review record where a decision depended on a test (7.5.4). Keep evidence for the period that regulation or contract requires, and protect it from editing (13.7.2). Close the loop: each escaped defect updates the strategy, which changes the next run.
 
 ![Figure 16.4 — Test evidence from the run to the release record and back to the strategy](../../assets/diagrams/rendered/ch14-test-evidence-flow.png){#fig-16-4 width="100%"}
 
