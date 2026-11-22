@@ -6,15 +6,17 @@ digraph G {
   agg [class="focal", label="Aggregate enforces\ninvariants and transitions"];
   st [label="Authoritative store\n+ outbox row (one transaction)"];
   cmd->agg->st;
+  {rank=same; cmd; agg}
  }
  ev [label="Published events"];
  subgraph cluster_read { label="Read path — derived, rebuildable, may lag"; labeljust="l"; labelloc="b";
   proj [label="Projection handler\nidempotent and versioned"];
   rm [label="Read model\norder history, search"];
-  fresh [label="Freshness and rebuild status\npublished to consumers"];
+  fresh [label="Freshness and rebuild\nstatus published to consumers"];
   qry [label="Query API\nshaped for the screen"];
   proj->rm->qry;
   fresh->qry [style=dashed, constraint=false];
+  {rank=same; proj; rm}
  }
  st->ev; ev->proj;
 }

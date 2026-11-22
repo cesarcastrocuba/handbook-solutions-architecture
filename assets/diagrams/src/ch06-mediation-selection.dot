@@ -1,14 +1,14 @@
 digraph G {
  rankdir=TB;
- q1 [label="Multi-step\nprocess with\nwaits or\ncompensation?", shape=diamond, style="filled"];
- q2 [label="Both sides\nowned and\nmodern?", shape=diamond, style="filled"];
- q3 [label="Maintained\nconnector\nexists?", shape=diamond, style="filled"];
- q4 [label="Within\nplatform\nlimits?", shape=diamond, style="filled"];
- wf [label="Workflow\norchestrator;\nsteps call owners"];
+ q1 [label="Multi-step process with\nwaits or compensation?", shape=diamond, style="filled"];
+ q2 [label="Both sides owned and modern?", shape=diamond, style="filled"];
+ q3 [label="Maintained connector exists?", shape=diamond, style="filled"];
+ q4 [label="Within platform limits?", shape=diamond, style="filled"];
+ wf [label="Workflow orchestrator;\nsteps call owners"];
  dc [label="Direct contract;\nsimple transport"];
- pl [label="Approved bus\nor iPaaS:\nmapping only"];
- ad [label="Dedicated\nadapter with\nanti-corruption\nlayer"];
- ex [label="Exception\nand ADR (4.5)"];
+ pl [label="Approved bus or iPaaS:\nmapping only"];
+ ad [label="Dedicated adapter with\nanti-corruption layer"];
+ ex [label="Exception and ADR (4.5)"];
  {rank=same; q1; wf;}
  {rank=same; q2; dc;}
  {rank=same; q3; ad;}

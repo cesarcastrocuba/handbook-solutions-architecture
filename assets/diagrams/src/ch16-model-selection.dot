@@ -1,14 +1,14 @@
 digraph G { 
 
  rankdir=TB;
- ev [label="Representative\nevaluation\nset and\nacceptance\nthresholds\nbefore\ncomparing\nmodels"];
- cr [label="Criteria and\nweights\nquality,\nlatency,\ncost,\nprivacy,\noperations,\nportability,\nexit"];
+ ev [label="Representative evaluation set and\nacceptance thresholds before comparing models"];
+ cr [label="Criteria and weights\nquality, latency, cost,\nprivacy, operations, portability, exit"];
  m [label="Managed\nmodel API"];
  s [label="Self-hosted\nmodel"];
  h [label="Hybrid\nrouting"];
- f [label="Fine-tuned\nor adapted\nmodel"];
- adr [label="ADR: chosen\noption,\nevidence,\nuncertainty,\nfallback and\nreassessment\ntriggers"];
+ f [label="Fine-tuned or\nadapted model"];
+ adr [label="ADR: chosen option, evidence, uncertainty,\nfallback and reassessment triggers"];
  ev->cr; cr->m; cr->s; cr->h; cr->f; m->adr; s->adr; h->adr; f->adr;
  {rank=same; m; s; h; f;}
- adr->ev [label="a provider,\nprice or\nworkload\nchange\nreopens the\ncomparison", style=dashed, constraint=false];
+ adr->ev [label="a provider, price or workload\nchange reopens the comparison", style=dashed, constraint=false];
 }

@@ -1,16 +1,18 @@
 digraph G { 
 
  rankdir=TB;
- det [label="Detection\nburn-rate alert, synthetic probe,\ncustomer or support report"];
+ det [label="Detection\nburn-rate alert, synthetic probe, customer or support report"];
  sev [label="Severity set by\nbusiness impact", shape=diamond, style="filled"];
  s1 [label="SEV1 / SEV2\npage now, name an\nincident commander"];
  s2 [label="SEV3 / SEV4\nworking hours,\nproblem record"];
- roles [label="Roles assigned\ncommander, operations,\ncommunications, scribe"];
+ roles [label="Roles assigned\ncommander, operations, communications, scribe"];
  mit [label="Mitigate first\nroll back, fail over, shed load"];
  com [label="Communicate\nstakeholders, customers,\nstatus page"];
  res [label="Resolve and\nrestore service"];
  pm [label="Blameless postmortem\nwith owned actions"];
  det -> sev; sev -> s1; sev -> s2; s1 -> roles; s2 -> roles; roles -> mit; mit -> com; com -> res; res -> pm;
  {rank=same; s1; s2}
- pm -> det [label="  detection, runbooks and guardrails improve", style=dashed, constraint=false];
+ {rank=same; mit; com}
+ {rank=same; res; pm}
+ pm -> det [label="  detection, runbooks\n  and guardrails improve", style=dashed, constraint=false];
 }
