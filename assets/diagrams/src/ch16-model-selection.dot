@@ -2,7 +2,7 @@ digraph G {
 
  rankdir=TB;
  ev [label="Representative evaluation set and\nacceptance thresholds before comparing models"];
- cr [label="Criteria and weights quality, latency, cost,\nprivacy, operations, portability, exit"];
+ cr [label="Criteria and\nweights\nquality, latency, cost,\nprivacy, operations, portability, exit"];
  m [label="Managed\nmodel API"];
  s [label="Self-hosted\nmodel"];
  h [label="Hybrid\nrouting"];

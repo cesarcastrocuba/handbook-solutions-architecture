@@ -4,7 +4,7 @@ digraph G {
  cu [label="Customer", shape=ellipse];
  api [label="Checkout API"];
  subgraph cluster_ord { label="Order service";
-   odb [label="Order DB orders + outbox", shape=cylinder];
+   odb [label="Order DB\norders + outbox", shape=cylinder];
    os [label="Order + workflow\n(saga orchestrator)"];
    os->odb [label="1 tx: ACCEPTED\n+ OrderAccepted", constraint=false];
    {rank=same; os; odb;}
@@ -12,7 +12,7 @@ digraph G {
  br [label="Event broker", shape=cylinder];
  inv [label="Inventory\nservice"];
  pay [label="Payments service\n(inbox, attempts)"];
- pp [label="External payment\nprovider", shape=box3d];
+ pp [label="External payment provider", shape=box3d];
  nt [label="Notification\nservice"];
  cu->api [label="PlaceOrder\n(idempotency key)"];
  api->os;
