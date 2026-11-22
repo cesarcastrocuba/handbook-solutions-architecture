@@ -352,7 +352,7 @@ Figure 15.6 routes each change type to the lightest authority that still control
 - **Change windows and freeze periods** — limits on when changes may be made, with documented exceptions.
 - **Evidence retention** — change records kept for audit.
 
-Relevant references include ISO/IEC 27001:2022 (control 8.32, change management), ISO/IEC 20000-1:2018, COBIT 2019 (BAI06, managed IT changes), PCI DSS v4.0.1 (requirement 6.5) and, for financial entities in the European Union, the ICT change-management requirements of the Digital Operational Resilience Act (DORA). Enterprise customers also commonly require suppliers to operate a formal change control process (Appendix E).
+Relevant references include ISO/IEC 27001:2022 (control 8.32, change management), ISO/IEC 20000-1:2018, COBIT 2019 (BAI06, managed IT changes), PCI DSS v4.0.1 (requirement 6.5) and, for financial entities in the European Union, the ICT change-management requirements of the Digital Operational Resilience Act (DORA). Enterprise customers also commonly require suppliers to operate a formal change control process (Appendix F).
 
 **Why it is needed.** A control that exists but cannot be evidenced fails an audit, and a freeze period without an exception path pushes changes into an unrecorded channel. Evidence is a documented change process with change types and authorities, change records generated from the pipeline, and metrics for change failure rate, lead time and share of emergency changes.
 

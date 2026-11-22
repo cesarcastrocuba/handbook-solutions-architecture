@@ -43,7 +43,7 @@ Three groups of readers use the handbook, and each needs a different route throu
 
 | Profile | What they use the handbook for | Start with |
 | :--- | :--- | :--- |
-| Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–6, then 16; Appendix C |
+| Solutions architect | The whole lifecycle of a solution: turning needs into requirements, principles and decisions, governing the design across the technical domains, and proving it with evidence | The Solutions Architect Role; Chapters 1–6, then 16; Appendix D |
 | Enterprise architect | The principles, standards and governance a solution must respect, and the decisions that feed the portfolio | 2, 4, 8 |
 | Software architect | Component boundaries, internal structure and the engineering practice that keeps them intact | 7, 11, 16 |
 | Data architect | Data ownership, flows, retention and quality across the solution | 9 |
@@ -54,13 +54,13 @@ Three groups of readers use the handbook, and each needs a different route throu
 | Principal or staff engineer | Reviewing and steering designs across teams, and settling trade-offs with evidence | 3, 4, 6 |
 | Senior engineer moving into architecture | The full method in order, then the domain chapter they work in | 1–4, then the relevant domain chapter |
 | Developer | The requirements, contracts and tests that touch their code | 1.3, 10.2, 16.1 |
-| Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 6, 14; Appendix C |
+| Software Development Manager, Engineering Manager, Director, Head of Engineering or VP of Engineering | Judging whether a design and its evidence are sound, and asking the right review questions | 4, 6, 14; Appendix D |
 
 : The handbook as a reference for each role and reader
 
 The routes overlap rather than exclude: an enterprise architect reviewing a cross-organization integration reads Chapter 10 as well, and a developer who owns an interface reads the contract guidance before the code.
 
-Hands-on readers are assumed to have practical software delivery experience and familiarity with networked applications, databases and cloud services. Managers without that background can start from the review checklists and Appendix C, which state the questions a review asks rather than assuming the technology. Specialized concepts are explained where they first appear and listed in the glossary (Appendix J).
+Hands-on readers are assumed to have practical software delivery experience and familiarity with networked applications, databases and cloud services. Managers without that background can start from the review checklists and Appendix D, which state the questions a review asks rather than assuming the technology. Specialized concepts are explained where they first appear and listed in the glossary (Appendix K).
 
 ## Structure of the Handbook
 
@@ -109,9 +109,9 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Choose between a load balancer, reverse proxy and API gateway | 12.2.3 |
 | Design edge or IoT solutions | 12.6 |
 | Run a cloud well-architected review | 12.7 |
-| Define a security test strategy | 13.5; Appendix F |
+| Define a security test strategy | 13.5; Appendix G |
 | Set application security requirements | 13.5.2 (OWASP ASVS) |
-| Assess a supplier or answer a customer security questionnaire | 13.8; Appendix E |
+| Assess a supplier or answer a customer security questionnaire | 13.8; Appendix F |
 | Set reliability, observability and SLO objectives | 14.2.1 |
 | Set latency budgets or find a performance constraint | 14.4.3; 16.3.1 |
 | Set up environments and promotion | 15.1.4 |
@@ -125,10 +125,10 @@ Rows are ordered by the handbook’s reading sequence: by the earliest chapter o
 | Assess a portfolio before a cloud migration | 18.1.4 |
 | Evaluate vendors or run a proof of concept | 18.2.6; Appendix B.8 |
 | Design an AI agent or tool integration | 19.8 |
-| Review a design before approval | Chapter review checklists; Appendix C |
-| Look up anti-patterns or decisions across chapters | Appendix H; Appendix I |
-| Find where a pattern is discussed | Appendix G |
-| Check common web vulnerabilities and defenses | Appendix F.7 |
+| Review a design before approval | Chapter review checklists; Appendix D |
+| Look up anti-patterns or decisions across chapters | Appendix I; Appendix J |
+| Find where a pattern is discussed | Appendix H |
+| Check common web vulnerabilities and defenses | Appendix G.7 |
 
 : Task-Based Reading Routes
 

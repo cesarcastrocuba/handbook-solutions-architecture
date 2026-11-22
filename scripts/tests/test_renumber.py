@@ -644,22 +644,87 @@ class RenumberTest(unittest.TestCase):
         # The glossary moves to the last appendix and its file is renamed; the
         # name must not decide that the file is generated, and the table number
         # must follow the letter map, not the path.
-        self.book.write('manuscript/appendices/appendix-j-glossary.qmd',
+        self.book.write('manuscript/appendices/appendix-k-glossary.qmd',
                         glossary.replace('# Appendix A — Glossary', '# Appendix A — Glossary'))
         (self.book.root / 'manuscript' / 'appendices' / 'appendix-a-glossary.qmd').unlink()
         self.book.write('manuscript/book.yml',
                         'chapters:\n  - chapters/ch01-alpha.qmd\n'
                         'appendices:\n  - appendices/appendix-b-addendum.qmd\n'
-                        '  - appendices/appendix-j-glossary.qmd\n')
+                        '  - appendices/appendix-k-glossary.qmd\n')
         result = self.book.run('--apply')
         self.assertEqual(result.returncode, 0, result.stderr)
-        glossary_text = self.book.read('manuscript/appendices/appendix-j-glossary.qmd')
+        glossary_text = self.book.read('manuscript/appendices/appendix-k-glossary.qmd')
         self.assertTrue(glossary_text.startswith('# Appendix B — Glossary'))
         self.assertIn('Table B.1 lists the terms.', glossary_text)
         alpha = self.book.read('manuscript/chapters/ch01-alpha.qmd')
         self.assertIn('Table B.1 describes the terms.', alpha)
         self.assertTrue(self.book.read('manuscript/appendices/appendix-b-addendum.qmd')
                         .startswith('# Appendix A — Addendum'))
+
+    def test_new_appendix_receives_moved_sections(self) -> None:
+        """A document added in the change keeps its final letter and takes old sections."""
+        kept_figure = '![Figure 1.1 — Kept](../../assets/a.png){#fig-1-1}\n\n'
+        moved_figure = '![Figure 1.2 — Moved](../../assets/b.png){#fig-1-2}\n\n'
+        files = {
+            'chapters/ch01-alpha.qmd': (
+                '# 1. Alpha\n\n' + kept_figure + '## 1.1 Kept\n\nKept body.\n\n'
+                + moved_figure + '## 1.2 Moved\n\nMoved body refers to 1.1 and Appendix C.\n\n'
+                '| Field | Content |\n| :--- | :--- |\n| Purpose | Moved table |\n\n'
+                ': Artifact fiche: moved\n'
+            ),
+            'appendices/appendix-a-notes.qmd': '# Appendix A — Notes\n\n## A.1 Body\n\nText.\n',
+            'appendices/appendix-b-schemas.qmd': '# Appendix B — Schemas\n\n## B.1 Body\n\nText.\n',
+            'appendices/appendix-c-old.qmd': '# Appendix C — Old Appendix\n\n## C.1 Body\n\nSee Appendix C.1 for the rest.\n',
+        }
+        order = {'chapters': ['chapters/ch01-alpha.qmd'],
+                 'appendices': ['appendices/appendix-a-notes.qmd',
+                                'appendices/appendix-b-schemas.qmd',
+                                'appendices/appendix-c-old.qmd']}
+        self.start(order, files)
+
+        # The change inserts a new Appendix C before the old one, which becomes D,
+        # and moves section 1.2 with its figure and table into the new appendix.
+        self.book.write(
+            'manuscript/appendices/appendix-c-new.qmd',
+            '# Appendix C — New Appendix\n\nIntro.\n\n'
+            '## C.1 Moved Artifacts\n\n' + moved_figure +
+            '### 1.2 Moved\n\nMoved body refers to 1.1 and Appendix C.\n\n'
+            '| Field | Content |\n| :--- | :--- |\n| Purpose | Moved table |\n\n'
+            ': Artifact fiche: moved\n',
+        )
+        self.book.write('manuscript/chapters/ch01-alpha.qmd', (
+            '# 1. Alpha\n\n' + kept_figure + '## 1.1 Kept\n\nKept body.\n'
+        ))
+        self.book.write('manuscript/book.yml',
+                        'chapters:\n  - chapters/ch01-alpha.qmd\n'
+                        'appendices:\n'
+                        '  - appendices/appendix-a-notes.qmd\n'
+                        '  - appendices/appendix-b-schemas.qmd\n'
+                        '  - appendices/appendix-c-new.qmd\n'
+                        '  - appendices/appendix-c-old.qmd\n')
+
+        result = self.book.run(
+            '--apply', '--new', 'manuscript/appendices/appendix-c-new.qmd')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        new = self.book.read('manuscript/appendices/appendix-c-new.qmd')
+        self.assertTrue(new.startswith('# Appendix C — New Appendix'))
+        self.assertIn('## C.1 Moved Artifacts', new)
+        self.assertIn('### C.1.1 Moved', new)
+        self.assertIn('refers to 1.1 and Appendix D.', new)
+        self.assertIn('![Figure C.1 — Moved](../../assets/b.png){#fig-c-1}', new)
+        self.assertIn(': Artifact fiche: moved', new)
+        old = self.book.read('manuscript/appendices/appendix-c-old.qmd')
+        self.assertTrue(old.startswith('# Appendix D — Old Appendix'))
+        self.assertIn('## D.1 Body', old)
+        self.assertIn('See Appendix D.1 for the rest.', old)
+        chapter_text = self.book.read('manuscript/chapters/ch01-alpha.qmd')
+        self.assertNotIn('## 1.2 Moved', chapter_text)
+        self.assertIn('![Figure 1.1 — Kept](../../assets/a.png){#fig-1-1}', chapter_text)
+        # A second run is a no-op.
+        again = self.book.run(
+            '--new', 'manuscript/appendices/appendix-c-new.qmd')
+        self.assertEqual(again.returncode, 0, again.stderr)
+        self.assertIn('nothing to renumber', again.stdout)
 
     def test_generated_appendix_is_not_rewritten(self) -> None:
         catalog = (

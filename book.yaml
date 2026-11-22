@@ -18,7 +18,7 @@ license:
 manuscript:
   root: manuscript
   reading_order: manuscript/book.yml
-  glossary: appendices/appendix-j-glossary-of-terms-and-acronyms.qmd
+  glossary: appendices/appendix-k-glossary-of-terms-and-acronyms.qmd
 
 publication:
   cross_reference_links: true

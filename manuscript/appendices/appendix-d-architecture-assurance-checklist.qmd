@@ -1,4 +1,4 @@
-# Appendix C — Architecture Assurance Checklist
+# Appendix D — Architecture Assurance Checklist
 
 **Intent and decisions**
 

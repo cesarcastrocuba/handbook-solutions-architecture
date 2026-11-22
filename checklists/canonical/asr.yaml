@@ -1,7 +1,7 @@
 schema_version: 3.0.0
 domain: SA-ASR
 title: Architecture assurance
-manuscript: appendices/appendix-c-architecture-assurance-checklist.qmd
+manuscript: appendices/appendix-d-architecture-assurance-checklist.qmd
 items:
 - id: SA-ASR-001
   title: Explicit business outcome and scope
@@ -9,7 +9,7 @@ items:
   rationale: Without agreed outcomes, scope and constraints every later trade-off is argued from opinion.
   applicability: All solutions.
   expected_evidence: Approved business case or scope statement naming outcomes, in-scope capabilities and a sourced constraint register (1.4).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -21,7 +21,7 @@ items:
   rationale: Priority quality attributes without measurable scenarios cannot drive design or be verified.
   applicability: All solutions.
   expected_evidence: Prioritized quality attribute scenarios with workload, environment, response measure and owners (1.3).
-  section: C
+  section: D
   external_reference: ISO/IEC 25010:2023
   risk_relevance: High
   version: '2.1'
@@ -33,7 +33,7 @@ items:
   rationale: Decisions without alternatives and owners cannot be reviewed, audited or revisited.
   applicability: All solutions with architecturally significant decisions.
   expected_evidence: ADRs with alternatives, consequences, named owners and review triggers, plus the risk register (3.4).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -45,7 +45,7 @@ items:
   rationale: Unowned views and contracts become stale and leave interface change without an accountable party.
   applicability: All solutions with external or cross-team interfaces.
   expected_evidence: Context and container views with named owners (5.1), and ICDs with producer and consumer owners plus machine-readable contracts (10.2.3).
-  section: C
+  section: D
   external_reference: ISO/IEC/IEEE 42010:2022
   risk_relevance: High
   version: '2.1'
@@ -57,7 +57,7 @@ items:
   rationale: A solution that runs on a shared platform inherits its guarantees and its gaps; unrecorded dependencies are found during incidents and audits.
   applicability: Solutions that use an internal platform or shared platform capabilities.
   expected_evidence: Capability contracts cited by version in the design, the confirmed responsibility matrix and the isolation decision for the solution's risk class.
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '4.0'
@@ -69,7 +69,7 @@ items:
   rationale: Unowned or unclassified data cannot be protected, retained or deleted consistently across copies.
   applicability: All solutions that store business or personal data.
   expected_evidence: Data ownership map, classification matrix and retention schedule covering primary stores, replicas, files, logs and backups (9.2.4, 9.3.1).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -81,7 +81,7 @@ items:
   rationale: Regulated data needs verifiable proof of what changed, who changed it and who accessed it.
   applicability: Solutions with regulatory, contractual or financial audit obligations.
   expected_evidence: Audit-event catalog mapped to obligations, history and access-audit coverage, retrieval and tamper tests, and retention with legal holds (13.7.2, 9.3.9).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -93,7 +93,7 @@ items:
   rationale: Controls that do not trace to an abuse path or a test provide reassurance rather than assurance.
   applicability: All solutions crossing trust boundaries.
   expected_evidence: Threat model with trust boundaries and ranked threats, and a control-to-test mapping with current results (13.1.1, 13.5).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -105,7 +105,7 @@ items:
   rationale: Privacy obligations constrain data flows, residency and retention and are costly to retrofit.
   applicability: Solutions processing personal data.
   expected_evidence: Data protection impact assessment where required, record of processing activities, data inventory and flow map, data-subject request log and transfer register (13.9).
-  section: C
+  section: D
   external_reference: GDPR (Regulation (EU) 2016/679)
   risk_relevance: High
   version: '2.1'
@@ -117,7 +117,7 @@ items:
   rationale: Authentication and authorization weaknesses expose every resource behind the interface, including administrative paths.
   applicability: All solutions authenticating users, workloads or administrators.
   expected_evidence: Authentication and SSO design review, authorization tests for cross-tenant access, access-review records and privileged session logs (13.2, 13.3).
-  section: C
+  section: D
   external_reference: NIST SP 800-63-4 (2025)
   risk_relevance: High
   version: '2.1'
@@ -129,7 +129,7 @@ items:
   rationale: Without a layered test strategy and remediation objectives, known weaknesses remain untested or indefinitely open.
   applicability: All solutions with custom code or third-party dependencies.
   expected_evidence: Security test plan covering static analysis, composition analysis, authenticated dynamic testing and penetration testing, ASVS mapping and remediation-time objectives (13.5, 13.6).
-  section: C
+  section: D
   external_reference: OWASP ASVS 5.0.0 (2025)
   risk_relevance: High
   version: '2.1'
@@ -141,7 +141,7 @@ items:
   rationale: Untested RTO, RPO and capacity assumptions fail under real disruption, and stale plans mislead responders.
   applicability: Solutions supporting critical business services.
   expected_evidence: Dated exercise reports with measured RTO and RPO, capacity test results, and a current business impact analysis, BCP and DRP with owners (12.4).
-  section: C
+  section: D
   external_reference: ISO 22301:2019
   risk_relevance: High
   version: '2.1'
@@ -153,7 +153,7 @@ items:
   rationale: Provider guidance and supplier assurance are inherited claims that must be verified in the solution's own scope.
   applicability: Cloud-hosted solutions and solutions depending on critical suppliers.
   expected_evidence: Dated well-architected review with a findings register, and current supplier assurance scoped to the service (12.2, 13.8).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -165,7 +165,7 @@ items:
   rationale: Deployment success does not prove that a service can be diagnosed, rolled back or recovered by its operators.
   applicability: All services before go-live.
   expected_evidence: Operational readiness review, rollback decision tree, dashboards, SLOs, alerts with runbooks and a rehearsed failure (15.3.1).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -177,7 +177,7 @@ items:
   rationale: Untested priority scenarios and missing contract tests let incompatible or degraded changes reach production.
   applicability: All solutions with quality obligations.
   expected_evidence: Test strategy mapped to priority quality scenarios, contract test results and pipeline quality-gate records (16.1).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -189,7 +189,7 @@ items:
   rationale: Change approval that produces no auditable record neither controls risk nor satisfies auditors.
   applicability: All solutions with production change management.
   expected_evidence: Defined change types and authorities, and pipeline-generated change records linking review, approval and deployment (15.4).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -201,7 +201,7 @@ items:
   rationale: Exceptions without owners, compensating controls or expiry are uncontrolled risk acceptance.
   applicability: All solutions with approved governance exceptions.
   expected_evidence: Exception register entries with scope, owner, compensating controls, residual risk, expiry and remediation plan (4.5).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: High
   version: '2.1'
@@ -213,7 +213,7 @@ items:
   rationale: A service handed over without an accepting operator and usable runbooks becomes an orphaned production risk.
   applicability: All solutions handed over to an operating team.
   expected_evidence: Signed operational handover, runbooks with commands and verification steps, on-call rotation and dependency inventory (15.3.1).
-  section: C
+  section: D
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'

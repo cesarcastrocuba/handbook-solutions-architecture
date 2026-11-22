@@ -1,6 +1,6 @@
 # 13. Security Architecture
 
-Security architecture starts with assets, trust boundaries, threat actors and misuse paths. Controls are chosen against plausible threats and verified in the deployed topology rather than copied from a checklist. The architect designs controls into the solution, specifies how they will be verified and makes residual risk visible to an accountable owner. Appendix F holds the detailed reference tables; Appendix E holds a baseline of common security requirements.
+Security architecture starts with assets, trust boundaries, threat actors and misuse paths. Controls are chosen against plausible threats and verified in the deployed topology rather than copied from a checklist. The architect designs controls into the solution, specifies how they will be verified and makes residual risk visible to an accountable owner. Appendix G holds the detailed reference tables; Appendix F holds a baseline of common security requirements.
 
 ::: {.callout-note appearance="simple" icon=false title="When to Use This Chapter"}
 - Defining security requirements or a control baseline for a new or changed solution.
@@ -107,7 +107,7 @@ Table 13.2 lists the source and lifecycle evidence for each identity type.
 
 **Purpose.** Match the authenticator to the risk of the action and the exposure of the population. A password may be acceptable for a low-risk profile; it is not acceptable for an administrator or a payment approval.
 
-**What it includes.** Multi-factor authentication (MFA) combines factors the user knows, has or is. SMS codes and app codes can be relayed by a real-time phishing proxy, and push approvals are vulnerable to MFA fatigue unless number matching is enforced; FIDO2/WebAuthn security keys and passkeys bind the credential to the site and resist phishing. NIST SP 800-63-4 (2025) defines authentication assurance levels AAL1 to AAL3, with AAL3 requiring a phishing-resistant authenticator whose key cannot be exported. Require phishing-resistant MFA for administrators and privileged operations, and prefer passkeys for customers where possible (Appendix F.1).
+**What it includes.** Multi-factor authentication (MFA) combines factors the user knows, has or is. SMS codes and app codes can be relayed by a real-time phishing proxy, and push approvals are vulnerable to MFA fatigue unless number matching is enforced; FIDO2/WebAuthn security keys and passkeys bind the credential to the site and resist phishing. NIST SP 800-63-4 (2025) defines authentication assurance levels AAL1 to AAL3, with AAL3 requiring a phishing-resistant authenticator whose key cannot be exported. Require phishing-resistant MFA for administrators and privileged operations, and prefer passkeys for customers where possible (Appendix G.1).
 
 **Why it is needed.** A weak authenticator turns every other control into a formality. The evidence is the IdP policy, MFA coverage by population and a tested recovery path that does not bypass the factor.
 
@@ -119,7 +119,7 @@ Table 13.2 lists the source and lifecycle evidence for each identity type.
 
 **Purpose.** Centralize MFA, access policy and revocation, and meet enterprise customers that require their own IdP. Federation reduces credential sprawl but adds a dependency on the IdP and on correct attribute mapping.
 
-**What it includes.** **SAML 2.0** (XML assertions) remains widespread in enterprise and SaaS integrations; **OpenID Connect** (OIDC), built on OAuth 2.0, is the modern choice for web, mobile and single-page applications. **OAuth 2.0 is not authentication:** an access token tells an API that the bearer may perform certain operations; it does not tell the client who the user is. Use OIDC, whose ID token is intended for the client, when the application needs the user’s identity. Enterprise customers commonly require SaaS products to integrate with their own IdP through SAML 2.0 or OIDC. Design per-tenant IdP configuration, SCIM or just-in-time provisioning, and mapping of IdP groups to application roles (Appendix F.2).
+**What it includes.** **SAML 2.0** (XML assertions) remains widespread in enterprise and SaaS integrations; **OpenID Connect** (OIDC), built on OAuth 2.0, is the modern choice for web, mobile and single-page applications. **OAuth 2.0 is not authentication:** an access token tells an API that the bearer may perform certain operations; it does not tell the client who the user is. Use OIDC, whose ID token is intended for the client, when the application needs the user’s identity. Enterprise customers commonly require SaaS products to integrate with their own IdP through SAML 2.0 or OIDC. Design per-tenant IdP configuration, SCIM or just-in-time provisioning, and mapping of IdP groups to application roles (Appendix G.2).
 
 **Why it is needed.** Treating a token as proof of identity creates authorization gaps and confusing failures after a tenant changes its IdP. The evidence is a per-tenant configuration, a tested login and a tested revocation.
 
@@ -131,7 +131,7 @@ Table 13.2 lists the source and lifecycle evidence for each identity type.
 
 **Purpose.** Choose a flow that fits the client and limits token theft, then validate every token at the API. The flow is a security decision, not a library default.
 
-**What it includes.** Use the authorization code flow with PKCE for applications acting for a user and client credentials for service-to-service calls; RFC 9700 (2025) deprecates the implicit and password flows. APIs validate each token’s signature, issuer, audience, expiry and scopes. Keep access tokens short-lived, rotate refresh tokens and support revocation; where token theft is a significant risk, use sender-constrained tokens (mTLS or DPoP). Appendix F.2 lists the flows.
+**What it includes.** Use the authorization code flow with PKCE for applications acting for a user and client credentials for service-to-service calls; RFC 9700 (2025) deprecates the implicit and password flows. APIs validate each token’s signature, issuer, audience, expiry and scopes. Keep access tokens short-lived, rotate refresh tokens and support revocation; where token theft is a significant risk, use sender-constrained tokens (mTLS or DPoP). Appendix G.2 lists the flows.
 
 **Why it is needed.** A token accepted without issuer, audience or scope checks can be replayed against another service. The evidence is the validated configuration and negative tests for expired, wrong-audience and revoked tokens.
 
@@ -348,7 +348,7 @@ Security testing is evidence that the development lifecycle produced the control
 
 **Purpose.** Make the secure path the default path for developers and give each phase an artifact that can be reviewed.
 
-**What it includes.** NIST SP 800-218 (SSDF) and OWASP SAMM describe such programs. OWASP provides widely used references: the **Top 10:2025** and **API Security Top 10 (2023)** for awareness, **ASVS** for verifiable requirements, the **Web Security Testing Guide** and the **Cheat Sheet Series** (Appendix F.3). Embed threat modeling (13.1.1), ASVS selection (13.5.2), secure coding standards, dependency policy and security gates in the pipeline. Train developers and measure adoption, not attendance. Appendix F.7 lists common web vulnerabilities and their primary defenses.
+**What it includes.** NIST SP 800-218 (SSDF) and OWASP SAMM describe such programs. OWASP provides widely used references: the **Top 10:2025** and **API Security Top 10 (2023)** for awareness, **ASVS** for verifiable requirements, the **Web Security Testing Guide** and the **Cheat Sheet Series** (Appendix G.3). Embed threat modeling (13.1.1), ASVS selection (13.5.2), secure coding standards, dependency policy and security gates in the pipeline. Train developers and measure adoption, not attendance. Appendix G.7 lists common web vulnerabilities and their primary defenses.
 
 **Why it is needed.** A late security review finds design problems that are expensive to change. The evidence is a lifecycle with security requirements, gates and training records, not a policy PDF.
 
@@ -360,7 +360,7 @@ Security testing is evidence that the development lifecycle produced the control
 
 **Purpose.** Give the team a named assurance level and a requirement-to-test mapping that a customer, auditor or supplier can inspect.
 
-**What it includes.** Where the Top 10 says what commonly goes wrong, ASVS says what must be true and how it can be checked. Version 5.0.0 (2025) organizes its requirements into 17 chapters, from encoding and validation to authentication, authorization, tokens, OAuth and OIDC, cryptography, data protection and security logging (Appendix F.3). Requirements are assigned to three cumulative levels — each includes all requirements below it.
+**What it includes.** Where the Top 10 says what commonly goes wrong, ASVS says what must be true and how it can be checked. Version 5.0.0 (2025) organizes its requirements into 17 chapters, from encoding and validation to authentication, authorization, tokens, OAuth and OIDC, cryptography, data protection and security logging (Appendix G.3). Requirements are assigned to three cumulative levels — each includes all requirements below it.
 
 | Level | Intent | Typical use |
 | :--- | :--- | :--- |
@@ -382,7 +382,7 @@ Select the level from data sensitivity, exposure, regulatory obligations and the
 
 **Purpose.** Combine techniques so that a gap in one is covered by another, and place each at the point in the lifecycle where it gives the earliest useful signal.
 
-**What it includes.** A security test strategy combines **SAST** (static analysis of source code) and **SCA** (known vulnerabilities in dependencies, producing an SBOM) on every change; secret, infrastructure-as-code and container scanning in the pipeline; **DAST** (testing the running application) and **IAST** (instrumented testing) per release; and penetration testing for logic flaws and chained attacks. Pipeline gates are calibrated to severity, so new critical findings block a release while backlog findings follow the remediation process (13.6). Appendix F.4 compares the techniques and their limits.
+**What it includes.** A security test strategy combines **SAST** (static analysis of source code) and **SCA** (known vulnerabilities in dependencies, producing an SBOM) on every change; secret, infrastructure-as-code and container scanning in the pipeline; **DAST** (testing the running application) and **IAST** (instrumented testing) per release; and penetration testing for logic flaws and chained attacks. Pipeline gates are calibrated to severity, so new critical findings block a release while backlog findings follow the remediation process (13.6). Appendix G.4 compares the techniques and their limits.
 
 ![Figure 13.5 — Security testing pipeline](../../assets/diagrams/rendered/ch09-security-testing.png){#fig-13-5 width="100%"}
 
@@ -408,7 +408,7 @@ Table 13.6 maps each testing technique to what it finds and where it stops being
 
 **Purpose.** Reach the business functionality and authorization paths that sit behind login, where most high-impact flaws live.
 
-**What it includes.** An unauthenticated DAST scan sees only login pages and public content; most business functionality and most authorization flaws sit behind authentication. An **authenticated dynamic web application security scan** logs in with real roles: it needs dedicated test accounts per role and tenant (to attempt privilege escalation), configured session handling, API definitions so that APIs are covered, a production-like environment with synthetic data, and agreed scope and rate limits (checklist in Appendix F.4).
+**What it includes.** An unauthenticated DAST scan sees only login pages and public content; most business functionality and most authorization flaws sit behind authentication. An **authenticated dynamic web application security scan** logs in with real roles: it needs dedicated test accounts per role and tenant (to attempt privilege escalation), configured session handling, API definitions so that APIs are covered, a production-like environment with synthetic data, and agreed scope and rate limits (checklist in Appendix G.4).
 
 **Why it is needed.** A clean unauthenticated scan is not evidence that authenticated users cannot escalate privileges. The evidence is a scan report that names the roles, tenants and API definitions used.
 
@@ -476,7 +476,7 @@ Vulnerability management turns scan output into prioritized, owned remediation d
 
 **Purpose.** Give a consistent, comparable severity signal and a vector that others can reproduce, without pretending that severity equals business risk.
 
-**What it includes.** CVSS is maintained by FIRST and rates severity from 0.0 to 10.0 (None, Low, Medium, High, Critical; Appendix F.5). Version 4.0 (2023) organizes metrics into Base, Threat, Environmental and Supplemental groups; version 3.1 remains widely used, so always state the version and vector string. **CVSS measures severity, not risk:** a base score ignores whether the vulnerability is exploited, whether the code is reachable and how important the asset is.
+**What it includes.** CVSS is maintained by FIRST and rates severity from 0.0 to 10.0 (None, Low, Medium, High, Critical; Appendix G.5). Version 4.0 (2023) organizes metrics into Base, Threat, Environmental and Supplemental groups; version 3.1 remains widely used, so always state the version and vector string. **CVSS measures severity, not risk:** a base score ignores whether the vulnerability is exploited, whether the code is reachable and how important the asset is.
 
 **Why it is needed.** A score without context produces either panic or neglect. The evidence is the score, the vector and the asset context that changed the decision.
 
@@ -514,7 +514,7 @@ Table 13.7 lists the priority signals and the response each one justifies.
 
 **Purpose.** Close the risk on a defined timeline and give customers, regulators and operators the information they need without exposing them to avoidable harm.
 
-**What it includes.** Track remediation time objectives per priority (Appendix F.5); patch on a risk basis with testing and rollback; route overdue items through the exception process (4.5). Notify affected customers with the CVSS vector, affected versions and status, use VEX statements to say whether a product is actually affected, and publish a disclosure contact such as `security.txt` (RFC 9116). Keep the remediation evidence with the vulnerability record, and verify closure rather than trusting a ticket status.
+**What it includes.** Track remediation time objectives per priority (Appendix G.5); patch on a risk basis with testing and rollback; route overdue items through the exception process (4.5). Notify affected customers with the CVSS vector, affected versions and status, use VEX statements to say whether a product is actually affected, and publish a disclosure contact such as `security.txt` (RFC 9116). Keep the remediation evidence with the vulnerability record, and verify closure rather than trusting a ticket status.
 
 **Why it is needed.** An unverified fix or an undisclosed affected version shifts risk to the customer. The evidence is a closed record with a verification result and, where required, a customer notification.
 
@@ -758,7 +758,7 @@ Privacy obligations restrict which personal data a solution may collect, how it 
 
 **Purpose.** Make privacy auditable without reconstructing decisions from memory or scattered tickets.
 
-**What it includes.** Expected evidence includes a record of processing activities (GDPR Article 30), DPIAs, a data inventory and flow map, the retention schedule with deletion evidence, the data-subject request log, a transfer register and a named privacy owner or data protection officer. The compliance record must cover minimization, purpose limitation, retention, residency and access decisions across stores, replicas, logs, files and backups (9.2.4), with the deletion and export results that show each one operates. A provider’s certification does not prove that the solution itself is compliant. Appendix E lists the corresponding baseline requirements.
+**What it includes.** Expected evidence includes a record of processing activities (GDPR Article 30), DPIAs, a data inventory and flow map, the retention schedule with deletion evidence, the data-subject request log, a transfer register and a named privacy owner or data protection officer. The compliance record must cover minimization, purpose limitation, retention, residency and access decisions across stores, replicas, logs, files and backups (9.2.4), with the deletion and export results that show each one operates. A provider’s certification does not prove that the solution itself is compliant. Appendix F lists the corresponding baseline requirements.
 
 **Why it is needed.** A privacy program that cannot produce evidence is indistinguishable from one that did not operate. Review the set when the processing, vendor or jurisdiction changes. An unowned record set cannot answer an auditor or a regulator.
 

@@ -681,7 +681,7 @@ How should a platform capability be sourced?
 
 **Purpose.** Naming the anti-patterns lets a review recognize them early, from their symptoms, before the platform has absorbed years of investment in the wrong direction.
 
-**What it includes.** Table 17.13 lists the anti-patterns that recur most often, with the symptom by which a review can recognize each and the section that describes the remedy. Several are described as Common Pitfalls in this chapter; the table gathers them, with others, in one place for a platform review. Appendix H lists every pitfall of the handbook by chapter.
+**What it includes.** Table 17.13 lists the anti-patterns that recur most often, with the symptom by which a review can recognize each and the section that describes the remedy. Several are described as Common Pitfalls in this chapter; the table gathers them, with others, in one place for a platform review. Appendix I lists every pitfall of the handbook by chapter.
 
 | Anti-pattern | Symptom | Remedy |
 | :--- | :--- | :--- |

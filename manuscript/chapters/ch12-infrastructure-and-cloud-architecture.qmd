@@ -368,7 +368,7 @@ The ranges are indicative only; measured exercise results are the evidence. Back
 
 The **business impact analysis** identifies critical processes, the impact of their interruption over time and the **maximum tolerable period of disruption (MTPD)**. RTO must be shorter than the MTPD, and RPO follows from the data loss the business can absorb. ISO 22301 is the common reference standard for business continuity management.
 
-The architect’s contribution is to make technology recovery match the BIA: recovery tiers per capability, dependency-aware restore order, recovery of identity, keys and secrets, and supplier recovery commitments. Both plans are reviewed and tested at the interval set by contract, regulation or risk assessment, and after major changes; an annual cycle is the common contractual default, and the service agreement should state the documented RTO and RPO (see Appendix E).
+The architect’s contribution is to make technology recovery match the BIA: recovery tiers per capability, dependency-aware restore order, recovery of identity, keys and secrets, and supplier recovery commitments. Both plans are reviewed and tested at the interval set by contract, regulation or risk assessment, and after major changes; an annual cycle is the common contractual default, and the service agreement should state the documented RTO and RPO (see Appendix F).
 
 **Why it is needed.** A DRP written without a BIA recovers systems in the wrong order, and a BCP written without the technology view promises workarounds that depend on the systems that are down. The evidence is a current BIA, BCP and DRP with owners, dated exercise reports with measured results, and closed follow-up actions.
 
@@ -553,7 +553,7 @@ Each framework is extended for specific workloads or industries: AWS publishes *
 
 | Pillar theme | Where it is covered in this handbook |
 | :--- | :--- |
-| Security (including privacy and compliance) | Chapter 13; 1.4.3; 9.2.4; Appendix E |
+| Security (including privacy and compliance) | Chapter 13; 1.4.3; 9.2.4; Appendix F |
 | Reliability and resilience | 1.2.1–1.2.4; 1.2.10; 12.4; Chapter 14 |
 | Performance | 1.2.5–1.2.6; 11.4.3; 14.4.2; 16.3.1 |
 | Cost optimization | 1.4.5; 12.5.2; 18.2 |

@@ -10,7 +10,7 @@ chapters:
   - chapters/ch04-architecture-governance.qmd
   - chapters/ch05-architecture-documentation.qmd
   - chapters/ch06-architecture-evaluation.qmd
-  - chapters/ch07-architecture-and-engineering-artifacts.qmd
+  - chapters/ch07-solutions-architecture-artifacts.qmd
   - chapters/ch08-architecture-frameworks-methods-and-standards.qmd
   - chapters/ch09-data-architecture.qmd
   - chapters/ch10-integration-architecture.qmd
@@ -28,13 +28,14 @@ back:
 appendices:
   - appendices/appendix-a-worked-architecture-cases.qmd
   - appendices/appendix-b-reusable-artifact-schemas.qmd
-  - appendices/appendix-c-architecture-assurance-checklist.qmd
-  - appendices/appendix-d-cross-artifact-consistency-matrix.qmd
-  - appendices/appendix-e-security-requirements-baseline.qmd
-  - appendices/appendix-f-security-reference.qmd
-  - appendices/appendix-g-pattern-catalog.qmd
-  - appendices/appendix-h-anti-pattern-catalog.qmd
-  - appendices/appendix-i-decision-catalog.qmd
-  - appendices/appendix-j-glossary-of-terms-and-acronyms.qmd
+  - appendices/appendix-c-enterprise-product-and-engineering-artifacts.qmd
+  - appendices/appendix-d-architecture-assurance-checklist.qmd
+  - appendices/appendix-e-cross-artifact-consistency-matrix.qmd
+  - appendices/appendix-f-security-requirements-baseline.qmd
+  - appendices/appendix-g-security-reference.qmd
+  - appendices/appendix-h-pattern-catalog.qmd
+  - appendices/appendix-i-anti-pattern-catalog.qmd
+  - appendices/appendix-j-decision-catalog.qmd
+  - appendices/appendix-k-glossary-of-terms-and-acronyms.qmd
 references:
   - back-matter/references.qmd

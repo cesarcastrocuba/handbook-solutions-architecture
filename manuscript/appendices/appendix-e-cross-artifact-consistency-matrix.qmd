@@ -1,4 +1,4 @@
-# Appendix D — Cross-Artifact Consistency Matrix
+# Appendix E — Cross-Artifact Consistency Matrix
 
 | Concern | Authoritative artifact | Dependent evidence | Consistency check |
 | :--- | :--- | :--- | :--- |

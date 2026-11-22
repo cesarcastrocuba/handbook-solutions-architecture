@@ -1,6 +1,6 @@
-# Appendix J — Glossary of Terms and Acronyms
+# Appendix K — Glossary of Terms and Acronyms
 
-The glossary is **Table J.1**. Terms are grouped by first letter; the last column links to the section that defines each term.
+The glossary is **Table K.1**. Terms are grouped by first letter; the last column links to the section that defines each term.
 
 | Term | Meaning | Defined in |
 | :--- | :--- | :--- |
@@ -45,14 +45,14 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Architecture evaluation | A comparison of a design, or its alternatives, against prioritized quality scenarios, risks and constraints to expose where the design is sensitive and where quality attributes trade off. | 6.1.1 |
 | Architecture repository | The linked record of why a system exists, who owns it, which interfaces it exposes and which evidence supports its important decisions. | 4.6 |
 | Architecture review | A risk-focused examination of whether a design can satisfy its requirements and whether the evidence supports the claims made for it. | 4.4 |
-| Architecture review record | The artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed. | 7.5.4 |
+| Architecture review record | The artifact that documents what a review examined, what it found, which exceptions it accepted and on what conditions the change may proceed. | 7.5.1 |
 | Architecture roadmap | A sequenced plan of target-state capabilities, transition states, dependencies, risk retirement and measurable milestones, including explicit retirement criteria for legacy assets. | 18.3.2 |
 | Architecture test | An automated check that the built system conforms to its intended architecture, such as dependency direction, boundaries, interface compatibility or deployment rules. | 16.3.5 |
 | Architecture view | A representation of the system that answers one set of stakeholder concerns, within the smallest view set that covers the decisions at hand. | 5.1.1 |
 | ARID | Active Reviews for Intermediate Designs: a review in which future users of an incomplete design try to use it for real tasks. | 6.2.2 |
 | Artifact catalog | The complete list of artifacts a solution may produce, each with an owner, a mandatory trigger and a fiche that defines its content and quality criteria. | 7.1.2 |
 | Artifact chain | The ordered set of artifacts that carries intent from a business objective to operational evidence: objective, requirements and quality scenarios, high-level design, detailed design, tests, and runbooks with telemetry. | 7.1.1 |
-| Artifact lifecycle | The set of states an artifact passes through — draft, reviewed, approved where required, in use, superseded and retired — together with the owner, location and review trigger that keep it trustworthy. | 7.5.3 |
+| Artifact lifecycle | The set of states an artifact passes through — draft, reviewed, approved where required, in use, superseded and retired — together with the owner, location and review trigger that keep it trustworthy. | 7.5.2 |
 | AS2 | Applicability Statement 2: a protocol for exchanging signed and encrypted business documents over HTTP, with receipts. | 10.6.5 |
 | ASR | Architecturally significant requirement: a requirement whose satisfaction or failure materially shapes the architecture. | 3.1 |
 | Assurance evidence | The independent report or certificate that shows a supplier’s controls were designed and operated for a defined scope and period. | 13.8.2 |
@@ -74,12 +74,12 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | BIA | Business impact analysis: the analysis that derives recovery objectives and maximum tolerable disruption from business consequence. | 12.4.3 |
 | BPMN | Business Process Model and Notation: the standard notation for process and activity diagrams. | 5.2.3 |
 | Branching strategy | The model that determines how often code is integrated and therefore how fast and safely it can be released. | 15.1.3 |
-| BRD | Business Requirements Document: the artifact that captures business outcomes, scope, stakeholders, benefits and constraints. | 7.2.1 |
+| BRD | Business Requirements Document: the artifact that captures business outcomes, scope, stakeholders, benefits and constraints. | C.1.1 |
 | Bridge model | A tenancy model that dedicates some layers or tiers to tenants and shares others. | 11.7.1 |
 | Build, buy or managed service | The choice of who designs, operates and evolves a capability over its life, weighing differentiation, control, integration cost, lifecycle support, security responsibilities and exit cost. | 18.2.3 |
 | Burn rate | How fast the error budget is consumed relative to the SLO window. | 14.2.2 |
 | Business capability | A stable statement of what the organization must be able to do, expressed independently of the applications, teams or technologies that currently deliver it. | 1.1.1 |
-| Business case | A comparison of expected value, cost, alternatives and risk over a stated time horizon, used to justify an investment. | 7.2.1 |
+| Business case | A comparison of expected value, cost, alternatives and risk over a stated time horizon, used to justify an investment. | C.1.1 |
 | Business continuity planning | The activity that produces and maintains the business continuity plan and keeps it aligned with the business impact analysis. | 12.4.3 |
 | Business observability | Telemetry applied to the outcome the business sells — an order accepted, a payment settled, a refund paid — rather than only to the components that produce it. | 14.5.1 |
 | Business rule | A policy, condition, calculation or invariant that governs how the business operates and must hold wherever breaking it would have a material consequence. | 1.1.3 |
@@ -126,7 +126,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Cryptography | The protection of confidentiality, integrity and authenticity by transforming data with keys that only authorized parties hold. | 13.4.2 |
 | CSA | Cloud Security Alliance: the body that publishes the Cloud Controls Matrix. | 13.1.2 |
 | CSF | Cybersecurity Framework: the NIST framework organized around govern, identify, protect, detect, respond and recover. | 13.1.2 |
-| CSRF | Cross-site request forgery: a browser is induced to send an authenticated request that the user did not intend. | F.7 |
+| CSRF | Cross-site request forgery: a browser is induced to send an authenticated request that the user did not intend. | G.7 |
 | Current-state baseline | The documented current state — capabilities, applications, interfaces, data, volumes, constraints and incidents — from which requirements are derived. | 1.5.1 |
 | CVSS | Common Vulnerability Scoring System: a 0.0–10.0 rating of the technical severity of a vulnerability. | 13.6.1 |
 | DAST | Dynamic application security testing: testing a running application from the outside. | 13.5.3 |
@@ -253,7 +253,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Latency budget | The allocation of an end-to-end response objective across the segments a request traverses. | 1.3.2 |
 | Legacy connectivity | The techniques that let modern components exchange data with systems that cannot be changed economically or whose interfaces predate modern contracts. | 10.6.5 |
 | LFU | Least frequently used: an eviction policy that removes the entries used least often. | 11.3.4 |
-| LLD | Low-level design: the artifact that details modules, interfaces, schemas, algorithms, state transitions, errors, concurrency and rollout. | 7.3.2 |
+| LLD | Low-level design: the artifact that details modules, interfaces, schemas, algorithms, state transitions, errors, concurrency and rollout. | C.1.3 |
 | LLMOps | The practices that automate evaluation, release, registry and monitoring for large language model applications. | 19.6.7 |
 | Load balancer | A component that distributes traffic among healthy instances, at the connection or the request level. | 12.2.3 |
 | Load shedding | Rejecting lower-priority work early when demand exceeds capacity, so essential work still completes. | 14.4.2 |
@@ -298,7 +298,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | OIDC | OpenID Connect: an identity layer on OAuth 2.0 that authenticates users and issues identity tokens. | 13.2.3 |
 | On-call | The rotation of engineers who are paged and able to act on alerts. | 14.3.1 |
 | Online evaluation | The measurement of behavior in production, using canaries, sampled review, user feedback, groundedness checks and safety events. | 19.6.2 |
-| Operational artifact | The runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and handover material that define how a service is operated. | 7.5.2 |
+| Operational artifact | The runbooks, playbooks, SLOs, dashboards, alert catalogs, deployment and rollback plans, DR plans and handover material that define how a service is operated. | C.1.5 |
 | Operational readiness | The state in which a named team can detect, diagnose, restore and verify a service without discovering its dependencies during an incident. | 15.3.1 |
 | Operational security | The recurring work that keeps a running estate as hardened as its design intended: patching, vulnerability response, privileged access, audit retention and access revocation. | 15.5 |
 | Ordering | The guarantee that updates are applied in an order consistent with causality. | 9.4.6; 10.4.2 |
@@ -321,7 +321,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Pool model | A tenancy model in which tenants share resources and isolation is enforced in software. | 11.7.1 |
 | Portability | The degree to which a solution can move between providers or platforms without redesign. | 18.2.4 |
 | Postmortem | A blameless written account of an incident that ends in owned, dated changes to the system. | 14.5.2 |
-| PRD | Product Requirements Document: the artifact that specifies the product problem, users, journeys, requirements, success metrics and priorities. | 7.2.2 |
+| PRD | Product Requirements Document: the artifact that specifies the product problem, users, journeys, requirements, success metrics and priorities. | C.1.2 |
 | Principle | A durable preference for making decisions that applies across many cases without prescribing a single implementation. | 2.1 |
 | Principle conflict | A principle conflict exists when two principles that are both accepted point to different designs for the same decision. | 2.15 |
 | Privacy | The quality attribute that keeps personal data limited to the purpose for which it was collected and removes it when that purpose ends. | 1.2.12; 13.9.6; 13.9; 19.5.4 |
@@ -360,7 +360,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Retrieval | The selection of content for the model’s context. | 19.3.3 |
 | Reuse | The use of an existing asset instead of building a new one. | 2.13 |
 | Reverse proxy | A server that receives client requests on behalf of other servers and forwards them. | 12.2.3 |
-| RFC | Request for Comments: a structured proposal that solicits feedback before a decision; in standards citations, an IETF specification. | 7.3.3 |
+| RFC | Request for Comments: a structured proposal that solicits feedback before a decision; in standards citations, an IETF specification. | 7.3.2 |
 | RFP | Request for proposal: a formal invitation for suppliers to submit comparable bids against stated requirements. | 18.2.6 |
 | Risk theme | A group of related evaluation risks stated against the business driver they endanger. | 6.2.1 |
 | Risk-based prioritization | Prioritizing vulnerabilities by combining technical severity with exploitation likelihood, exposure and business context. | 13.6.2 |
@@ -413,9 +413,9 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Span | One unit of work within a distributed trace, with start time, duration, attributes and status. | 14.1.1 |
 | Spike | A short, time-boxed experiment that answers whether a technique or library can do what is needed. | 6.3.2 |
 | SRE | Site reliability engineering: the discipline that applies software engineering to operations, SLOs, error budgets and incident response. | 14.2.1; 14.3.1 |
-| SRS | Software Requirements Specification: the artifact that states externally observable functional and quality requirements. | 7.2.3 |
+| SRS | Software Requirements Specification: the artifact that states externally observable functional and quality requirements. | 7.2 |
 | SSO | Single sign-on: one authenticated session that grants access to several applications. | 13.2.3 |
-| SSRF | Server-side request forgery: the server is induced to fetch a location chosen by the attacker. | F.7 |
+| SSRF | Server-side request forgery: the server is induced to fetch a location chosen by the attacker. | G.7 |
 | Standard | Required or preferred technical behavior; a standard becomes binding through contract, regulation or organizational policy. | 4.3; 8.4.2 |
 | Standardization | The adoption of one approved way to satisfy a recurring concern. | 2.13 |
 | State machine | The definition of which transitions between states are legal and which must be refused. | 11.2.2 |
@@ -429,11 +429,11 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | System of record | The system authorized to change a defined set of facts, and its owner is the person accountable for their meaning, quality and lifecycle. | 9.3.1 |
 | Tail latency | The slowest part of the response-time distribution, such as the 99th percentile. | 14.4.3 |
 | TCO | Total cost of ownership: the multi-year cost of a capability, including operation, support and exit. | 18.2.3 |
-| TDD | Technical Design Document: the detailed design artifact; in testing contexts, test-driven development. | 7.3.2 |
+| TDD | Technical Design Document: the detailed design artifact; in testing contexts, test-driven development. | C.1.3 |
 | Technical debt | The future cost or constraint created by a design choice. | 18.2.1 |
 | Tenant context | The verified identity of the tenant on whose behalf work runs, carried with that work and enforced at data access. | 11.7.2 |
 | Tenant segregation | Segregation separates customers, tenants and environments so that data and privileges cannot leak across a boundary. | 13.4.3 |
-| Test artifact | The test strategy, plans, acceptance criteria, performance baselines, resilience reports and fitness functions that provide evidence that the design meets its requirements. | 7.5.1 |
+| Test artifact | The test strategy, plans, acceptance criteria, performance baselines, resilience reports and fitness functions that provide evidence that the design meets its requirements. | C.1.4 |
 | Test data | The state a test starts from, synthetic or masked. | 16.2.1 |
 | Test environment | The deployed configuration in which a test runs. | 16.2.1 |
 | Test evidence | The recorded result of a test run, tied to version, environment and outcome, kept for release decisions and audit. | 16.4.3 |
@@ -480,7 +480,7 @@ The glossary is **Table J.1**. Terms are grouped by first letter; the last colum
 | Write-around cache | A strategy in which writes go only to the store and the cache is filled by later reads. | 11.3.3 |
 | Write-behind cache | A cache that acknowledges a write before the store is updated, so a cache failure can lose acknowledged data. | 11.3.3 |
 | Write-through cache | A cache updated together with the store on each write. | 11.3.3 |
-| XSS | Cross-site scripting: untrusted data is rendered as active content in a user’s browser. | F.7 |
+| XSS | Cross-site scripting: untrusted data is rendered as active content in a user’s browser. | G.7 |
 | Zachman Framework | An ontology for classifying enterprise architecture descriptions by perspective and question. | 8.2.5 |
 | Zero Trust | An access model that verifies every request explicitly and grants the least privilege needed, without trusting network location. | 13.4.1 |
 
