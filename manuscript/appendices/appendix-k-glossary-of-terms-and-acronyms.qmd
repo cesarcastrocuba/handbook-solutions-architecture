@@ -36,11 +36,13 @@ The glossary is **Table K.1**. Terms are grouped by first letter; the last colum
 | API lifecycle | The practices that keep interfaces discoverable, consistent and retirable over their whole life. | 10.2.8 |
 | API specification | The machine-readable expression of an interface in OpenAPI, AsyncAPI, JSON Schema, Avro or Protocol Buffers. | 7.4.1 |
 | API style | The protocol and interaction convention used to expose an interface: REST over HTTP, gRPC, GraphQL, asynchronous events or webhooks. | 10.2.5 |
+| Application portfolio | The governed inventory of all applications in an enterprise, capturing their business capabilities, technical health, ownership, lifecycle status, and investment disposition. | C.1.6 |
 | Application security | The set of controls that authenticate callers, authorize each requested resource, validate input and protect secrets inside the application. | 11.5.1 |
 | Approval model | The mechanism that decides who authorizes a change and what evidence they see before deciding. | 15.4.3; 15.4.4 |
 | arc42 | A pragmatic, freely available template for documenting software architecture in twelve sections. | 5.3.2; 8.2.3 |
 | ArchiMate | A modeling language for relationships among business, application and technology elements. | 8.3.2 |
 | Architectural significance | The threshold that decides whether a choice must be explained by the architecture or can be settled inside normal engineering judgment. | 3.1 |
+| Architecture contract | A formal agreement between architecture governing bodies and delivery teams specifying the deliverables, quality attributes, constraints, governance criteria, and conformance targets for an implementation. | C.1.5 |
 | Architecture description | The organized set of views, decisions, scenarios and correspondences that explains a system’s architecture to its stakeholders. | 5.3.1 |
 | Architecture evaluation | A comparison of a design, or its alternatives, against prioritized quality scenarios, risks and constraints to expose where the design is sensitive and where quality attributes trade off. | 6.1.1 |
 | Architecture repository | The linked record of why a system exists, who owns it, which interfaces it exposes and which evidence supports its important decisions. | 4.6 |
@@ -49,6 +51,7 @@ The glossary is **Table K.1**. Terms are grouped by first letter; the last colum
 | Architecture roadmap | A sequenced plan of target-state capabilities, transition states, dependencies, risk retirement and measurable milestones, including explicit retirement criteria for legacy assets. | 18.3.2 |
 | Architecture test | An automated check that the built system conforms to its intended architecture, such as dependency direction, boundaries, interface compatibility or deployment rules. | 16.3.5 |
 | Architecture view | A representation of the system that answers one set of stakeholder concerns, within the smallest view set that covers the decisions at hand. | 5.1.1 |
+| Architecture vision | A high-level description of the target architecture, its business value, stakeholder expectations, and initial scope, serving as the agreed baseline before detailed definition begins. | C.1.1 |
 | ARID | Active Reviews for Intermediate Designs: a review in which future users of an incomplete design try to use it for real tasks. | 6.2.2 |
 | Artifact catalog | The complete list of artifacts a solution may produce, each with an owner, a mandatory trigger and a fiche that defines its content and quality criteria. | 7.1.2 |
 | Artifact chain | The ordered set of artifacts that carries intent from a business objective to operational evidence: objective, requirements and quality scenarios, high-level design, detailed design, tests, and runbooks with telemetry. | 7.1.1 |
@@ -335,6 +338,7 @@ The glossary is **Table K.1**. Terms are grouped by first letter; the last colum
 | Prompt and content controls | The handling rules that keep instructions separate from data and constrain what the system accepts and returns. | 19.5.3 |
 | Proof of concept | A time-boxed test of a specific technical claim against exit criteria agreed in advance. | 18.2.6 |
 | Provenance | The record of where a piece of content came from, who owns it, which version it is and what access label it carries. | 19.3.4 |
+| PRR | Production readiness review: a pre-deployment quality and operational gate assessing whether a solution satisfies operational criteria including runbooks, monitoring, failure recovery, security controls, and rollback procedures. | 7.5.2 |
 | Pseudonymization | The replacement of identifiers with tokens so records can be linked without exposing identity. | 13.9.4 |
 | QA | Quality assurance: the testing and verification work that establishes whether a change meets its acceptance criteria. | 15.1.4 |
 | QAW | Quality Attribute Workshop: a structured elicitation and prioritization method in which business owners agree the scenarios that drive the architecture. | 1.3.1 |
@@ -370,6 +374,7 @@ The glossary is **Table K.1**. Terms are grouped by first letter; the last colum
 | RTO | Recovery time objective: the maximum acceptable time to restore service. | 12.4.2 |
 | SAAM | Software Architecture Analysis Method: a scenario-based method focused on scenario coverage and the impact of change. | 6.2.2 |
 | SaaS | Software as a service: a delivery model in which a provider operates the application for its customers. | 12.1.4 |
+| SAD | Solution architecture description: the living description of a specific system or solution, covering its context, structural views, cross-cutting concepts, and decisions throughout its lifecycle. | 7.2.2 |
 | SAFe | Scaled Agile Framework: defines roles and practices for agile delivery across many teams. | 8.2.5 |
 | Saga | A saga coordinates a business workflow across independently committed local transactions, using compensating actions instead of distributed transactions. | 10.4.3 |
 | SAML | Security Assertion Markup Language: an XML-based standard for exchanging authentication and authorization assertions. | 13.2.3 |
@@ -428,7 +433,7 @@ The glossary is **Table K.1**. Terms are grouped by first letter; the last colum
 | Synchronous call | An integration in which the caller blocks until the callee responds, so the caller's availability and latency include the callee's. | 10.1.3 |
 | System of record | The system authorized to change a defined set of facts, and its owner is the person accountable for their meaning, quality and lifecycle. | 9.3.1 |
 | Tail latency | The slowest part of the response-time distribution, such as the 99th percentile. | 14.4.3 |
-| TCO | Total cost of ownership: the multi-year cost of a capability, including operation, support and exit. | 18.2.3 |
+| TCO | Total cost of ownership: the multi-year cost of a capability, including operation, support and exit. | 7.3.4 |
 | TDD | Technical Design Document: the detailed design artifact; in testing contexts, test-driven development. | C.2.3 |
 | Technical debt | The future cost or constraint created by a design choice. | 18.2.1 |
 | Tenant context | The verified identity of the tenant on whose behalf work runs, carried with that work and enforced at data access. | 11.7.2 |

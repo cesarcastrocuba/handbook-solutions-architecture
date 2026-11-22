@@ -111,3 +111,12 @@ terms:
 - term: DR
   see: Disaster recovery
   rationale: Consolidated acronym; retained as a see row for alphabetical lookup.
+- term: Technology evaluation
+  defined: 7.3.3
+  rationale: Artifact fiche heading; section 7.3.3 owns it.
+- term: Migration and transition plan
+  defined: 7.5.1
+  rationale: Artifact fiche heading; section 7.5.1 owns it.
+- term: Continuity and recovery plan
+  defined: 7.5.3
+  rationale: Artifact fiche heading; section 7.5.3 owns it.

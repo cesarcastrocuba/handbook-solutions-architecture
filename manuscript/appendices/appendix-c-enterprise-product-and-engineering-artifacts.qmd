@@ -1,38 +1,104 @@
 # Appendix C — Enterprise, Product and Engineering Artifacts
 
-This appendix holds the enterprise, product and engineering artifacts that surround a solution: the business case, the product requirements, the detailed design, and the test and operational evidence. They belong to roles outside the architecture practice — a sponsor, a product manager, an engineering lead, a service owner — and the solution architect consumes them and must agree with them. Chapter 7 covers the artifacts the solution architect owns and keeps current.
+This appendix holds the artifacts that surround a solution and that other roles own. C.1 covers the enterprise context: the vision, principles, capability map, roadmap, contract and application portfolio that enterprise architecture maintains, and from which the solution architect takes direction. C.2 covers the product and engineering artifacts: the business case, the product requirements, the detailed design, and the test and operational evidence. They belong to roles outside the solution architecture practice — an enterprise architect, a sponsor, a product manager, an engineering lead, a service owner — and the solution architect consumes them and must agree with them. Chapter 7 covers the artifacts the solution architect owns and keeps current; 7.1.3 shows how each artifact here relates to them.
 
 ## C.1 Enterprise Context Artifacts
 
-PLACEHOLDER-C1
+These artifacts belong to enterprise architecture; the solution architect takes constraints and direction from them and returns evidence and change requests. Each fiche states what the solution architect takes from the artifact and what the architect returns to its owner.
 
 ### C.1.1 Architecture Vision
 
-PLACEHOLDER-C11
+**Definition.** An Architecture Vision defines the target architecture, its business value, the agreed scope boundaries, and the guiding constraints for an initiative before detailed design begins. It aligns executive sponsors, business stakeholders, and delivery leadership on what the target state looks like and the strategic outcomes it must achieve.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Define agreed scope, strategic intent, and measurable business goals for an initiative |
+| Owner | Enterprise Architect or Lead Architect; validated by executive business sponsors |
+| What the solution architect takes | Business goals, target principles, scope boundaries, budget and time horizons, and strategic constraints — for example, cutting payment checkout latency and transaction cost |
+| What the solution architect returns | Technical feasibility feedback, scope risks, early cost estimates, and change requests when constraints conflict with engineering reality |
+| Reference | The Open Group, The TOGAF Standard (ADM Phase A: Architecture Vision) |
+| Related chapter | Chapter 1 (Architecture Requirements) and Chapter 3 (Architecture Decisions) |
+
+: Enterprise context fiche: Architecture Vision
 
 ### C.1.2 Architecture Principles
 
-PLACEHOLDER-C12
+**Definition.** Architecture principles are general rules and guidelines that endure over time, inform decisions across systems, and reflect consensus across enterprise stakeholders. They follow the TOGAF template — name, statement, rationale, and implications — to provide testable guardrails that prevent arbitrary technology selection and architectural drift.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Establish enduring rules and constraints that guide and govern design and procurement decisions |
+| Owner | Enterprise Architecture Review Board (ARB) or Chief Architect |
+| What the solution architect takes | Enterprise constraints, decision criteria, and standard templates — for example, "Buy before Build" or "Loose Coupling across Payment Domains" |
+| What the solution architect returns | Evidence of principle conformance in the Solution Architecture Description (SAD), exception requests, and evolution proposals |
+| Reference | The Open Group, The TOGAF Standard (Architecture Principles template); Chapter 2 of this handbook |
+| Related chapter | Chapter 2 (Architecture Principles) and Chapter 4 (Architecture Governance) |
+
+: Enterprise context fiche: Architecture Principles
 
 ### C.1.3 Business Capability Map
 
-PLACEHOLDER-C13
+**Definition.** A Business Capability Map provides a stable, structured hierarchy of what an organization does to execute its business model, defined independently of organization charts, software applications, or technical implementations. It organizes capabilities across tiered levels (L1 to L3) and frequently incorporates heat maps indicating strategic importance, investment focus, or process maturity — for example, using a 1-to-5 scale patterned after CMMI maturity levels.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Establish a common business taxonomy that connects business outcomes to supporting technology solutions |
+| Owner | Enterprise Business Architect or Enterprise Architecture Practice |
+| What the solution architect takes | Capability boundary definitions, domain hierarchies, and maturity or heat indicators — for example, treating "Payment Processing" as a core capability needing high reliability |
+| What the solution architect returns | Solution-to-capability mappings, identification of duplicate or missing technical services, and boundary clash reports |
+| Reference | Business Architecture Guild, BIZBOK Guide; The Open Group, The TOGAF Standard (Business Architecture); CMMI maturity scales (as a labelled example) |
+| Related chapter | Chapter 1 (1.1.1 Business Capabilities) and Chapter 18 (18.3.2 Architecture Roadmaps) |
+
+: Enterprise context fiche: Business Capability Map
 
 ### C.1.4 Architecture Roadmap
 
-PLACEHOLDER-C14
+**Definition.** An Architecture Roadmap defines the sequenced path of transition architectures, intermediate plateaus, and work packages required to move an enterprise or domain from a baseline architecture to an agreed target state. It makes dependencies, legacy retirement dates, technical debt repayment windows, and risk retirement explicit over defined planning quarters or milestones.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Sequence transformation initiatives into executable transition plateaus, balancing delivery against risk retirement and legacy decommissioning |
+| Owner | Enterprise Architect, collaborating with Portfolio Management and Engineering Leadership |
+| What the solution architect takes | Target plateau timelines, horizon constraints, cross-initiative dependencies, and decommissioning deadlines — for example, the retirement quarter for a legacy core payment monolith |
+| What the solution architect returns | Solution delivery milestones, work package sequencing, transition state definitions, and legacy endpoint retirement evidence |
+| Reference | The Open Group, The TOGAF Standard (ADM Phase E: Opportunities and Solutions, and Phase F: Migration Planning) |
+| Related chapter | Chapter 18 (Architecture Evolution and Economics, 18.3.2) |
+
+: Enterprise context fiche: Architecture Roadmap
 
 ### C.1.5 Architecture Contract and Statement of Architecture Work
 
-PLACEHOLDER-C15
+**Definition.** The Statement of Architecture Work defines the scope, deliverables, budget, and acceptance criteria for an architecture engagement, while the Architecture Contract serves as the formal agreement between governing bodies and delivery teams that specifies architecture conformance criteria, quality metrics, constraints, and waiver policies during implementation. Together, they establish bilateral accountability between governance and delivery.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Establish formal governance agreements between architecture leadership and delivery teams on scope, deliverables, and conformance criteria |
+| Owner | Enterprise Architecture Review Board (ARB) or Sponsoring Organization, together with the Solution Delivery Lead |
+| What the solution architect takes | Authorized scope, mandatory governance gates, compliance thresholds, review schedules, and non-negotiable service-level criteria — for example, 99.99% availability for payment authorization |
+| What the solution architect returns | Solution Architecture Description (SAD), gate review submissions, compliance assessments, variance reports, and formal waiver applications |
+| Reference | The Open Group, The TOGAF Standard (ADM Phase A for Statement of Architecture Work, Phase G for Architecture Contracts) |
+| Related chapter | Chapter 4 (Architecture Governance, 4.4 Architecture Review and Assurance) |
+
+: Enterprise context fiche: Architecture Contract and Statement of Architecture Work
 
 ### C.1.6 Application Portfolio
 
-PLACEHOLDER-C16
+**Definition.** An Application Portfolio is the governed inventory of software systems and applications deployed across an organization, tracking their business capabilities, technical health, ownership, operating costs, and lifecycle disposition. Portfolio management frameworks — for example, Gartner's TIME model: Tolerate, Invest, Migrate, Eliminate — categorize systems by business value and technical fitness to drive modernization and retirement decisions.
+
+| Field | Content |
+| :--- | :--- |
+| Purpose | Maintain the inventory of enterprise systems, evaluating technical health, business fitness, operating costs, and lifecycle disposition |
+| Owner | Enterprise Architect or Application Portfolio Manager |
+| What the solution architect takes | Baseline system catalogs, application lifecycle statuses, technical debt assessments, and portfolio dispositions — for example, whether a payment reconciliation batch is slated to be eliminated or migrated |
+| What the solution architect returns | Application catalog updates, runtime asset metadata, integration endpoints, and technical fitness assessments |
+| Reference | The Open Group, The TOGAF Standard (Application Portfolio Catalog); Gartner's TIME model (labelled example: Tolerate, Invest, Migrate, Eliminate) |
+| Related chapter | Chapter 18 (18.1 Modernization and Migration) and Chapter 7 (7.5.1 Migration and Transition Plan) |
+
+: Enterprise context fiche: Application Portfolio
 
 ## C.2 Product and Engineering Artifacts
 
-Requirements artifacts record what the solution must achieve and how success will be recognized. Their audience includes the business as well as the delivery teams, which makes clarity and testability their dominant quality criteria.
+Product and engineering artifacts record what the solution must achieve, how each component is built, and how it is verified and operated. Their audience includes the business as well as the delivery teams, which makes clarity and testability their dominant quality criteria. Figure C.1 shows how the requirements artifacts feed the gate into design.
 
 ![Figure C.1 — Requirements artifacts and the gate into design](../../assets/diagrams/rendered/ch14-requirements.png){#fig-c-1 width="100%"}
 
@@ -42,7 +108,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Purpose.** Together they justify the investment and define what “success” means in business terms. They inform the funding decision, the scope boundary and the benefit that later architecture trade-offs are measured against, and they give the architect the change drivers that a modernization or sourcing decision must serve.
 
-**What it includes.** Quantified benefits separated from assumptions, a named decision owner, the alternatives considered and the consequence of not proceeding (Table C.1). A BRD that dictates implementation prematurely restricts viable designs; the document should state the outcome and the constraints, not choose the technology. The fiche gives the minimum content and the quality test for both the requirement document and the business case; attach the case as an annex when the funding decision and the requirement document are separate.
+**What it includes.** Quantified benefits separated from assumptions, a named decision owner, the alternatives considered and the consequence of not proceeding (Table C.7). A BRD that dictates implementation prematurely restricts viable designs; the document should state the outcome and the constraints, not choose the technology. The fiche gives the minimum content and the quality test for both the requirement document and the business case; attach the case as an annex when the funding decision and the requirement document are separate.
 
 | Field | Content |
 | :--- | :--- |
@@ -65,7 +131,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Purpose.** The PRD connects business intent to something a design and a test can act on. It informs journey design, prioritization and acceptance, and it is the artifact product, engineering and design use to agree what is in scope before architecture commits to a shape.
 
-**What it includes.** User journeys with acceptance criteria, prioritized functional requirements, success metrics, accessibility and localization needs, dependencies, assumptions and explicit exclusions (Table C.2). It links to, rather than restates, the quality scenarios that make non-functional requirements measurable.
+**What it includes.** User journeys with acceptance criteria, prioritized functional requirements, success metrics, accessibility and localization needs, dependencies, assumptions and explicit exclusions (Table C.8). It links to, rather than restates, the quality scenarios that make non-functional requirements measurable.
 
 | Field | Content |
 | :--- | :--- |
@@ -88,7 +154,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Purpose.** The LLD turns an approved high-level design into something an engineer can implement and a reviewer can check for failure behavior. It informs implementation sequencing, test design and operational readiness, and it records the decisions that are too local for an ADR but too consequential to leave in a code review comment.
 
-**What it includes.** Component responsibilities and sequence flows, data schemas and state transitions, failure modes with timeouts, retries and idempotency, deployment configuration and secret handling, test strategy and observability instrumentation, and migration, rollout and rollback (Table C.3). The acronym TDD also means Test-Driven Development, so expand it on first use.
+**What it includes.** Component responsibilities and sequence flows, data schemas and state transitions, failure modes with timeouts, retries and idempotency, deployment configuration and secret handling, test strategy and observability instrumentation, and migration, rollout and rollback (Table C.9). The acronym TDD also means Test-Driven Development, so expand it on first use.
 
 | Field | Content |
 | :--- | :--- |
@@ -111,7 +177,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Purpose.** They inform release decisions and architecture reviews by showing which claims have been demonstrated and under what conditions. They also inform design: a requirement that cannot be tested cheaply is a signal that the architecture is hard to verify.
 
-**What it includes.** A strategy that maps priority quality scenarios to test types and gates, test data and environments, performance and resilience baselines with workload and limits, and fitness functions that run continuously (Table C.4). Each test records the version, environment, workload and result so that a green result can be reproduced.
+**What it includes.** A strategy that maps priority quality scenarios to test types and gates, test data and environments, performance and resilience baselines with workload and limits, and fitness functions that run continuously (Table C.10). Each test records the version, environment, workload and result so that a green result can be reproduced.
 
 | Field | Content |
 | :--- | :--- |
@@ -134,7 +200,7 @@ Requirements artifacts record what the solution must achieve and how success wil
 
 **Purpose.** They inform the operating team’s ability to detect, diagnose, recover and change the service without the architects present. They also inform design: a service that cannot be described in a runbook is usually a service whose failure behavior is not understood.
 
-**What it includes.** Runbooks for routine and failure procedures, SLOs with error budgets, dashboards and alerts with owners, deployment and rollback steps, DR assumptions and tested recovery times, and the support handover record (Table C.5). The operations team accepts the artifacts before first production use, not after.
+**What it includes.** Runbooks for routine and failure procedures, SLOs with error budgets, dashboards and alerts with owners, deployment and rollback steps, DR assumptions and tested recovery times, and the support handover record (Table C.11). The operations team accepts the artifacts before first production use, not after.
 
 | Field | Content |
 | :--- | :--- |

@@ -46,4 +46,4 @@ The historical `--all` exporter validates and exports the imported source transc
 enriched Chapter 6 pilot from frozen YAML data, including the aggregate in original reading order.
 Chapter 6's source IDs come from its explicit DOCX title/question range; a range/count mismatch
 fails rather than guessing provenance. Generated exports match the frozen reference bytes.
-The canonical CSV/JSON/Markdown exports include all 157 active items in 20 domains.
+The canonical CSV/JSON/Markdown exports include all 159 active items in 20 domains.

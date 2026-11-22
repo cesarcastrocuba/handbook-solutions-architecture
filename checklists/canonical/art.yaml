@@ -20,7 +20,7 @@ items:
   rationale: Documents without owner, status or location drift from reality and are trusted long after they are obsolete.
   applicability: All maintained architecture artifacts.
   expected_evidence: Artifact catalog entry with owner, lifecycle status, authoritative location, review trigger and successor for superseded documents.
-  section: 7.6
+  section: '7.6'
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
@@ -46,4 +46,26 @@ items:
   external_reference: ''
   risk_relevance: Medium
   version: '2.1'
+  status: active
+- id: SA-ART-005
+  title: Maintained solution description
+  question: Does the SAD distinguish implemented and proposed states and reflect accepted changes?
+  rationale: An archive of change designs cannot establish the current system architecture and can leave obsolete boundaries in use.
+  applicability: Systems with a maintained solution description and successive architecture changes.
+  expected_evidence: Versioned SAD linked to the change HLD and ADRs, with affected views verified against the implemented configuration and a named update owner.
+  section: 7.2.2
+  external_reference: 'https://www.iso.org/standard/74393.html'
+  risk_relevance: Medium
+  version: '6.0'
+  status: active
+- id: SA-ART-006
+  title: Transition and readiness supported by evidence
+  question: Are migration, production readiness and continuity decisions supported by evidence for the same solution version and capability objectives?
+  rationale: Approval of a target design does not prove that cutover is safe, operation is staffed or recovery meets business needs.
+  applicability: New production capabilities, material migrations, service takeovers and changes to recovery commitments.
+  expected_evidence: Rehearsed cutover with reversal limits and reconciliation, readiness criteria and authorized sign-offs, and a capability-level recovery exercise recording observed time, data loss, integrity and owned corrective actions.
+  section: '7.5'
+  external_reference: 'https://www.iso.org/standard/75106.html'
+  risk_relevance: High
+  version: '6.0'
   status: active
