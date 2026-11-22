@@ -46,10 +46,10 @@ DOMAINS = {
     'EVAL': ('Architecture evaluation', 'chapters/ch06-architecture-evaluation.qmd'),
     'TEST': ('Testing and quality verification', 'chapters/ch16-testing-and-quality-verification.qmd'),
     'EVO': ('Evolution and economics', 'chapters/ch18-architecture-evolution-and-economics.qmd'),
-    'ART': ('Artifacts', 'chapters/ch07-architecture-and-engineering-artifacts.qmd'),
+    'ART': ('Artifacts', 'chapters/ch07-solutions-architecture-artifacts.qmd'),
     'FWK': ('Frameworks, methods and standards', 'chapters/ch08-architecture-frameworks-methods-and-standards.qmd'),
     'AI': ('AI and machine learning', 'chapters/ch19-ai-and-machine-learning-architecture.qmd'),
-    'ASR': ('Architecture assurance', 'appendices/appendix-c-architecture-assurance-checklist.qmd'),
+    'ASR': ('Architecture assurance', 'appendices/appendix-d-architecture-assurance-checklist.qmd'),
 }
 ENRICHED = ('title', 'rationale', 'applicability', 'expected_evidence', 'risk_relevance')
 COLUMNS = ['id', 'domain', 'title', 'question', 'rationale', 'applicability', 'expected_evidence',
@@ -84,7 +84,7 @@ def manuscript_items(rel):
 
 
 def section_of(rel):
-    number = re.match(r'(?:chapters/ch(\d+)|appendices/appendix-([a-j]))', rel)
+    number = re.match(r'(?:chapters/ch(\d+)|appendices/appendix-([a-k]))', rel)
     return number[1].lstrip('0') if number[1] else number[2].upper()
 
 

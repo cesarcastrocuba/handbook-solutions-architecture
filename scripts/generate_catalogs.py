@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Generate Appendices H (anti-patterns), I (decisions) and J (patterns).
+"""Generate Appendices I (anti-patterns), J (decisions) and H (patterns).
 
 Every "Common Pitfall" and "Decision & Trade-off" callout is listed with the
-section that discusses it. Appendix G comes from publishing/pattern-catalog.yaml,
+section that discusses it. Appendix H comes from publishing/pattern-catalog.yaml,
 and each entry must still be discussed in the section it names. The appendices
 are derived data: edit the sources and run this script. With --check, exit 1 if
 a committed appendix is out of date.
@@ -17,9 +17,9 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 CHAPTERS = ROOT/'manuscript'/'chapters'
 APPENDICES = ROOT/'manuscript'/'appendices'
-ANTI_PATTERNS = APPENDICES/'appendix-h-anti-pattern-catalog.qmd'
-DECISIONS = APPENDICES/'appendix-i-decision-catalog.qmd'
-PATTERNS = APPENDICES/'appendix-g-pattern-catalog.qmd'
+ANTI_PATTERNS = APPENDICES/'appendix-i-anti-pattern-catalog.qmd'
+DECISIONS = APPENDICES/'appendix-j-decision-catalog.qmd'
+PATTERNS = APPENDICES/'appendix-h-pattern-catalog.qmd'
 PATTERN_SOURCE = ROOT/'publishing'/'pattern-catalog.yaml'
 H1 = re.compile(r'^# (?:Chapter )?(\d+)[.:—\s]+(.+)$')
 H2 = re.compile(r'^## (\d+\.\d+) ')
@@ -64,8 +64,8 @@ def decision(lines):
 
 def render(chapters, kind):
     pitfalls = kind == 'Common Pitfall'
-    letter = 'H' if pitfalls else 'I'
-    out = ['# Appendix H — Anti-Pattern Catalog' if pitfalls else '# Appendix I — Decision Catalog', '']
+    letter = 'I' if pitfalls else 'J'
+    out = ['# Appendix I — Anti-Pattern Catalog' if pitfalls else '# Appendix J — Decision Catalog', '']
     if pitfalls:
         out += ['This catalog lists the anti-patterns described in the Common Pitfall callouts of each '
                 'chapter, so that a review can scan them in one place. Each entry names the problem; '
@@ -122,11 +122,11 @@ def pattern_errors(catalog, bodies):
 
 
 def render_patterns(catalog):
-    out = ['# Appendix G — Pattern Catalog', '',
+    out = ['# Appendix H — Pattern Catalog', '',
            'This catalog locates the patterns discussed in the handbook. It is an index and not a '
            'recommendation: the section named for each pattern explains when it applies and what it costs.', '']
     for index, (category, entries) in enumerate(catalog.items(), 1):
-        out += [f'## G.{index} {category}', '', '| Pattern | Problem it addresses | Section |', '| :--- | :--- | :--- |']
+        out += [f'## H.{index} {category}', '', '| Pattern | Problem it addresses | Section |', '| :--- | :--- | :--- |']
         out += [f'| {cell(e["name"])} | {cell(e["problem"])} | {e["section"]} |' for e in entries]
         group = ' '.join(w if w.isupper() else w.lower() for w in category.split())
         out += ['', f': Patterns for {group}', '']

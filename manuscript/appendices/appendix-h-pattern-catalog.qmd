@@ -1,8 +1,8 @@
-# Appendix G — Pattern Catalog
+# Appendix H — Pattern Catalog
 
 This catalog locates the patterns discussed in the handbook. It is an index and not a recommendation: the section named for each pattern explains when it applies and what it costs.
 
-## G.1 Integration and Messaging
+## H.1 Integration and Messaging
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -29,7 +29,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for integration and messaging
 
-## G.2 Application Structure and State
+## H.2 Application Structure and State
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -53,7 +53,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for application structure and state
 
-## G.3 Tenancy and Fault Isolation
+## H.3 Tenancy and Fault Isolation
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -65,7 +65,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for tenancy and fault isolation
 
-## G.4 Infrastructure and Runtime
+## H.4 Infrastructure and Runtime
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -83,7 +83,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for infrastructure and runtime
 
-## G.5 Security and Data
+## H.5 Security and Data
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -94,7 +94,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for security and data
 
-## G.6 Delivery and Evolution
+## H.6 Delivery and Evolution
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -112,7 +112,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for delivery and evolution
 
-## G.7 Platform
+## H.7 Platform
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |
@@ -126,7 +126,7 @@ This catalog locates the patterns discussed in the handbook. It is an index and 
 
 : Patterns for platform
 
-## G.8 AI Systems
+## H.8 AI Systems
 
 | Pattern | Problem it addresses | Section |
 | :--- | :--- | :--- |

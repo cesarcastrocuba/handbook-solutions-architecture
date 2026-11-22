@@ -58,6 +58,13 @@ when letters swap; the tool counts them for numbering, never rewrites them and
 prints the regeneration commands. Appendix C is authored and rewritten like any
 chapter, because ``scripts/checklists.py`` checks rather than generates it.
 
+A change that ADDS a document names it with ``--new``. A new document carries
+its final labels already, so it contributes no old label to the maps; the
+sections it inherits from an existing document keep their old literals and are
+mapped like any moved section::
+
+    python3 scripts/renumber.py --base origin/main --new manuscript/appendices/appendix-c-x.qmd
+
 Usage::
 
     python3 scripts/renumber.py --base HEAD
@@ -457,6 +464,7 @@ class Plan:
     applied: bool = False
     base_fingerprint: tuple = ()
     work_fingerprint: tuple = ()
+    new_documents: frozenset[str] = frozenset()
 
     def universe(self, kind: str) -> set[str]:
         return {
@@ -537,9 +545,22 @@ def label_base_tables(documents: list[Document]) -> set[str]:
     return labels
 
 
-def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
+def normalise_new(paths: list[str]) -> set[str]:
+    """Accept a --new path written from the repository root or from manuscript/."""
+    out = set()
+    for value in paths:
+        clean = value.strip().lstrip('./')
+        if not clean.startswith('manuscript/'):
+            clean = f'manuscript/{clean}'
+        out.add(clean)
+    return out
+
+
+def build_plan(root: Path, rev: str, alias_specs: list[str] = (),
+               new_paths: list[str] = ()) -> Plan:
     base_groups, base = base_documents(root, rev)
     work_groups, work = manuscript_files(root)
+    new_documents = normalise_new(list(new_paths))
     applied = applied_numbering(base, work, alias_sources(alias_specs))
 
     base_chapters = {document.label: document for document in base
@@ -551,6 +572,9 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
     base_by_title = {(document.group, document.title): document
                      for document in base if document.numbered and document.label}
     base_tables = label_base_tables(base)
+    base_heading_labels = {heading.old for document in base if document.numbered
+                           for heading in document.headings
+                           if heading.level > 1 and heading.old}
 
     pairs: list[tuple[str, str, str]] = []
     chapters: dict[str, str] = {}
@@ -561,13 +585,21 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
 
     chapter_index = appendix_index = 0
     for document in work:
+        new = document.path in new_documents
         if document.group == 'chapters':
             chapter_index += 1
             document.target = str(chapter_index)
             if not document.label:
                 raise RenumberError(f'{document.path}: chapter heading has no literal number')
-            chapters[document.label] = document.target
-            pairs.append(('chapter', document.label, document.path))
+            if new:
+                if document.label != document.target:
+                    raise RenumberError(
+                        f'{document.path}: new chapter must carry its final number '
+                        f'{document.target!r}, not {document.label!r}'
+                    )
+            else:
+                chapters[document.label] = document.target
+                pairs.append(('chapter', document.label, document.path))
         elif document.group == 'appendices':
             if appendix_index >= 26:
                 raise RenumberError('more than 26 appendices')
@@ -575,14 +607,31 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
             appendix_index += 1
             if not document.label:
                 raise RenumberError(f'{document.path}: appendix heading has no literal letter')
-            appendices[document.label] = document.target
-            pairs.append(('appendix', document.label, document.path))
+            if new:
+                if document.label != document.target:
+                    raise RenumberError(
+                        f'{document.path}: new appendix must carry its final letter '
+                        f'{document.target!r}, not {document.label!r}'
+                    )
+            else:
+                appendices[document.label] = document.target
+                pairs.append(('appendix', document.label, document.path))
         assign_targets(document)
         if not document.numbered or document.generated:
             continue
         for heading in document.headings:
             if heading.level == 1 or heading.old is None or heading.target is None:
                 continue
+            if new:
+                if heading.old == heading.target:
+                    # A heading the change adds: it already carries its final
+                    # number, so it contributes nothing to the old -> new map.
+                    continue
+                if heading.old not in base_heading_labels:
+                    raise RenumberError(
+                        f'{document.path}:{heading.line + 1}: new heading {heading.old!r} is '
+                        f'neither final ({heading.target!r}) nor moved from {rev}'
+                    )
             sections[heading.old] = heading.target
             pairs.append(('section', heading.old, f'{document.path}:{heading.line + 1}'))
         for figure in document.figures:
@@ -591,25 +640,35 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
 
     # Tables carry no literal number: match working captions against the
     # captions of the chapter or appendix that had the same old label at --base.
+    # A new document has no counterpart there, so its tables are matched against
+    # every table at --base, by owning heading and caption.
+    base_table_pool = [table for document in base if document.numbered
+                       for table in document.tables]
     for document in work:
         if not document.numbered or document.generated:
             continue
-        # The title survives a move, a rename and a renumbering, so it finds the
-        # document that carried this content at --base. The old label is the
-        # fallback for a document whose title was edited in the same change.
-        source = base_by_title.get((document.group, document.title))
-        if source is None:
-            source = (base_chapters if document.group == 'chapters'
-                      else base_appendices).get(document.label or '')
-        if source is None:
-            raise RenumberError(
-                f'{document.path}: no target numbered {document.label!r} at {rev}'
-            )
-        base_labels = [table.old for table in source.tables]
+        new = document.path in new_documents
+        source = None
+        if not new:
+            # The title survives a move, a rename and a renumbering, so it finds
+            # the document that carried this content at --base. The old label is
+            # the fallback for a document whose title was edited in the change.
+            source = base_by_title.get((document.group, document.title))
+            if source is None:
+                source = (base_chapters if document.group == 'chapters'
+                          else base_appendices).get(document.label or '')
+            if source is None:
+                raise RenumberError(
+                    f'{document.path}: no target numbered {document.label!r} at {rev}'
+                )
+            candidates_source = source.tables
+        else:
+            candidates_source = base_table_pool
+        base_labels = [table.old for table in candidates_source]
         used: set[int] = set()
         for table in document.tables:
             def free(predicate) -> list[int]:
-                return [index for index, candidate in enumerate(source.tables)
+                return [index for index, candidate in enumerate(candidates_source)
                         if index not in used and predicate(candidate)]
 
             # The owning heading carries the table through a section move, so it
@@ -623,7 +682,7 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
                 same_caption = free(lambda candidate: candidate.copy == table.copy)
                 if same_caption:
                     owners = ', '.join(
-                        f'{source.tables[index].owner!r} (old {base_labels[index]})'
+                        f'{candidates_source[index].owner!r} (old {base_labels[index]})'
                         for index in same_caption)
                     raise RenumberError(
                         f'{document.path}:{table.line + 1}: table caption {table.caption!r} is '
@@ -650,8 +709,12 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
             if key in seen:
                 problems.append(f'duplicate old {kind} number {old}: {seen[key]} and {where}')
             seen[key] = where
-        for kind, mapping in (('chapter', chapters), ('appendix', appendices)):
-            values = list(mapping.values())
+        # The positional targets of every document in the tree must be the
+        # contiguous range, whatever old labels they came from: a new document
+        # contributes a target without contributing an old label.
+        for kind, group in (('chapter', 'chapters'), ('appendix', 'appendices')):
+            values = [document.target for document in work
+                      if document.group == group and document.target]
             expected = ([str(index) for index in range(1, len(values) + 1)]
                         if kind == 'chapter'
                         else [chr(ord('A') + index) for index in range(len(values))])
@@ -678,6 +741,7 @@ def build_plan(root: Path, rev: str, alias_specs: list[str] = ()) -> Plan:
         applied=applied,
         base_fingerprint=structural_fingerprint(base_groups, base),
         work_fingerprint=structural_fingerprint(work_groups, work),
+        new_documents=frozenset(new_documents),
     )
 
 
@@ -962,7 +1026,11 @@ class Rewriter:
         low = min(image, key=lambda value: order_key(kind, value))
         high = max(image, key=lambda value: order_key(kind, value))
         span = expand_range(kind, low, high)
-        if span is None or set(span) != set(image):
+        # A document this change adds has no old label, so it is missing from the
+        # image; it still sits inside the span, and the range covers it.
+        added = {document.target for document in self.plan.working
+                 if document.path in self.plan.new_documents and document.target}
+        if span is None or set(span) != (set(image) | (added & set(span))):
             self.failed_range(kind, first, second, f'maps to {", ".join(image)}')
             return None
         return low, high
@@ -1208,6 +1276,11 @@ def rewrite_document(document: Document, rewriter: Rewriter) -> str:
                 and heading.old != heading.target):
             rewriter.record('heading', heading.old, heading.target)
             structural.append((heading.start, heading.end, heading.target))
+        elif (document.path in rewriter.plan.new_documents and heading
+              and heading.old and heading.old == heading.target):
+            # A label the change adds is already final: block it so the inline
+            # pass does not read its own number as a reference to an old target.
+            structural.append((heading.start, heading.end, heading.old))
         figure = figures.get(number)
         if not rewriter.identity and figure and figure.target and figure.old != figure.target:
             rewriter.record('figure', figure.old, figure.target)
@@ -1248,7 +1321,10 @@ def yaml_edits(line: str, rewriter: Rewriter) -> list[tuple[int, int, str]]:
     edits = []
     for match in YAML_KEY.finditer(line):
         old = match.group(3)
-        new = rewriter.resolve('section', old)
+        # A bare letter in a `section:` field names an appendix (the assurance
+        # checklist cites "section: C"), so it follows the appendix map.
+        kind = 'appendix' if re.fullmatch(r'[A-Z]', old) else 'section'
+        new = rewriter.resolve(kind, old)
         if new is not None and new != old:
             rewriter.record('section', old, new)
             edits.append((match.start(3), match.end(3), new))
@@ -1321,6 +1397,10 @@ def state_notes(plan: Plan, applied: bool) -> list[str]:
     for document in plan.working:
         if not document.numbered or document.generated:
             continue
+        if document.path in plan.new_documents:
+            # A new document carries its final labels by definition; build_plan
+            # has already checked them against the positional targets.
+            continue
         for heading in document.headings:
             if heading.old is None or heading.target is None:
                 continue
@@ -1370,6 +1450,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--base', required=True, help='git revision holding the OLD numbering')
     parser.add_argument('--alias', action='append', default=[], metavar='OLD=NEW',
                         help='map a deleted target to a surviving one (repeatable)')
+    parser.add_argument('--new', action='append', default=[], metavar='PATH',
+                        help='a document this change adds, already carrying its final '
+                             'numbers (repeatable)')
     parser.add_argument('--apply', action='store_true',
                         help='write the files (default: dry run)')
     parser.add_argument('--root', default=str(ROOT), help=argparse.SUPPRESS)
@@ -1377,7 +1460,7 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(args.root).resolve()
 
     try:
-        plan = build_plan(root, args.base, args.alias)
+        plan = build_plan(root, args.base, args.alias, args.new)
         aliases = build_aliases(plan, args.alias)
         applied = plan.applied
     except RenumberError as exc:
@@ -1406,6 +1489,9 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f'renumber: root {root}')
     print(f'renumber: base {args.base}')
+    if args.new:
+        print('renumber: new documents (final numbers, not rewritten): '
+              + ', '.join(sorted(plan.new_documents)))
     print('structure: identical to --base; old and new numbering coincide'
           if identical_structure else 'structure: changed since --base')
     if applied:

@@ -1,4 +1,4 @@
-# Source for Appendix G. `section` is the owning section; `match` (default: the
+# Source for Appendix H. `section` is the owning section; `match` (default: the
 # name) must appear there, so scripts/generate_catalogs.py detects a stale entry.
 Integration and Messaging:
   - {name: Request/response, problem: The caller needs the outcome within a bounded time, section: 10.1.2}

@@ -1,8 +1,8 @@
-# Appendix F — Security Reference
+# Appendix G — Security Reference
 
 This appendix collects the detailed reference tables that support Chapter 13.
 
-## F.1 Authentication Methods Compared
+## G.1 Authentication Methods Compared
 
 | Method | Phishing resistance | Notes |
 | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ This appendix collects the detailed reference tables that support Chapter 13.
 
 : Authentication methods compared
 
-## F.2 Federation Protocols and OAuth 2.0 Flows
+## G.2 Federation Protocols and OAuth 2.0 Flows
 
 | Protocol | Purpose | Format and typical use |
 | :--- | :--- | :--- |
@@ -41,7 +41,7 @@ NTLM, which Microsoft has deprecated, should not be used in new designs.
 
 OAuth 2.1, still a draft at the time of writing, folds the current best practice into the core specification. Sender-constrained tokens bind a token to a client certificate (RFC 8705) or a proof-of-possession key (DPoP, RFC 9449).
 
-## F.3 OWASP Resources and ASVS
+## G.3 OWASP Resources and ASVS
 
 | OWASP resource | Use |
 | :--- | :--- |
@@ -83,7 +83,7 @@ OAuth 2.1, still a draft at the time of writing, folds the current best practice
 
 : ASVS example for the reference checkout
 
-## F.4 Security Testing Techniques
+## G.4 Security Testing Techniques
 
 | Technique | What it examines | Finds well | Limits | When |
 | :--- | :--- | :--- | :--- | :--- |
@@ -107,7 +107,7 @@ OAuth 2.1, still a draft at the time of writing, folds the current best practice
 - A production-like test environment with synthetic data, never production customer data.
 - Agreed scope, rate limits and exclusions for destructive operations.
 
-## F.5 Vulnerability Scoring and Remediation
+## G.5 Vulnerability Scoring and Remediation
 
 | CVSS severity | Score range |
 | :--- | :--- |
@@ -132,7 +132,7 @@ CVSS v4.0 labels scores by the metric groups used, for example CVSS-B (base only
 
 These objectives are illustrative; contracts and regulations may impose stricter ones.
 
-## F.6 Security Testing Tools: Reference Examples
+## G.6 Security Testing Tools: Reference Examples
 
 The tools below are examples of each category, current as of October 2026, listed to help readers recognize the categories in practice. Inclusion is not an endorsement, and the market changes quickly; evaluate tools against your languages, platforms, pipeline and budget.
 
@@ -150,9 +150,9 @@ The tools below are examples of each category, current as of October 2026, liste
 
 : Security testing tool categories: reference examples
 
-## F.7 Common Web Vulnerabilities
+## G.7 Common Web Vulnerabilities
 
-The table names frequent classes of web application vulnerability and the primary defense against each. It complements the OWASP resources (F.3) and does not replace a threat model (13.1.1).
+The table names frequent classes of web application vulnerability and the primary defense against each. It complements the OWASP resources (G.3) and does not replace a threat model (13.1.1).
 
 | Vulnerability | Cause | Primary defense | How to verify |
 | :--- | :--- | :--- | :--- |
